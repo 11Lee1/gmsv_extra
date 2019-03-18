@@ -21,7 +21,8 @@
 #include <random>
 
 void main() {
-	printf("");
+
+
 }
 
 

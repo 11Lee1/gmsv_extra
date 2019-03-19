@@ -5,7 +5,6 @@
 #ifdef ___DLL
 void main() {
 
-
 }
 
 BOOL __stdcall DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) {
@@ -24,8 +23,7 @@ BOOL __stdcall DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReser
 	return TRUE;
 }
 #else
-int main()
-{
+int main() {
 	Vector lol(0,0,0);
 
 	Vector lol2(0, 0, 100);

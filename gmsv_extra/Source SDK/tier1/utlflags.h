@@ -1,3 +1,21 @@
+//========= Copyright Valve Corporation, All rights reserved. ============//
+//
+// Purpose: Simple class to make it easier to deal with flags
+//
+//=============================================================================
+
+#ifndef UTLFLAGS_H
+#define UTLFLAGS_H
+#ifdef _WIN32
+#pragma once
+#endif
+
+#include "../tier0/dbg.h"
+
+
+//-----------------------------------------------------------------------------
+// Simple class to make it easier to deal with flags
+//-----------------------------------------------------------------------------
 template< class T >
 class CUtlFlags
 {
@@ -15,8 +33,8 @@ public:
 
 	// Is any flag set?
 	bool IsAnyFlagSet() const;
-	int GetFlags();
-public:
+
+private:
 	T m_nFlags;
 };
 
@@ -37,14 +55,7 @@ CUtlFlags<T>::CUtlFlags(int nInitialFlags)
 template< class T >
 void CUtlFlags<T>::SetFlag(int nFlagMask)
 {
-
 	m_nFlags |= (T)nFlagMask;
-}
-
-template< class T >
-int CUtlFlags<T>::GetFlags()
-{
-	return m_nFlags;
 }
 
 template< class T >
@@ -97,3 +108,5 @@ bool CUtlFlags<T>::IsAnyFlagSet() const
 	return m_nFlags != 0;
 }
 
+
+#endif // UTLFLAGS_H

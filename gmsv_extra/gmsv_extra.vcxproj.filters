@@ -84,6 +84,9 @@
     <ClCompile Include="Source SDK\tier1\checksum_md5.cpp">
       <Filter>Source Files\Source SDK\tier1</Filter>
     </ClCompile>
+    <ClCompile Include="Source SDK\tier1\KeyValues.cpp">
+      <Filter>Source Files\Source SDK\tier1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\baseinclude.h">
@@ -346,6 +349,36 @@
     </ClInclude>
     <ClInclude Include="Source SDK\tier1\utlsymbol.h">
       <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\KeyValues.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\iservernetworkable.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\bspfile.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\datamap.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\mathlib\bumpvects.h">
+      <Filter>Header Files\Source SDK\mathlib</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\mathlib\compressed_light_cube.h">
+      <Filter>Header Files\Source SDK\mathlib</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\zip_uncompressed.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\eiface.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\soundflags.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\engine\ivmodelinfo.h">
+      <Filter>Header Files\Source SDK\engine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

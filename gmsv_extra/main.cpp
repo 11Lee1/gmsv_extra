@@ -2,10 +2,33 @@
 
 
 
-#ifdef ___DLL
-void main() {
 
+#define ___DLL
+#ifdef ___DLL
+#define __INJECT
+
+
+#ifdef __INJECT
+void main() {
+	Interfaces::_SetupInterfaces();
+
+	IVEngineServer* engineserver = Interfaces::EngineServer();
+	if (engineserver) {
+		printf("engine server pointer found\n");
+
+		edict_t* entedict = engineserver->PEntityOfEntIndex(1);
+		if (entedict) {
+			printf("got player edict 0x%X\n", entedict);
+		}
+		else {
+			printf("failed getting player edict\n");
+		}
+	}
+	else {
+		printf("failed finding engine server\n");
+	}
 }
+
 
 BOOL __stdcall DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) {
 	switch (ul_reason_for_call)
@@ -22,6 +45,17 @@ BOOL __stdcall DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReser
 	}
 	return TRUE;
 }
+#else
+
+/*
+
+	do stuff for gm_module_open here later.
+
+*/
+
+
+#endif
+
 #else
 int main() {
 	Vector lol(0,0,0);

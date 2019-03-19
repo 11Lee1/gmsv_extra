@@ -26,7 +26,7 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
@@ -123,6 +123,7 @@
     <ClCompile Include="Source SDK\tier1\bitbuf.cpp" />
     <ClCompile Include="Source SDK\tier1\checksum_md5.cpp" />
     <ClCompile Include="Source SDK\tier1\convar.cpp" />
+    <ClCompile Include="Source SDK\tier1\KeyValues.cpp" />
     <ClCompile Include="Source SDK\tier1\strtools.cpp" />
     <ClCompile Include="Source SDK\tier1\strtools_unicode.cpp" />
     <ClCompile Include="Source SDK\tier1\utlstring.cpp" />
@@ -134,25 +135,32 @@
     <ClInclude Include="Source SDK\appframework\IAppSystem.h" />
     <ClInclude Include="Source SDK\basehandle.h" />
     <ClInclude Include="Source SDK\bitvec.h" />
+    <ClInclude Include="Source SDK\bspfile.h" />
     <ClInclude Include="Source SDK\bspflags.h" />
     <ClInclude Include="Source SDK\cmodel.h" />
     <ClInclude Include="Source SDK\const.h" />
     <ClInclude Include="Source SDK\coordsize.h" />
+    <ClInclude Include="Source SDK\datamap.h" />
     <ClInclude Include="Source SDK\dt_common.h" />
     <ClInclude Include="Source SDK\dt_send.h" />
     <ClInclude Include="Source SDK\edict.h" />
+    <ClInclude Include="Source SDK\eiface.h" />
     <ClInclude Include="Source SDK\engine\engine_launcher_api.h" />
     <ClInclude Include="Source SDK\engine\ICollideable.h" />
     <ClInclude Include="Source SDK\engine\iserverplugin.h" />
+    <ClInclude Include="Source SDK\engine\ivmodelinfo.h" />
     <ClInclude Include="Source SDK\gametrace.h" />
     <ClInclude Include="Source SDK\globalvars_base.h" />
     <ClInclude Include="Source SDK\icvar.h" />
     <ClInclude Include="Source SDK\ihandleentity.h" />
     <ClInclude Include="Source SDK\iserverentity.h" />
+    <ClInclude Include="Source SDK\iservernetworkable.h" />
     <ClInclude Include="Source SDK\iserverunknown.h" />
     <ClInclude Include="Source SDK\ispatialpartition.h" />
     <ClInclude Include="Source SDK\mathlib\3dnow.h" />
     <ClInclude Include="Source SDK\mathlib\amd3dx.h" />
+    <ClInclude Include="Source SDK\mathlib\bumpvects.h" />
+    <ClInclude Include="Source SDK\mathlib\compressed_light_cube.h" />
     <ClInclude Include="Source SDK\mathlib\compressed_vector.h" />
     <ClInclude Include="Source SDK\mathlib\mathlib.h" />
     <ClInclude Include="Source SDK\mathlib\math_pfns.h" />
@@ -170,6 +178,7 @@
     <ClInclude Include="Source SDK\server\baseentity.h" />
     <ClInclude Include="Source SDK\server\cbase.h" />
     <ClInclude Include="Source SDK\server\world.h" />
+    <ClInclude Include="Source SDK\soundflags.h" />
     <ClInclude Include="Source SDK\string_t.h" />
     <ClInclude Include="Source SDK\tier0\annotations.h" />
     <ClInclude Include="Source SDK\tier0\basetypes.h" />
@@ -198,6 +207,7 @@
     <ClInclude Include="Source SDK\tier1\convar.h" />
     <ClInclude Include="Source SDK\tier1\iconvar.h" />
     <ClInclude Include="Source SDK\tier1\interface.h" />
+    <ClInclude Include="Source SDK\tier1\KeyValues.h" />
     <ClInclude Include="Source SDK\tier1\strtools.h" />
     <ClInclude Include="Source SDK\tier1\utlblockmemory.h" />
     <ClInclude Include="Source SDK\tier1\utldict.h" />
@@ -213,6 +223,7 @@
     <ClInclude Include="Source SDK\usercmd.h" />
     <ClInclude Include="Source SDK\vcollide.h" />
     <ClInclude Include="Source SDK\worldsize.h" />
+    <ClInclude Include="Source SDK\zip_uncompressed.h" />
     <ClInclude Include="util\pattern.h" />
     <ClInclude Include="util\util.h" />
   </ItemGroup>

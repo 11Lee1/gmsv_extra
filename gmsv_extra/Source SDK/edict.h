@@ -64,12 +64,6 @@ public:
 	int				serverCount;
 };
 
-inline CGlobalVars::CGlobalVars(bool bIsClient) :
-	CGlobalVarsBase(bIsClient)
-{
-	serverCount = 0;
-}
-
 
 class CPlayerState;
 class IServerNetworkable;

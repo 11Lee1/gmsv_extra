@@ -34,6 +34,7 @@
 
 //more tier 1 stuff
 #include "Source SDK/tier1/bitbuff.h"
+#include "Source SDK/eiface.h"
 /*
 #include "Source SDK/tier1/bitvec.h"
 #include "Source SDK/tier1/bitbuf2.h"

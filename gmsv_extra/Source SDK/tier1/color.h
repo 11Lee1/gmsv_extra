@@ -1,3 +1,21 @@
+//========= Copyright Valve Corporation, All rights reserved. ============//
+//
+// Purpose: 
+//
+// $NoKeywords: $
+//=============================================================================//
+
+#ifndef COLOR_H
+#define COLOR_H
+
+#ifdef _WIN32
+#pragma once
+#endif
+
+//-----------------------------------------------------------------------------
+// Purpose: Basic handler for an rgb set of colors
+//			This class is fully inline
+//-----------------------------------------------------------------------------
 class Color
 {
 public:
@@ -13,10 +31,6 @@ public:
 	Color(int _r, int _g, int _b, int _a)
 	{
 		SetColor(_r, _g, _b, _a);
-	}
-	Color(float* col_arr)
-	{
-		SetColor(col_arr[0] * 255, col_arr[1] * 255, col_arr[2] * 255, col_arr[3] * 255);
 	}
 
 	// set the color
@@ -39,6 +53,7 @@ public:
 		_b = _color[2];
 		_a = _color[3];
 	}
+
 	void SetRawColor(int color32)
 	{
 		*((int *)this) = color32;
@@ -53,7 +68,6 @@ public:
 	inline int g() const { return _color[1]; }
 	inline int b() const { return _color[2]; }
 	inline int a() const { return _color[3]; }
-
 
 	unsigned char &operator[](int index)
 	{
@@ -81,6 +95,9 @@ public:
 		return *this;
 	}
 
-public:
+private:
 	unsigned char _color[4];
 };
+
+
+#endif // COLOR_H

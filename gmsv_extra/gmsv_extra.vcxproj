@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -76,6 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -116,6 +117,63 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Source SDK\mathlib\mathlib_base.cpp" />
+    <ClCompile Include="Source SDK\mathlib\sse.cpp" />
+    <ClCompile Include="Source SDK\tier1\bitbuf.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include.h" />
+    <ClInclude Include="include\baseinclude.h" />
+    <ClInclude Include="interfaces.h" />
+    <ClInclude Include="Source SDK\appframework\IAppSystem.h" />
+    <ClInclude Include="Source SDK\bitvec.h" />
+    <ClInclude Include="Source SDK\const.h" />
+    <ClInclude Include="Source SDK\coordsize.h" />
+    <ClInclude Include="Source SDK\engine\engine_launcher_api.h" />
+    <ClInclude Include="Source SDK\mathlib\3dnow.h" />
+    <ClInclude Include="Source SDK\mathlib\amd3dx.h" />
+    <ClInclude Include="Source SDK\mathlib\compressed_vector.h" />
+    <ClInclude Include="Source SDK\mathlib\mathlib.h" />
+    <ClInclude Include="Source SDK\mathlib\math_pfns.h" />
+    <ClInclude Include="Source SDK\mathlib\sse.h" />
+    <ClInclude Include="Source SDK\mathlib\ssemath.h" />
+    <ClInclude Include="Source SDK\mathlib\ssequaternion.h" />
+    <ClInclude Include="Source SDK\mathlib\vector.h" />
+    <ClInclude Include="Source SDK\mathlib\vector2d.h" />
+    <ClInclude Include="Source SDK\mathlib\vector4d.h" />
+    <ClInclude Include="Source SDK\mathlib\vmatrix.h" />
+    <ClInclude Include="Source SDK\mathlib\vplane.h" />
+    <ClInclude Include="Source SDK\tier0\annotations.h" />
+    <ClInclude Include="Source SDK\tier0\basetypes.h" />
+    <ClInclude Include="Source SDK\tier0\commonmacros.h" />
+    <ClInclude Include="Source SDK\tier0\dbg.h" />
+    <ClInclude Include="Source SDK\tier0\dbgflag.h" />
+    <ClInclude Include="Source SDK\tier0\fasttimer.h" />
+    <ClInclude Include="Source SDK\tier0\l2cache.h" />
+    <ClInclude Include="Source SDK\tier0\memalloc.h" />
+    <ClInclude Include="Source SDK\tier0\memdbgoff.h" />
+    <ClInclude Include="Source SDK\tier0\memdbgon.h" />
+    <ClInclude Include="Source SDK\tier0\platform.h" />
+    <ClInclude Include="Source SDK\tier0\protected_things.h" />
+    <ClInclude Include="Source SDK\tier0\threadtools.h" />
+    <ClInclude Include="Source SDK\tier0\valve_minmax_off.h" />
+    <ClInclude Include="Source SDK\tier0\valve_minmax_on.h" />
+    <ClInclude Include="Source SDK\tier0\valve_off.h" />
+    <ClInclude Include="Source SDK\tier0\valve_on.h" />
+    <ClInclude Include="Source SDK\tier0\vcrmode.h" />
+    <ClInclude Include="Source SDK\tier0\vprof.h" />
+    <ClInclude Include="Source SDK\tier0\wchartypes.h" />
+    <ClInclude Include="Source SDK\tier1\bitbuff.h" />
+    <ClInclude Include="Source SDK\tier1\checksum_crc.h" />
+    <ClInclude Include="Source SDK\tier1\checksum_md5.h" />
+    <ClInclude Include="Source SDK\tier1\color.h" />
+    <ClInclude Include="Source SDK\tier1\interface.h" />
+    <ClInclude Include="Source SDK\tier1\strtools.h" />
+    <ClInclude Include="Source SDK\tier1\utlflags.h" />
+    <ClInclude Include="Source SDK\usercmd.h" />
+    <ClInclude Include="Source SDK\worldsize.h" />
+    <ClInclude Include="util\pattern.h" />
+    <ClInclude Include="util\util.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

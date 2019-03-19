@@ -13,10 +13,204 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\include">
+      <UniqueIdentifier>{e7b9e147-5bce-4370-8cc9-ea9d028e063b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\util">
+      <UniqueIdentifier>{4893dc1f-1fab-4b9d-ab52-c7ed3db5fced}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Source SDK">
+      <UniqueIdentifier>{3992dc1b-345c-4a1d-bd50-6d847642c7d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Source SDK\appframework">
+      <UniqueIdentifier>{260125ce-a5d0-4ef6-8513-dcd837f0b4bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Source SDK\engine">
+      <UniqueIdentifier>{9d205c15-0e88-4771-b4ae-862922cff710}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Source SDK\mathlib">
+      <UniqueIdentifier>{80fa45cf-599b-4abb-b677-1f318534f500}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Source SDK\server">
+      <UniqueIdentifier>{7ab75cbe-3f62-496f-8467-0cacf051061b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Source SDK\tier0">
+      <UniqueIdentifier>{87dbdbd0-7478-44cf-aac2-46f9c48e9bd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Source SDK\tier1">
+      <UniqueIdentifier>{9a2fb766-bd93-4877-9a5c-6f19105aae94}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source SDK\mathlib\mathlib_base.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source SDK\tier1\bitbuf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source SDK\mathlib\sse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\baseinclude.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="util\util.h">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="util\pattern.h">
+      <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\appframework\IAppSystem.h">
+      <Filter>Header Files\Source SDK\appframework</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\engine\engine_launcher_api.h">
+      <Filter>Header Files\Source SDK\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\mathlib\3dnow.h">
+      <Filter>Header Files\Source SDK\mathlib</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\mathlib\amd3dx.h">
+      <Filter>Header Files\Source SDK\mathlib</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\mathlib\compressed_vector.h">
+      <Filter>Header Files\Source SDK\mathlib</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\mathlib\math_pfns.h">
+      <Filter>Header Files\Source SDK\mathlib</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\mathlib\mathlib.h">
+      <Filter>Header Files\Source SDK\mathlib</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\mathlib\sse.h">
+      <Filter>Header Files\Source SDK\mathlib</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\mathlib\ssemath.h">
+      <Filter>Header Files\Source SDK\mathlib</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\mathlib\ssequaternion.h">
+      <Filter>Header Files\Source SDK\mathlib</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\mathlib\vector.h">
+      <Filter>Header Files\Source SDK\mathlib</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\mathlib\vector2d.h">
+      <Filter>Header Files\Source SDK\mathlib</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\mathlib\vector4d.h">
+      <Filter>Header Files\Source SDK\mathlib</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\mathlib\vmatrix.h">
+      <Filter>Header Files\Source SDK\mathlib</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\mathlib\vplane.h">
+      <Filter>Header Files\Source SDK\mathlib</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier0\annotations.h">
+      <Filter>Header Files\Source SDK\tier0</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier0\basetypes.h">
+      <Filter>Header Files\Source SDK\tier0</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier0\commonmacros.h">
+      <Filter>Header Files\Source SDK\tier0</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier0\dbg.h">
+      <Filter>Header Files\Source SDK\tier0</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier0\dbgflag.h">
+      <Filter>Header Files\Source SDK\tier0</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier0\fasttimer.h">
+      <Filter>Header Files\Source SDK\tier0</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier0\l2cache.h">
+      <Filter>Header Files\Source SDK\tier0</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier0\memdbgoff.h">
+      <Filter>Header Files\Source SDK\tier0</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier0\memdbgon.h">
+      <Filter>Header Files\Source SDK\tier0</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier0\memalloc.h">
+      <Filter>Header Files\Source SDK\tier0</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier0\platform.h">
+      <Filter>Header Files\Source SDK\tier0</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier0\protected_things.h">
+      <Filter>Header Files\Source SDK\tier0</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier0\threadtools.h">
+      <Filter>Header Files\Source SDK\tier0</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier0\valve_minmax_off.h">
+      <Filter>Header Files\Source SDK\tier0</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier0\valve_minmax_on.h">
+      <Filter>Header Files\Source SDK\tier0</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier0\valve_off.h">
+      <Filter>Header Files\Source SDK\tier0</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier0\valve_on.h">
+      <Filter>Header Files\Source SDK\tier0</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier0\vcrmode.h">
+      <Filter>Header Files\Source SDK\tier0</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier0\vprof.h">
+      <Filter>Header Files\Source SDK\tier0</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier0\wchartypes.h">
+      <Filter>Header Files\Source SDK\tier0</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\bitbuff.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\checksum_crc.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\checksum_md5.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\color.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\interface.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\strtools.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\utlflags.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\bitvec.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\const.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\coordsize.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\usercmd.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\worldsize.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="interfaces.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

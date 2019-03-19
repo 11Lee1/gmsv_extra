@@ -1,30 +1,12 @@
-#include <Windows.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <iostream>
-#include <fstream>
-#include <deque>
-#include <map>
-#include <vector>
-#include <Psapi.h>
-#include <intrin.h>
-#include <iterator>
-#include <string>
-#include <math.h>
-#include <assert.h>
-#include <cstdint>
-#include <xmmintrin.h>
-#include <d3d9.h>
-#include <cstdint>
-#include <algorithm>
-#include <iomanip>
-#include <random>
+#include "include.h"
 
+
+
+#ifdef ___DLL
 void main() {
 
 
 }
-
 
 BOOL __stdcall DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) {
 	switch (ul_reason_for_call)
@@ -41,3 +23,17 @@ BOOL __stdcall DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReser
 	}
 	return TRUE;
 }
+#else
+int main()
+{
+	Vector lol(0,0,0);
+
+	Vector lol2(0, 0, 100);
+
+	printf("X: %f      Y: %f      Z: %f\n", lol.x, lol.y, lol.z);
+
+	printf("dist: %f\n", lol.DistTo(lol2));
+	Sleep(100000);
+	return 1;
+}
+#endif

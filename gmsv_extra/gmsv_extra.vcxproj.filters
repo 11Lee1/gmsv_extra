@@ -52,6 +52,9 @@
     <Filter Include="Source Files\Source SDK\server">
       <UniqueIdentifier>{3c230461-2702-40e1-b34e-5b3241f70f60}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\LUA">
+      <UniqueIdentifier>{f27de532-5a65-43aa-aac0-e311b15af87b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -379,6 +382,21 @@
     </ClInclude>
     <ClInclude Include="Source SDK\engine\ivmodelinfo.h">
       <Filter>Header Files\Source SDK\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="LUA\ILuaShared.h">
+      <Filter>Header Files\LUA</Filter>
+    </ClInclude>
+    <ClInclude Include="LUA\LuaBase.h">
+      <Filter>Header Files\LUA</Filter>
+    </ClInclude>
+    <ClInclude Include="LUA\LuaInterface.h">
+      <Filter>Header Files\LUA</Filter>
+    </ClInclude>
+    <ClInclude Include="LUA\LuaTypes.h">
+      <Filter>Header Files\LUA</Filter>
+    </ClInclude>
+    <ClInclude Include="LUA\LuaUserData.h">
+      <Filter>Header Files\LUA</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

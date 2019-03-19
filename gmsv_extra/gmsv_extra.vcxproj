@@ -132,6 +132,11 @@
     <ClInclude Include="include.h" />
     <ClInclude Include="include\baseinclude.h" />
     <ClInclude Include="interfaces.h" />
+    <ClInclude Include="LUA\ILuaShared.h" />
+    <ClInclude Include="LUA\LuaBase.h" />
+    <ClInclude Include="LUA\LuaInterface.h" />
+    <ClInclude Include="LUA\LuaTypes.h" />
+    <ClInclude Include="LUA\LuaUserData.h" />
     <ClInclude Include="Source SDK\appframework\IAppSystem.h" />
     <ClInclude Include="Source SDK\basehandle.h" />
     <ClInclude Include="Source SDK\bitvec.h" />

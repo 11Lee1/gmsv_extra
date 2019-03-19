@@ -1,3 +1,6 @@
+#ifdef _WIN32
+#pragma once
+#endif
 class IMemAlloc
 {
 public:

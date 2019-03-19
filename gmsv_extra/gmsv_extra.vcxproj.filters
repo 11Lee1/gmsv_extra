@@ -40,19 +40,43 @@
     <Filter Include="Header Files\Source SDK\tier1">
       <UniqueIdentifier>{9a2fb766-bd93-4877-9a5c-6f19105aae94}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Source SDK">
+      <UniqueIdentifier>{bdcd166c-8417-46b8-bf8c-3048f699f321}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Source SDK\tier1">
+      <UniqueIdentifier>{df038cf0-d544-4ad0-999a-2d2768e354ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Source SDK\mathlib">
+      <UniqueIdentifier>{5e109325-2141-4c9a-8313-66be94281785}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Source SDK\server">
+      <UniqueIdentifier>{3c230461-2702-40e1-b34e-5b3241f70f60}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source SDK\mathlib\mathlib_base.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source SDK\tier1\bitbuf.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Source SDK\tier1</Filter>
+    </ClCompile>
+    <ClCompile Include="Source SDK\mathlib\mathlib_base.cpp">
+      <Filter>Source Files\Source SDK\mathlib</Filter>
     </ClCompile>
     <ClCompile Include="Source SDK\mathlib\sse.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Source SDK\mathlib</Filter>
+    </ClCompile>
+    <ClCompile Include="Source SDK\server\gametrace_dll.cpp">
+      <Filter>Source Files\Source SDK\server</Filter>
+    </ClCompile>
+    <ClCompile Include="Source SDK\tier1\utlstring.cpp">
+      <Filter>Source Files\Source SDK\tier1</Filter>
+    </ClCompile>
+    <ClCompile Include="Source SDK\tier1\convar.cpp">
+      <Filter>Source Files\Source SDK\tier1</Filter>
+    </ClCompile>
+    <ClCompile Include="Source SDK\tier1\strtools.cpp">
+      <Filter>Source Files\Source SDK\tier1</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -211,6 +235,111 @@
     </ClInclude>
     <ClInclude Include="interfaces.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\engine\iserverplugin.h">
+      <Filter>Header Files\Source SDK\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\edict.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\globalvars_base.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\engine\ICollideable.h">
+      <Filter>Header Files\Source SDK\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\iserverentity.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\string_t.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\iserverunknown.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\ihandleentity.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\cmodel.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\trace.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\basehandle.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\bspflags.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\vcollide.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\gametrace.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\utlvector.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\utlmemory.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\utlblockmemory.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\cbase.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\world.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\networkvar.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\serverclass.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\dt_send.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\dt_common.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\networkstringtabledefs.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\convar.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\icvar.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\iconvar.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\utlstring.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\baseentity.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\ispatialpartition.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\utldict.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\utlmap.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\utlrbtree.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\utlfixedmemory.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\utlsymbol.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

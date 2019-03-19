@@ -1,8 +1,8 @@
 #include "include.h"
 
 
-#define ___DLL
-#ifdef ___DLL
+#define __DLL
+#ifdef __DLL
 
 void main() {
 	Interfaces::_SetupInterfaces();
@@ -24,7 +24,7 @@ void main() {
 }
 
 //#define __INJECT
-#ifdef __INJECT // note: calling require("extra") in lua will run the module but spit out an via lua
+#ifdef __INJECT // note: calling require("extra") in lua will run the module but spit out an error via lua
 
 BOOL __stdcall DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) {
 	switch (ul_reason_for_call)
@@ -43,7 +43,6 @@ BOOL __stdcall DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReser
 }
 
 #else
-
 GMOD_MODULE_OPEN()
 {
 	main();
@@ -55,7 +54,7 @@ GMOD_MODULE_CLOSE()
 	return 1;
 }
 
-#endif
+#endif // __INJECT
 
 #else
 int main() {
@@ -68,4 +67,4 @@ int main() {
 	Sleep(100000);
 	return 1;
 }
-#endif
+#endif // __DLL

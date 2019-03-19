@@ -339,7 +339,6 @@ public:
 #ifdef _DEBUG // it's safe to skip this here, since the only way to get indices after m_LastAlloc is to use MaxElement()
 		if (BaseClass::Elements().IsIdxAfter(i, this->m_LastAlloc))
 		{
-			Assert(0);
 			return false; // don't read values that have been allocated, but not constructed
 		}
 #endif
@@ -624,7 +623,6 @@ inline typename CUtlRBTree<T, I, L, M>::Links_t const &CUtlRBTree<T, I, L, M>::L
 template < class T, class I, typename L, class M >
 inline typename CUtlRBTree<T, I, L, M>::Links_t &CUtlRBTree<T, I, L, M>::Links(I i)
 {
-	Assert(i != InvalidIndex());
 	return *(Links_t *)&m_Elements[i];
 }
 
@@ -678,7 +676,6 @@ I  CUtlRBTree<T, I, L, M>::NewNode()
 		typename M::Iterator_t it = m_Elements.IsValidIterator(m_LastAlloc) ? m_Elements.Next(m_LastAlloc) : m_Elements.First();
 		if (!m_Elements.IsValidIterator(it))
 		{
-			MEM_ALLOC_CREDIT_CLASS();
 			m_Elements.Grow();
 
 			it = m_Elements.IsValidIterator(m_LastAlloc) ? m_Elements.Next(m_LastAlloc) : m_Elements.First();
@@ -686,12 +683,11 @@ I  CUtlRBTree<T, I, L, M>::NewNode()
 			Assert(m_Elements.IsValidIterator(it));
 			if (!m_Elements.IsValidIterator(it))
 			{
-				Error("CUtlRBTree overflow!\n");
+			
 			}
 		}
 		m_LastAlloc = it;
 		elem = m_Elements.GetIndex(m_LastAlloc);
-		Assert(m_Elements.IsValidIterator(m_LastAlloc));
 	}
 	else
 	{
@@ -1127,9 +1123,6 @@ void CUtlRBTree<T, I, L, M>::RemoveAll()
 
 	if (m_LastAlloc == m_Elements.InvalidIterator())
 	{
-		Assert(m_Root == InvalidIndex());
-		Assert(m_FirstFree == InvalidIndex());
-		Assert(m_NumElements == 0);
 		return;
 	}
 
@@ -1157,7 +1150,6 @@ void CUtlRBTree<T, I, L, M>::RemoveAll()
 	m_FirstFree = InvalidIndex();
 	m_NumElements = 0;
 
-	Assert(IsValid());
 }
 
 //-----------------------------------------------------------------------------
@@ -1275,7 +1267,6 @@ I CUtlRBTree<T, I, L, M>::NextPreorder(I i) const
 template < class T, class I, typename L, class M >
 I CUtlRBTree<T, I, L, M>::PrevPreorder(I i) const
 {
-	Assert(0);  // not implemented yet
 	return InvalidIndex();
 }
 
@@ -1462,7 +1453,6 @@ void CUtlRBTree<T, I, L, M>::SetLessFunc(const typename CUtlRBTree<T, I, L, M>::
 	else if (Count() > 0)
 	{
 		// need to re-sort the tree here....
-		Assert(0);
 	}
 }
 

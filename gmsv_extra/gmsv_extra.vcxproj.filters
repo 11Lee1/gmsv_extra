@@ -78,6 +78,12 @@
     <ClCompile Include="Source SDK\tier1\strtools.cpp">
       <Filter>Source Files\Source SDK\tier1</Filter>
     </ClCompile>
+    <ClCompile Include="Source SDK\tier1\strtools_unicode.cpp">
+      <Filter>Source Files\Source SDK\tier1</Filter>
+    </ClCompile>
+    <ClCompile Include="Source SDK\tier1\checksum_md5.cpp">
+      <Filter>Source Files\Source SDK\tier1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\baseinclude.h">

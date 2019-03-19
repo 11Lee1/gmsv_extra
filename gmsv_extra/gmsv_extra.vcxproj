@@ -121,8 +121,10 @@
     <ClCompile Include="Source SDK\mathlib\sse.cpp" />
     <ClCompile Include="Source SDK\server\gametrace_dll.cpp" />
     <ClCompile Include="Source SDK\tier1\bitbuf.cpp" />
+    <ClCompile Include="Source SDK\tier1\checksum_md5.cpp" />
     <ClCompile Include="Source SDK\tier1\convar.cpp" />
     <ClCompile Include="Source SDK\tier1\strtools.cpp" />
+    <ClCompile Include="Source SDK\tier1\strtools_unicode.cpp" />
     <ClCompile Include="Source SDK\tier1\utlstring.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -185,7 +185,6 @@ inline const T & CUtlDict<T, I>::operator[](I i) const
 template <class T, class I>
 inline void CUtlDict<T, I>::SetElementName(I i, char const *pName)
 {
-	MEM_ALLOC_CREDIT_CLASS();
 	// TODO:  This makes a copy of the old element
 	// TODO:  This relies on the rb tree putting the most recently
 	//  removed element at the head of the insert list
@@ -300,14 +299,12 @@ void CUtlDict<T, I>::PurgeAndDeleteElements()
 template <class T, class I>
 I CUtlDict<T, I>::Insert(const char *pName, const T &element)
 {
-	MEM_ALLOC_CREDIT_CLASS();
 	return m_Elements.Insert(strdup(pName), element);
 }
 
 template <class T, class I>
 I CUtlDict<T, I>::Insert(const char *pName)
 {
-	MEM_ALLOC_CREDIT_CLASS();
 	return m_Elements.Insert(strdup(pName));
 }
 
@@ -318,7 +315,6 @@ I CUtlDict<T, I>::Insert(const char *pName)
 template <class T, class I>
 I CUtlDict<T, I>::Find(const char *pName) const
 {
-	MEM_ALLOC_CREDIT_CLASS();
 	if (pName)
 		return m_Elements.Find(pName);
 	else

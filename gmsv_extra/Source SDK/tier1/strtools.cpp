@@ -2794,6 +2794,8 @@ void V_qsort_s(void *base, size_t num, size_t width, int(__cdecl *compare)(void 
 //-----------------------------------------------------------------------------
 bool BGetLocalFormattedDateAndTime(time_t timeVal, char *pchDate, int cubDate, char *pchTime, int cubTime)
 {
+	return false;
+	/* no patience to fix the linker errors
 	if (0 == timeVal || timeVal < 0)
 	{
 		// get the current time
@@ -2863,6 +2865,7 @@ bool BGetLocalFormattedDateAndTime(time_t timeVal, char *pchDate, int cubDate, c
 	}
 
 	return false;
+	*/
 }
 
 

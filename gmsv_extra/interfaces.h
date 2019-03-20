@@ -1,5 +1,5 @@
 #ifdef _WIN32
-#pragma
+#pragma once
 #endif
 
 #include "include/baseinclude.h"

@@ -1,6 +1,15 @@
+#define INCLCONSOLE
+#define __DLL
+
+
 #include "include.h"
 
 
+
+
+#ifdef __DLL
+
+#ifdef INCLCONSOLE
 void AttachConsole(char const* name) {
 	AllocConsole();
 	FILE* fp;
@@ -10,12 +19,7 @@ void AttachConsole(char const* name) {
 	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hOut, 0x7);
 }
-
-
-
-#define __DLL
-#ifdef __DLL
-
+#endif
 
 void Loop()
 {
@@ -27,7 +31,9 @@ void Loop()
 		if (entedict) {
 			CBaseEntity* player = (CBaseEntity*)entedict->GetUnknown();
 			if (player && player->IsPlayer()) {
+#ifdef INCLCONSOLE
 				printf("player = 0x%X\n", player);
+#endif
 			}
 		}
 
@@ -37,27 +43,12 @@ void Loop()
 	} while (1);
 }
 
-
 int main() {
+#ifdef INCLCONSOLE
 	AttachConsole("Console");
-
+#endif
 	g_pInterfaces = new Interfaces;
 	g_pInterfaces->_SetupInterfaces();
-
-	IVEngineServer* engineserver = g_pInterfaces->EngineServer();
-	if (engineserver) {
-		printf("engine server pointer found\n");
-		edict_t* entedict = engineserver->PEntityOfEntIndex(1);
-		if (entedict) {
-			printf("got player edict 0x%X\n", entedict);
-		}
-		else {
-			printf("failed getting player edict\n");
-		}
-	}
-	else {
-		printf("failed finding engine server\n");
-	}
 
 	Loop();
 

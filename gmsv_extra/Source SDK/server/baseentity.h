@@ -270,7 +270,7 @@ public:
 	/*78*/virtual void			ImpactTrace(trace_t *pTrace, int iDamageType, const char *pCustomImpactName = NULL);
 	/*79*/virtual bool			OnControls(CBaseEntity *pControls) { return false; }
 	/*80*/virtual bool			HasTarget(string_t targetname);
-	/*81*/virtual	bool		IsPlayer(void) const { return false; }
+	/*81*/virtual bool			IsPlayer(void) const { return false; }
 	/*82*/virtual bool			IsNetClient(void) const { return false; }
 	/*83*/virtual bool			IsTemplate(void) { return false; }
 	/*84*/virtual bool			IsBaseObject(void) const { return false; }

@@ -2,8 +2,8 @@
 #pragma once
 #endif
 
-#include <regex>
 #include "include/baseinclude.h"
+#include <regex>
 #include "Source SDK/tier1/interface.h"
 
 class IMemAlloc;
@@ -53,10 +53,6 @@ private:
 void Interfaces::_SetupInterfaces() {
 	GetInterfaceRegistries();
 	GetInterfaces();
-
-
-	void* test = GetInterface(m_pServerDLLInterfaceReg, "ServerGameEnts");
-
 }
 
 void Interfaces::GetInterfaceRegistries() {

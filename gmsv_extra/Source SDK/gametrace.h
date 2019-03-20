@@ -10,14 +10,13 @@
 #pragma once
 #endif
 
-
 #include "cmodel.h"
 #include "tier1/utlvector.h"
 #include "ihandleentity.h"
 #include "ispatialpartition.h"
 
-class CBaseEntity;
 
+class CBaseEntity;
 
 //-----------------------------------------------------------------------------
 // Purpose: A trace is returned when a box is swept through the world

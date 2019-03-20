@@ -13,20 +13,23 @@
 
 bool CGameTrace::DidHitWorld() const
 {
-	return m_pEnt->entindex() == 0;
+	return 0;
+	//return m_pEnt->m_Network.entindex();
 }
 
 
 bool CGameTrace::DidHitNonWorldEntity() const
 {
-	return m_pEnt != NULL && !DidHitWorld();
+	return 0;
+	//return m_pEnt != NULL && !DidHitWorld();
 }
 
 
 int CGameTrace::GetEntityIndex() const
 {
-	if (m_pEnt)
-		return m_pEnt->entindex();
-	else
-		return -1;
+	return 0;
+//	if (m_pEnt)
+//		return m_pEnt->m_Network.entindex();
+//	else
+//		return -1;
 }

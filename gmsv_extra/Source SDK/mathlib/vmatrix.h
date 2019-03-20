@@ -31,7 +31,8 @@
 #endif
 
 struct cplane_t;
-
+#include "mathlib.h"
+#include "vector4d.h"
 
 class VMatrix
 {

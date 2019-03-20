@@ -20,7 +20,6 @@
 #include "iservernetworkable.h"
 #include "bitvec.h"
 
-
 struct edict_t;
 
 

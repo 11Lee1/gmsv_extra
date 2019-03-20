@@ -1,4 +1,11 @@
+#ifdef _WIN32
+#pragma once
+#endif
 #include "include/baseinclude.h"
+
+#include "util/util.h"
+#include "interfaces.h" // interfaces.
+
 
 
 #include "Source SDK/const.h"
@@ -23,27 +30,13 @@
 
 
 // mathlib
-#include "Source SDK/mathlib/math_pfns.h"
-#include "Source SDK/mathlib/vector2d.h"
-#include "Source SDK/mathlib/vector.h"
 #include "Source SDK/mathlib/mathlib.h"
-#include "Source SDK/mathlib/vector4d.h"
-#include "Source SDK/mathlib/vplane.h"
-#include "Source SDK/mathlib/vmatrix.h"
-#include "Source SDK/mathlib/compressed_vector.h"
 
 //more tier 1 stuff
 #include "Source SDK/tier1/bitbuff.h"
 #include "Source SDK/eiface.h"
 #include "LUA/LuaInterface.h"
-/*
-#include "Source SDK/tier1/bitvec.h"
-#include "Source SDK/tier1/bitbuf2.h"
-#include "Source SDK/tier1/utllinkedlist.h"
-#include "Source SDK/tier1/utlmemory.h"
-#include "Source SDK/tier1/utlvector.h"
-#include "Source SDK/tier1/utlbuffer.h"
-*/
-
 
 #include "Source SDK/usercmd.h"
+
+#include "Source SDK/server/baseentity.h"

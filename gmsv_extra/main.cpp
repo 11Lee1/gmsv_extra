@@ -32,7 +32,7 @@ int CLuaNetworkedVars::FindEntityVar(const CBaseHandle& EntityRefHandle, char co
 	int SearchLUAType = GarrysMod::Lua::Type::STRING;
 
 	for (int i = 0; i < Ents[1].NetVars.Count(); i++) {
-		CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t Element = Ents[EntityRefHandle.GetEntryIndex()].NetVars.Element(0);
+		CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t Element = Ents[EntityRefHandle.GetEntryIndex()].NetVars.Element(i);
 
 
 		int type2 = Element.elem.m_LuaGameObject.m_iLUA_TYPE;
@@ -92,7 +92,7 @@ void Loop()
 				/*
 				
 					you WILL crash if you do something like this with lua.
-					do stuff that access lua inside of the game's thread
+					do stuff that accesses lua inside of the game's loop
 					ie within a hooked function.
 
 				*/

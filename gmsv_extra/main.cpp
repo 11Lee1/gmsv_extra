@@ -4,21 +4,22 @@
 
 #include "include.h"
 
-struct LuaNetworkedVar_t
-{
-	GarrysMod::Lua::CLuaGameObject m_LuaGameObject;
-	BYTE pad_unk00[0x8];
-};
-
 
 class CLuaNetworkedVars
 {
 public:
+	struct LuaNetworkedVar_t
+	{
+		GarrysMod::Lua::CLuaGameObject m_LuaGameObject;
+		BYTE pad_unk00[0x8];
+	};
+
 	struct LuaNetworkedVarEnts_t
 	{
 		CBaseHandle EntityRefHandle;
 		CUtlRBTree<CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t, unsigned short, CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::CKeyLess, CUtlMemory<UtlRBTreeNode_t<CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t, unsigned short>, unsigned short>> NetVars;
 	};
+
 
 	int FindEntityVar(const CBaseHandle& EntityRefHandle, char const* VarName, bool something);
 private:

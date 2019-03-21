@@ -1,5 +1,4 @@
 #define INCLCONSOLE
-#define __DLL
 
 
 #include "include.h"
@@ -23,7 +22,7 @@ public:
 
 	int FindEntityVar(const CBaseHandle& EntityRefHandle, char const* VarName, int type = GarrysMod::Lua::Type::STRING); // just for testing.
 private:
-	LuaNetworkedVarEnts_t Ents[ENT_ENTRY_MASK];
+	LuaNetworkedVarEnts_t m_Ents[ENT_ENTRY_MASK];
 };
 
 
@@ -31,10 +30,9 @@ int CLuaNetworkedVars::FindEntityVar(const CBaseHandle& EntityRefHandle, char co
 	if (!EntityRefHandle.IsValid())
 		return 0;
 
-	// holy expensive function...
-
-	for (int i = 0; i < Ents[1].NetVars.Count(); i++) {
-		CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t Element = Ents[EntityRefHandle.GetEntryIndex()].NetVars.Element(i);
+	// holy expensive function... gmod doesn't even do any checks for type either, just string comparisons lol
+	for (int i = 0; i < m_Ents[1].NetVars.Count(); i++) {
+		CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t Element = m_Ents[EntityRefHandle.GetEntryIndex()].NetVars.Element(i);
 
 		if (Element.elem.m_LuaGameObject.m_iLUA_TYPE != type)
 			continue;
@@ -57,8 +55,6 @@ int CLuaNetworkedVars::FindEntityVar(const CBaseHandle& EntityRefHandle, char co
 
 
 
-
-#ifdef __DLL
 
 #ifdef INCLCONSOLE
 void AttachConsole(char const* name) {
@@ -148,15 +144,3 @@ GMOD_MODULE_CLOSE()
 }
 
 #endif // __INJECT
-#else
-int main() {
-	Vector lol(0,0,0);
-	Vector lol2(0, 0, 100);
-
-	printf("X: %f      Y: %f      Z: %f\n", lol.x, lol.y, lol.z);
-
-	printf("dist: %f\n", lol.DistTo(lol2));
-	Sleep(100000);
-	return 1;
-}
-#endif // __DLL

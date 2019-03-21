@@ -22,7 +22,7 @@ public:
 
 	int FindEntityVar(const CBaseHandle& EntityRefHandle, char const* VarName, int type = GarrysMod::Lua::Type::STRING); // just for testing.
 private:
-	LuaNetworkedVarEnts_t m_Ents[ENT_ENTRY_MASK];
+	LuaNetworkedVarEnts_t m_Ents[0xFFFF];
 };
 
 
@@ -31,8 +31,10 @@ int CLuaNetworkedVars::FindEntityVar(const CBaseHandle& EntityRefHandle, char co
 		return 0;
 
 	// holy expensive function... gmod doesn't even do any checks for type either, just string comparisons lol
-	for (int i = 0; i < m_Ents[1].NetVars.Count(); i++) {
-		CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t Element = m_Ents[EntityRefHandle.GetEntryIndex()].NetVars.Element(i);
+	int entindex = EntityRefHandle.GetEntryIndex();
+
+	for (int i = 0; i < m_Ents[entindex].NetVars.Count(); i++) {
+		CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t Element = m_Ents[entindex].NetVars.Element(i);
 
 		if (Element.elem.m_LuaGameObject.m_iLUA_TYPE != type)
 			continue;

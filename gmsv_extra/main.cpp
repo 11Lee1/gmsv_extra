@@ -21,26 +21,22 @@ public:
 	};
 
 
-	int FindEntityVar(const CBaseHandle& EntityRefHandle, char const* VarName, bool something);
+	int FindEntityVar(const CBaseHandle& EntityRefHandle, char const* VarName, int type = GarrysMod::Lua::Type::STRING); // just for testing.
 private:
 	LuaNetworkedVarEnts_t Ents[ENT_ENTRY_MASK];
 };
 
 
-int CLuaNetworkedVars::FindEntityVar(const CBaseHandle& EntityRefHandle, char const* VarName, bool something) {
+int CLuaNetworkedVars::FindEntityVar(const CBaseHandle& EntityRefHandle, char const* VarName, int type) {
 	if (!EntityRefHandle.IsValid())
 		return 0;
 
 	// holy expensive function...
-	int SearchLUAType = GarrysMod::Lua::Type::STRING;
 
 	for (int i = 0; i < Ents[1].NetVars.Count(); i++) {
 		CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t Element = Ents[EntityRefHandle.GetEntryIndex()].NetVars.Element(i);
 
-
-		int type2 = Element.elem.m_LuaGameObject.m_iLUA_TYPE;
-
-		if (Element.elem.m_LuaGameObject.m_iLUA_TYPE != SearchLUAType)
+		if (Element.elem.m_LuaGameObject.m_iLUA_TYPE != type)
 			continue;
 
 		if (!V_stricmp(Element.key, VarName)) {

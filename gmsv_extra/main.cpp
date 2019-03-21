@@ -10,14 +10,16 @@ struct LuaNetworkedVar_t
 	BYTE pad_unk00[0x8];
 };
 
-struct LuaNetworkedVarEnts_t
-{
-	CBaseHandle EntityRefHandle;
-	CUtlRBTree<CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t, unsigned short, CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::CKeyLess, CUtlMemory<UtlRBTreeNode_t<CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t, unsigned short>, unsigned short>> NetVars;
-};
+
 class CLuaNetworkedVars
 {
 public:
+	struct LuaNetworkedVarEnts_t
+	{
+		CBaseHandle EntityRefHandle;
+		CUtlRBTree<CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t, unsigned short, CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::CKeyLess, CUtlMemory<UtlRBTreeNode_t<CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t, unsigned short>, unsigned short>> NetVars;
+	};
+
 	int FindEntityVar(const CBaseHandle& EntityRefHandle, char const* VarName, bool something);
 private:
 	LuaNetworkedVarEnts_t Ents[ENT_ENTRY_MASK];
@@ -44,8 +46,6 @@ int CLuaNetworkedVars::FindEntityVar(const CBaseHandle& EntityRefHandle, char co
 			char const* str = Element.elem.m_LuaGameObject.GetString();
 			if (str)
 				printf("Found var %s     VALUE: %s\n", VarName, str);
-			else
-				printf("found var %s     failed finding value\n", VarName);
 		}
 	}
 	return 0;

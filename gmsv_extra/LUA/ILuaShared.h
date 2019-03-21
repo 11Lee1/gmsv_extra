@@ -1,3 +1,7 @@
+#ifdef _WIN32
+#pragma once
+#endif
+
 class CLuaShared
 {
 public:
@@ -5,9 +9,9 @@ public:
 	virtual int Init(char*, char*, void*, void*) = 0;
 	virtual int Shutdown(void) = 0;
 	virtual int DumpStats(void) = 0;
-	virtual GarrysMod::Lua::ILuaBase* CreateLuaInterface(int, bool) = 0;
-	virtual int CloseLuaInterface(GarrysMod::Lua::ILuaBase*) = 0;
-	virtual GarrysMod::Lua::ILuaBase* GetLuaInterface(int) = 0;
+	virtual void* CreateLuaInterface(int, bool) = 0;
+	virtual int CloseLuaInterface(void*) = 0;
+	virtual void* GetLuaInterface(int) = 0;
 	virtual int LoadFile(std::string, std::string, std::string, bool) = 0;
 	virtual int GetCache(std::string) = 0;
 	virtual int MountLua(const char*) = 0;

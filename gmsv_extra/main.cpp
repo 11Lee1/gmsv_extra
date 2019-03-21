@@ -4,6 +4,60 @@
 
 #include "include.h"
 
+struct LuaNetworkedVar_t
+{
+	GarrysMod::Lua::CLuaGameObject m_LuaGameObject;
+	BYTE pad_unk00[0x8];
+};
+
+struct LuaNetworkedVarEnts_t
+{
+	CBaseHandle EntityRefHandle;
+	CUtlRBTree<CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t, unsigned short, CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::CKeyLess, CUtlMemory<UtlRBTreeNode_t<CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t, unsigned short>, unsigned short>> NetVars;
+};
+class CLuaNetworkedVars
+{
+public:
+	int FindEntityVar(const CBaseHandle& EntityRefHandle, char const* VarName, bool something);
+private:
+	LuaNetworkedVarEnts_t Ents[ENT_ENTRY_MASK];
+};
+
+
+int CLuaNetworkedVars::FindEntityVar(const CBaseHandle& EntityRefHandle, char const* VarName, bool something) {
+	if (!EntityRefHandle.IsValid())
+		return 0;
+
+	// holy expensive function...
+	int SearchLUAType = GarrysMod::Lua::Type::STRING;
+
+	for (int i = 0; i < Ents[1].NetVars.Count(); i++) {
+		CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t Element = Ents[EntityRefHandle.GetEntryIndex()].NetVars.Element(0);
+
+
+		int type2 = Element.elem.m_LuaGameObject.m_iLUA_TYPE;
+
+		if (Element.elem.m_LuaGameObject.m_iLUA_TYPE != SearchLUAType)
+			continue;
+
+		if (!V_stricmp(Element.key, VarName)) {
+			char const* str = Element.elem.m_LuaGameObject.GetString();
+			if (str)
+				printf("Found var %s     VALUE: %s\n", VarName, str);
+			else
+				printf("found var %s     failed finding value\n", VarName);
+		}
+	}
+	return 0;
+}
+
+
+
+
+
+
+
+
 
 
 
@@ -34,10 +88,20 @@ void Loop()
 #ifdef INCLCONSOLE
 				printf("player = 0x%X\n", player);
 #endif
+
+				/*
+				
+					you WILL crash if you do something like this with lua.
+					do stuff that access lua inside of the game's thread
+					ie within a hooked function.
+
+				*/
+
+
+				g_pInterfaces->g_LuaNetworkedVars->FindEntityVar(player->GetRefEHandle(), "UserGroup", false);
 			}
 		}
-
-
+		
 
 		Sleep(1000); // who cares we just want to loop shit for it's values etc
 	} while (1);

@@ -1181,7 +1181,6 @@ template < class T, class I, typename L, class M >
 I CUtlRBTree<T, I, L, M>::NextInorder(I i) const
 {
 	// Don't go into an infinite loop if it's a bad index
-	Assert(IsValidIndex(i));
 	if (!IsValidIndex(i))
 		return InvalidIndex();
 
@@ -1546,8 +1545,6 @@ I CUtlRBTree<T, I, L, M>::InsertIfNotFound(T const &insert)
 template < class T, class I, typename L, class M >
 I CUtlRBTree<T, I, L, M>::Find(T const &search) const
 {
-	Assert(m_LessFunc);
-
 	I current = m_Root;
 	while (current != InvalidIndex())
 	{

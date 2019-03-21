@@ -55,6 +55,9 @@
     <Filter Include="Header Files\LUA">
       <UniqueIdentifier>{f27de532-5a65-43aa-aac0-e311b15af87b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\GLUA">
+      <UniqueIdentifier>{4c31e633-e266-499d-9362-01b2ff3e357e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

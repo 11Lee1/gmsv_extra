@@ -40,3 +40,5 @@
 #include "Source SDK/usercmd.h"
 
 #include "Source SDK/server/baseentity.h"
+#include "Source SDK/tier1/utlrbtree.h"
+#include "Source SDK/tier1/utlmap.h"

@@ -5,7 +5,7 @@
 #include "include/baseinclude.h"
 #include <regex>
 #include "Source SDK/tier1/interface.h"
-
+#include "LUA/ILuaShared.h"
 class IMemAlloc;
 class IServerGameEnts;
 class IVEngineServer;
@@ -13,7 +13,15 @@ class IServerGameDLL;
 class IServerGameClients;
 class IServerDLLSharedAppSystems;
 class IServerGameTags;
-
+class CLuaNetworkedVars;
+class CLuaShared;
+namespace GarrysMod
+{
+	namespace Lua
+	{
+		class ILuaBase;
+	};
+};
 class Interfaces
 {
 public:
@@ -21,6 +29,7 @@ public:
 private:
 	void	GetInterfaceRegistries();
 	void	GetInterfaces();
+	void	FindOtherInterfaces();
 
 	void*	GetInterface(char const* Module, char const* InterfaceName);
 	void*	GetInterface(InterfaceReg* Reg, char const* InterfaceName); // if you dont know/care about the version.
@@ -35,6 +44,8 @@ public:
 	IServerGameClients* ServerGameClients() { return m_pServerGameClients; }
 	IServerDLLSharedAppSystems* ServerDLLSharedAppSystems() { return m_pServerDLLSharedAppSystems; }
 	IServerGameTags* ServerGameTags() { return m_pServerGameTags; }
+
+	CLuaShared* LuaShared() { return m_pLuaShared; }
 private:
 	// Interface registries 
 	InterfaceReg* m_pServerDLLInterfaceReg;
@@ -48,11 +59,17 @@ private:
 	IServerGameClients* m_pServerGameClients;
 	IServerDLLSharedAppSystems* m_pServerDLLSharedAppSystems;
 	IServerGameTags* m_pServerGameTags;
+	CLuaShared* m_pLuaShared;
+public:
+	// GMod & GMod Lua shit
+	CLuaNetworkedVars* g_LuaNetworkedVars;
+	GarrysMod::Lua::ILuaBase* g_Lua;
 };
 
 void Interfaces::_SetupInterfaces() {
 	GetInterfaceRegistries();
 	GetInterfaces();
+	FindOtherInterfaces();
 }
 
 void Interfaces::GetInterfaceRegistries() {
@@ -66,7 +83,21 @@ void Interfaces::GetInterfaces() {
 	m_pServerGameClients = (IServerGameClients*)GetInterface("server.dll", "ServerGameClients004");
 	m_pServerDLLSharedAppSystems = (IServerDLLSharedAppSystems*)GetInterface("server.dll", "VServerDllSharedAppSystems001");
 	m_pServerGameTags = (IServerGameTags*)GetInterface("server.dll", "ServerGameTags001");
+	m_pLuaShared = (CLuaShared*)GetInterface("lua_shared.dll", "LUASHARED003");
+
+	if(m_pLuaShared)
+		g_Lua = (GarrysMod::Lua::ILuaBase*)LuaShared()->GetLuaInterface(1); // server
 }
+
+void Interfaces::FindOtherInterfaces() {
+
+
+#ifdef _WIN32
+	g_LuaNetworkedVars = **(CLuaNetworkedVars***)(Util::Pattern::FindPattern("server.dll", "55 8B EC 8B 45 08 56 50 8B 48 48 8B 11 FF 92 ? ? ? ? FF 05 ? ? ? ? 6A 01 6A 01 E8 ? ? ? ? 8B 0D ? ? ? ? 8B F0 83 C4 08 8B 01 85 F6 75 35 6A 03 FF 90 ? ? ? ? 8B F0 85 F6 74 66")/*Entity__GetNetworkedInt*/ + 0x72 );
+#endif
+
+}
+
 
 void* Interfaces::GetInterface(char const* Module, char const* InterfaceName) {
 	CreateInterfaceFn CreateInterface = (CreateInterfaceFn)GetProcAddress(GetModuleHandleA(Module), "CreateInterface");

@@ -4,7 +4,6 @@
 #ifdef _WIN32
 #pragma once
 #endif
-
 #include "include/baseinclude.h"
 #include "Source SDK/tier1/interface.h"
 #include "LUA/ILuaShared.h"
@@ -27,10 +26,7 @@ namespace GarrysMod
 class Interfaces
 {
 public:
-	Interfaces() {
-		printf("created new \n");
-		_SetupInterfaces();
-	}
+	Interfaces();
 	void _SetupInterfaces();
 private:
 	void	GetInterfaceRegistries();

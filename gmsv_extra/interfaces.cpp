@@ -1,6 +1,14 @@
 #include "interfaces.h"
 #include <regex>
 #include "util/util.h"
+
+
+Interfaces::Interfaces() {
+#ifdef INCLCONSOLE
+	printf("Setting up interfaces \n");
+#endif
+	_SetupInterfaces();
+}
 void Interfaces::_SetupInterfaces() {
 	GetInterfaceRegistries();
 	GetInterfaces();

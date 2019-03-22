@@ -10,7 +10,7 @@ namespace Util
 {
 	namespace Pattern
 	{
-		uintptr_t FindPattern(std::string moduleName, std::string pattern)
+		static uintptr_t FindPattern(std::string moduleName, std::string pattern)
 		{
 			const char* pat = pattern.c_str();
 			uintptr_t firstMatch = 0;

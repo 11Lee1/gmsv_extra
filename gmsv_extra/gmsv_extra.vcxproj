@@ -116,6 +116,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GLUA\LuaNetworkedVars.cpp" />
+    <ClCompile Include="GLUA\LuaObject\CLuaGameObject.cpp" />
+    <ClCompile Include="GLUA\LuaObject\CLuaObject.cpp" />
     <ClCompile Include="interfaces.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Source SDK\mathlib\mathlib_base.cpp" />
@@ -130,6 +133,10 @@
     <ClCompile Include="Source SDK\tier1\utlstring.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GLUA\LuaNetworkedVars.h" />
+    <ClInclude Include="GLUA\LuaObject\CLuaGameObject.h" />
+    <ClInclude Include="GLUA\LuaObject\CLuaObject.h" />
+    <ClInclude Include="GLUA\LuaObject\ILuaObject.h" />
     <ClInclude Include="include.h" />
     <ClInclude Include="include\baseinclude.h" />
     <ClInclude Include="interfaces.h" />

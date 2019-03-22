@@ -1,6 +1,21 @@
+#ifndef BASEENTITY_H
+#define BASEENTITY_H
 #ifdef _WIN32
 #pragma once
 #endif
+
+#define TEAMNUM_NUM_BITS	6
+
+#include "../string_t.h"
+#include "../iserverentity.h"
+#include "ServerNetworkProperty.h"
+#include "../shareddefs.h"
+#include "../predictableid.h"
+#include "variant_t.h"
+#include "../tier1/utllinkedlist.h"
+#include "../collisionproperty.h"
+#include "../entityoutput.h"
+#include "../takedamageinfo.h"
 
 //entitylist.h
 enum notify_system_event_t
@@ -30,19 +45,6 @@ struct notify_system_event_params_t
 };
 
 // end entitylist.h
-
-#define TEAMNUM_NUM_BITS	6
-
-#include "../string_t.h"
-#include "../iserverentity.h"
-#include "ServerNetworkProperty.h"
-#include "../shareddefs.h"
-#include "../predictableid.h"
-#include "variant_t.h"
-#include "../tier1/utllinkedlist.h"
-#include "../collisionproperty.h"
-#include "../entityoutput.h"
-#include "../takedamageinfo.h"
 
 #define DECLARE_PREDICTABLE()											\
 	public:																\
@@ -648,3 +650,4 @@ public:
 	CHandle< CBasePlayer > m_hPlayerSimulationOwner;
 	int				m_fDataObjectTypes;
 };
+#endif

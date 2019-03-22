@@ -1,62 +1,7 @@
 #define INCLCONSOLE
-
-
+#include "interfaces.h" // interfaces.
+Interfaces* g_pInterfaces = nullptr;
 #include "include.h"
-
-
-class CLuaNetworkedVars
-{
-public:
-	struct LuaNetworkedVar_t
-	{
-		GarrysMod::Lua::CLuaGameObject m_LuaGameObject;
-		BYTE pad_unk00[0x8];
-	};
-
-	struct LuaNetworkedVarEnts_t
-	{
-		CBaseHandle EntityRefHandle;
-		CUtlRBTree<CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t, unsigned short, CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::CKeyLess, CUtlMemory<UtlRBTreeNode_t<CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t, unsigned short>, unsigned short>> NetVars;
-	};
-
-
-	int FindEntityVar(const CBaseHandle& EntityRefHandle, char const* VarName, int type = GarrysMod::Lua::Type::STRING); // just for testing.
-private:
-	LuaNetworkedVarEnts_t m_Ents[0xFFFF];
-};
-
-
-int CLuaNetworkedVars::FindEntityVar(const CBaseHandle& EntityRefHandle, char const* VarName, int type) {
-	if (!EntityRefHandle.IsValid())
-		return 0;
-
-	// holy expensive function... gmod doesn't even do any checks for type either, just string comparisons lol
-	int entindex = EntityRefHandle.GetEntryIndex();
-
-	for (int i = 0; i < m_Ents[entindex].NetVars.Count(); i++) {
-		CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t Element = m_Ents[entindex].NetVars.Element(i);
-
-		if (Element.elem.m_LuaGameObject.m_iLUA_TYPE != type)
-			continue;
-
-		if (!V_stricmp(Element.key, VarName)) {
-			char const* str = Element.elem.m_LuaGameObject.GetString();
-			if (str)
-				printf("Found var %s     VALUE: %s\n", VarName, str);
-		}
-	}
-	return 0;
-}
-
-
-
-
-
-
-
-
-
-
 
 #ifdef INCLCONSOLE
 void AttachConsole(char const* name) {
@@ -92,8 +37,8 @@ void Loop()
 
 				*/
 
-
-				g_pInterfaces->g_LuaNetworkedVars->FindEntityVar(player->GetRefEHandle(), "UserGroup", false);
+				printf("player usergroup = %s\n",g_pInterfaces->g_LuaNetworkedVars->GetNWString(player, "UserGroup"));
+				//g_pInterfaces->g_LuaNetworkedVars->FindEntityVar(player->GetRefEHandle(), "UserGroup", false);
 			}
 		}
 		
@@ -106,8 +51,7 @@ int main() {
 #ifdef INCLCONSOLE
 	AttachConsole("Console");
 #endif
-	g_pInterfaces = new Interfaces;
-	g_pInterfaces->_SetupInterfaces();
+	g_pInterfaces = new Interfaces();
 
 	Loop();
 

@@ -1,13 +1,9 @@
+#ifndef INCLUDE_H
+#define INCLUDE_H
 #ifdef _WIN32
 #pragma once
 #endif
 #include "include/baseinclude.h"
-
-#include "util/util.h"
-#include "interfaces.h" // interfaces.
-
-
-
 #include "Source SDK/const.h"
 // tier 0 
 #include "Source SDK/tier0/commonmacros.h"
@@ -35,10 +31,14 @@
 //more tier 1 stuff
 #include "Source SDK/tier1/bitbuff.h"
 #include "Source SDK/eiface.h"
-#include "LUA/LuaInterface.h"
 
 #include "Source SDK/usercmd.h"
 
 #include "Source SDK/server/baseentity.h"
 #include "Source SDK/tier1/utlrbtree.h"
 #include "Source SDK/tier1/utlmap.h"
+
+#include "LUA/LuaInterface.h"
+#include "GLUA/LuaObject/ILuaObject.h"
+#include "GLUA/LuaNetworkedVars.h"
+#endif

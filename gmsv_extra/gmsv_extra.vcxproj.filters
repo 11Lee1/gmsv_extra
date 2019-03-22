@@ -58,6 +58,15 @@
     <Filter Include="Header Files\GLUA">
       <UniqueIdentifier>{4c31e633-e266-499d-9362-01b2ff3e357e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\GLUA">
+      <UniqueIdentifier>{37c89679-2992-4a1f-9d65-79f85afc3711}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GLUA\LuaObject">
+      <UniqueIdentifier>{35e2f7bc-7b46-4025-9b22-1b8c32738075}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GLUA\LuaObject">
+      <UniqueIdentifier>{73e8057e-14b7-4932-a4f3-d7f0589f74e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -95,6 +104,15 @@
     </ClCompile>
     <ClCompile Include="interfaces.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GLUA\LuaNetworkedVars.cpp">
+      <Filter>Source Files\GLUA</Filter>
+    </ClCompile>
+    <ClCompile Include="GLUA\LuaObject\CLuaObject.cpp">
+      <Filter>Source Files\GLUA\LuaObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GLUA\LuaObject\CLuaGameObject.cpp">
+      <Filter>Source Files\GLUA\LuaObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -439,6 +457,18 @@
     </ClInclude>
     <ClInclude Include="Source SDK\takedamageinfo.h">
       <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="GLUA\LuaNetworkedVars.h">
+      <Filter>Header Files\GLUA</Filter>
+    </ClInclude>
+    <ClInclude Include="GLUA\LuaObject\ILuaObject.h">
+      <Filter>Header Files\GLUA\LuaObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GLUA\LuaObject\CLuaObject.h">
+      <Filter>Header Files\GLUA\LuaObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GLUA\LuaObject\CLuaGameObject.h">
+      <Filter>Header Files\GLUA\LuaObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,3 +1,5 @@
+#ifndef ILUASHARED_H
+#define ILUASHARED_H
 #ifdef _WIN32
 #pragma once
 #endif
@@ -22,3 +24,4 @@ public:
 	virtual int FindScripts() = 0;
 	virtual void* GetStackTraces() = 0;
 };
+#endif

@@ -1,6 +1,5 @@
 #ifndef ILUAOBJECT_H
 #define ILUAOBJECT_H
-#include "../../LUA/LuaBase.h"
 struct lua_State;
 namespace GarrysMod
 {

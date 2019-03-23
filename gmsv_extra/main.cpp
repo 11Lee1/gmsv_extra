@@ -20,29 +20,22 @@ void Loop()
 
 	do {
 		IVEngineServer* engineserver = g_pInterfaces->EngineServer();
-		edict_t* entedict = engineserver->PEntityOfEntIndex(1);
-		
-		if (entedict) {
-			CBaseEntity* player = (CBaseEntity*)entedict->GetUnknown();
-			if (player && player->IsPlayer()) {
+		int entitycnt = engineserver->GetEntityCount();
+		for (int i = 1; i < entitycnt; i++)
+		{
+			edict_t* entedict = engineserver->PEntityOfEntIndex(i);
+			if (entedict) {
+				CBaseAnimating* ent = (CBaseAnimating*)entedict->GetUnknown();
+				if (ent && (ent->UsesLua() && !!ent->m_iClassname || ent->IsPlayer()) ) {
 #ifdef INCLCONSOLE
-				printf("player = 0x%X\n", player);
+					printf("ent #%i:  %s      = 0x%X\n",i, ent->m_iClassname, ent);
+					if (ent->IsPlayer()) {
+						printf("studiohdr = 0x%X\n", &ent->m_pStudioHdr);
+					}
 #endif
-
-				/*
-				
-					you WILL crash if you do something like this with lua.
-					do stuff that accesses lua inside of the game's loop
-					ie within a hooked function.
-
-				*/
-
-				printf("player usergroup = %s\n",g_pInterfaces->g_LuaNetworkedVars->GetNWString(player, "UserGroup"));
-				//g_pInterfaces->g_LuaNetworkedVars->FindEntityVar(player->GetRefEHandle(), "UserGroup", false);
+				}
 			}
 		}
-		
-
 		Sleep(1000); // who cares we just want to loop shit for it's values etc
 	} while (1);
 }

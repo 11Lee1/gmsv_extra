@@ -1,5 +1,7 @@
 #include "CLuaObject.h"
 #include "../../interfaces.h" // interfaces.
+#include "../../LUA/LuaBase.h"
+
 namespace GarrysMod
 {
 	namespace Lua

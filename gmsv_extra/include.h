@@ -30,15 +30,19 @@
 
 //more tier 1 stuff
 #include "Source SDK/tier1/bitbuff.h"
+#include "Source SDK/tier1/utlrbtree.h"
+#include "Source SDK/tier1/utlmap.h"
 #include "Source SDK/eiface.h"
 
 #include "Source SDK/usercmd.h"
 
-#include "Source SDK/server/baseentity.h"
-#include "Source SDK/tier1/utlrbtree.h"
-#include "Source SDK/tier1/utlmap.h"
-
 #include "LUA/LuaInterface.h"
-#include "GLUA/LuaObject/ILuaObject.h"
+
+
+#include "GLUA/CGMODDataTable.h"
 #include "GLUA/LuaNetworkedVars.h"
+#include "GLUA/CScriptedEntity.h"
+
+#include "Source SDK/server/baseentity.h"
+#include "Source SDK/server/baseanimating.h"
 #endif

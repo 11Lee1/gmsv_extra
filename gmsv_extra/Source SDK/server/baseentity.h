@@ -16,7 +16,7 @@
 #include "../collisionproperty.h"
 #include "../entityoutput.h"
 #include "../takedamageinfo.h"
-
+#include "../../GLUA/LuaObject/CLuaGameObject.h"
 //entitylist.h
 enum notify_system_event_t
 {
@@ -174,6 +174,7 @@ class ILuaObject;
 class CBaseEntity : public IServerEntity
 {
 public:
+	DECLARE_CLASS_NOBASE(CBaseEntity);
 	virtual ~CBaseEntity();
 	
 	// prediction system
@@ -457,8 +458,7 @@ public:
 	/*237*/virtual INextBot* 	GetNextBot(void);
 
 public:
-	BYTE pad_unk00[0x8];
-
+	BYTE	pad_unk00[0x8];
 
 	CServerNetworkProperty m_Network;
 
@@ -499,7 +499,7 @@ public:
 
 	CUtlVector< ResponseContext_t > m_ResponseContexts;
 
-	BYTE pad_unk01[0x8];
+	BYTE	pad_unk01[0x8];
 
 
 	// Map defined context sets
@@ -648,6 +648,14 @@ public:
 	bool			m_bDynamicModelSetBounds;
 	bool			m_bIsPlayerSimulated;
 	CHandle< CBasePlayer > m_hPlayerSimulationOwner;
-	int				m_fDataObjectTypes;
+	int				m_fDataObjectTypes; // 0x334
+
+	BYTE	pad_unk02[0x328];
+
+	GarrysMod::Lua::CLuaObject		m_LuaObject; // 0x660
+	GarrysMod::Lua::CLuaGameObject* m_LuaGameObject_LuaTable;	// idk type is table
+	GarrysMod::Lua::CLuaGameObject*	m_LuaGameObject_Entity;		// idk type is entity
+
+	BYTE	pad_unk03[0xD14]; //0x1390  End of BaseEntity
 };
 #endif

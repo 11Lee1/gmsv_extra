@@ -1,8 +1,8 @@
 #ifndef CLUAOBJECT_H
 #define CLUAOBJECT_H
 
-#include "ILuaObject.h"
 #include "../../Source SDK/mathlib/mathlib.h"
+#include "ILuaObject.h"
 class CBaseEntity;
 namespace GarrysMod
 {

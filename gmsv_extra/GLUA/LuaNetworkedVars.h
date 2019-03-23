@@ -2,8 +2,6 @@
 #define LUANETWORKEDVARS_H
 
 #include "../LUA/LuaInterface.h"
-#include "LuaObject/ILuaObject.h"
-#include "LuaObject/CLuaObject.h"
 #include "LuaObject/CLuaGameObject.h"
 #include "../Source SDK/server/baseentity.h"
 #include "../Source SDK/tier1/utlrbtree.h"

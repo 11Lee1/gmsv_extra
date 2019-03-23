@@ -1,8 +1,7 @@
 #ifndef CLUAGAMEOBJECT_H
 #define CLUAGAMEOBJECT_H
 
-#include "../LuaObject/CLuaObject.h"
-#include "../../Source SDK/mathlib/mathlib.h"
+#include "CLuaObject.h"
 
 class CBaseEntity;
 namespace GarrysMod

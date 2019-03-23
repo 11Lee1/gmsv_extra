@@ -470,5 +470,35 @@
     <ClInclude Include="GLUA\LuaObject\CLuaGameObject.h">
       <Filter>Header Files\GLUA\LuaObject</Filter>
     </ClInclude>
+    <ClInclude Include="Source SDK\server\cbaseanimating.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="GLUA\CGMODDataTable.h">
+      <Filter>Header Files\GLUA</Filter>
+    </ClInclude>
+    <ClInclude Include="GLUA\IGMODDataTable.h">
+      <Filter>Header Files\GLUA</Filter>
+    </ClInclude>
+    <ClInclude Include="GLUA\IScriptedEntity.h">
+      <Filter>Header Files\GLUA</Filter>
+    </ClInclude>
+    <ClInclude Include="GLUA\CScriptedEntity.h">
+      <Filter>Header Files\GLUA</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\baseanimating.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\studio.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\utlhash.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\generichash.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\localflexcontroller.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

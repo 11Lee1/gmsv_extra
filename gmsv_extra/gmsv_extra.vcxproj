@@ -133,6 +133,10 @@
     <ClCompile Include="Source SDK\tier1\utlstring.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GLUA\CGMODDataTable.h" />
+    <ClInclude Include="GLUA\CScriptedEntity.h" />
+    <ClInclude Include="GLUA\IGMODDataTable.h" />
+    <ClInclude Include="GLUA\IScriptedEntity.h" />
     <ClInclude Include="GLUA\LuaNetworkedVars.h" />
     <ClInclude Include="GLUA\LuaObject\CLuaGameObject.h" />
     <ClInclude Include="GLUA\LuaObject\CLuaObject.h" />
@@ -174,6 +178,7 @@
     <ClInclude Include="Source SDK\iservernetworkable.h" />
     <ClInclude Include="Source SDK\iserverunknown.h" />
     <ClInclude Include="Source SDK\ispatialpartition.h" />
+    <ClInclude Include="Source SDK\localflexcontroller.h" />
     <ClInclude Include="Source SDK\mathlib\3dnow.h" />
     <ClInclude Include="Source SDK\mathlib\amd3dx.h" />
     <ClInclude Include="Source SDK\mathlib\bumpvects.h" />
@@ -193,8 +198,10 @@
     <ClInclude Include="Source SDK\networkvar.h" />
     <ClInclude Include="Source SDK\predictableid.h" />
     <ClInclude Include="Source SDK\serverclass.h" />
+    <ClInclude Include="Source SDK\server\baseanimating.h" />
     <ClInclude Include="Source SDK\server\baseentity.h" />
     <ClInclude Include="Source SDK\server\cbase.h" />
+    <ClInclude Include="Source SDK\server\cbaseanimating.h" />
     <ClInclude Include="Source SDK\server\ServerNetworkProperty.h" />
     <ClInclude Include="Source SDK\server\timedeventmgr.h" />
     <ClInclude Include="Source SDK\server\variant_t.h" />
@@ -202,6 +209,7 @@
     <ClInclude Include="Source SDK\shareddefs.h" />
     <ClInclude Include="Source SDK\soundflags.h" />
     <ClInclude Include="Source SDK\string_t.h" />
+    <ClInclude Include="Source SDK\studio.h" />
     <ClInclude Include="Source SDK\takedamageinfo.h" />
     <ClInclude Include="Source SDK\tier0\annotations.h" />
     <ClInclude Include="Source SDK\tier0\basetypes.h" />
@@ -228,6 +236,7 @@
     <ClInclude Include="Source SDK\tier1\checksum_md5.h" />
     <ClInclude Include="Source SDK\tier1\color.h" />
     <ClInclude Include="Source SDK\tier1\convar.h" />
+    <ClInclude Include="Source SDK\tier1\generichash.h" />
     <ClInclude Include="Source SDK\tier1\iconvar.h" />
     <ClInclude Include="Source SDK\tier1\interface.h" />
     <ClInclude Include="Source SDK\tier1\KeyValues.h" />
@@ -236,6 +245,7 @@
     <ClInclude Include="Source SDK\tier1\utldict.h" />
     <ClInclude Include="Source SDK\tier1\utlfixedmemory.h" />
     <ClInclude Include="Source SDK\tier1\utlflags.h" />
+    <ClInclude Include="Source SDK\tier1\utlhash.h" />
     <ClInclude Include="Source SDK\tier1\utllinkedlist.h" />
     <ClInclude Include="Source SDK\tier1\utlmap.h" />
     <ClInclude Include="Source SDK\tier1\utlmemory.h" />

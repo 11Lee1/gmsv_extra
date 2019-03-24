@@ -127,12 +127,14 @@
     <ClCompile Include="Source SDK\mathlib\sse.cpp" />
     <ClCompile Include="Source SDK\server\gametrace_dll.cpp" />
     <ClCompile Include="Source SDK\tier1\bitbuf.cpp" />
+    <ClCompile Include="Source SDK\tier1\checksum_crc.cpp" />
     <ClCompile Include="Source SDK\tier1\checksum_md5.cpp" />
     <ClCompile Include="Source SDK\tier1\convar.cpp" />
     <ClCompile Include="Source SDK\tier1\KeyValues.cpp" />
     <ClCompile Include="Source SDK\tier1\strtools.cpp" />
     <ClCompile Include="Source SDK\tier1\strtools_unicode.cpp" />
     <ClCompile Include="Source SDK\tier1\utlstring.cpp" />
+    <ClCompile Include="Source SDK\usercmd.cpp" />
     <ClCompile Include="util\vmthook.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -177,6 +179,7 @@
     <ClInclude Include="Source SDK\globalvars_base.h" />
     <ClInclude Include="Source SDK\icvar.h" />
     <ClInclude Include="Source SDK\ihandleentity.h" />
+    <ClInclude Include="Source SDK\imovehelper.h" />
     <ClInclude Include="Source SDK\isaverestore.h" />
     <ClInclude Include="Source SDK\iserverentity.h" />
     <ClInclude Include="Source SDK\iservernetworkable.h" />

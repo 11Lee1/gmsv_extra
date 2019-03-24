@@ -138,6 +138,12 @@
     <ClCompile Include="util\vmthook.cpp">
       <Filter>Source Files\util</Filter>
     </ClCompile>
+    <ClCompile Include="Source SDK\usercmd.cpp">
+      <Filter>Source Files\Source SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="Source SDK\tier1\checksum_crc.cpp">
+      <Filter>Source Files\Source SDK\tier1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\baseinclude.h">
@@ -529,6 +535,9 @@
     </ClInclude>
     <ClInclude Include="Hooks\hook.h">
       <Filter>Header Files\Hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\imovehelper.h">
+      <Filter>Header Files\Source SDK</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

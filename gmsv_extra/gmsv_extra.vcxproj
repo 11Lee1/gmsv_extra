@@ -119,6 +119,8 @@
     <ClCompile Include="GLUA\LuaNetworkedVars.cpp" />
     <ClCompile Include="GLUA\LuaObject\CLuaGameObject.cpp" />
     <ClCompile Include="GLUA\LuaObject\CLuaObject.cpp" />
+    <ClCompile Include="Hooks\hook.cpp" />
+    <ClCompile Include="Hooks\ServerGameClients\ClientConnect.cpp" />
     <ClCompile Include="interfaces.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Source SDK\mathlib\mathlib_base.cpp" />
@@ -131,6 +133,7 @@
     <ClCompile Include="Source SDK\tier1\strtools.cpp" />
     <ClCompile Include="Source SDK\tier1\strtools_unicode.cpp" />
     <ClCompile Include="Source SDK\tier1\utlstring.cpp" />
+    <ClCompile Include="util\vmthook.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GLUA\CGMODDataTable.h" />
@@ -141,6 +144,7 @@
     <ClInclude Include="GLUA\LuaObject\CLuaGameObject.h" />
     <ClInclude Include="GLUA\LuaObject\CLuaObject.h" />
     <ClInclude Include="GLUA\LuaObject\ILuaObject.h" />
+    <ClInclude Include="Hooks\hook.h" />
     <ClInclude Include="include.h" />
     <ClInclude Include="include\baseinclude.h" />
     <ClInclude Include="interfaces.h" />
@@ -261,6 +265,7 @@
     <ClInclude Include="Source SDK\zip_uncompressed.h" />
     <ClInclude Include="util\pattern.h" />
     <ClInclude Include="util\util.h" />
+    <ClInclude Include="util\vmthook.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

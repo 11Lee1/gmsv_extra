@@ -2,6 +2,9 @@
 #include "interfaces.h" // interfaces.
 Interfaces* g_pInterfaces = nullptr;
 #include "include.h"
+#include "Hooks/hook.h"
+Hooks* hooks = nullptr;
+
 
 #ifdef INCLCONSOLE
 void AttachConsole(char const* name) {
@@ -45,8 +48,11 @@ int main() {
 	AttachConsole("Console");
 #endif
 	g_pInterfaces = new Interfaces();
-
-	Loop();
+	hooks = new Hooks();
+	hooks->SetupHooks();
+	hooks->HookFunctions();
+	
+	//Loop(); omitted for now.
 
 	return 1;
 }

@@ -67,6 +67,21 @@
     <Filter Include="Header Files\GLUA\LuaObject">
       <UniqueIdentifier>{73e8057e-14b7-4932-a4f3-d7f0589f74e4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\util\hooking">
+      <UniqueIdentifier>{e39bfc83-399e-4fa9-958a-bb7bfa989d15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Hooks">
+      <UniqueIdentifier>{b0fd6e30-f1ec-477d-975b-249c01a80ca9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Hooks">
+      <UniqueIdentifier>{3c8b68e7-1e50-4279-8b71-6debe99a4f12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Hooks\ServerGameClients">
+      <UniqueIdentifier>{d7d81fbc-3d04-4300-92a8-d4a2cccef1ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\util">
+      <UniqueIdentifier>{4fedfa18-896f-4d6f-a7ea-a935f24889ae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -113,6 +128,15 @@
     </ClCompile>
     <ClCompile Include="GLUA\LuaObject\CLuaGameObject.cpp">
       <Filter>Source Files\GLUA\LuaObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Hooks\hook.cpp">
+      <Filter>Source Files\Hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="Hooks\ServerGameClients\ClientConnect.cpp">
+      <Filter>Source Files\Hooks\ServerGameClients</Filter>
+    </ClCompile>
+    <ClCompile Include="util\vmthook.cpp">
+      <Filter>Source Files\util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -499,6 +523,12 @@
     </ClInclude>
     <ClInclude Include="Source SDK\localflexcontroller.h">
       <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="util\vmthook.h">
+      <Filter>Header Files\util\hooking</Filter>
+    </ClInclude>
+    <ClInclude Include="Hooks\hook.h">
+      <Filter>Header Files\Hooks</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

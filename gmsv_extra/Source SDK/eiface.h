@@ -407,9 +407,6 @@ public:
 
 	// Server version from the steam.inf, this will be compared to the GC version
 	virtual int GetServerVersion() const = 0;
-
-	// Get sv.GetTime()
-	virtual float GetServerTime() const = 0;
 };
 
 
@@ -650,6 +647,10 @@ public:
 
 	// Hook for player spawning
 	virtual void			ClientSpawned(edict_t *pPlayer) = 0;
+
+	virtual void			GMOD_ReceiveClientMessage(int, edict_t* pPlayer, bf_read* , int);
+	virtual void			GMOD_ClientConnected(int);
+	virtual void			GMOD_SentClientStringTables(int);
 };
 
 typedef IServerGameClients IServerGameClients003;

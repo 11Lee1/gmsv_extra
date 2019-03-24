@@ -67,6 +67,5 @@ public:
 	CLuaNetworkedVars* g_LuaNetworkedVars;
 	GarrysMod::Lua::ILuaBase* g_Lua;
 };
-extern "C"
 extern Interfaces* g_pInterfaces;
 #endif

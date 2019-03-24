@@ -23,9 +23,6 @@ public:
 	};
 
 public:
-	// I'd use a template and make all these like accessor functions,
-	// but i'd have to do a weird hack for that.
-	// fyi these are quite expensive to use if there are many variables set on the entity
 	bool		GetNWBool(CBaseEntity* Ent, char const* VarName);
 	int			GetNWInt(CBaseEntity* Ent, char const* VarName);
 	float		GetNWFloat(CBaseEntity* Ent, char const* VarName);
@@ -33,6 +30,8 @@ public:
 	CBaseEntity*GetNWEntity(CBaseEntity* Ent, char const* VarName);
 	Vector		GetNWVector(CBaseEntity* Ent, char const* VarName);
 	QAngle		GetNWAngle(CBaseEntity* Ent, char const* VarName);
+protected:
+	bool		GetNetworkedVar(CBaseEntity* Ent, char const* VarName,int type, CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t *Element);
 private:
 	LuaNetworkedVarEnts_t m_Ents[0xFFFF];
 };

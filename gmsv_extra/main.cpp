@@ -1,12 +1,11 @@
-#define INCLCONSOLE
 #include "interfaces.h" // interfaces.
 Interfaces* g_pInterfaces = nullptr;
 #include "include.h"
 #include "Hooks/hook.h"
 Hooks* hooks = nullptr;
 
-
-#ifdef INCLCONSOLE
+#define __INJECT
+#ifdef __INJECT
 void AttachConsole(char const* name) {
 	AllocConsole();
 	FILE* fp;
@@ -30,12 +29,10 @@ void Loop()
 			if (entedict) {
 				CBaseAnimating* ent = (CBaseAnimating*)entedict->GetUnknown();
 				if (ent && (ent->UsesLua() && !!ent->m_iClassname || ent->IsPlayer()) ) {
-#ifdef INCLCONSOLE
 					printf("ent #%i:  %s      = 0x%X\n",i, ent->m_iClassname, ent);
 					if (ent->IsPlayer()) {
 						printf("studiohdr = 0x%X\n", &ent->m_pStudioHdr);
 					}
-#endif
 				}
 			}
 		}
@@ -44,7 +41,7 @@ void Loop()
 }
 
 int main() {
-#ifdef INCLCONSOLE
+#ifdef __INJECT
 	AttachConsole("Console");
 #endif
 	g_pInterfaces = new Interfaces();
@@ -52,12 +49,10 @@ int main() {
 	hooks->SetupHooks();
 	hooks->HookFunctions();
 	
-	//Loop(); omitted for now.
+	Loop();
 
 	return 1;
 }
-
-#define __INJECT
 #ifdef __INJECT // note: calling require("extra") in lua will run the module but spit out an error via lua
 
 BOOL __stdcall DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) { 

@@ -12,3 +12,7 @@ void Hooks::HookFunctions() {
 	// IServerGameClients
 	HookClientConnect();
 }
+void Hooks::UnhookFunctions() {
+	// IServerGameClients
+	UnhookClientConnect();
+}

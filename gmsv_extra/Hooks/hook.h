@@ -93,11 +93,14 @@ class Hooks
 {
 public:
 	Hooks();
-	void SetupHooks();
-	void HookFunctions();
-protected:
+	void	SetupHooks();
+	void	HookFunctions();
+	void	UnhookFunctions();
+protected:	//hook
 	// IserverGameClients
-	void HookClientConnect();
+	void	HookClientConnect();
+protected:	//unhook
+	void	UnhookClientConnect();
 protected:
 	VMTHook* h_IServerGameClients;
 };

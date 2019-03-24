@@ -33,6 +33,6 @@ public:
 protected:
 	bool		GetNetworkedVar(CBaseEntity* Ent, char const* VarName,int type, CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t *Element);
 private:
-	LuaNetworkedVarEnts_t m_Ents[0xFFFF];
+	LuaNetworkedVarEnts_t m_Ents[ENT_ENTRY_MASK];
 };
 #endif

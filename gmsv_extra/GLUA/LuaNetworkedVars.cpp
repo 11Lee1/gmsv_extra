@@ -1,10 +1,12 @@
 #include "LuaNetworkedVars.h"
 
-bool CLuaNetworkedVars::GetNetworkedVar(CBaseEntity* Ent, char const* VarName,int type, CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t *Element) {
+bool CLuaNetworkedVars::GetNetworkedVar(CBaseEntity* Ent, char const* VarName, int type, CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t *Element) {
 	if (!Ent)
 		return false;
 
 	int entindex = Ent->GetRefEHandle().GetEntryIndex();
+	if (entindex > ENT_ENTRY_MASK)
+		return false;
 	for (int i = 0; i < m_Ents[entindex].NetVars.Count(); i++) {
 
 		CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t TempElem = m_Ents[entindex].NetVars.Element(i);

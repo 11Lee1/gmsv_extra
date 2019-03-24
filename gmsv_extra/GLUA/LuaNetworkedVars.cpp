@@ -1,6 +1,6 @@
 #include "LuaNetworkedVars.h"
 
-bool CLuaNetworkedVars::GetNetworkedVar(CBaseEntity* Ent, char const* VarName, int type, CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t *Element) {
+bool CLuaNetworkedVars::GetNetworkedVar(CBaseEntity* Ent, char const* VarName, int type, CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t &Element) {
 	if (!Ent)
 		return false;
 
@@ -8,14 +8,12 @@ bool CLuaNetworkedVars::GetNetworkedVar(CBaseEntity* Ent, char const* VarName, i
 	if (entindex > ENT_ENTRY_MASK)
 		return false;
 	for (int i = 0; i < m_Ents[entindex].NetVars.Count(); i++) {
+		Element = m_Ents[entindex].NetVars.Element(i);
 
-		CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t TempElem = m_Ents[entindex].NetVars.Element(i);
-
-		if (TempElem.elem.m_LuaGameObject.m_iLUA_TYPE != type)
+		if (Element.elem.m_LuaGameObject.m_iLUA_TYPE != type)
 			continue;
 
-		if (!V_stricmp(TempElem.key, VarName)) {
-			*Element = TempElem;
+		if (!V_stricmp(Element.key, VarName)) {
 			return true;
 		}
 	}
@@ -26,7 +24,7 @@ bool CLuaNetworkedVars::GetNWBool(CBaseEntity* Ent, char const* VarName) {
 		return false;
 
 	CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t Element;
-	if (GetNetworkedVar(Ent, VarName, GarrysMod::Lua::Type::BOOL,&Element))
+	if (GetNetworkedVar(Ent, VarName, GarrysMod::Lua::Type::BOOL,Element))
 		return Element.elem.m_LuaGameObject.GetBool();
 
 	return false;
@@ -36,7 +34,7 @@ int CLuaNetworkedVars::GetNWInt(CBaseEntity* Ent, char const* VarName) {
 		return 0;
 
 	CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t Element;
-	if (GetNetworkedVar(Ent, VarName, GarrysMod::Lua::Type::NUMBER, &Element))
+	if (GetNetworkedVar(Ent, VarName, GarrysMod::Lua::Type::NUMBER, Element))
 		return Element.elem.m_LuaGameObject.GetInt();
 
 	return 0;
@@ -46,7 +44,7 @@ float CLuaNetworkedVars::GetNWFloat(CBaseEntity* Ent, char const* VarName) {
 		return 0.f;
 
 	CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t Element;
-	if (GetNetworkedVar(Ent, VarName, GarrysMod::Lua::Type::NUMBER, &Element))
+	if (GetNetworkedVar(Ent, VarName, GarrysMod::Lua::Type::NUMBER, Element))
 		return Element.elem.m_LuaGameObject.GetFloat();
 
 	return 0.f;
@@ -56,7 +54,7 @@ char const* CLuaNetworkedVars::GetNWString(CBaseEntity* Ent, char const* VarName
 		return "";
 
 	CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t Element;
-	if (GetNetworkedVar(Ent, VarName, GarrysMod::Lua::Type::STRING, &Element))
+	if (GetNetworkedVar(Ent, VarName, GarrysMod::Lua::Type::STRING, Element))
 		return Element.elem.m_LuaGameObject.GetString();
 
 	return "";
@@ -66,7 +64,7 @@ CBaseEntity* CLuaNetworkedVars::GetNWEntity(CBaseEntity* Ent, char const* VarNam
 		return nullptr;
 
 	CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t Element;
-	if (GetNetworkedVar(Ent, VarName, GarrysMod::Lua::Type::ENTITY, &Element))
+	if (GetNetworkedVar(Ent, VarName, GarrysMod::Lua::Type::ENTITY, Element))
 		return Element.elem.m_LuaGameObject.GetEntity();
 
 	return nullptr;
@@ -76,7 +74,7 @@ Vector CLuaNetworkedVars::GetNWVector(CBaseEntity* Ent, char const* VarName) {
 		return vec3_origin;
 
 	CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t Element;
-	if (GetNetworkedVar(Ent, VarName, GarrysMod::Lua::Type::VECTOR, &Element))
+	if (GetNetworkedVar(Ent, VarName, GarrysMod::Lua::Type::VECTOR, Element))
 		return Element.elem.m_LuaGameObject.GetVector();
 
 	return vec3_origin;
@@ -86,7 +84,7 @@ QAngle CLuaNetworkedVars::GetNWAngle(CBaseEntity* Ent, char const* VarName) {
 		return vec3_angle;
 
 	CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t Element;
-	if (GetNetworkedVar(Ent, VarName, GarrysMod::Lua::Type::ANGLE, &Element))
+	if (GetNetworkedVar(Ent, VarName, GarrysMod::Lua::Type::ANGLE, Element))
 		return Element.elem.m_LuaGameObject.GetAngle();
 
 	return vec3_angle;

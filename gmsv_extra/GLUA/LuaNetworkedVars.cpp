@@ -5,7 +5,7 @@ bool CLuaNetworkedVars::GetNetworkedVar(CBaseEntity* Ent, char const* VarName, i
 		return false;
 
 	int entindex = Ent->GetRefEHandle().GetEntryIndex();
-	if (entindex > ENT_ENTRY_MASK)
+	if (entindex >= ENT_ENTRY_MASK)
 		return false;
 	for (int i = 0; i < m_Ents[entindex].NetVars.Count(); i++) {
 		Element = m_Ents[entindex].NetVars.Element(i);
@@ -13,9 +13,8 @@ bool CLuaNetworkedVars::GetNetworkedVar(CBaseEntity* Ent, char const* VarName, i
 		if (Element.elem.m_LuaGameObject.m_iLUA_TYPE != type)
 			continue;
 
-		if (!V_stricmp(Element.key, VarName)) {
+		if (!V_stricmp(Element.key, VarName))
 			return true;
-		}
 	}
 	return false;
 }
@@ -24,7 +23,7 @@ bool CLuaNetworkedVars::GetNWBool(CBaseEntity* Ent, char const* VarName) {
 		return false;
 
 	CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t Element;
-	if (GetNetworkedVar(Ent, VarName, GarrysMod::Lua::Type::BOOL,Element))
+	if (GetNetworkedVar(Ent, VarName, GarrysMod::Lua::Type::BOOL, Element))
 		return Element.elem.m_LuaGameObject.GetBool();
 
 	return false;

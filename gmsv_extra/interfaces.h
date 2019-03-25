@@ -27,6 +27,7 @@ class Interfaces
 {
 public:
 	Interfaces();
+	~Interfaces();
 	void _SetupInterfaces();
 private:
 	void	GetInterfaceRegistries();

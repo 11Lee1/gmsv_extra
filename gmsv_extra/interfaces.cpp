@@ -13,6 +13,9 @@ Interfaces::Interfaces() {
 	printf("Setting up interfaces \n");
 	_SetupInterfaces();
 }
+Interfaces::~Interfaces() {
+	delete this;
+}
 void Interfaces::_SetupInterfaces() {
 	GetInterfaceRegistries();
 	GetInterfaces();

@@ -4,6 +4,15 @@
 
 Hooks::Hooks() {
 	h_IServerGameClients = nullptr;
+	SetupHooks();
+	HookFunctions();
+}
+Hooks::~Hooks() {
+	UnhookFunctions();
+	if (h_IServerGameClients)
+		h_IServerGameClients->~VMTHook();
+
+	delete this;
 }
 void Hooks::SetupHooks() {
 	h_IServerGameClients = new VMTHook(g_pInterfaces->ServerGameClients());

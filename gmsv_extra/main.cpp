@@ -5,7 +5,6 @@ Interfaces* g_pInterfaces = nullptr;
 Hooks* hooks = nullptr;
 
 #define __INJECT
-#ifdef __INJECT
 void AttachConsole(char const* name) {
 	AllocConsole();
 	FILE* fp;
@@ -15,7 +14,6 @@ void AttachConsole(char const* name) {
 	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(hOut, 0x7);
 }
-#endif
 
 void Loop()
 {
@@ -46,10 +44,8 @@ int main() {
 #endif
 	g_pInterfaces = new Interfaces();
 	hooks = new Hooks();
-	hooks->SetupHooks();
-	hooks->HookFunctions();
 	
-	Loop();
+	//Loop();
 
 	return 1;
 }
@@ -74,12 +70,17 @@ BOOL __stdcall DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReser
 #else
 GMOD_MODULE_OPEN()
 {
+	AttachConsole("Console");
+	printf("attaching\n");
 	main();
 	return 1;
 }
 //lua_openscript sv.lua
 GMOD_MODULE_CLOSE()
 {
+	hooks->~Hooks();
+	g_pInterfaces->~Interfaces();
+	printf("unattaching\n");
 	return 1;
 }
 

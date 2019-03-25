@@ -12,10 +12,8 @@ public:
 	char const* GetModuleName() { return m_ModuleName; }
 	char const* GetSelfName() { return m_SelfName; }
 	void SetScriptName(char const* Name) {
-		char Holder[0x40];
-		V_strncpy(Holder, Name, 0x40);
-		V_strlower(Holder);
-		V_strncpy(m_ScriptName, Holder, 0x40);
+		V_strncpy(m_ScriptName, Name, 0x40);
+		V_strlower(m_ScriptName);
 	}
 	void SetModuleName(char const* Name) { V_strncpy(m_ModuleName, Name, 0x40); }
 	void SetSelfName(char const* Name) { V_strncpy(m_SelfName, Name, 0x40); }

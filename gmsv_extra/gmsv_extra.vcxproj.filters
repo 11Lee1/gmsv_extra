@@ -79,7 +79,7 @@
     <Filter Include="Source Files\Hooks\ServerGameClients">
       <UniqueIdentifier>{d7d81fbc-3d04-4300-92a8-d4a2cccef1ff}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\util">
+    <Filter Include="Source Files\Source SDK\util">
       <UniqueIdentifier>{4fedfa18-896f-4d6f-a7ea-a935f24889ae}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -136,7 +136,7 @@
       <Filter>Source Files\Hooks\ServerGameClients</Filter>
     </ClCompile>
     <ClCompile Include="util\vmthook.cpp">
-      <Filter>Source Files\util</Filter>
+      <Filter>Source Files\Source SDK\util</Filter>
     </ClCompile>
     <ClCompile Include="Source SDK\usercmd.cpp">
       <Filter>Source Files\Source SDK</Filter>

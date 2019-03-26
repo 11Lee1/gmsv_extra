@@ -119,6 +119,7 @@
     <ClCompile Include="GLUA\LuaNetworkedVars.cpp" />
     <ClCompile Include="GLUA\LuaObject\CLuaGameObject.cpp" />
     <ClCompile Include="GLUA\LuaObject\CLuaObject.cpp" />
+    <ClCompile Include="Hooks\CGMOD_Player\FireBullets.cpp" />
     <ClCompile Include="Hooks\hook.cpp" />
     <ClCompile Include="Hooks\ServerGameClients\ClientConnect.cpp" />
     <ClCompile Include="interfaces.cpp" />

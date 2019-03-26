@@ -1,32 +1,24 @@
 #ifndef VMTHOOK_H
 #define VMTHOOK_H
-/*
-
-	credits to whoever made this so I don't have to lol
-
-*/
 #include "../include/baseinclude.h"
 class VMTHook
 {
 public:
-	void** m_pOriginalVTable;
-	void** m_pNewVTable;
-	void*** m_pInstance;
-
-	int m_iNumIndices;
-
+	struct vmthooks_t
+	{
+		int	index = 0;
+		unsigned int OriginalFunctionPtr = 0;
+	};
 	VMTHook(void* instance);
 	~VMTHook();
 
-	int tellCount();
-
-	void* hookFunction(int iIndex, void* pfnHook);
-	void* unhookFunction(int iIndex);
-	void* GetMethod(int iIndex);
-	void* GetHookedMethod(int iIndex);
-	void SetPadding(int pad);
-
-	int padding;
-
+	void*	HookFunction(int index, void* pfnHook);
+	void*	UnhookFunction(int index);
+private:
+	bool FindHookWithIndex(int index, vmthooks_t& hook);
+	void DeleteObjectWithIndex(int index);
+private:
+	void* m_pVMT = nullptr;
+	std::vector<vmthooks_t> VMTInfo;
 };
 #endif

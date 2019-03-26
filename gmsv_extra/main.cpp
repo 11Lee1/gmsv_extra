@@ -29,7 +29,8 @@ void Loop()
 				if (ent && (ent->UsesLua() && !!ent->m_iClassname || ent->IsPlayer()) ) {
 					printf("ent #%i:  %s      = 0x%X\n",i, ent->m_iClassname, ent);
 					if (ent->IsPlayer()) {
-						printf("usergroup = %s\n", g_pInterfaces->g_LuaNetworkedVars->GetNWString(ent, "usergroup"));
+						printf("player #%i: = 0x%X\n", i, ent);
+						//printf("usergroup = %s\n", g_pInterfaces->g_LuaNetworkedVars->GetNWString(ent, "usergroup"));
 					}
 				}
 			}
@@ -45,7 +46,7 @@ int main() {
 	g_pInterfaces = new Interfaces();
 	hooks = new Hooks();
 	
-	//Loop();
+	Loop();
 
 	return 1;
 }

@@ -1,158 +1,73 @@
 #include "vmthook.h"
 
-VMTHook::VMTHook(void* instance)
-{
-	padding = 0;
-
+// now hop off my dick laxol
+VMTHook::VMTHook(void* instance) {
 	if (!instance)
 		return;
 
-	m_pInstance = (void***)instance;
+	m_pVMT = *(void**)instance;
+}
 
-	if (!m_pInstance)
-		return;
-
-	m_pOriginalVTable = *m_pInstance;
-
-	if (!m_pOriginalVTable)
-		return;
-
-	//Count number of Pointers in the table
-
-
-	m_iNumIndices = 0;
-
-	while (m_pOriginalVTable[m_iNumIndices])
-	{
-		m_iNumIndices++;
+VMTHook::~VMTHook() {
+	for (int i = 0; i < VMTInfo.size(); i++) {
+		UnhookFunction(VMTInfo[i].index);
 	}
+	delete this;
+}
+bool VMTHook::FindHookWithIndex(int index, vmthooks_t& hook) {
+	if (!VMTInfo.size())
+		return false;
 
-	if (!m_iNumIndices)
-		return;
+	for (int i = 0; i < VMTInfo.size(); i++) {
+		if (VMTInfo[i].index != index)
+			continue;
 
-	//Allocate memory on the heap for our own copy of the table
-	int size = sizeof(int) * (m_iNumIndices + 6);
-
-	m_pNewVTable = (void**)malloc(size);
-
-	if (!m_pNewVTable)
-		return;
-
-
-	int i = -2;
-
-	while (++i < m_iNumIndices)
-	{
-		m_pNewVTable[i] = m_pOriginalVTable[i];
-
+		hook = VMTInfo[i];
+		return true;
 	}
-
-
-	*m_pInstance = m_pNewVTable;
-	FlushInstructionCache(GetCurrentProcess(), 0, 0);
-
+	return false;
 }
-
-VMTHook::~VMTHook()
-{
-
-	//Rewrite old pointer
-
-	if (!m_pInstance)
+void VMTHook::DeleteObjectWithIndex(int index) {
+	if (!VMTInfo.size())
 		return;
 
-	if (!*m_pInstance)
-		return;
+	for (int i = 0; i < VMTInfo.size(); i++) {
+		if (VMTInfo[i].index != index)
+			continue;
 
-	if (!m_pOriginalVTable)
+		VMTInfo.erase(VMTInfo.begin() + i);
 		return;
-
-	if (m_pNewVTable)
-	{
-		for (int i = 0; i < m_iNumIndices; i++)
-		{
-			if (m_pNewVTable[i] != m_pOriginalVTable[i])
-			{
-				m_pNewVTable[i] = m_pOriginalVTable[i];
-			}
-		}
-		//free(m_pNewVTable);
 	}
+}
+void* VMTHook::HookFunction(int index, void* pfnHook) {
+	DWORD OldProtect, OldProtect2;
+	if (!((unsigned int*)m_pVMT)[index])
+		return nullptr;
 
+	unsigned int OriginalFunctionPtr = ((unsigned int*)m_pVMT)[index];
+	VMTInfo.emplace_back(vmthooks_t{index,OriginalFunctionPtr });
 
-	*m_pInstance = m_pOriginalVTable;
+	void* writelocation = (void*)((unsigned int)m_pVMT + (0x4 * index));
+	VirtualProtect(writelocation, 0x4, PAGE_EXECUTE_READWRITE, &OldProtect);
+	((unsigned int*)m_pVMT)[index] = (unsigned int)pfnHook;
+	VirtualProtect(writelocation, 0x4, OldProtect, &OldProtect2);
 	FlushInstructionCache(GetCurrentProcess(), 0, 0);
-
-	return;
-
+	return (void*)OriginalFunctionPtr;
 }
 
-int VMTHook::tellCount()
-{
+void* VMTHook::UnhookFunction(int index) {
+	DWORD OldProtect, OldProtect2;
+	vmthooks_t hook;
+	if (!VMTInfo.size() || !FindHookWithIndex(index,hook))
+		return nullptr;
 
-	return m_iNumIndices;
-}
 
-void* VMTHook::hookFunction(int iIndex, void* pfnHook)
-{
-	if (padding)
-		iIndex = iIndex + padding;
 
-	//Valid index?
-	if (iIndex >= m_iNumIndices)
-		return NULL;
-
-	if (!m_pOriginalVTable[iIndex])
-		return NULL;
-
-	if (pfnHook == m_pOriginalVTable[iIndex])
-		return 0;
-
-	//Write new pointer
-	m_pNewVTable[iIndex] = pfnHook;
-
+	void* writelocation = (void*)((unsigned int)m_pVMT + (0x4 * index));
+	VirtualProtect(writelocation, 0x4, PAGE_EXECUTE_READWRITE, &OldProtect);
+	((unsigned int*)m_pVMT)[index] = hook.OriginalFunctionPtr;
+	VirtualProtect(writelocation, 0x4, OldProtect, &OldProtect2);
 	FlushInstructionCache(GetCurrentProcess(), 0, 0);
-
-	//And return pointer to original function
-	return m_pOriginalVTable[iIndex];
-}
-
-void* VMTHook::unhookFunction(int iIndex)
-{
-	if (padding)
-		iIndex = iIndex + padding;
-
-	//Valid index?
-	if (iIndex >= m_iNumIndices)
-		return NULL;
-
-	if (!m_pOriginalVTable[iIndex])
-		return NULL;
-
-	//Rewrite old pointer
-	m_pNewVTable[iIndex] = m_pOriginalVTable[iIndex];
-
-	FlushInstructionCache(GetCurrentProcess(), 0, 0);
-
-	//And return pointer to original function
-	return m_pOriginalVTable[iIndex];
-}
-void* VMTHook::GetMethod(int iIndex)
-{
-	if (padding)
-		iIndex = iIndex + padding;
-
-	return m_pOriginalVTable[iIndex];
-}
-void* VMTHook::GetHookedMethod(int iIndex)
-{
-	if (padding)
-		iIndex = iIndex + padding;
-
-	return m_pNewVTable[iIndex];
-}
-
-void VMTHook::SetPadding(int pad)
-{
-	padding = pad;
+	DeleteObjectWithIndex(index);
+	return nullptr;
 }

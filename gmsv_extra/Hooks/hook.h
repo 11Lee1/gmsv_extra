@@ -2,7 +2,10 @@
 #define HOOK_H
 /*
 
+	probably want to read this if you don't know what you're doing
+
 	I'll give you guys a BASIC rundown on vmt hooking so you can do it yourself.
+	ps i'm really bad with terminology
 
 	functions with the "virtual" keyword have thier pointer stored within that object's
 	virtual method table (or VMT for short) which is pretty much just an array of pointers
@@ -84,11 +87,10 @@
 
 	so whenever the function in the VMT is called our function is called.
 
+	anyway you can look at how I do it below I've added more info with the two examples I've added.
 
-	and if that still isn't enough you can just look at how I do it below.
 */
-
-class VMTHook;
+#include "../util/vmthook.h"
 class Hooks
 {
 public:
@@ -97,14 +99,23 @@ public:
 protected:	//hook
 	void	SetupHooks();
 	void	HookFunctions();
+
 	// IserverGameClients
 	void	HookClientConnect();
+	
+	// CGMOD_Player
+	void	Hook_CGMOD_Player__FireBullets();
 protected:	//unhook
 	void	UnhookFunctions();
+
 	// IserverGameClients
 	void	UnhookClientConnect();
+
+	// CGMOD_Player
+	void	Unhook_CGMOD_Player__FireBullets();
 protected:
 	VMTHook* h_IServerGameClients;
+	VMTHook* h_CGMOD_Player;
 };
 extern Hooks* hooks;
 

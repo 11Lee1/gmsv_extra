@@ -2,6 +2,7 @@
 #include "../interfaces.h"
 #include "../Source SDK/eiface.h"
 #include "../Source SDK/server/baseentity.h"
+#include "../Source SDK/edict.h"
 #include <windows.h>
 
 Hooks::Hooks() {
@@ -25,7 +26,7 @@ void Hooks::SetupHooks() {
 	
 
 	while (!h_CGMOD_Player) {
-		for (int i = 1; i < 2; i++) { // till I find a better way to get the maxclients 
+		for (int i = 1; i < g_pInterfaces->Globals()->maxClients; i++) {
 			edict_t* ent = g_pInterfaces->EngineServer()->PEntityOfEntIndex(i);
 			if (ent && ent->GetUnknown()) {
 				if (((CBaseEntity*)ent->GetUnknown())->IsPlayer()) {

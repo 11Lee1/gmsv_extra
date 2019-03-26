@@ -16,6 +16,7 @@ class IServerDLLSharedAppSystems;
 class IServerGameTags;
 class CLuaNetworkedVars;
 class CLuaShared;
+class CGlobalVars;
 namespace GarrysMod
 {
 	namespace Lua
@@ -49,6 +50,8 @@ public:
 	IServerGameTags* ServerGameTags() { return m_pServerGameTags; }
 
 	CLuaShared* LuaShared() { return m_pLuaShared; }
+	CGlobalVars*  Globals() { return *(CGlobalVars**)gpGlobals; }
+	CLuaNetworkedVars* LuaNetworkedVars() { return *(CLuaNetworkedVars**)g_pLuaNetworkedVars; }
 private:
 	// Interface registries 
 	InterfaceReg* m_pServerDLLInterfaceReg;
@@ -63,9 +66,14 @@ private:
 	IServerDLLSharedAppSystems* m_pServerDLLSharedAppSystems;
 	IServerGameTags* m_pServerGameTags;
 	CLuaShared* m_pLuaShared;
+
+	// globals
+	CGlobalVars* gpGlobals;
+
+	// GMod & GMod Lua shit
+	CLuaNetworkedVars* g_pLuaNetworkedVars;
 public:
 	// GMod & GMod Lua shit
-	CLuaNetworkedVars* g_LuaNetworkedVars;
 	GarrysMod::Lua::ILuaBase* g_Lua;
 };
 extern Interfaces* g_pInterfaces;

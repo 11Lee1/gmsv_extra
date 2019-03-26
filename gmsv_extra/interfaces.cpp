@@ -53,15 +53,19 @@ void Interfaces::GetInterfaces() {
 void Interfaces::FindOtherInterfaces() {
 
 
-#ifdef _WIN32
+#ifdef _WIN32 
 	// until I can find a better method.
 	uintptr_t GetNetworkedIntFn = Util::Pattern::FindPattern("server.dll", "55 8B EC 8B 45 08 56 50 8B 48 48 8B 11 FF 92 ? ? ? ? FF 05 ? ? ? ? 6A 01 6A 01 E8 ? ? ? ? 8B 0D ? ? ? ? 8B F0 83 C4 08 8B 01 85 F6 75 35 6A 03 FF 90 ? ? ? ? 8B F0 85 F6 74 66");
 	PRINT_PTRCHECK("GetNetworkedInt Function", GetNetworkedIntFn);
 	if (GetNetworkedIntFn) {
-		g_LuaNetworkedVars = **(CLuaNetworkedVars***)(GetNetworkedIntFn + 0x72);
-		PRINT_PTRCHECK("CLuaNetworkedVars from GetNetworkedInt function", g_LuaNetworkedVars);
+		g_pLuaNetworkedVars = *(CLuaNetworkedVars**)(GetNetworkedIntFn + 0x72);
+		PRINT_PTRCHECK("CLuaNetworkedVars from GetNetworkedInt function", g_pLuaNetworkedVars);
 	}
-		
+	
+	if (m_pServerGameDLL) {
+		gpGlobals = *(CGlobalVars**)((*(unsigned int**)m_pServerGameDLL)[1]/*DLLInit*/ + 0x2B0 + 0x1);
+	}
+	
 #endif
 
 }

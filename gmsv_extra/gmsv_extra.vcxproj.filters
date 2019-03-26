@@ -548,5 +548,8 @@
     <ClInclude Include="Source SDK\imovehelper.h">
       <Filter>Header Files\Source SDK</Filter>
     </ClInclude>
+    <ClInclude Include="Source SDK\inetchannelinfo.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

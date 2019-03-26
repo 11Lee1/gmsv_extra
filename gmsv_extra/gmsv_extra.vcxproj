@@ -181,6 +181,7 @@
     <ClInclude Include="Source SDK\icvar.h" />
     <ClInclude Include="Source SDK\ihandleentity.h" />
     <ClInclude Include="Source SDK\imovehelper.h" />
+    <ClInclude Include="Source SDK\inetchannelinfo.h" />
     <ClInclude Include="Source SDK\isaverestore.h" />
     <ClInclude Include="Source SDK\iserverentity.h" />
     <ClInclude Include="Source SDK\iservernetworkable.h" />

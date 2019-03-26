@@ -30,7 +30,6 @@ void Loop()
 					printf("ent #%i:  %s      = 0x%X\n",i, ent->m_iClassname, ent);
 					if (ent->IsPlayer()) {
 						printf("player #%i: = 0x%X\n", i, ent);
-						//printf("usergroup = %s\n", g_pInterfaces->g_LuaNetworkedVars->GetNWString(ent, "usergroup"));
 					}
 				}
 			}

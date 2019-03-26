@@ -23,6 +23,7 @@
 #include "bitvec.h"
 #include "engine/iserverplugin.h"
 #include "tier1/bitbuff.h"
+#include "inetchannelinfo.h"
 
 //-----------------------------------------------------------------------------
 // forward declarations

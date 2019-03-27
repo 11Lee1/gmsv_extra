@@ -14,4 +14,3 @@ current todo list:
 - Finish CGMODDataTable
 - Finish CScriptedEntity
 - Finish populating the entity classes
-- 

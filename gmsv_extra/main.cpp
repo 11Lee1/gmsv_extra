@@ -24,15 +24,14 @@ void Loop()
 		{
 			edict_t* entedict = g_pInterfaces->EngineServer()->PEntityOfEntIndex(i);
 			if (entedict) {
-				CBaseCombatCharacter* ent = (CBaseCombatCharacter*)entedict->GetUnknown();
+				CBasePlayer* ent = (CBasePlayer*)entedict->GetUnknown();
 				if (ent && (ent->UsesLua() && !!ent->m_iClassname || ent->IsPlayer()) ) {
 					//printf("ent #%i:  %s      = 0x%X\n",i, ent->m_iClassname, ent);
 					if (ent->IsPlayer()) {
 						printf("player #%i: = 0x%X\n", i, ent);
 
-						printf("m_flNextAttack = 0x%X\n", &ent->m_flNextAttack);
-						printf("m_eHull = 0x%X\n", &ent->m_eHull);
-						printf("m_hActiveWeapon = 0x%X\n", &ent->m_hActiveWeapon);
+						printf("m_oldOrigin = 0x%X\n", &ent->m_oldOrigin);
+						printf("m_LastCmd.MouseContextMenuDirection = 0x%X\n", &ent->m_LastCmd.MouseContextMenuDirection);
 					}
 				}
 			}

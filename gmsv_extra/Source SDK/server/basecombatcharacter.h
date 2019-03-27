@@ -29,6 +29,7 @@
 #include "ai_hull.h"
 #include "ai_utils.h"
 #include "physics_impact_damage.h"
+#include "../util_shared.h"
 
 class CNavArea;
 class CScriptedTarget;
@@ -165,6 +166,25 @@ public:
 
 	CBaseCombatWeaponHandle	m_hActiveWeapon;
 
+
+	IntervalTimer			m_aliveTimer;
+
+	unsigned int			m_hasBeenInjured;							// bitfield corresponding to team ID that did the injury	
+
+
+	// we do this because MAX_TEAMS is 32, which is wasteful for most games
+	enum { MAX_DAMAGE_TEAMS = 4 };
+	struct DamageHistory
+	{
+		int team;					// which team hurt us (TEAM_INVALID means slot unused)
+		IntervalTimer interval;		// how long has it been
+	};
+	DamageHistory			m_damageHistory[MAX_DAMAGE_TEAMS];
+
+	// last known navigation area of player - NULL if unknown
+	CNavArea*				m_lastNavArea;
+	CAI_MoveMonitor			m_NavAreaUpdateMonitor;
+	int						m_registeredNavTeam; // ugly, but needed to clean up player team counts in nav mesh
 };
 
 #endif // BASECOMBATCHARACTER_H

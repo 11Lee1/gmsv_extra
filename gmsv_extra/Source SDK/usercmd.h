@@ -168,11 +168,14 @@ public:
 	// Client only, tracks whether we've predicted this command at least once
 	bool	hasbeenpredicted;
 
-	// Back channel to communicate IK state
-#if defined( HL2_DLL ) || defined( HL2_CLIENT_DLL )
-	CUtlVector< CEntityGroundContact > entitygroundcontact;
-#endif
+	BYTE	KEYSTATES[0x5]; // has to do with key states idk.
+	BYTE	pad_unk00[0x1];
+	bool	InContextMenu;
+	Vector	MouseContextMenuDirection; // directional vector of the mouse cursor in the context menu
 
+	bool	IsTyping;
+
+	BYTE	pad_unk01[0xF7];
 };
 
 void ReadUsercmd(bf_read *buf, CUserCmd *move, CUserCmd *from);

@@ -238,10 +238,283 @@ class CBasePlayer : public CBaseCombatCharacter
 {
 public:
 	DECLARE_CLASS(CBasePlayer, CBaseCombatCharacter);
-protected:
-	// HACK FOR BOTS
-	friend class CBotManager;
-	static edict_t *s_PlayerEdict; // must be set before calling constructor
+
+
+public:
+	BYTE	pad_unk05[0x4];
+	// How much of a movement time buffer can we process from this user?
+	float				m_flMovementTimeForUserCmdProcessingRemaining;
+	// Used by gamemovement to check if the entity is stuck.
+	int					m_StuckLast;
+	CPlayerLocalData	m_Local;
+
+	BYTE	pad_unk06[0x14];
+	// Used by env_soundscape_triggerable to manage when the player is touching multiple
+	// soundscape triggers simultaneously.
+	// The one at the HEAD of the list is always the current soundscape for the player.
+	CUtlVector<EHANDLE> m_hTriggerSoundscapeList;
+	// Player data that's sometimes needed by the engine
+	CPlayerState		pl;
+
+	int					m_nButtons;
+	int					m_afButtonPressed;
+	int					m_afButtonReleased;
+	int					m_afButtonLast;
+	int					m_afButtonDisabled;	// A mask of input flags that are cleared automatically
+	int					m_afButtonForced; // 
+	int					m_keyboardbutton;  // see what buttons are pressed on their keyboard, kinda scarry. - lee
+
+	bool				m_fOnTarget; //Is the crosshair on a target?
+	bool				m_bNoIdea0; // dunno
+
+	char				m_szAnimExtension[32];
+	int					m_nUpdateRate; // user snapshot rate cl_updaterate
+
+	float				m_fLerpTime;		// users cl_interp
+	bool				m_bLagCompensation;	// user wants lag compenstation
+	bool				m_bPredictWeapons; //  user has client side predicted weapons
+
+	//Activity			m_Activity; // it's either: m_Activity or m_flLastObjectiveTime dunno, gonna go with m_flLastObjectiveTime.
+	float				m_flLastObjectiveTime; // Last curtime player touched/killed something the gamemode considers an objective
+
+	// Secondary point to derive PVS from when zoomed in with binoculars/sniper rifle.  The PVS is 
+	//  a merge of the standing origin and this additional origin
+	Vector				m_vecAdditionalPVSOrigin;
+	// Extra PVS origin if we are using a camera object
+	Vector				m_vecCameraPVSOrigin;
+
+	EHANDLE				m_hUseEntity; // the player is currently controlling this entity because of +USE latched, NULL if no entity
+	int					m_iTrain; // Train control position
+
+	float				m_iRespawnFrames;	// used in PlayerDeathThink() to make sure players can always respawn
+	unsigned int		m_afPhysicsFlags;	// physics flags - set when 'normal' physics should be revisited or overriden
+
+	EHANDLE				m_hVehicle;
+	int					m_iVehicleAnalogBias;
+
+	bool				m_bPauseBonusProgress;
+	int					m_iBonusProgress;
+	int					m_iBonusChallenge;
+
+	int					m_lastDamageAmount;		// Last damage taken
+
+	Vector				m_DmgOrigin;
+	float				m_DmgTake;
+	float				m_DmgSave;
+	int					m_bitsDamageType;	// what types of damage has player taken
+	int					m_bitsHUDDamage;	// Damage bits for the current fame. These get sent to the hud via gmsgDamage
+
+	float				m_flDeathTime;		// the time at which the player died  (used in PlayerDeathThink())
+	float				m_flDeathAnimTime;	// the time at which the player finished their death anim (used in PlayerDeathThink() and ShouldTransmit())
+
+	int					m_iObserverMode;	// if in spectator mode != 0
+	float				m_iFOV;			// field of view
+	float				m_iDefaultFOV;	// default field of view
+	float				m_iFOVStart;		// What our FOV started at
+	float				m_flFOVTime; // Time our FOV change started
+
+	int					m_iObserverLastMode; // last used observer mode
+	EHANDLE				m_hObserverTarget;	// entity handle to m_iObserverTarget
+	bool				m_bForcedObserverMode; // true, player was forced by invalid targets to switch mode
+
+	EHANDLE				m_hZoomOwner;	//This is a pointer to the entity currently controlling the player's zoom
+													//Only this entity can change the zoom state once it has ownership
+
+	float				m_tbdPrev;				// Time-based damage timer
+	int					m_idrowndmg;			// track drowning damage taken
+	int					m_idrownrestored;		// track drowning damage restored
+	int					m_nPoisonDmg;			// track recoverable poison damage taken
+	int					m_nPoisonRestored; // track poison damage restored
+
+	// NOTE: bits damage type appears to only be used for time-based damage
+	BYTE				m_rgbTimeBasedDamage[CDMG_TIMEBASED];
+
+	// Player Physics Shadow
+	int					m_vphysicsCollisionState;
+
+	float				m_fNextSuicideTime; // the time after which the player can next use the suicide command
+	int					m_iSuicideCustomKillFlags;
+
+	// Replay mode	
+	float				m_fDelay;			// replay delay in seconds
+	float				m_fReplayEnd;		// time to stop replay mode
+	int					m_iReplayEntity; // follow this entity in replay
+
+	CUtlVector< CCommandContext > m_CommandContext;
+
+	IPhysicsPlayerController*m_pPhysicsController;
+	IPhysicsObject*		m_pShadowStand;
+	IPhysicsObject*		m_pShadowCrouch;
+	Vector				m_oldOrigin;
+	Vector				m_vecSmoothedVelocity;
+	bool				m_touchedPhysObject;
+	bool				m_bPhysicsWasFrozen;
+
+	int					m_iPlayerSound;// the index of the sound list slot reserved for this player
+	int					m_iTargetVolume;// ideal sound volume. 
+
+	int					m_rgItems[MAX_ITEMS];
+
+	// these are time-sensitive things that we keep track of
+	float				m_flSwimTime;		// how long player has been underwater
+	float				m_flDuckTime;		// how long we've been ducking
+	float				m_flDuckJumpTime;
+
+	float				m_flSuitUpdate;					// when to play next suit update
+	int					m_rgSuitPlayList[CSUITPLAYLIST];// next sentencenum to play for suit update
+	int					m_iSuitPlayNext;				// next sentence slot for queue storage;
+	int					m_rgiSuitNoRepeat[CSUITNOREPEAT];		// suit sentence no repeat list
+	float				m_rgflSuitNoRepeatTime[CSUITNOREPEAT];	// how long to wait before allowing repeat
+
+	float				m_flgeigerRange;		// range to nearest radiation source
+	float				m_flgeigerDelay;		// delay per update of range msg to client
+	int					m_igeigerRangePrev;
+
+	bool				m_fInitHUD;				// True when deferred HUD restart msg needs to be sent
+	bool				m_fGameHUDInitialized;
+	bool				m_fWeapon;				// Set this to FALSE to force a reset of the current weapon HUD info
+
+	int					m_iUpdateTime;		// stores the number of frame ticks before sending HUD update messages
+	int					m_iClientBattery;	// the Battery currently known by the client.  If this changes, send a new
+
+	// Autoaim data
+	QAngle				m_vecAutoAim;
+	int					m_lastx, m_lasty;	// These are the previous update's crosshair angles, DON"T SAVE/RESTORE
+
+	int					m_iFrags;
+	int					m_iDeaths;
+
+	float				m_flNextDecalTime;// next time this player can spray a decal
+
+	// Team Handling
+	// char					m_szTeamName[TEAM_NAME_LENGTH];
+
+	// Multiplayer handling
+	PlayerConnectedState	m_iConnected;
+
+	// from edict_t
+	// CBasePlayer doesn't send this but CCSPlayer does.
+	int					m_ArmorValue;
+	float				m_AirFinished;
+	float				m_PainFinished;
+
+	// player locking
+	int					m_iPlayerLocked;
+	EHANDLE				m_hViewModel[MAX_VIEWMODELS];
+
+	// Last received usercmd (in case we drop a lot of packets )
+	CUserCmd			m_LastCmd;
+	CUserCmd			*m_pCurrentCommand;
+	int					m_iLockViewanglesTickNumber;
+	QAngle				m_qangLockViewangles;
+
+	float				m_flStepSoundTime;	// time to check for next footstep sound
+
+	bool				m_bAllowInstantSpawn;
+
+	// Replicated to all clients
+	float				m_flMaxSpeed;
+
+	// Not transmitted
+	float				m_flWaterJumpTime;  // used to be called teleport_time
+	Vector				m_vecWaterJumpVel;
+	int					m_nImpulse;
+	float				m_flSwimSoundTime;
+	Vector				m_vecLadderNormal;
+
+	float				m_flFlashTime;
+	int					m_nDrownDmgRate;		// Drowning damage in points per second without air.
+
+	int					m_nNumCrouches;			// Number of times we've crouched (for hinting)
+	bool				m_bDuckToggled;		// If true, the player is crouching via a toggle
+
+
+	float				m_flForwardMove;
+	float				m_flSideMove;
+	int					m_nNumCrateHudHints;
+
+	// Used in test code to teleport the player to random locations in the map.
+	Vector				m_vForcedOrigin;
+	bool				m_bForceOrigin;
+
+	// Clients try to run on their own realtime clock, this is this client's clock
+	int					m_nTickBase;
+
+	bool				m_bGamePaused;
+	float				m_fLastPlayerTalkTime;
+
+	EHANDLE				m_hLastWeapon;
+
+	CUtlVector< CHandle< CBaseEntity > > m_SimulatedByThisPlayer;
+
+	float				m_flOldPlayerZ;
+	float				m_flOldPlayerViewOffsetZ;
+
+	bool				m_bPlayerUnderwater;
+
+	EHANDLE				m_hViewEntity;
+
+	BYTE		pad_unk07[0x4];
+
+	// Movement constraints
+	EHANDLE				m_hConstraintEntity;
+	Vector				m_vecConstraintCenter;
+	float				m_flConstraintRadius;
+	float				m_flConstraintWidth;
+	float				m_flConstraintSpeedFactor;
+
+	// Player name
+	char				m_szNetname[MAX_PLAYER_NAME_LENGTH];
+
+	float				m_flLaggedMovementValue;
+
+	// These are generated while running usercmds, then given to UpdateVPhysicsPosition after running all queued commands.
+	Vector				m_vNewVPhysicsPosition;
+	Vector				m_vNewVPhysicsVelocity;
+
+	Vector				m_vecVehicleViewOrigin;		// Used to store the calculated view of the player while riding in a vehicle
+	QAngle				m_vecVehicleViewAngles;		// Vehicle angles
+	float				m_flVehicleViewFOV;			// FOV of the vehicle driver
+	int					m_nVehicleViewSavedFrame;	// Used to mark which frame was the last one the view was calculated for
+
+	Vector				m_vecPreviouslyPredictedOrigin; // Used to determine if non-gamemovement game code has teleported, or tweaked the player's origin
+	int					m_nBodyPitchPoseParam;
+
+	char				m_szLastPlaceName[MAX_PLACE_NAME_LENGTH];
+
+	char				m_szNetworkIDString[MAX_NETWORKID_LENGTH]; // steamid
+	CPlayerInfo			m_PlayerInfo;
+
+	// Texture names and surface data, used by CGameMovement
+	int					m_surfaceProps;
+	surfacedata_t*		m_pSurfaceData;
+	float				m_surfaceFriction;
+	char				m_chTextureType;
+	char				m_chPreviousTextureType;	// Separate from m_chTextureType. This is cleared if the player's not on the ground.
+
+	bool				m_bSinglePlayerGameEnding;
+
+	// NVNT member variable holding if this user is using a haptic device.
+	bool				m_bhasHaptics;
+
+	bool				m_autoKickDisabled;
+
+	struct StepSoundCache_t
+	{
+		StepSoundCache_t() : m_usSoundNameIndex(0) {}
+		CSoundParameters	m_SoundParameters;
+		unsigned short		m_usSoundNameIndex;
+	};
+	// One for left and one for right side of step
+	StepSoundCache_t	m_StepSoundCache[2];
+
+	CUtlLinkedList< CPlayerSimInfo >  m_vecPlayerSimInfo;
+	CUtlLinkedList< CPlayerCmdInfo >  m_vecPlayerCmdInfo;
+
+	IntervalTimer		m_weaponFiredTimer;
+
+	// Store the last time we successfully processed a usercommand
+	float				m_flLastUserCommandTime;
 public:
 	DECLARE_DATADESC();
 	DECLARE_SERVERCLASS();

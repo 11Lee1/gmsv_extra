@@ -47,6 +47,11 @@ public:
 	DECLARE_DATADESC();
 
 public:
+	virtual bool		HandleCommand_JoinTeam(int team);
+	virtual void		GiveAllItems(void);
+	virtual bool		InPlayerThink();
+	virtual void		SetInPlayerThink(bool);
+public:
 	Vector				m_vecTotalBulletForce;	//Accumulator for bullet force in a single frame
 
 	// Tracks our ragdoll entity.

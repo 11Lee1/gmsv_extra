@@ -80,6 +80,7 @@ public:
 	DECLARE_SERVERCLASS();
 	DECLARE_DATADESC();
 
+public:
 	// Commander Mode for controller NPCs
 	enum CommanderCommand_t
 	{
@@ -89,6 +90,36 @@ public:
 		_CC_SEND,
 	};
 
+	virtual void		SuspendUse(float flDuration);
+	virtual void		CommanderMode();
+
+	// Sprint Device
+	virtual void		StartAutoSprint(void);
+	virtual void		StartSprinting(void);
+	virtual void		StopSprinting(void);
+	virtual void		InitSprinting(void);
+	virtual bool		CanSprint(void);
+	virtual void		EnableSprint(bool bEnable);
+
+	// Aiming heuristics accessors
+	virtual float		GetIdleTime(void) const;
+	virtual float		GetMoveTime(void) const;
+	virtual float		GetLastDamageTime(void) const;
+	virtual bool		IsDucking(void) const;
+
+	virtual bool		Weapon_Lower(void);
+	virtual bool		Weapon_Ready(void);
+
+
+	virtual	bool		IsHoldingEntity(CBaseEntity *pEnt);
+	virtual void		HandleSpeedChanges(void);
+	virtual void		UpdateWeaponPosture(void);
+
+	virtual void	NetworkStateChanged_m_fIsWalking(void);
+	virtual void	NetworkStateChanged_m_fIsWalking(void*);
+
+
+public:
 	CSoundPatch*		m_sndLeeches;
 	CSoundPatch*		m_sndWaterSplashes;
 

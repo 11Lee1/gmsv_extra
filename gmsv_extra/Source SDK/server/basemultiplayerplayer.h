@@ -15,7 +15,6 @@ class CBaseMultiplayerPlayer : public CAI_ExpresserHost<CBasePlayer>
 {
 
 	DECLARE_CLASS(CBaseMultiplayerPlayer, CAI_ExpresserHost<CBasePlayer>);
-
 public:
 	enum
 	{
@@ -23,6 +22,21 @@ public:
 		CHAT_IGNORE_ALL,
 		CHAT_IGNORE_TEAM,
 	};
+
+	virtual bool			SpeakIfAllowed(AIConcept_t concept, const char *modifiers = NULL, char *pszOutResponseChosen = NULL, size_t bufsize = 0, IRecipientFilter *filter = NULL);
+	virtual bool			SpeakConceptIfAllowed(int iConcept, const char *modifiers = NULL, char *pszOutResponseChosen = NULL, size_t bufsize = 0, IRecipientFilter *filter = NULL);
+	virtual bool			CanBeAutobalanced() { return true; }
+	virtual bool			CanSpeakVoiceCommand(void) { return true; }
+	virtual bool			ShouldShowVoiceSubtitleToEnemy(void);
+	virtual void			NoteSpokeVoiceCommand(const char *pszScenePlayed) {}
+	virtual void			OnAchievementEarned(int iAchievement) {}
+	virtual CMultiplayer_Expresser *GetMultiplayerExpresser() { return m_pExpresser; }
+	virtual int				CalculateTeamBalanceScore(void);
+	virtual CAI_Expresser*	CreateExpresser(void);
+
+
+
+public:
 
 	int							m_iIgnoreGlobalChat;
 	float						m_flAreaCaptureScoreAccumulator;

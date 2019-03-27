@@ -17,6 +17,7 @@
 #include "../entityoutput.h"
 #include "../takedamageinfo.h"
 #include "../../GLUA/LuaObject/CLuaGameObject.h"
+#include "../baseentity_shared.h"
 //entitylist.h
 enum notify_system_event_t
 {
@@ -458,6 +459,8 @@ public:
 	/*237*/virtual INextBot* 	GetNextBot(void);
 
 public:
+
+	soundlevel_t LookupSoundLevel(char const* soundname) { soundlevel_t nothing; return nothing; }
 	CAI_BaseNPC *MyNPCPointer(void) {
 		if (this->IsNPC())
 			return (CAI_BaseNPC*)this;

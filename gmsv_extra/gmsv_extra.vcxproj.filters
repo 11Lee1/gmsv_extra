@@ -100,6 +100,15 @@
     <Filter Include="Header Files\Source SDK\hl2">
       <UniqueIdentifier>{af90995d-395f-454d-bc8a-6af8d627967e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Source SDK\server\hl2mp">
+      <UniqueIdentifier>{1602b507-17bd-4ff3-82ee-51453b6954c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Source SDK\hl2mp">
+      <UniqueIdentifier>{2c96af77-7544-44b8-b48b-bb7ffe75b9d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Source SDK\server\gmod">
+      <UniqueIdentifier>{8d10f6d1-8145-4bd0-bf46-b9485dd0ba15}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -679,6 +688,39 @@
     </ClInclude>
     <ClInclude Include="Source SDK\igamemovement.h">
       <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\hl2mp\hl2mp_player.h">
+      <Filter>Header Files\Source SDK\server\hl2mp</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\hl2mp\hl2mp_player_shared.h">
+      <Filter>Header Files\Source SDK\hl2mp</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\hl2mp\hl2mp_gamerules.h">
+      <Filter>Header Files\Source SDK\hl2mp</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\gamerules.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\recipientfilter.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\gamerules_register.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\baseentity_shared.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\teamplay_gamerules.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\multiplay_gamerules.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\gamevars_shared.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\gmod\gmodplayer.h">
+      <Filter>Header Files\Source SDK\server\gmod</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

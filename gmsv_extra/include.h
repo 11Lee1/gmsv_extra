@@ -71,4 +71,6 @@ enum
 #include "Source SDK/server/player.h"
 #include "Source SDK/server/basemultiplayerplayer.h"
 #include "Source SDK/server/hl2/hl2_player.h"
+#include "Source SDK/server/hl2mp/hl2mp_player.h"
+#include "Source SDK/server/gmod/gmodplayer.h"
 #endif

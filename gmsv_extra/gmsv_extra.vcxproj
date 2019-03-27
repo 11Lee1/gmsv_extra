@@ -160,6 +160,7 @@
     <ClInclude Include="LUA\LuaUserData.h" />
     <ClInclude Include="Source SDK\ai_activity.h" />
     <ClInclude Include="Source SDK\appframework\IAppSystem.h" />
+    <ClInclude Include="Source SDK\baseentity_shared.h" />
     <ClInclude Include="Source SDK\basehandle.h" />
     <ClInclude Include="Source SDK\bitvec.h" />
     <ClInclude Include="Source SDK\bspfile.h" />
@@ -183,9 +184,14 @@
     <ClInclude Include="Source SDK\engine\ivmodelinfo.h" />
     <ClInclude Include="Source SDK\engine\SndInfo.h" />
     <ClInclude Include="Source SDK\entityoutput.h" />
+    <ClInclude Include="Source SDK\gamerules.h" />
+    <ClInclude Include="Source SDK\gamerules_register.h" />
     <ClInclude Include="Source SDK\gametrace.h" />
+    <ClInclude Include="Source SDK\gamevars_shared.h" />
     <ClInclude Include="Source SDK\globalvars_base.h" />
     <ClInclude Include="Source SDK\hintsystem.h" />
+    <ClInclude Include="Source SDK\hl2mp\hl2mp_gamerules.h" />
+    <ClInclude Include="Source SDK\hl2mp\hl2mp_player_shared.h" />
     <ClInclude Include="Source SDK\hl2\hl_movedata.h" />
     <ClInclude Include="Source SDK\icvar.h" />
     <ClInclude Include="Source SDK\igamemovement.h" />
@@ -217,11 +223,13 @@
     <ClInclude Include="Source SDK\mathlib\vector4d.h" />
     <ClInclude Include="Source SDK\mathlib\vmatrix.h" />
     <ClInclude Include="Source SDK\mathlib\vplane.h" />
+    <ClInclude Include="Source SDK\multiplay_gamerules.h" />
     <ClInclude Include="Source SDK\networkstringtabledefs.h" />
     <ClInclude Include="Source SDK\networkvar.h" />
     <ClInclude Include="Source SDK\playernet_vars.h" />
     <ClInclude Include="Source SDK\PlayerState.h" />
     <ClInclude Include="Source SDK\predictableid.h" />
+    <ClInclude Include="Source SDK\recipientfilter.h" />
     <ClInclude Include="Source SDK\sceneentity_shared.h" />
     <ClInclude Include="Source SDK\serverclass.h" />
     <ClInclude Include="Source SDK\server\ai_component.h" />
@@ -239,6 +247,8 @@
     <ClInclude Include="Source SDK\server\cbase.h" />
     <ClInclude Include="Source SDK\server\damagemodifier.h" />
     <ClInclude Include="Source SDK\server\fogcontroller.h" />
+    <ClInclude Include="Source SDK\server\gmod\gmodplayer.h" />
+    <ClInclude Include="Source SDK\server\hl2mp\hl2mp_player.h" />
     <ClInclude Include="Source SDK\server\hl2\hl2_player.h" />
     <ClInclude Include="Source SDK\server\hl2\hl2_playerlocaldata.h" />
     <ClInclude Include="Source SDK\server\iplayerinfo.h" />
@@ -257,6 +267,7 @@
     <ClInclude Include="Source SDK\string_t.h" />
     <ClInclude Include="Source SDK\studio.h" />
     <ClInclude Include="Source SDK\takedamageinfo.h" />
+    <ClInclude Include="Source SDK\teamplay_gamerules.h" />
     <ClInclude Include="Source SDK\tier0\annotations.h" />
     <ClInclude Include="Source SDK\tier0\basetypes.h" />
     <ClInclude Include="Source SDK\tier0\commonmacros.h" />

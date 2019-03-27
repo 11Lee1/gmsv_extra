@@ -24,7 +24,7 @@ void Loop()
 		{
 			edict_t* entedict = g_pInterfaces->EngineServer()->PEntityOfEntIndex(i);
 			if (entedict) {
-				CHL2_Player* ent = (CHL2_Player*)entedict->GetUnknown();
+				CGMOD_Player* ent = (CGMOD_Player*)entedict->GetUnknown();
 				if (ent && (ent->UsesLua() && !!ent->m_iClassname || ent->IsPlayer()) ) {
 					//printf("ent #%i:  %s      = 0x%X\n",i, ent->m_iClassname, ent);
 					if (ent->IsPlayer()) {

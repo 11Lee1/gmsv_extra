@@ -21,7 +21,7 @@ Interfaces::Interfaces() {
 	_SetupInterfaces();
 }
 Interfaces::~Interfaces() {
-	delete this;
+
 }
 void Interfaces::_SetupInterfaces() {
 	GetInterfaceRegistries();

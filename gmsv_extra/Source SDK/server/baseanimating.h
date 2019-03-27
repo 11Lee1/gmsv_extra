@@ -33,7 +33,7 @@ public:
 
 	DECLARE_DATADESC();
 	DECLARE_SERVERCLASS();
-
+public:
 	// Basic NPC Animation functions
 	virtual float		GetIdealSpeed() const;
 	virtual float		GetIdealAccel() const;

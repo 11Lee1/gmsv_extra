@@ -12,7 +12,6 @@ VMTHook::~VMTHook() {
 	for (int i = 0; i < VMTInfo.size(); i++) {
 		UnhookFunction(VMTInfo[i].index);
 	}
-	delete this;
 }
 bool VMTHook::FindHookWithIndex(int index, vmthooks_t& hook) {
 	if (!VMTInfo.size())

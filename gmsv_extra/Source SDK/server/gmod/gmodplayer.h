@@ -4,9 +4,10 @@
 #include "../hl2mp/hl2mp_player.h"
 
 
-class CGMOD_Player : public CHL2MP_Player
+class CGMOD_Player : public CHL2MP_Player // wow what a pain in the ass to get to this point.
 {
 public:
 
 };
+
 #endif

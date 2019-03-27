@@ -28,10 +28,9 @@ void Loop()
 				if (ent && (ent->UsesLua() && !!ent->m_iClassname || ent->IsPlayer()) ) {
 					//printf("ent #%i:  %s      = 0x%X\n",i, ent->m_iClassname, ent);
 					if (ent->IsPlayer()) {
-						printf("player #%i: = 0x%X\n", i, ent);
 
-						printf("m_HL2Local = 0x%X\n", &ent->m_HL2Local);
-						printf("m_fIsSprinting = 0x%X\n", &ent->m_fIsSprinting);
+						ent->m_ArmorValue = 1337;
+					
 					}
 				}
 			}

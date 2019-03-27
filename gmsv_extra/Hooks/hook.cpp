@@ -1,7 +1,7 @@
 #include "hook.h"
 #include "../interfaces.h"
 #include "../Source SDK/eiface.h"
-#include "../Source SDK/server/baseentity.h"
+#include "../Source SDK/server/gmod/gmodplayer.h"
 #include "../Source SDK/edict.h"
 #include <windows.h>
 
@@ -19,7 +19,6 @@ Hooks::~Hooks() {
 	if (h_CGMOD_Player)
 		h_CGMOD_Player->~VMTHook();
 
-	delete this;
 }
 void Hooks::SetupHooks() {
 	h_IServerGameClients = new VMTHook(g_pInterfaces->ServerGameClients());
@@ -29,7 +28,7 @@ void Hooks::SetupHooks() {
 		for (int i = 1; i < g_pInterfaces->Globals()->maxClients; i++) {
 			edict_t* ent = g_pInterfaces->EngineServer()->PEntityOfEntIndex(i);
 			if (ent && ent->GetUnknown()) {
-				if (((CBaseEntity*)ent->GetUnknown())->IsPlayer()) {
+				if (((CGMOD_Player*)ent->GetUnknown())->IsPlayer()) {
 					h_CGMOD_Player = new VMTHook(ent->GetUnknown());
 					break; 
 				}

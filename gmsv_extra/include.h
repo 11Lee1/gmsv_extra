@@ -48,21 +48,6 @@
 #include "GLUA/LuaNetworkedVars.h"
 #include "GLUA/CScriptedEntity.h"
 
-enum
-{
-	itbd_Paralyze = 0,
-	itbd_NerveGas,
-	itbd_PoisonRecover,
-	itbd_Radiation,
-	itbd_DrownRecover,
-	itbd_Acid,
-	itbd_SlowBurn,
-	itbd_SlowFreeze,
-
-	// Must be last!
-	CDMG_TIMEBASED
-};
-
 #include "Source SDK/server/baseentity.h"
 #include "Source SDK/server/baseanimating.h"
 #include "Source SDK/server/BaseAnimatingOverlay.h"

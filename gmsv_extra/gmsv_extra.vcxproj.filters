@@ -88,6 +88,9 @@
     <Filter Include="Source Files\Hooks\CGMOD_Player">
       <UniqueIdentifier>{5c8e7bb3-6da2-4e83-bb1e-afe7a28d8649}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Source SDK\vstdlib">
+      <UniqueIdentifier>{bd82a09b-8514-4fcf-8119-81f2aad3a42e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -509,9 +512,6 @@
     <ClInclude Include="GLUA\LuaObject\CLuaGameObject.h">
       <Filter>Header Files\GLUA\LuaObject</Filter>
     </ClInclude>
-    <ClInclude Include="Source SDK\server\cbaseanimating.h">
-      <Filter>Header Files\Source SDK\server</Filter>
-    </ClInclude>
     <ClInclude Include="GLUA\CGMODDataTable.h">
       <Filter>Header Files\GLUA</Filter>
     </ClInclude>
@@ -550,6 +550,48 @@
     </ClInclude>
     <ClInclude Include="Source SDK\inetchannelinfo.h">
       <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\BaseAnimatingOverlay.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\ai_activity.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\baseflex.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\sceneentity_shared.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\iscenetokenprocessor.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\basecombatcharacter.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\weapon_proficiency.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\damagemodifier.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\ai_hull.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\ai_utils.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\ai_component.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\simtimer.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\vstdlib\random.h">
+      <Filter>Header Files\Source SDK\vstdlib</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\physics_impact_damage.h">
+      <Filter>Header Files\Source SDK\server</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

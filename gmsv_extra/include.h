@@ -46,4 +46,7 @@
 
 #include "Source SDK/server/baseentity.h"
 #include "Source SDK/server/baseanimating.h"
+#include "Source SDK/server/BaseAnimatingOverlay.h"
+#include "Source SDK/server/baseflex.h"
+#include "Source SDK/server/basecombatcharacter.h"
 #endif

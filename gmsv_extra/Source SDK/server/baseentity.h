@@ -458,6 +458,8 @@ public:
 	/*237*/virtual INextBot* 	GetNextBot(void);
 
 public:
+	Vector GetAbsOrigin() { return m_vecAbsOrigin; }
+public:
 	BYTE	pad_unk00[0x8];
 
 	CServerNetworkProperty m_Network;

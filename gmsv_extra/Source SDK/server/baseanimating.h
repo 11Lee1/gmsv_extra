@@ -4,6 +4,7 @@
 #include "baseentity.h"
 #include "../entityoutput.h"
 #include "../studio.h"
+#include "../ai_activity.h"
 
 struct animevent_t;
 struct matrix3x4_t;
@@ -146,12 +147,13 @@ public:
 	float				m_fadeMaxDist;	// Point at which fading is inactive
 	float				m_flFadeScale;	// Scale applied to min / max
 
-	BYTE			pad_unk03[0xB0];
+	BYTE	pad_unk03[0xB0];
 
 	CStudioHdr*			m_pStudioHdr; // 0x153C
 
 	CThreadFastMutex	m_StudioHdrInitLock;
 	CThreadFastMutex	m_BoneSetupMutex;
+	BYTE	pad_unk04[0x4];
 };
 
 

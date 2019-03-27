@@ -72,11 +72,12 @@
   <PropertyGroup />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <ConformanceMode>true</ConformanceMode>
+      <ConformanceMode>false</ConformanceMode>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -156,6 +157,7 @@
     <ClInclude Include="LUA\LuaInterface.h" />
     <ClInclude Include="LUA\LuaTypes.h" />
     <ClInclude Include="LUA\LuaUserData.h" />
+    <ClInclude Include="Source SDK\ai_activity.h" />
     <ClInclude Include="Source SDK\appframework\IAppSystem.h" />
     <ClInclude Include="Source SDK\basehandle.h" />
     <ClInclude Include="Source SDK\bitvec.h" />
@@ -183,6 +185,7 @@
     <ClInclude Include="Source SDK\imovehelper.h" />
     <ClInclude Include="Source SDK\inetchannelinfo.h" />
     <ClInclude Include="Source SDK\isaverestore.h" />
+    <ClInclude Include="Source SDK\iscenetokenprocessor.h" />
     <ClInclude Include="Source SDK\iserverentity.h" />
     <ClInclude Include="Source SDK\iservernetworkable.h" />
     <ClInclude Include="Source SDK\iserverunknown.h" />
@@ -206,16 +209,25 @@
     <ClInclude Include="Source SDK\networkstringtabledefs.h" />
     <ClInclude Include="Source SDK\networkvar.h" />
     <ClInclude Include="Source SDK\predictableid.h" />
+    <ClInclude Include="Source SDK\sceneentity_shared.h" />
     <ClInclude Include="Source SDK\serverclass.h" />
+    <ClInclude Include="Source SDK\server\ai_component.h" />
+    <ClInclude Include="Source SDK\server\ai_hull.h" />
+    <ClInclude Include="Source SDK\server\ai_utils.h" />
     <ClInclude Include="Source SDK\server\baseanimating.h" />
+    <ClInclude Include="Source SDK\server\BaseAnimatingOverlay.h" />
+    <ClInclude Include="Source SDK\server\basecombatcharacter.h" />
     <ClInclude Include="Source SDK\server\baseentity.h" />
+    <ClInclude Include="Source SDK\server\baseflex.h" />
     <ClInclude Include="Source SDK\server\cbase.h" />
-    <ClInclude Include="Source SDK\server\cbaseanimating.h" />
+    <ClInclude Include="Source SDK\server\damagemodifier.h" />
+    <ClInclude Include="Source SDK\server\physics_impact_damage.h" />
     <ClInclude Include="Source SDK\server\ServerNetworkProperty.h" />
     <ClInclude Include="Source SDK\server\timedeventmgr.h" />
     <ClInclude Include="Source SDK\server\variant_t.h" />
     <ClInclude Include="Source SDK\server\world.h" />
     <ClInclude Include="Source SDK\shareddefs.h" />
+    <ClInclude Include="Source SDK\simtimer.h" />
     <ClInclude Include="Source SDK\soundflags.h" />
     <ClInclude Include="Source SDK\string_t.h" />
     <ClInclude Include="Source SDK\studio.h" />
@@ -266,6 +278,8 @@
     <ClInclude Include="Source SDK\trace.h" />
     <ClInclude Include="Source SDK\usercmd.h" />
     <ClInclude Include="Source SDK\vcollide.h" />
+    <ClInclude Include="Source SDK\vstdlib\random.h" />
+    <ClInclude Include="Source SDK\weapon_proficiency.h" />
     <ClInclude Include="Source SDK\worldsize.h" />
     <ClInclude Include="Source SDK\zip_uncompressed.h" />
     <ClInclude Include="util\pattern.h" />

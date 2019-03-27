@@ -19,17 +19,20 @@ void Loop()
 {
 
 	do {
-		IVEngineServer* engineserver = g_pInterfaces->EngineServer();
-		int entitycnt = engineserver->GetEntityCount();
+		int entitycnt = g_pInterfaces->EngineServer()->GetEntityCount();
 		for (int i = 1; i < entitycnt; i++)
 		{
-			edict_t* entedict = engineserver->PEntityOfEntIndex(i);
+			edict_t* entedict = g_pInterfaces->EngineServer()->PEntityOfEntIndex(i);
 			if (entedict) {
-				CBaseAnimating* ent = (CBaseAnimating*)entedict->GetUnknown();
+				CBaseCombatCharacter* ent = (CBaseCombatCharacter*)entedict->GetUnknown();
 				if (ent && (ent->UsesLua() && !!ent->m_iClassname || ent->IsPlayer()) ) {
-					printf("ent #%i:  %s      = 0x%X\n",i, ent->m_iClassname, ent);
+					//printf("ent #%i:  %s      = 0x%X\n",i, ent->m_iClassname, ent);
 					if (ent->IsPlayer()) {
 						printf("player #%i: = 0x%X\n", i, ent);
+
+						printf("m_flNextAttack = 0x%X\n", &ent->m_flNextAttack);
+						printf("m_eHull = 0x%X\n", &ent->m_eHull);
+						printf("m_hActiveWeapon = 0x%X\n", &ent->m_hActiveWeapon);
 					}
 				}
 			}
@@ -44,7 +47,6 @@ int main() {
 #endif
 	g_pInterfaces = new Interfaces();
 	hooks = new Hooks();
-	
 	Loop();
 
 	return 1;

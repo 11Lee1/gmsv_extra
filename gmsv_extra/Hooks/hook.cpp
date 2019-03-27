@@ -145,5 +145,7 @@ void Hooks::HookFunctions() {
 void Hooks::UnhookFunctions() {
 	// IServerGameClients
 	UnhookClientConnect();
+
+	// CGMOD_Player
 	Unhook_CGMOD_Player__FireBullets();
 }

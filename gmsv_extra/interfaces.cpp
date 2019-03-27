@@ -64,8 +64,15 @@ void Interfaces::FindOtherInterfaces() {
 	
 	if (m_pServerGameDLL) {
 		gpGlobals = *(CGlobalVars**)((*(unsigned int**)m_pServerGameDLL)[1]/*DLLInit*/ + 0x2B0 + 0x1);
+		PRINT_PTRCHECK("gpGlobals from DLLInit function", gpGlobals);
 	}
 	
+	void* RandomSeed = GetProcAddress(GetModuleHandleA("vstdlib.dll"), "RandomSeed");
+	PRINT_PTRCHECK("RandomSeed procaddress", RandomSeed);
+	if (RandomSeed)
+		random = *(CUniformRandomStream**)((uintptr_t)RandomSeed + 0x5);
+
+	PRINT_PTRCHECK("random(CUniformRandomStream) from RandomSeed function", random);
 #endif
 
 }

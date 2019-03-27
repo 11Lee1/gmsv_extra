@@ -17,6 +17,7 @@ class IServerGameTags;
 class CLuaNetworkedVars;
 class CLuaShared;
 class CGlobalVars;
+class CUniformRandomStream;
 namespace GarrysMod
 {
 	namespace Lua
@@ -52,6 +53,7 @@ public:
 	CLuaShared* LuaShared() { return m_pLuaShared; }
 	CGlobalVars*  Globals() { return *(CGlobalVars**)gpGlobals; }
 	CLuaNetworkedVars* LuaNetworkedVars() { return *(CLuaNetworkedVars**)g_pLuaNetworkedVars; }
+	CUniformRandomStream*	Random() { return *(CUniformRandomStream**)random; }
 private:
 	// Interface registries 
 	InterfaceReg* m_pServerDLLInterfaceReg;
@@ -67,6 +69,7 @@ private:
 	IServerGameTags* m_pServerGameTags;
 	CLuaShared* m_pLuaShared;
 
+	CUniformRandomStream* random;
 	// globals
 	CGlobalVars* gpGlobals;
 

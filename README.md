@@ -7,3 +7,11 @@ only works on windows rn, I'll add linux support later.  mac users fuck off.
 
 
 nowhere near done btw lol.
+
+
+current todo list:
+- Finish adding all the entity classes
+- Finish CGMODDataTable
+- Finish CScriptedEntity
+- Finish populating the entity classes
+- 

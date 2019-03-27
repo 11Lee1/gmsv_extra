@@ -24,14 +24,14 @@ void Loop()
 		{
 			edict_t* entedict = g_pInterfaces->EngineServer()->PEntityOfEntIndex(i);
 			if (entedict) {
-				CBasePlayer* ent = (CBasePlayer*)entedict->GetUnknown();
+				CHL2_Player* ent = (CHL2_Player*)entedict->GetUnknown();
 				if (ent && (ent->UsesLua() && !!ent->m_iClassname || ent->IsPlayer()) ) {
 					//printf("ent #%i:  %s      = 0x%X\n",i, ent->m_iClassname, ent);
 					if (ent->IsPlayer()) {
 						printf("player #%i: = 0x%X\n", i, ent);
 
-						printf("m_oldOrigin = 0x%X\n", &ent->m_oldOrigin);
-						printf("m_LastCmd.MouseContextMenuDirection = 0x%X\n", &ent->m_LastCmd.MouseContextMenuDirection);
+						printf("m_HL2Local = 0x%X\n", &ent->m_HL2Local);
+						printf("m_fIsSprinting = 0x%X\n", &ent->m_fIsSprinting);
 					}
 				}
 			}

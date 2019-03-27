@@ -239,7 +239,8 @@ class CBasePlayer : public CBaseCombatCharacter
 public:
 	DECLARE_CLASS(CBasePlayer, CBaseCombatCharacter);
 
-
+public:
+	virtual CAI_Expresser *GetExpresser() { return NULL; }; // dont use will break.
 public:
 	BYTE	pad_unk05[0x4];
 	// How much of a movement time buffer can we process from this user?
@@ -515,6 +516,12 @@ public:
 
 	// Store the last time we successfully processed a usercommand
 	float				m_flLastUserCommandTime;
+
+	Vector				m_vecBBStanding[2]; // 0 mins 1 maxs
+	Vector				m_vecBBCrouching[2]; // 0 mins 1 maxs
+
+	BYTE	pad_unk08[0x24];
+
 public:
 	DECLARE_DATADESC();
 	DECLARE_SERVERCLASS();

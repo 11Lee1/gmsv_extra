@@ -94,6 +94,12 @@
     <Filter Include="Header Files\Source SDK\SoundEmitterSystem">
       <UniqueIdentifier>{126284c7-8651-4079-9f2d-03e7d4248280}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Source SDK\server\hl2">
+      <UniqueIdentifier>{86b55b51-c1c3-4337-992b-d834bdfa6bf6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Source SDK\hl2">
+      <UniqueIdentifier>{af90995d-395f-454d-bc8a-6af8d627967e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -158,6 +164,9 @@
     </ClCompile>
     <ClCompile Include="Hooks\CGMOD_Player\FireBullets.cpp">
       <Filter>Source Files\Hooks\CGMOD_Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Source SDK\interval.cpp">
+      <Filter>Source Files\Source SDK</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -631,6 +640,45 @@
     </ClInclude>
     <ClInclude Include="Source SDK\engine\IStaticPropMgr.h">
       <Filter>Header Files\Source SDK\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\basemultiplayerplayer.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\ai_speech.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\AI_ResponseSystem.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\AI_Criteria.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\interval.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\hl2\hl2_player.h">
+      <Filter>Header Files\Source SDK\server\hl2</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\soundenvelope.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\engine\IEngineSound.h">
+      <Filter>Header Files\Source SDK\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\engine\SndInfo.h">
+      <Filter>Header Files\Source SDK\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\irecipientfilter.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\hl2\hl2_playerlocaldata.h">
+      <Filter>Header Files\Source SDK\server\hl2</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\hl2\hl_movedata.h">
+      <Filter>Header Files\Source SDK\hl2</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\igamemovement.h">
+      <Filter>Header Files\Source SDK</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -156,7 +156,7 @@ public:
 	// ---------------
 	//  Relationships
 	// ---------------
-	CUtlVector<Relationship_t>	m_Relationship;						// Array of relationships
+	CUtlVector<Relationship_t>	m_Relationship;	// Array of relationships
 
 	// shared ammo slots
 	int m_iAmmo[MAX_AMMO_SLOTS];

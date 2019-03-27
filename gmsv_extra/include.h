@@ -5,6 +5,10 @@
 #endif
 // for now.
 #include "include/baseinclude.h"
+
+
+// mind aswell make this like cbase.h
+
 #include "Source SDK/const.h"
 // tier 0 
 #include "Source SDK/tier0/commonmacros.h"
@@ -65,4 +69,6 @@ enum
 #include "Source SDK/server/baseflex.h"
 #include "Source SDK/server/basecombatcharacter.h"
 #include "Source SDK/server/player.h"
+#include "Source SDK/server/basemultiplayerplayer.h"
+#include "Source SDK/server/hl2/hl2_player.h"
 #endif

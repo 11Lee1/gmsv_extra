@@ -11,6 +11,7 @@
 
 #include "../mathlib/vector.h"
 
+class edict_t;
 // helper class for user commands
 class CBotCmd
 {

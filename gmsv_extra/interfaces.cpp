@@ -1,6 +1,8 @@
 #include "interfaces.h"
 #include <regex>
 #include "util/util.h"
+#include "Source SDK/server/iplayerinfo.h"
+
 #define PRINT_PTRCHECK(name,p)											\
 	if(!p)																\
 		printf("failed getting %s: returned nullptr\n",name);			\
@@ -14,7 +16,6 @@ void PrintInterfaceNames(char const* moduel, InterfaceReg* reg) {
 		printf("%s ---> %s\n", moduel, reg->m_pName);
 	}
 }
-
 Interfaces::Interfaces() {
 	printf("Setting up interfaces \n");
 	_SetupInterfaces();
@@ -65,6 +66,9 @@ void Interfaces::GetInterfaces() {
 	enginetrace = (IEngineTrace*)GetInterface("engine.dll", "EngineTraceServer003");
 	PRINT_PTRCHECK("EngineTraceServer003", enginetrace);
 
+	playerinfomgr = (IPlayerInfoManager*)GetInterface("server.dll", "PlayerInfoManager002");
+	PRINT_PTRCHECK("PlayerInfoManager002", playerinfomgr);
+
 	if (m_pLuaShared)
 		g_Lua = (GarrysMod::Lua::ILuaBase*)LuaShared()->GetLuaInterface(1); // server
 
@@ -72,6 +76,8 @@ void Interfaces::GetInterfaces() {
 }
 
 void Interfaces::FindOtherInterfaces() {
+
+	gpGlobals = Globals();
 
 
 #ifdef _WIN32 
@@ -84,11 +90,6 @@ void Interfaces::FindOtherInterfaces() {
 	}
 	
 
-	if (m_pServerGameDLL) { // do this from PlayerInfoManager002 instead of this, ghetto.
-		gpGlobals = *(CGlobalVars**)((*(unsigned int**)m_pServerGameDLL)[1]/*DLLInit*/ + 0x2B0 + 0x1);
-		PRINT_PTRCHECK("gpGlobals from DLLInit function", gpGlobals);
-	}
-	
 	void* RandomSeed = GetProcAddress(GetModuleHandleA("vstdlib.dll"), "RandomSeed");
 	PRINT_PTRCHECK("RandomSeed procaddress", RandomSeed);
 	if (RandomSeed)
@@ -148,4 +149,11 @@ InterfaceReg* Interfaces::GetInterfaceReg(char const* Module) {
 	}
 
 	return nullptr;
+}
+
+
+
+
+CGlobalVars* Interfaces::Globals() {
+	return playerinfomgr->GetGlobalVars();
 }

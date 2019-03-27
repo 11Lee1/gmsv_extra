@@ -458,6 +458,12 @@ public:
 	/*237*/virtual INextBot* 	GetNextBot(void);
 
 public:
+	CAI_BaseNPC *MyNPCPointer(void) {
+		if (this->IsNPC())
+			return (CAI_BaseNPC*)this;
+
+		return nullptr;
+	}
 	Vector GetAbsOrigin() { return m_vecAbsOrigin; }
 	inline bool HasSpawnFlags(int nFlags) const
 	{

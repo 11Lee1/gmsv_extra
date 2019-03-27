@@ -127,43 +127,43 @@ public:
 		IGNORE_ACTORS
 	};
 
-	bool	m_bForceServerRagdoll;
-	bool	m_bPreventWeaponPickup;
+	bool					m_bForceServerRagdoll;
+	bool					m_bPreventWeaponPickup;
 
-	float		m_flNextAttack;			// cannot attack again until this time
+	float					m_flNextAttack;			// cannot attack again until this time
 
-	Hull_t		m_eHull;
+	Hull_t					m_eHull;
 
-	int			m_bloodColor;			// color of blood particless
+	int						m_bloodColor;			// color of blood particless
 
 	// -------------------
 	// combat ability data
 	// -------------------
-	float		m_flFieldOfView;		// cosine of field of view for this character
-	Vector		m_HackedGunPos;			// HACK until we can query end of gun
-	string_t	m_RelationshipString;	// Used to load up relationship keyvalues
-	float		m_impactEnergyScale;// scale the amount of energy used to calculate damage this ent takes due to physics
+	float					m_flFieldOfView;		// cosine of field of view for this character
+	Vector					m_HackedGunPos;			// HACK until we can query end of gun
+	string_t				m_RelationshipString;	// Used to load up relationship keyvalues
+	float					m_impactEnergyScale;// scale the amount of energy used to calculate damage this ent takes due to physics
 
-	int					m_LastHitGroup;			// the last body region that took damage
-	float				m_flDamageAccumulator;	// so very small amounts of damage do not get lost.
-	int					m_iDamageCount;			// # of times NPC has been damaged.  used for tracking 1-shot kills.
+	int						m_LastHitGroup;			// the last body region that took damage
+	float					m_flDamageAccumulator;	// so very small amounts of damage do not get lost.
+	int						m_iDamageCount;			// # of times NPC has been damaged.  used for tracking 1-shot kills.
 
 	// Weapon proficiency gets calculated each time an NPC changes his weapon, and then
 	// cached off as the CurrentWeaponProficiency.
-	WeaponProficiency_t m_CurrentWeaponProficiency;
+	WeaponProficiency_t		m_CurrentWeaponProficiency;
 
 	// ---------------
 	//  Relationships
 	// ---------------
-	CUtlVector<Relationship_t>		m_Relationship;						// Array of relationships
+	CUtlVector<Relationship_t>	m_Relationship;						// Array of relationships
 
 	// shared ammo slots
 	int m_iAmmo[MAX_AMMO_SLOTS];
 
 	// Usable character items 
-	CBaseCombatWeaponHandle		m_hMyWeapons[MAX_WEAPONS];
+	CBaseCombatWeaponHandle	m_hMyWeapons[MAX_WEAPONS];
 
-	CBaseCombatWeaponHandle		m_hActiveWeapon;
+	CBaseCombatWeaponHandle	m_hActiveWeapon;
 
 };
 

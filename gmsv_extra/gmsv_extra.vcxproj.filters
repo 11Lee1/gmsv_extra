@@ -91,6 +91,9 @@
     <Filter Include="Header Files\Source SDK\vstdlib">
       <UniqueIdentifier>{bd82a09b-8514-4fcf-8119-81f2aad3a42e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Source SDK\SoundEmitterSystem">
+      <UniqueIdentifier>{126284c7-8651-4079-9f2d-03e7d4248280}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -592,6 +595,42 @@
     </ClInclude>
     <ClInclude Include="Source SDK\server\physics_impact_damage.h">
       <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\player.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\playerlocaldata.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\playernet_vars.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\fogcontroller.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\igamesystem.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\PlayerState.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\iplayerinfo.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\hintsystem.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\SoundEmitterSystem\isoundemittersystembase.h">
+      <Filter>Header Files\Source SDK\SoundEmitterSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\util_shared.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\engine\IEngineTrace.h">
+      <Filter>Header Files\Source SDK\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\engine\IStaticPropMgr.h">
+      <Filter>Header Files\Source SDK\engine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

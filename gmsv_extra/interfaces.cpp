@@ -9,6 +9,12 @@
 
 
 
+void PrintInterfaceNames(char const* moduel, InterfaceReg* reg) {
+	for (reg; reg; reg = reg->m_pNext) {
+		printf("%s ---> %s\n", moduel, reg->m_pName);
+	}
+}
+
 Interfaces::Interfaces() {
 	printf("Setting up interfaces \n");
 	_SetupInterfaces();
@@ -25,24 +31,39 @@ void Interfaces::_SetupInterfaces() {
 void Interfaces::GetInterfaceRegistries() {
 	m_pServerDLLInterfaceReg = GetInterfaceReg("server.dll");
 	PRINT_PTRCHECK("server.dll Interface registry", m_pServerDLLInterfaceReg);
+	//PrintInterfaceNames("server.dll", m_pServerDLLInterfaceReg);
+
 	m_pEngineDLLInterfaceReg = GetInterfaceReg("engine.dll");
 	PRINT_PTRCHECK("engine.dll Interface registry", m_pServerDLLInterfaceReg);
+	//PrintInterfaceNames("engine.dll", m_pEngineDLLInterfaceReg);
 }
 void Interfaces::GetInterfaces() {
 	m_pServerEnts = (IServerGameEnts*)GetInterface("server.dll", "ServerGameEnts001");
 	PRINT_PTRCHECK("ServerGameEnts001", m_pServerEnts);
+
 	m_pEngineServer = (IVEngineServer*)GetInterface("engine.dll", "VEngineServer021");
 	PRINT_PTRCHECK("VEngineServer021", m_pEngineServer);
+
 	m_pServerGameDLL = (IServerGameDLL*)GetInterface("server.dll", "ServerGameDLL009");
 	PRINT_PTRCHECK("ServerGameDLL009", m_pServerGameDLL);
+
 	m_pServerGameClients = (IServerGameClients*)GetInterface("server.dll", "ServerGameClients004");
 	PRINT_PTRCHECK("ServerGameClients004", m_pServerGameClients);
+
 	m_pServerDLLSharedAppSystems = (IServerDLLSharedAppSystems*)GetInterface("server.dll", "VServerDllSharedAppSystems001");
 	PRINT_PTRCHECK("VServerDllSharedAppSystems001", m_pServerDLLSharedAppSystems);
+
 	m_pServerGameTags = (IServerGameTags*)GetInterface("server.dll", "ServerGameTags001");
 	PRINT_PTRCHECK("ServerGameTags001", m_pServerGameTags);
+
 	m_pLuaShared = (CLuaShared*)GetInterface("lua_shared.dll", "LUASHARED003");
 	PRINT_PTRCHECK("LUASHARED003", m_pLuaShared);
+
+	staticpropmgr = (IStaticPropMgrServer*)GetInterface("engine.dll", "StaticPropMgrServer002");
+	PRINT_PTRCHECK("StaticPropMgrServer002", staticpropmgr);
+
+	enginetrace = (IEngineTrace*)GetInterface("engine.dll", "EngineTraceServer003");
+	PRINT_PTRCHECK("EngineTraceServer003", enginetrace);
 
 	if (m_pLuaShared)
 		g_Lua = (GarrysMod::Lua::ILuaBase*)LuaShared()->GetLuaInterface(1); // server
@@ -62,7 +83,8 @@ void Interfaces::FindOtherInterfaces() {
 		PRINT_PTRCHECK("CLuaNetworkedVars from GetNetworkedInt function", g_pLuaNetworkedVars);
 	}
 	
-	if (m_pServerGameDLL) {
+
+	if (m_pServerGameDLL) { // do this from PlayerInfoManager002 instead of this, ghetto.
 		gpGlobals = *(CGlobalVars**)((*(unsigned int**)m_pServerGameDLL)[1]/*DLLInit*/ + 0x2B0 + 0x1);
 		PRINT_PTRCHECK("gpGlobals from DLLInit function", gpGlobals);
 	}

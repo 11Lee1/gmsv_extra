@@ -459,6 +459,10 @@ public:
 
 public:
 	Vector GetAbsOrigin() { return m_vecAbsOrigin; }
+	inline bool HasSpawnFlags(int nFlags) const
+	{
+		return (m_spawnflags & nFlags) != 0;
+	}
 public:
 	BYTE	pad_unk00[0x8];
 

@@ -1,3 +1,39 @@
+//========= Copyright Valve Corporation, All rights reserved. ============//
+//
+// Purpose: 
+//
+// $NoKeywords: $
+//
+//=============================================================================//
+
+#ifndef COMPRESSED_VECTOR_H
+#define COMPRESSED_VECTOR_H
+
+#ifdef _WIN32
+#pragma once
+#endif
+
+#include <math.h>
+#include <float.h>
+
+// For vec_t, put this somewhere else?
+#include "../tier0/basetypes.h"
+
+// For rand(). We really need a library!
+#include <stdlib.h>
+
+#include "../tier0/dbg.h"
+#include "vector.h"
+
+#include "mathlib.h"
+
+#if defined( _X360 )
+#pragma bitfield_order( push, lsb_to_msb )
+#endif
+//=========================================================
+// fit a 3D vector into 32 bits
+//=========================================================
+
 class Vector32
 {
 public:
@@ -18,6 +54,7 @@ private:
 
 inline Vector32& Vector32::operator=(const Vector &vOther)
 {
+	CHECK_VALID(vOther);
 
 	static float expScale[4] = { 4.0f, 16.0f, 32.f, 64.f };
 
@@ -78,6 +115,7 @@ private:
 
 inline Normal32& Normal32::operator=(const Vector &vOther)
 {
+	CHECK_VALID(vOther);
 
 	x = Clamp((int)(vOther.x * 16384) + 16384, 0, 32767);
 	y = Clamp((int)(vOther.y * 16384) + 16384, 0, 32767);
@@ -118,10 +156,10 @@ public:
 	Quaternion64& operator=(const Quaternion &vOther);
 	operator Quaternion ();
 private:
-	UINT64 x : 21;
-	UINT64 y : 21;
-	UINT64 z : 21;
-	UINT64 wneg : 1;
+	uint64 x : 21;
+	uint64 y : 21;
+	uint64 z : 21;
+	uint64 wneg : 1;
 };
 
 
@@ -141,6 +179,7 @@ inline Quaternion64::operator Quaternion ()
 
 inline Quaternion64& Quaternion64::operator=(const Quaternion &vOther)
 {
+	CHECK_VALID(vOther);
 
 	x = Clamp((int)(vOther.x * 1048576) + 1048576, 0, 2097151);
 	y = Clamp((int)(vOther.y * 1048576) + 1048576, 0, 2097151);
@@ -187,6 +226,7 @@ inline Quaternion48::operator Quaternion ()
 
 inline Quaternion48& Quaternion48::operator=(const Quaternion &vOther)
 {
+	CHECK_VALID(vOther);
 
 	x = Clamp((int)(vOther.x * 32768) + 32768, 0, 65535);
 	y = Clamp((int)(vOther.y * 32768) + 32768, 0, 65535);
@@ -233,6 +273,7 @@ inline Quaternion32::operator Quaternion ()
 
 inline Quaternion32& Quaternion32::operator=(const Quaternion &vOther)
 {
+	CHECK_VALID(vOther);
 
 	x = Clamp((int)(vOther.x * 1024) + 1024, 0, 2047);
 	y = Clamp((int)(vOther.y * 512) + 512, 0, 1023);
@@ -492,6 +533,7 @@ public:
 
 inline Vector48& Vector48::operator=(const Vector &vOther)
 {
+	CHECK_VALID(vOther);
 
 	x.SetFloat(vOther.x);
 	y.SetFloat(vOther.y);
@@ -559,4 +601,6 @@ inline void Vector2d32::Init(vec_t ix, vec_t iy)
 
 #if defined( _X360 )
 #pragma bitfield_order( pop )
+#endif
+
 #endif

@@ -10,7 +10,4 @@ nowhere near done btw lol.
 
 
 current todo list:
-- Finish adding all the entity classes
 - Finish CGMODDataTable
-- Finish CScriptedEntity
-- Finish populating the entity classes

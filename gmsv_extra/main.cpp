@@ -25,13 +25,8 @@ void Loop()
 			edict_t* entedict = g_pInterfaces->EngineServer()->PEntityOfEntIndex(i);
 			if (entedict) {
 				CBaseEntity* ent = (CBaseEntity*)entedict->GetUnknown();
-				if (ent) {
-					if (ent->UsesLua()) {
-						CSENT_anim* test = (CSENT_anim*)ent;
-						//printf("Weapon %s: 0x%X\n", ent->m_iClassname, ent);
-						if (!stricmp(ent->m_iClassname.ToCStr(), "m9k_ak47"))
-							printf("classid = %i\n", ent->GetServerClass()->m_ClassID);
-					}
+				if (ent && ent->IsSWEP()) {
+					printf("ent %s:    0x%X\n", ent->m_iClassname, ent);
 				}
 			}
 		}

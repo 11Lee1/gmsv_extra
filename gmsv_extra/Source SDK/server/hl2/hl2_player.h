@@ -90,33 +90,33 @@ public:
 		_CC_SEND,
 	};
 
-	virtual void		SuspendUse(float flDuration);
-	virtual void		CommanderMode();
+	/*536*/virtual void		SuspendUse(float flDuration);
+	/*537*/virtual void		CommanderMode();
 
 	// Sprint Device
-	virtual void		StartAutoSprint(void);
-	virtual void		StartSprinting(void);
-	virtual void		StopSprinting(void);
-	virtual void		InitSprinting(void);
-	virtual bool		CanSprint(void);
-	virtual void		EnableSprint(bool bEnable);
+	/*538*/virtual void		StartAutoSprint(void);
+	/*539*/virtual void		StartSprinting(void);
+	/*540*/virtual void		StopSprinting(void);
+	/*541*/virtual void		InitSprinting(void);
+	/*542*/virtual bool		CanSprint(void);
+	/*543*/virtual void		EnableSprint(bool bEnable);
 
 	// Aiming heuristics accessors
-	virtual float		GetIdleTime(void) const;
-	virtual float		GetMoveTime(void) const;
-	virtual float		GetLastDamageTime(void) const;
-	virtual bool		IsDucking(void) const;
+	/*544*/virtual float		GetIdleTime(void) const;
+	/*545*/virtual float		GetMoveTime(void) const;
+	/*546*/virtual float		GetLastDamageTime(void) const;
+	/*547*/virtual bool		IsDucking(void) const;
 
-	virtual bool		Weapon_Lower(void);
-	virtual bool		Weapon_Ready(void);
+	/*548*/virtual bool		Weapon_Lower(void);
+	/*549*/virtual bool		Weapon_Ready(void);
 
 
-	virtual	bool		IsHoldingEntity(CBaseEntity *pEnt);
-	virtual void		HandleSpeedChanges(void);
-	virtual void		UpdateWeaponPosture(void);
+	/*550*/virtual	bool		IsHoldingEntity(CBaseEntity *pEnt);
+	/*551*/virtual void		HandleSpeedChanges(void);
+	/*552*/virtual void		UpdateWeaponPosture(void);
 
-	virtual void	NetworkStateChanged_m_fIsWalking(void);
-	virtual void	NetworkStateChanged_m_fIsWalking(void*);
+	/*553*/virtual void	NetworkStateChanged_m_fIsWalking(void);
+	/*554*/virtual void	NetworkStateChanged_m_fIsWalking(void*);
 
 
 public:

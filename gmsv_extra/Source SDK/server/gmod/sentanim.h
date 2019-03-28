@@ -34,11 +34,11 @@ class CSENT_anim : public CBaseAnimatingOverlay
 public:
 	virtual ~CSENT_anim();
 
-	virtual void		ScriptThink();
-	virtual void		Simulate(IPhysicsMotionController *, IPhysicsObject *, float, Vector &, Vector &);
-	virtual void		ScriptUse(CBaseEntity *, CBaseEntity *, USE_TYPE, float);
-	virtual void		OnPhysGunPickup(CBasePlayer *, PhysGunPickup_t);
-	virtual void		OnPhysGunDrop(CBasePlayer *, PhysGunDrop_t);
+	/*273*/virtual void		ScriptThink();
+	/*274*/virtual void		Simulate(IPhysicsMotionController *, IPhysicsObject *, float, Vector &, Vector &);
+	/*275*/virtual void		ScriptUse(CBaseEntity *, CBaseEntity *, USE_TYPE, float);
+	/*276*/virtual void		OnPhysGunPickup(CBasePlayer *, PhysGunPickup_t);
+	/*277*/virtual void		OnPhysGunDrop(CBasePlayer *, PhysGunDrop_t);
 
 public:
 	BYTE pad_VMT[0x8]; // two vmt's, I'll look into it later.

@@ -163,241 +163,241 @@ public:
 
 
 	// Subtypes are used to manage multiple weapons of the same type on the player.
-	virtual int				GetSubType(void) { return m_iSubType; }
-	virtual void			SetSubType(int iType) { m_iSubType = iType; }
+	/*273*/virtual int				GetSubType(void) { return m_iSubType; }
+	/*274*/virtual void			SetSubType(int iType) { m_iSubType = iType; }
 
-	virtual void			Equip(CBaseCombatCharacter *pOwner);
-	virtual void			Drop(const Vector &vecVelocity);
+	/*275*/virtual void			Equip(CBaseCombatCharacter *pOwner);
+	/*276*/virtual void			Drop(const Vector &vecVelocity);
 
-	virtual	int				UpdateClientData(CBasePlayer *pPlayer);
+	/*277*/virtual	int				UpdateClientData(CBasePlayer *pPlayer);
 
-	virtual bool			IsAllowedToSwitch(void);
-	virtual bool			CanBeSelected(void);
-	virtual bool			VisibleInWeaponSelection(void);
-	virtual bool			HasAmmo(void);
+	/*278*/virtual bool			IsAllowedToSwitch(void);
+	/*279*/virtual bool			CanBeSelected(void);
+	/*280*/virtual bool			VisibleInWeaponSelection(void);
+	/*281*/virtual bool			HasAmmo(void);
 
 	// Weapon Pickup For Player
-	virtual void			SetPickupTouch(void);
-	virtual void 			DefaultTouch(CBaseEntity *pOther);	// default weapon touch
-	virtual void			GiveTo(CBaseEntity *pOther);
+	/*282*/virtual void			SetPickupTouch(void);
+	/*283*/virtual void 			DefaultTouch(CBaseEntity *pOther);	// default weapon touch
+	/*284*/virtual void			GiveTo(CBaseEntity *pOther);
 
 	// HUD Hints
-	virtual bool			ShouldDisplayAltFireHUDHint();
-	virtual void			DisplayAltFireHudHint();
-	virtual void			RescindAltFireHudHint(); ///< undisplay the hud hint and pretend it never showed.
+	/*285*/virtual bool			ShouldDisplayAltFireHUDHint();
+	/*286*/virtual void			DisplayAltFireHudHint();
+	/*287*/virtual void			RescindAltFireHudHint(); ///< undisplay the hud hint and pretend it never showed.
 
-	virtual bool			ShouldDisplayReloadHUDHint();
-	virtual void			DisplayReloadHudHint();
-	virtual void			RescindReloadHudHint();
+	/*288*/virtual bool			ShouldDisplayReloadHUDHint();
+	/*289*/virtual void			DisplayReloadHudHint();
+	/*290*/virtual void			RescindReloadHudHint();
 
 	// Weapon client handling
-	virtual void			SetViewModelIndex(int index = 0);
-	virtual bool			SendWeaponAnim(int iActivity);
-	virtual void			SendViewModelAnim(int nSequence);
+	/*291*/virtual void			SetViewModelIndex(int index = 0);
+	/*292*/virtual bool			SendWeaponAnim(int iActivity);
+	/*293*/virtual void			SendViewModelAnim(int nSequence);
 
-	virtual void			SetViewModel();
+	/*294*/virtual void			SetViewModel();
 
-	virtual bool			HasWeaponIdleTimeElapsed(void);
-	virtual void			SetWeaponIdleTime(float time);
-	virtual float			GetWeaponIdleTime(void);
+	/*295*/virtual bool			HasWeaponIdleTimeElapsed(void);
+	/*296*/virtual void			SetWeaponIdleTime(float time);
+	/*297*/virtual float			GetWeaponIdleTime(void);
 
 	// Weapon selection
-	virtual bool			HasAnyAmmo(void);							// Returns true is weapon has ammo
-	virtual bool			HasPrimaryAmmo(void);						// Returns true is weapon has ammo
-	virtual bool			HasSecondaryAmmo(void);					// Returns true is weapon has ammo
+	/*298*/virtual bool			HasAnyAmmo(void);							// Returns true is weapon has ammo
+	/*299*/virtual bool			HasPrimaryAmmo(void);						// Returns true is weapon has ammo
+	/*300*/virtual bool			HasSecondaryAmmo(void);					// Returns true is weapon has ammo
 
-	virtual bool			CanHolster(void) { return TRUE; };		// returns true if the weapon can be holstered
-	virtual bool			DefaultDeploy(char *szViewModel, char *szWeaponModel, int iActivity, char *szAnimExt);
-	virtual bool			CanDeploy(void) { return true; }			// return true if the weapon's allowed to deploy
-	virtual bool			Deploy(void);								// returns true is deploy was successful
-	virtual bool			Holster(CBaseCombatWeapon *pSwitchingTo = NULL);
-	virtual CBaseCombatWeapon *GetLastWeapon(void) { return this; }
-	virtual void			SetWeaponVisible(bool visible);
-	virtual bool			IsWeaponVisible(void);
-	virtual bool			ReloadOrSwitchWeapons(void);
-	virtual void			OnActiveStateChanged(int iOldState) { return; }
-	virtual bool			HolsterOnDetach() { return false; }
-	virtual bool			IsHolstered() { return false; }
-	virtual void			Detach() {}
+	/*301*/virtual bool			CanHolster(void) { return TRUE; };		// returns true if the weapon can be holstered
+	/*302*/virtual bool			DefaultDeploy(char *szViewModel, char *szWeaponModel, int iActivity, char *szAnimExt);
+	/*303*/virtual bool			CanDeploy(void) { return true; }			// return true if the weapon's allowed to deploy
+	/*304*/virtual bool			Deploy(void);								// returns true is deploy was successful
+	/*305*/virtual bool			Holster(CBaseCombatWeapon *pSwitchingTo = NULL);
+	/*306*/virtual CBaseCombatWeapon *GetLastWeapon(void) { return this; }
+	/*307*/virtual void			SetWeaponVisible(bool visible);
+	/*308*/virtual bool			IsWeaponVisible(void);
+	/*309*/virtual bool			ReloadOrSwitchWeapons(void);
+	/*310*/virtual void			OnActiveStateChanged(int iOldState) { return; }
+	/*311*/virtual bool			HolsterOnDetach() { return false; }
+	/*312*/virtual bool			IsHolstered() { return false; }
+	/*313*/virtual void			Detach() {}
 
 	// Weapon behaviour
-	virtual void			ItemPreFrame(void);					// called each frame by the player PreThink
-	virtual void			ItemPostFrame(void);					// called each frame by the player PostThink
-	virtual void			ItemBusyFrame(void);					// called each frame by the player PostThink, if the player's not ready to attack yet
-	virtual void			ItemHolsterFrame(void) {};			// called each frame by the player PreThink, if the weapon is holstered
-	virtual void			WeaponIdle(void);						// called when no buttons pressed
-	virtual void			HandleFireOnEmpty();					// Called when they have the attack button down
+	/*314*/virtual void			ItemPreFrame(void);					// called each frame by the player PreThink
+	/*315*/virtual void			ItemPostFrame(void);					// called each frame by the player PostThink
+	/*316*/virtual void			ItemBusyFrame(void);					// called each frame by the player PostThink, if the player's not ready to attack yet
+	/*317*/virtual void			ItemHolsterFrame(void) {};			// called each frame by the player PreThink, if the weapon is holstered
+	/*318*/virtual void			WeaponIdle(void);						// called when no buttons pressed
+	/*319*/virtual void			HandleFireOnEmpty();					// Called when they have the attack button down
 
 
-	virtual bool			CanPerformSecondaryAttack();
-	virtual bool			ShouldBlockPrimaryFire() { return false; }
+	/*320*/virtual bool			CanPerformSecondaryAttack();
+	/*321*/virtual bool			ShouldBlockPrimaryFire() { return false; }
 
-	virtual bool			IsWeaponZoomed() { return false; }		// Is this weapon in its 'zoomed in' mode?
+	/*322*/virtual bool			IsWeaponZoomed() { return false; }		// Is this weapon in its 'zoomed in' mode?
 
 	// Reloading
-	virtual	void			CheckReload(void);
-	virtual void			FinishReload(void);
-	virtual void			AbortReload(void);
-	virtual bool			Reload(void);
+	/*323*/virtual	void			CheckReload(void);
+	/*324*/virtual void			FinishReload(void);
+	/*325*/virtual void			AbortReload(void);
+	/*326*/virtual bool			Reload(void);
 
-	virtual bool			AutoFiresFullClip(void) { return false; }
-	virtual void			UpdateAutoFire(void);
+	/*327*/virtual bool			AutoFiresFullClip(void) { return false; }
+	/*328*/virtual void			UpdateAutoFire(void);
 
 	// Weapon firing
-	virtual void			PrimaryAttack(void);						// do "+ATTACK"
-	virtual void			SecondaryAttack(void) { return; }			// do "+ATTACK2"
+	/*329*/virtual void			PrimaryAttack(void);						// do "+ATTACK"
+	/*330*/virtual void			SecondaryAttack(void) { return; }			// do "+ATTACK2"
 
 	// Firing animations
-	virtual Activity		GetPrimaryAttackActivity(void);
-	virtual Activity		GetSecondaryAttackActivity(void);
-	virtual Activity		GetDrawActivity(void);
-	virtual float			GetDefaultAnimSpeed(void) { return 1.0; }
+	/*331*/virtual Activity		GetPrimaryAttackActivity(void);
+	/*332*/virtual Activity		GetSecondaryAttackActivity(void);
+	/*333*/virtual Activity		GetDrawActivity(void);
+	/*334*/virtual float			GetDefaultAnimSpeed(void) { return 1.0; }
 
 	// Bullet launch information
-	virtual int				GetBulletType(void);
-	virtual const Vector&	GetBulletSpread(void);
-	virtual Vector			GetBulletSpread(WeaponProficiency_t proficiency) { return GetBulletSpread(); }
-	virtual float			GetSpreadBias(WeaponProficiency_t proficiency) { return 1.0; }
-	virtual float			GetFireRate(void);
-	virtual int				GetMinBurst() { return 1; }
-	virtual int				GetMaxBurst() { return 1; }
-	virtual float			GetMinRestTime() { return 0.3; }
-	virtual float			GetMaxRestTime() { return 0.6; }
-	virtual int				GetRandomBurst();
-	virtual void			WeaponSound(WeaponSound_t sound_type, float soundtime = 0.0f);
-	virtual void			StopWeaponSound(WeaponSound_t sound_type);
-	virtual const WeaponProficiencyInfo_t *GetProficiencyValues();
+	/*335*/virtual int				GetBulletType(void);
+	/*336*/virtual const Vector&	GetBulletSpread(void);
+	/*337*/virtual Vector			GetBulletSpread(WeaponProficiency_t proficiency) { return GetBulletSpread(); }
+	/*338*/virtual float			GetSpreadBias(WeaponProficiency_t proficiency) { return 1.0; }
+	/*339*/virtual float			GetFireRate(void);
+	/*340*/virtual int				GetMinBurst() { return 1; }
+	/*341*/virtual int				GetMaxBurst() { return 1; }
+	/*342*/virtual float			GetMinRestTime() { return 0.3; }
+	/*343*/virtual float			GetMaxRestTime() { return 0.6; }
+	/*344*/virtual int				GetRandomBurst();
+	/*345*/virtual void			WeaponSound(WeaponSound_t sound_type, float soundtime = 0.0f);
+	/*346*/virtual void			StopWeaponSound(WeaponSound_t sound_type);
+	/*347*/virtual const WeaponProficiencyInfo_t *GetProficiencyValues();
 
 	// Autoaim
-	virtual float			GetMaxAutoAimDeflection() { return 0.99f; }
-	virtual float			WeaponAutoAimScale() { return 1.0f; } // allows a weapon to influence the perceived size of the target's autoaim radius.
+	/*348*/virtual float			GetMaxAutoAimDeflection() { return 0.99f; }
+	/*349*/virtual float			WeaponAutoAimScale() { return 1.0f; } // allows a weapon to influence the perceived size of the target's autoaim radius.
 
 	// TF Sprinting functions
-	virtual bool			StartSprinting(void) { return false; };
-	virtual bool			StopSprinting(void) { return false; };
+	/*350*/virtual bool			StartSprinting(void) { return false; };
+	/*351*/virtual bool			StopSprinting(void) { return false; };
 
 	// TF Injury functions
-	virtual float			GetDamage(float flDistance, int iLocation) { return 0.0; };
+	/*352*/virtual float			GetDamage(float flDistance, int iLocation) { return 0.0; };
 
-	virtual void			SetActivity(Activity act, float duration);
+	/*353*/virtual void			SetActivity(Activity act, float duration);
 
-	virtual void			AddViewKick(void); // Add in the view kick for the weapon
+	/*354*/virtual void			AddViewKick(void); // Add in the view kick for the weapon
 
-	virtual char*			GetDeathNoticeName(void);	// Get the string to print death notices with
+	/*355*/virtual char*			GetDeathNoticeName(void);	// Get the string to print death notices with
 
-	virtual void			OnPickedUp(CBaseCombatCharacter *pNewOwner);
+	/*356*/virtual void			OnPickedUp(CBaseCombatCharacter *pNewOwner);
 
-	virtual void			AddViewmodelBob(CBaseViewModel *viewmodel, Vector &origin, QAngle &angles) {};
-	virtual float			CalcViewmodelBob(void) { return 0.0f; };
+	/*367*/virtual void			AddViewmodelBob(CBaseViewModel *viewmodel, Vector &origin, QAngle &angles) {};
+	/*358*/virtual float			CalcViewmodelBob(void) { return 0.0f; };
 
 	// Returns information about the various control panels
-	virtual void 			GetControlPanelInfo(int nPanelIndex, const char *&pPanelName);
-	virtual void			GetControlPanelClassName(int nPanelIndex, const char *&pPanelName);
+	/*359*/virtual void 			GetControlPanelInfo(int nPanelIndex, const char *&pPanelName);
+	/*360*/virtual void			GetControlPanelClassName(int nPanelIndex, const char *&pPanelName);
 
-	virtual bool			ShouldShowControlPanels(void) { return true; }
+	/*361*/virtual bool			ShouldShowControlPanels(void) { return true; }
 
 	//All weapons can be picked up by NPCs by default
-	virtual bool			CanBePickedUpByNPCs(void) { return true; }
+	/*362*/virtual bool			CanBePickedUpByNPCs(void) { return true; }
 
-	virtual int				GetSkinOverride() const { return -1; }
+	/*363*/virtual int				GetSkinOverride() const { return -1; }
 
 
 	// Weapon info accessors for data in the weapon's data file
-	virtual const char*		GetViewModel(int viewmodelindex = 0) const;
-	virtual const char*		GetWorldModel(void) const;
-	virtual const char*		GetAnimPrefix(void) const;
-	virtual int				GetMaxClip1(void) const;
-	virtual int				GetMaxClip2(void) const;
-	virtual int				GetDefaultClip1(void) const;
-	virtual int				GetDefaultClip2(void) const;
-	virtual int				GetWeight(void) const;
-	virtual bool			AllowsAutoSwitchTo(void) const;
-	virtual bool			AllowsAutoSwitchFrom(void) const;
-	virtual void			ForceWeaponSwitch();
-	virtual int				GetWeaponFlags(void) const;
-	virtual int				GetSlot(void) const;
-	virtual int				GetPosition(void) const;
-	virtual char const*		GetName(void) const;
-	virtual char const*		GetPrintName(void) const;
-	virtual char const*		GetShootSound(int iIndex) const;
-	virtual int				GetRumbleEffect() const;
-	virtual bool			UsesClipsForAmmo1(void) const;
-	virtual bool			UsesClipsForAmmo2(void) const;
+	/*364*/virtual const char*		GetViewModel(int viewmodelindex = 0) const;
+	/*365*/virtual const char*		GetWorldModel(void) const;
+	/*366*/virtual const char*		GetAnimPrefix(void) const;
+	/*367*/virtual int				GetMaxClip1(void) const;
+	/*368*/virtual int				GetMaxClip2(void) const;
+	/*369*/virtual int				GetDefaultClip1(void) const;
+	/*370*/virtual int				GetDefaultClip2(void) const;
+	/*371*/virtual int				GetWeight(void) const;
+	/*372*/virtual bool			AllowsAutoSwitchTo(void) const;
+	/*373*/virtual bool			AllowsAutoSwitchFrom(void) const;
+	/*374*/virtual void			ForceWeaponSwitch();
+	/*375*/virtual int				GetWeaponFlags(void) const;
+	/*376*/virtual int				GetSlot(void) const;
+	/*377*/virtual int				GetPosition(void) const;
+	/*378*/virtual char const*		GetName(void) const;
+	/*379*/virtual char const*		GetPrintName(void) const;
+	/*380*/virtual char const*		GetShootSound(int iIndex) const;
+	/*381*/virtual int				GetRumbleEffect() const;
+	/*382*/virtual bool			UsesClipsForAmmo1(void) const;
+	/*383*/virtual bool			UsesClipsForAmmo2(void) const;
 
-	virtual char const*		GetHoldType();
-	virtual void			SetHoldType(char const*);
+	/*384*/virtual char const*		GetHoldType();
+	/*385*/virtual void			SetHoldType(char const*);
 
 	// derive this function if you mod uses encrypted weapon info files
-	virtual const unsigned char *GetEncryptionKey(void);
+	/*386*/virtual const unsigned char *GetEncryptionKey(void);
 
-	virtual int				GetPrimaryAmmoType(void)  const { return m_iPrimaryAmmoType; }
-	virtual int				GetSecondaryAmmoType(void) const { return m_iSecondaryAmmoType; }
-	virtual int				Clip1() { return m_iClip1; }
-	virtual int				Clip2() { return m_iClip2; }
+	/*387*/virtual int				GetPrimaryAmmoType(void)  const { return m_iPrimaryAmmoType; }
+	/*388*/virtual int				GetSecondaryAmmoType(void) const { return m_iSecondaryAmmoType; }
+	/*389*/virtual int				Clip1() { return m_iClip1; }
+	/*390*/virtual int				Clip2() { return m_iClip2; }
 
-	virtual CHudTexture const	*GetSpriteActive(void) const;
-	virtual CHudTexture const	*GetSpriteInactive(void) const;
-	virtual CHudTexture const	*GetSpriteAmmo(void) const;
-	virtual CHudTexture const	*GetSpriteAmmo2(void) const;
-	virtual CHudTexture const	*GetSpriteCrosshair(void) const;
-	virtual CHudTexture const	*GetSpriteAutoaim(void) const;
-	virtual CHudTexture const	*GetSpriteZoomedCrosshair(void) const;
-	virtual CHudTexture const	*GetSpriteZoomedAutoaim(void) const;
+	/*391*/virtual CHudTexture const	*GetSpriteActive(void) const;
+	/*392*/virtual CHudTexture const	*GetSpriteInactive(void) const;
+	/*393*/virtual CHudTexture const	*GetSpriteAmmo(void) const;
+	/*394*/virtual CHudTexture const	*GetSpriteAmmo2(void) const;
+	/*395*/virtual CHudTexture const	*GetSpriteCrosshair(void) const;
+	/*396*/virtual CHudTexture const	*GetSpriteAutoaim(void) const;
+	/*397*/virtual CHudTexture const	*GetSpriteZoomedCrosshair(void) const;
+	/*398*/virtual CHudTexture const	*GetSpriteZoomedAutoaim(void) const;
 
-	virtual Activity		ActivityOverride(Activity baseAct, bool *pRequired);
-	virtual	acttable_t*		ActivityList(void) { return NULL; }
-	virtual	int				ActivityListCount(void) { return 0; }
+	/*399*/virtual Activity		ActivityOverride(Activity baseAct, bool *pRequired);
+	/*400*/virtual	acttable_t*		ActivityList(void) { return NULL; }
+	/*401*/virtual	int				ActivityListCount(void) { return 0; }
 
-	virtual void			PoseParameterOverride(bool);
-	virtual void			PoseParamList(int &);
+	/*402*/virtual void			PoseParameterOverride(bool);
+	/*403*/virtual void			PoseParamList(int &);
 
-	virtual bool			ShouldUseLargeViewModelVROverride() { return false; }
+	/*404*/virtual bool			ShouldUseLargeViewModelVROverride() { return false; }
 
 
-	virtual void			FallInit(void);						// prepare to fall to the ground
-	virtual void			FallThink(void);						// make the weapon fall to the ground after spawning
+	/*405*/virtual void			FallInit(void);						// prepare to fall to the ground
+	/*406*/virtual void			FallThink(void);						// make the weapon fall to the ground after spawning
 
-	virtual void			Materialize(void);					// make a weapon visible and tangible
-	virtual void			CheckRespawn(void);					// see if this weapon should respawn after being picked up
+	/*407*/virtual void			Materialize(void);					// make a weapon visible and tangible
+	/*408*/virtual void			CheckRespawn(void);					// see if this weapon should respawn after being picked up
 
 	// Weapon dropping / destruction
-	virtual void			Delete(void);
-	virtual void			Kill(void);
+	/*409*/virtual void			Delete(void);
+	/*410*/virtual void			Kill(void);
 
-	virtual int				CapabilitiesGet(void) { return 0; }
+	/*411*/virtual int				CapabilitiesGet(void) { return 0; }
 
 	// Returns bits for	weapon conditions
-	virtual bool			WeaponLOSCondition(const Vector &ownerPos, const Vector &targetPos, bool bSetConditions);
-	virtual	int				WeaponRangeAttack1Condition(float flDot, float flDist);
-	virtual	int				WeaponRangeAttack2Condition(float flDot, float flDist);
-	virtual	int				WeaponMeleeAttack1Condition(float flDot, float flDist);
-	virtual	int				WeaponMeleeAttack2Condition(float flDot, float flDist);
+	/*412*/virtual bool			WeaponLOSCondition(const Vector &ownerPos, const Vector &targetPos, bool bSetConditions);
+	/*413*/virtual	int				WeaponRangeAttack1Condition(float flDot, float flDist);
+	/*414*/virtual	int				WeaponRangeAttack2Condition(float flDot, float flDist);
+	/*415*/virtual	int				WeaponMeleeAttack1Condition(float flDot, float flDist);
+	/*416*/virtual	int				WeaponMeleeAttack2Condition(float flDot, float flDist);
 
-	virtual void			Operator_FrameUpdate(CBaseCombatCharacter  *pOperator);
-	virtual void			Operator_HandleAnimEvent(animevent_t *pEvent, CBaseCombatCharacter *pOperator);
-	virtual void			Operator_ForceNPCFire(CBaseCombatCharacter  *pOperator, bool bSecondary) { return; }
+	/*417*/virtual void			Operator_FrameUpdate(CBaseCombatCharacter  *pOperator);
+	/*418*/virtual void			Operator_HandleAnimEvent(animevent_t *pEvent, CBaseCombatCharacter *pOperator);
+	/*419*/virtual void			Operator_ForceNPCFire(CBaseCombatCharacter  *pOperator, bool bSecondary) { return; }
 
 
-	virtual CDmgAccumulator *GetDmgAccumulator(void) { return NULL; }
+	/*420 LMAO DUDE 420*/virtual CDmgAccumulator *GetDmgAccumulator(void) { return NULL; }
 
-	virtual bool			CanLower(void) { return false; }
-	virtual bool			Ready(void) { return false; }
-	virtual bool			Lower(void) { return false; }
+	/*421*/virtual bool			CanLower(void) { return false; }
+	/*422*/virtual bool			Ready(void) { return false; }
+	/*423*/virtual bool			Lower(void) { return false; }
 
-	virtual void			HideThink(void);
-	virtual bool			CanReload(void);
+	/*424*/virtual void			HideThink(void);
+	/*425*/virtual bool			CanReload(void);
 
 	
 
-	virtual int		GetPlayerDamage();
-	virtual void	EquipAmmo(CBaseEntity*);
-	virtual bool	ShouldDropOnDie();
-	virtual bool	ShouldDrawViewModel();
-	virtual float	GetLastShootTime();
-	virtual void	UpdateLastShootTime(float);
-	virtual void	ForcePlayerPickup(CBasePlayer*);
-	virtual void	OnRangeAttack1();
-	virtual void	GModNPCAttackHack();
+	/*426*/virtual int		GetPlayerDamage();
+	/*427*/virtual void	EquipAmmo(CBaseEntity*);
+	/*428*/virtual bool	ShouldDropOnDie();
+	/*429*/virtual bool	ShouldDrawViewModel();
+	/*430*/virtual float	GetLastShootTime();
+	/*431*/virtual void	UpdateLastShootTime(float);
+	/*432*/virtual void	ForcePlayerPickup(CBasePlayer*);
+	/*433*/virtual void	OnRangeAttack1();
+	/*434*/virtual void	GModNPCAttackHack();
 
 public:
 	typedef CHandle< CBaseCombatCharacter > CBaseCombatCharacterHandle;

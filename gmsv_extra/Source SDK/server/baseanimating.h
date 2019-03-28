@@ -33,55 +33,55 @@ public:
 	DECLARE_SERVERCLASS();
 public:
 	// Basic NPC Animation functions
-	virtual float		GetIdealSpeed() const;
-	virtual float		GetIdealAccel() const;
-	virtual void		StudioFrameAdvance(); // advance animation frame to some time in the future
+	/*238*/virtual float		GetIdealSpeed() const;
+	/*239*/virtual float		GetIdealAccel() const;
+	/*240*/virtual void		StudioFrameAdvance(); // advance animation frame to some time in the future
 
-	virtual void		SetSequence(int nSequence);
-	virtual bool		IsActivityFinished(void) { return m_bSequenceFinished; }
-	virtual float		GetSequenceGroundSpeed(CStudioHdr *pStudioHdr, int iSequence);
+	/*241*/virtual void		SetSequence(int nSequence);
+	/*242*/virtual bool		IsActivityFinished(void) { return m_bSequenceFinished; }
+	/*243*/virtual float		GetSequenceGroundSpeed(CStudioHdr *pStudioHdr, int iSequence);
 
-	virtual void		ClampRagdollForce(const Vector &vecForceIn, Vector *vecForceOut) { *vecForceOut = vecForceIn; } // Base class does nothing.
-	virtual bool		BecomeRagdollOnClient(const Vector &force);
-	virtual bool		IsRagdoll();
-	virtual bool		CanBecomeRagdoll(void); //Check if this entity will ragdoll when dead.
+	/*244*/virtual void		ClampRagdollForce(const Vector &vecForceIn, Vector *vecForceOut) { *vecForceOut = vecForceIn; } // Base class does nothing.
+	/*245*/virtual bool		BecomeRagdollOnClient(const Vector &force);
+	/*246*/virtual bool		IsRagdoll();
+	/*247*/virtual bool		CanBecomeRagdoll(void); //Check if this entity will ragdoll when dead.
 
-	virtual	void		GetSkeleton(CStudioHdr *pStudioHdr, Vector pos[], Quaternion q[], int boneMask);
+	/*248*/virtual	void		GetSkeleton(CStudioHdr *pStudioHdr, Vector pos[], Quaternion q[], int boneMask);
 
-	virtual void		GetBoneTransform(int iBone, matrix3x4_t &pBoneToWorld);
-	virtual void		SetupBones(matrix3x4_t *pBoneToWorld, int boneMask);
-	virtual void		CalculateIKLocks(float currentTime);
+	/*249*/virtual void		GetBoneTransform(int iBone, matrix3x4_t &pBoneToWorld);
+	/*250*/virtual void		SetupBones(matrix3x4_t *pBoneToWorld, int boneMask);
+	/*251*/virtual void		CalculateIKLocks(float currentTime);
 
-	virtual	void		DispatchAnimEvents(CBaseAnimating *eventHandler); // Handle events that have happend since last time called up until X seconds into the future
-	virtual void		HandleAnimEvent(animevent_t *pEvent);
+	/*252*/virtual	void		DispatchAnimEvents(CBaseAnimating *eventHandler); // Handle events that have happend since last time called up until X seconds into the future
+	/*253*/virtual void		HandleAnimEvent(animevent_t *pEvent);
 
-	virtual void		PopulatePoseParameters(void);
+	/*254*/virtual void		PopulatePoseParameters(void);
 
-	virtual bool		GetAttachment(int iAttachment, matrix3x4_t &attachmentToWorld);
+	/*255*/virtual bool		GetAttachment(int iAttachment, matrix3x4_t &attachmentToWorld);
 
-	virtual	void		InitBoneControllers(void);
+	/*256*/virtual	void		InitBoneControllers(void);
 
-	virtual	Vector		GetGroundSpeedVelocity(void);
+	/*257*/virtual	Vector		GetGroundSpeedVelocity(void);
 
-	virtual void		RefreshCollisionBounds(void);
-	virtual bool		TestCollision(const Ray_t &ray, unsigned int fContentsMask, trace_t& tr);
-	virtual bool		TestHitboxes(const Ray_t &ray, unsigned int fContentsMask, trace_t& tr);
+	/*258*/virtual void		RefreshCollisionBounds(void);
+	/*259*/virtual bool		TestCollision(const Ray_t &ray, unsigned int fContentsMask, trace_t& tr);
+	/*260*/virtual bool		TestHitboxes(const Ray_t &ray, unsigned int fContentsMask, trace_t& tr);
 
 	// Fire
-	virtual void		Ignite(float flFlameLifetime, bool bNPCOnly = true, float flSize = 0.0f, bool bCalledByLevelDesigner = false);
-	virtual void		IgniteLifetime(float flFlameLifetime);
-	virtual void		IgniteNumHitboxFires(int iNumHitBoxFires);
-	virtual void		IgniteHitboxFireScale(float flHitboxFireScale);
-	virtual void		Extinguish();
+	/*261*/virtual void		Ignite(float flFlameLifetime, bool bNPCOnly = true, float flSize = 0.0f, bool bCalledByLevelDesigner = false);
+	/*262*/virtual void		IgniteLifetime(float flFlameLifetime);
+	/*263*/virtual void		IgniteNumHitboxFires(int iNumHitBoxFires);
+	/*264*/virtual void		IgniteHitboxFireScale(float flHitboxFireScale);
+	/*265*/virtual void		Extinguish();
 
-	virtual void		SetLightingOriginRelative(CBaseEntity *pLightingOriginRelative);
-	virtual void		SetLightingOrigin(CBaseEntity *pLightingOrigin);
+	/*266*/virtual void		SetLightingOriginRelative(CBaseEntity *pLightingOriginRelative);
+	/*267*/virtual void		SetLightingOrigin(CBaseEntity *pLightingOrigin);
 
-	virtual int			GetPhysBoneNumber(int);
-	virtual void		SetBoneManipulator(CBaseEntity*);
-	virtual CBaseEntity*GetBoneManipulator(bool);
-	virtual void		SetFlexManipulator(CBaseEntity*);
-	virtual CBaseEntity*GetFlexManipulator(bool);
+	/*268*/virtual int			GetPhysBoneNumber(int);
+	/*269*/virtual void		SetBoneManipulator(CBaseEntity*);
+	/*270*/virtual CBaseEntity*GetBoneManipulator(bool);
+	/*271*/virtual void		SetFlexManipulator(CBaseEntity*);
+	/*272*/virtual CBaseEntity*GetFlexManipulator(bool);
 public:
 	// animation needs
 	float				m_flGroundSpeed;	// computed linear movement rate for current sequence

@@ -278,14 +278,14 @@ class CAI_ExpresserHost : public BASE_NPC, protected CAI_ExpresserSink
 	DECLARE_CLASS_NOFRIEND(CAI_ExpresserHost, BASE_NPC);
 
 public:
-	virtual void	NoteSpeaking(float duration, float delay);
+	/*523*/virtual void	NoteSpeaking(float duration, float delay);
 
-	virtual bool 	Speak(AIConcept_t concept, const char *modifiers = NULL, char *pszOutResponseChosen = NULL, size_t bufsize = 0, IRecipientFilter *filter = NULL);
+	/*524*/virtual bool 	Speak(AIConcept_t concept, const char *modifiers = NULL, char *pszOutResponseChosen = NULL, size_t bufsize = 0, IRecipientFilter *filter = NULL);
 
 	// These two methods allow looking up a response and dispatching it to be two different steps
 	bool			SpeakFindResponse(AI_Response& response, AIConcept_t concept, const char *modifiers = NULL);
 	bool 			SpeakDispatchResponse(AIConcept_t concept, AI_Response& response);
-	virtual void	PostSpeakDispatchResponse(AIConcept_t concept, AI_Response& response) { return; }
+	/*525*/virtual void	PostSpeakDispatchResponse(AIConcept_t concept, AI_Response& response) { return; }
 	float 			GetResponseDuration(AI_Response& response);
 
 	float GetTimeSpeechComplete() const { return this->GetExpresser()->GetTimeSpeechComplete(); }

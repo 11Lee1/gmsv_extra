@@ -47,10 +47,10 @@ public:
 	DECLARE_DATADESC();
 
 public:
-	virtual bool		HandleCommand_JoinTeam(int team);
-	virtual void		GiveAllItems(void);
-	virtual bool		InPlayerThink();
-	virtual void		SetInPlayerThink(bool);
+	/*555*/virtual bool		HandleCommand_JoinTeam(int team);
+	/*556*/virtual void		GiveAllItems(void);
+	/*557*/virtual bool		InPlayerThink();
+	/*558*/virtual void		SetInPlayerThink(bool);
 public:
 	Vector				m_vecTotalBulletForce;	//Accumulator for bullet force in a single frame
 

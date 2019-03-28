@@ -10,12 +10,12 @@ class CWeaponSWEP : public CBaseHL2MPCombatWeapon
 public:
 	virtual ~CWeaponSWEP();
 
-	virtual void		DoKeyValue(char const*, char const*);
-	virtual void		UpdateLuaData(bool);
-	virtual bool		LuaEntityInitialized();
-	virtual bool		GetPrimaryAutomatic();
-	virtual bool		GetSecondaryAutomatic();
-	virtual void		UpdateHoldType();
+	/*436*/virtual void		DoKeyValue(char const*, char const*);
+	/*437*/virtual void		UpdateLuaData(bool);
+	/*438*/virtual bool		LuaEntityInitialized();
+	/*439*/virtual bool		GetPrimaryAutomatic();
+	/*440*/virtual bool		GetSecondaryAutomatic();
+	/*441*/virtual void		UpdateHoldType();
 public:
 	BYTE pad_unk06[0x4];
 

@@ -23,16 +23,16 @@ public:
 		CHAT_IGNORE_TEAM,
 	};
 
-	virtual bool			SpeakIfAllowed(AIConcept_t concept, const char *modifiers = NULL, char *pszOutResponseChosen = NULL, size_t bufsize = 0, IRecipientFilter *filter = NULL);
-	virtual bool			SpeakConceptIfAllowed(int iConcept, const char *modifiers = NULL, char *pszOutResponseChosen = NULL, size_t bufsize = 0, IRecipientFilter *filter = NULL);
-	virtual bool			CanBeAutobalanced() { return true; }
-	virtual bool			CanSpeakVoiceCommand(void) { return true; }
-	virtual bool			ShouldShowVoiceSubtitleToEnemy(void);
-	virtual void			NoteSpokeVoiceCommand(const char *pszScenePlayed) {}
-	virtual void			OnAchievementEarned(int iAchievement) {}
-	virtual CMultiplayer_Expresser *GetMultiplayerExpresser() { return m_pExpresser; }
-	virtual int				CalculateTeamBalanceScore(void);
-	virtual CAI_Expresser*	CreateExpresser(void);
+	/*526*/virtual bool			SpeakIfAllowed(AIConcept_t concept, const char *modifiers = NULL, char *pszOutResponseChosen = NULL, size_t bufsize = 0, IRecipientFilter *filter = NULL);
+	/*527*/virtual bool			SpeakConceptIfAllowed(int iConcept, const char *modifiers = NULL, char *pszOutResponseChosen = NULL, size_t bufsize = 0, IRecipientFilter *filter = NULL);
+	/*528*/virtual bool			CanBeAutobalanced() { return true; }
+	/*529*/virtual bool			CanSpeakVoiceCommand(void) { return true; }
+	/*530*/virtual bool			ShouldShowVoiceSubtitleToEnemy(void);
+	/*531*/virtual void			NoteSpokeVoiceCommand(const char *pszScenePlayed) {}
+	/*532*/virtual void			OnAchievementEarned(int iAchievement) {}
+	/*533*/virtual CMultiplayer_Expresser *GetMultiplayerExpresser() { return m_pExpresser; }
+	/*534*/virtual int				CalculateTeamBalanceScore(void);
+	/*535*/virtual CAI_Expresser*	CreateExpresser(void);
 
 
 

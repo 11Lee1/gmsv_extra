@@ -121,176 +121,176 @@ public:
 	DECLARE_DATADESC();
 
 public:
-	virtual const impactdamagetable_t&	GetPhysicsImpactDamageTable(void);
-	virtual bool				FInViewCone(CBaseEntity *pEntity);
-	virtual bool				FInViewCone(const Vector &vecSpot);
-	virtual bool				FInAimCone(CBaseEntity *pEntity);
-	virtual bool				FInAimCone(const Vector &vecSpot);
-	virtual bool				ShouldShootMissTarget(CBaseCombatCharacter *pAttacker);
-	virtual CBaseEntity*		FindMissTarget(void);
+	/*282*/virtual const impactdamagetable_t&	GetPhysicsImpactDamageTable(void);
+	/*283*/virtual bool				FInViewCone(CBaseEntity *pEntity);
+	/*284*/virtual bool				FInViewCone(const Vector &vecSpot);
+	/*285*/virtual bool				FInAimCone(CBaseEntity *pEntity);
+	/*286*/virtual bool				FInAimCone(const Vector &vecSpot);
+	/*287*/virtual bool				ShouldShootMissTarget(CBaseCombatCharacter *pAttacker);
+	/*288*/virtual CBaseEntity*		FindMissTarget(void);
 	// Do not call HandleInteraction directly, use DispatchInteraction
-	virtual bool				HandleInteraction(int interactionType, void *data, CBaseCombatCharacter* sourceEnt);
+	/*289*/virtual bool				HandleInteraction(int interactionType, void *data, CBaseCombatCharacter* sourceEnt);
 
-	virtual QAngle				BodyAngles();
-	virtual Vector				BodyDirection2D(void);
-	virtual Vector				BodyDirection3D(void);
-	virtual Vector				HeadDirection2D(void) { return BodyDirection2D(); }; // No head motion so just return body dir
-	virtual Vector				HeadDirection3D(void) { return BodyDirection2D(); }; // No head motion so just return body dir
-	virtual Vector				EyeDirection2D(void) { return HeadDirection2D(); }; // No eye motion so just return head dir
-	virtual Vector				EyeDirection3D(void) { return HeadDirection3D(); }; // No eye motion so just return head dir
+	/*290*/virtual QAngle				BodyAngles();
+	/*291*/virtual Vector				BodyDirection2D(void);
+	/*292*/virtual Vector				BodyDirection3D(void);
+	/*293*/virtual Vector				HeadDirection2D(void) { return BodyDirection2D(); }; // No head motion so just return body dir
+	/*294*/virtual Vector				HeadDirection3D(void) { return BodyDirection2D(); }; // No head motion so just return body dir
+	/*295*/virtual Vector				EyeDirection2D(void) { return HeadDirection2D(); }; // No eye motion so just return head dir
+	/*296*/virtual Vector				EyeDirection3D(void) { return HeadDirection3D(); }; // No eye motion so just return head dir
 
 	// -----------------------
 	// Fog
 	// -----------------------
-	virtual bool				IsHiddenByFog(const Vector &target) const;	///< return true if given target cant be seen because of fog
-	virtual bool				IsHiddenByFog(CBaseEntity *target) const;		///< return true if given target cant be seen because of fog
-	virtual bool				IsHiddenByFog(float range) const;				///< return true if given distance is too far to see through the fog
-	virtual float				GetFogObscuredRatio(const Vector &target) const;///< return 0-1 ratio where zero is not obscured, and 1 is completely obscured
-	virtual float				GetFogObscuredRatio(CBaseEntity *target) const;	///< return 0-1 ratio where zero is not obscured, and 1 is completely obscured
-	virtual float				GetFogObscuredRatio(float range) const;		///< return 0-1 ratio where zero is not obscured, and 1 is completely obscured
+	/*297*/virtual bool				IsHiddenByFog(const Vector &target) const;	///< return true if given target cant be seen because of fog
+	/*298*/virtual bool				IsHiddenByFog(CBaseEntity *target) const;		///< return true if given target cant be seen because of fog
+	/*299*/virtual bool				IsHiddenByFog(float range) const;				///< return true if given distance is too far to see through the fog
+	/*300*/virtual float				GetFogObscuredRatio(const Vector &target) const;///< return 0-1 ratio where zero is not obscured, and 1 is completely obscured
+	/*301*/virtual float				GetFogObscuredRatio(CBaseEntity *target) const;	///< return 0-1 ratio where zero is not obscured, and 1 is completely obscured
+	/*302*/virtual float				GetFogObscuredRatio(float range) const;		///< return 0-1 ratio where zero is not obscured, and 1 is completely obscured
 
 	// -----------------------
 	// Vision
 	// -----------------------
 	enum FieldOfViewCheckType { USE_FOV, DISREGARD_FOV };
 
-	virtual bool				IsLookingTowards(const CBaseEntity *target, float cosTolerance = BCC_DEFAULT_LOOK_TOWARDS_TOLERANCE) const;	// return true if our view direction is pointing at the given target, within the cosine of the angular tolerance. LINE OF SIGHT IS NOT CHECKED.
-	virtual bool				IsLookingTowards(const Vector &target, float cosTolerance = BCC_DEFAULT_LOOK_TOWARDS_TOLERANCE) const;	// return true if our view direction is pointing at the given target, within the cosine of the angular tolerance. LINE OF SIGHT IS NOT CHECKED.
+	/*303*/virtual bool				IsLookingTowards(const CBaseEntity *target, float cosTolerance = BCC_DEFAULT_LOOK_TOWARDS_TOLERANCE) const;	// return true if our view direction is pointing at the given target, within the cosine of the angular tolerance. LINE OF SIGHT IS NOT CHECKED.
+	/*304*/virtual bool				IsLookingTowards(const Vector &target, float cosTolerance = BCC_DEFAULT_LOOK_TOWARDS_TOLERANCE) const;	// return true if our view direction is pointing at the given target, within the cosine of the angular tolerance. LINE OF SIGHT IS NOT CHECKED.
 
-	virtual bool				IsInFieldOfView(CBaseEntity *entity) const;	// Calls IsLookingTowards with the current field of view.  
-	virtual bool				IsInFieldOfView(const Vector &pos) const;
+	/*305*/virtual bool				IsInFieldOfView(CBaseEntity *entity) const;	// Calls IsLookingTowards with the current field of view.  
+	/*306*/virtual bool				IsInFieldOfView(const Vector &pos) const;
 
 	enum LineOfSightCheckType
 	{
 		IGNORE_NOTHING,
 		IGNORE_ACTORS
 	};
-	virtual bool				IsLineOfSightClear(CBaseEntity *entity, LineOfSightCheckType checkType = IGNORE_NOTHING) const;// strictly LOS check with no other considerations
-	virtual bool				IsLineOfSightClear(const Vector &pos, LineOfSightCheckType checkType = IGNORE_NOTHING, CBaseEntity *entityToIgnore = NULL) const;
+	/*307*/virtual bool				IsLineOfSightClear(CBaseEntity *entity, LineOfSightCheckType checkType = IGNORE_NOTHING) const;// strictly LOS check with no other considerations
+	/*308*/virtual bool				IsLineOfSightClear(const Vector &pos, LineOfSightCheckType checkType = IGNORE_NOTHING, CBaseEntity *entityToIgnore = NULL) const;
 
 	// -----------------------
 	// Ammo
 	// -----------------------
-	virtual int					GiveAmmo(int iCount, int iAmmoIndex, bool bSuppressSound = false);
-	virtual void				RemoveAmmo(int iCount, int iAmmoIndex);
-	virtual void				RemoveAmmo(int iCount, const char *szName);
-	virtual int					GetAmmoCount(int iAmmoIndex) const;
-	virtual Activity			NPC_TranslateActivity(Activity baseAct);
+	/*309*/virtual int					GiveAmmo(int iCount, int iAmmoIndex, bool bSuppressSound = false);
+	/*310*/virtual void				RemoveAmmo(int iCount, int iAmmoIndex);
+	/*311*/virtual void				RemoveAmmo(int iCount, const char *szName);
+	/*312*/virtual int					GetAmmoCount(int iAmmoIndex) const;
+	/*313*/virtual Activity			NPC_TranslateActivity(Activity baseAct);
 
 
 
 	// -----------------------
 	// Weapons
 	// -----------------------
-	virtual Activity			Weapon_TranslateActivity(Activity baseAct, bool *pRequired = NULL);
-	virtual void				Weapon_FrameUpdate(void);
-	virtual void				Weapon_HandleAnimEvent(animevent_t *pEvent);
-	virtual bool				Weapon_CanUse(CBaseCombatWeapon *pWeapon);		// True is allowed to use this class of weapon
-	virtual void				Weapon_Equip(CBaseCombatWeapon *pWeapon);			// Adds weapon to player
-	virtual bool				Weapon_EquipAmmoOnly(CBaseCombatWeapon *pWeapon);	// Adds weapon ammo to player, leaves weapon
-	virtual void				Weapon_Drop(CBaseCombatWeapon *pWeapon, const Vector *pvecTarget = NULL, const Vector *pVelocity = NULL);
-	virtual	bool				Weapon_Switch(CBaseCombatWeapon *pWeapon, int viewmodelindex = 0);		// Switch to given weapon if has ammo (false if failed)
-	virtual	Vector				Weapon_ShootPosition();		// gun position at current position/orientation
-	virtual	bool				Weapon_CanSwitchTo(CBaseCombatWeapon *pWeapon);
-	virtual bool				Weapon_SlotOccupied(CBaseCombatWeapon *pWeapon);
-	virtual CBaseCombatWeapon*	Weapon_GetSlot(int slot) const;
+	/*314*/virtual Activity			Weapon_TranslateActivity(Activity baseAct, bool *pRequired = NULL);
+	/*315*/virtual void				Weapon_FrameUpdate(void);
+	/*316*/virtual void				Weapon_HandleAnimEvent(animevent_t *pEvent);
+	/*317*/virtual bool				Weapon_CanUse(CBaseCombatWeapon *pWeapon);		// True is allowed to use this class of weapon
+	/*318*/virtual void				Weapon_Equip(CBaseCombatWeapon *pWeapon);			// Adds weapon to player
+	/*319*/virtual bool				Weapon_EquipAmmoOnly(CBaseCombatWeapon *pWeapon);	// Adds weapon ammo to player, leaves weapon
+	/*320*/virtual void				Weapon_Drop(CBaseCombatWeapon *pWeapon, const Vector *pvecTarget = NULL, const Vector *pVelocity = NULL);
+	/*321*/virtual	bool				Weapon_Switch(CBaseCombatWeapon *pWeapon, int viewmodelindex = 0);		// Switch to given weapon if has ammo (false if failed)
+	/*322*/virtual	Vector				Weapon_ShootPosition();		// gun position at current position/orientation
+	/*323*/virtual	bool				Weapon_CanSwitchTo(CBaseCombatWeapon *pWeapon);
+	/*324*/virtual bool				Weapon_SlotOccupied(CBaseCombatWeapon *pWeapon);
+	/*325*/virtual CBaseCombatWeapon*	Weapon_GetSlot(int slot) const;
 
 	// For weapon strip
-	virtual bool				AddPlayerItem(CBaseCombatWeapon *pItem) { return false; }
-	virtual bool				RemovePlayerItem(CBaseCombatWeapon *pItem) { return false; }
+	/*326*/virtual bool				AddPlayerItem(CBaseCombatWeapon *pItem) { return false; }
+	/*327*/virtual bool				RemovePlayerItem(CBaseCombatWeapon *pItem) { return false; }
 
-	virtual bool				CanBecomeServerRagdoll(void) { return true; }
+	/*328*/virtual bool				CanBecomeServerRagdoll(void) { return true; }
 
 	// -----------------------
 	// Damage
 	// -----------------------
 	// Override these to control how your character takes damage in different states
-	virtual int					OnTakeDamage_Alive(const CTakeDamageInfo &info);
-	virtual int					OnTakeDamage_Dying(const CTakeDamageInfo &info);
-	virtual int					OnTakeDamage_Dead(const CTakeDamageInfo &info);
+	/*329*/virtual int					OnTakeDamage_Alive(const CTakeDamageInfo &info);
+	/*330*/virtual int					OnTakeDamage_Dying(const CTakeDamageInfo &info);
+	/*331*/virtual int					OnTakeDamage_Dead(const CTakeDamageInfo &info);
 
-	virtual float				GetAliveDuration(void) const;			// return time we have been alive (only valid when alive)
+	/*332*/virtual float				GetAliveDuration(void) const;			// return time we have been alive (only valid when alive)
 
-	virtual void 				OnFriendDamaged(CBaseCombatCharacter *pSquadmate, CBaseEntity *pAttacker) {}
-	virtual void 				NotifyFriendsOfDamage(CBaseEntity *pAttackerEntity) {}
-	virtual bool				HasEverBeenInjured(int team = TEAM_ANY) const;			// return true if we have ever been injured by a member of the given team
-	virtual float				GetTimeSinceLastInjury(int team = TEAM_ANY) const;		// return time since we were hurt by a member of the given team
+	/*333*/virtual void 				OnFriendDamaged(CBaseCombatCharacter *pSquadmate, CBaseEntity *pAttacker) {}
+	/*334*/virtual void 				NotifyFriendsOfDamage(CBaseEntity *pAttackerEntity) {}
+	/*335*/virtual bool				HasEverBeenInjured(int team = TEAM_ANY) const;			// return true if we have ever been injured by a member of the given team
+	/*336*/virtual float				GetTimeSinceLastInjury(int team = TEAM_ANY) const;		// return time since we were hurt by a member of the given team
 
-	virtual void				OnPlayerKilledOther(CBaseEntity *pVictim, const CTakeDamageInfo &info) {}
+	/*337*/virtual void				OnPlayerKilledOther(CBaseEntity *pVictim, const CTakeDamageInfo &info) {}
 
-	virtual Activity			GetDeathActivity(void);
+	/*338*/virtual Activity			GetDeathActivity(void);
 
-	virtual bool				CorpseGib(const CTakeDamageInfo &info);
-	virtual void				CorpseFade(void);	// Called instead of GibNPC() when gibs are disabled
-	virtual bool				HasHumanGibs(void);
-	virtual bool				HasAlienGibs(void);
-	virtual bool				ShouldGib(const CTakeDamageInfo &info) { return false; }	// Always ragdoll, unless specified by the leaf class
+	/*339*/virtual bool				CorpseGib(const CTakeDamageInfo &info);
+	/*340*/virtual void				CorpseFade(void);	// Called instead of GibNPC() when gibs are disabled
+	/*341*/virtual bool				HasHumanGibs(void);
+	/*342*/virtual bool				HasAlienGibs(void);
+	/*343*/virtual bool				ShouldGib(const CTakeDamageInfo &info) { return false; }	// Always ragdoll, unless specified by the leaf class
 
 
-	virtual void				OnKilledNPC(CBaseCombatCharacter *pKilled) {};
+	/*344*/virtual void				OnKilledNPC(CBaseCombatCharacter *pKilled) {};
 
 	// Exactly one of these happens immediately after killed (gibbed may happen later when the corpse gibs)
 	// Character gibbed or faded out (violence controls) (only fired once)
 	// returns true if gibs were spawned
-	virtual bool				Event_Gibbed(const CTakeDamageInfo &info);
+	/*345*/virtual bool				Event_Gibbed(const CTakeDamageInfo &info);
 	// Character entered the dying state without being gibbed (only fired once)
-	virtual void				Event_Dying(const CTakeDamageInfo &info);
-	virtual void				Event_Dying();
+	/*346*/virtual void				Event_Dying(const CTakeDamageInfo &info);
+	/*347*/virtual void				Event_Dying();
 	// character died and should become a ragdoll now
 	// return true if converted to a ragdoll, false to use AI death
-	virtual bool				BecomeRagdoll(const CTakeDamageInfo &info, const Vector &forceVector);
-	virtual void				FixupBurningServerRagdoll(CBaseEntity *pRagdoll);
+	/*348*/virtual bool				BecomeRagdoll(const CTakeDamageInfo &info, const Vector &forceVector);
+	/*349*/virtual void				FixupBurningServerRagdoll(CBaseEntity *pRagdoll);
 
-	virtual bool				BecomeRagdollBoogie(CBaseEntity *pKiller, const Vector &forceVector, float duration, int flags);
+	/*350*/virtual bool				BecomeRagdollBoogie(CBaseEntity *pKiller, const Vector &forceVector, float duration, int flags);
 
 
-	virtual CBaseEntity*		CheckTraceHullAttack(float flDist, const Vector &mins, const Vector &maxs, int iDamage, int iDmgType, float forceScale = 1.0f, bool bDamageAnyNPC = false);
-	virtual CBaseEntity*		CheckTraceHullAttack(const Vector &vStart, const Vector &vEnd, const Vector &mins, const Vector &maxs, int iDamage, int iDmgType, float flForceScale = 1.0f, bool bDamageAnyNPC = false);
+	/*351*/virtual CBaseEntity*		CheckTraceHullAttack(float flDist, const Vector &mins, const Vector &maxs, int iDamage, int iDmgType, float forceScale = 1.0f, bool bDamageAnyNPC = false);
+	/*352*/virtual CBaseEntity*		CheckTraceHullAttack(const Vector &vStart, const Vector &vEnd, const Vector &mins, const Vector &maxs, int iDamage, int iDmgType, float flForceScale = 1.0f, bool bDamageAnyNPC = false);
 
-	virtual void				PushawayTouch(CBaseEntity *pOther) {}
-	virtual Disposition_t		IRelationType(CBaseEntity *pTarget);
-	virtual int					IRelationPriority(CBaseEntity *pTarget);
+	/*353*/virtual void				PushawayTouch(CBaseEntity *pOther) {}
+	/*354*/virtual Disposition_t		IRelationType(CBaseEntity *pTarget);
+	/*355*/virtual int					IRelationPriority(CBaseEntity *pTarget);
 	// Vehicle queries
-	virtual bool				IsInAVehicle(void) const { return false; }
-	virtual IServerVehicle*		GetVehicle(void) { return NULL; }
-	virtual CBaseEntity*		GetVehicleEntity(void) { return NULL; }
-	virtual bool				ExitVehicle(void) { return false; }
+	/*356*/virtual bool				IsInAVehicle(void) const { return false; }
+	/*357*/virtual IServerVehicle*		GetVehicle(void) { return NULL; }
+	/*358*/virtual CBaseEntity*		GetVehicleEntity(void) { return NULL; }
+	/*359*/virtual bool				ExitVehicle(void) { return false; }
 
 	// Weapons..
-	virtual void				RemoveAllWeapons();
-	virtual WeaponProficiency_t CalcWeaponProficiency(CBaseCombatWeapon *pWeapon);
-	virtual	Vector				GetAttackSpread(CBaseCombatWeapon *pWeapon, CBaseEntity *pTarget = NULL);
-	virtual	float				GetSpreadBias(CBaseCombatWeapon *pWeapon, CBaseEntity *pTarget);
-	virtual void				DoMuzzleFlash();
+	/*360*/virtual void				RemoveAllWeapons();
+	/*361*/virtual WeaponProficiency_t CalcWeaponProficiency(CBaseCombatWeapon *pWeapon);
+	/*362*/virtual	Vector				GetAttackSpread(CBaseCombatWeapon *pWeapon, CBaseEntity *pTarget = NULL);
+	/*363*/virtual	float				GetSpreadBias(CBaseCombatWeapon *pWeapon, CBaseEntity *pTarget);
+	/*364*/virtual void				DoMuzzleFlash();
 
 
 	// Relationships
-	virtual void				AddEntityRelationship(CBaseEntity *pEntity, Disposition_t nDisposition, int nPriority);
-	virtual bool				RemoveEntityRelationship(CBaseEntity *pEntity);
-	virtual void				AddClassRelationship(Class_T nClass, Disposition_t nDisposition, int nPriority);
+	/*365*/virtual void				AddEntityRelationship(CBaseEntity *pEntity, Disposition_t nDisposition, int nPriority);
+	/*366*/virtual bool				RemoveEntityRelationship(CBaseEntity *pEntity);
+	/*367*/virtual void				AddClassRelationship(Class_T nClass, Disposition_t nDisposition, int nPriority);
 
 	// This is a hack to blat out the current active weapon...
 	// Used by weapon_slam + game_ui
-	virtual void				OnChangeActiveWeapon(CBaseCombatWeapon *pOldWeapon, CBaseCombatWeapon *pNewWeapon) {}
+	/*368*/virtual void				OnChangeActiveWeapon(CBaseCombatWeapon *pOldWeapon, CBaseCombatWeapon *pNewWeapon) {}
 
 
-	virtual CNavArea*			GetLastKnownArea(void) const { return m_lastNavArea; }		// return the last nav area the player occupied - NULL if unknown
-	virtual bool				IsAreaTraversable(const CNavArea *area) const;							// return true if we can use the given area 
-	virtual void				ClearLastKnownArea(void);
-	virtual void				UpdateLastKnownArea(void);										// invoke this to update our last known nav area (since there is no think method chained to CBaseCombatCharacter)
-	virtual void				OnNavAreaChanged(CNavArea *enteredArea, CNavArea *leftArea) { }	// invoked (by UpdateLastKnownArea) when we enter a new nav area (or it is reset to NULL)
-	virtual void				OnNavAreaRemoved(CNavArea *removedArea);
+	/*369*/virtual CNavArea*			GetLastKnownArea(void) const { return m_lastNavArea; }		// return the last nav area the player occupied - NULL if unknown
+	/*370*/virtual bool				IsAreaTraversable(const CNavArea *area) const;							// return true if we can use the given area 
+	/*371*/virtual void				ClearLastKnownArea(void);
+	/*372*/virtual void				UpdateLastKnownArea(void);										// invoke this to update our last known nav area (since there is no think method chained to CBaseCombatCharacter)
+	/*373*/virtual void				OnNavAreaChanged(CNavArea *enteredArea, CNavArea *leftArea) { }	// invoked (by UpdateLastKnownArea) when we enter a new nav area (or it is reset to NULL)
+	/*374*/virtual void				OnNavAreaRemoved(CNavArea *removedArea);
 
 	// -----------------------
 	// Notification from INextBots.
 	// -----------------------
-	virtual void				OnPursuedBy(INextBot * RESTRICT pPursuer) {} // called every frame while pursued by a bot in DirectChase.
+	/*375*/virtual void				OnPursuedBy(INextBot * RESTRICT pPursuer) {} // called every frame while pursued by a bot in DirectChase.
 
 
 
 
-	virtual void	NetworkStateChanged_m_iAmmo(void);
-	virtual void	NetworkStateChanged_m_iAmmo(void*);
+	/*376*/virtual void	NetworkStateChanged_m_iAmmo(void);
+	/*377*/virtual void	NetworkStateChanged_m_iAmmo(void*);
 
 
 

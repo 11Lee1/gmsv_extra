@@ -296,236 +296,236 @@ public:
 	DECLARE_CLASS(CBasePlayer, CBaseCombatCharacter);
 
 public:
-	virtual void			CreateViewModel(int viewmodelindex = 0);
+	/*378*/virtual void			CreateViewModel(int viewmodelindex = 0);
 
 
 	// Networking is about to update this entity, let it override and specify it's own pvs
-	virtual void			SetupVisibility(CBaseEntity *pViewEntity, unsigned char *pvs, int pvssize);
+	/*379*/virtual void			SetupVisibility(CBaseEntity *pViewEntity, unsigned char *pvs, int pvssize);
 
 	// Returns true if this player wants pPlayer to be moved back in time when this player runs usercmds.
 	// Saves a lot of overhead on the server if we can cull out entities that don't need to lag compensate
 	// (like team members, entities out of our PVS, etc).
-	virtual bool			WantsLagCompensationOnEntity(const CBasePlayer	*pPlayer, const CUserCmd *pCmd, const CBitVec<MAX_EDICTS> *pEntityTransmitBits) const;
+	/*380*/virtual bool			WantsLagCompensationOnEntity(const CBasePlayer	*pPlayer, const CUserCmd *pCmd, const CBitVec<MAX_EDICTS> *pEntityTransmitBits) const;
 
-	virtual void			SharedSpawn(); // Shared between client and server.
-	virtual void			ForceRespawn(void);
+	/*381*/virtual void			SharedSpawn(); // Shared between client and server.
+	/*382*/virtual void			ForceRespawn(void);
 
-	virtual void			InitialSpawn(void);
-	virtual void			InitHUD(void) {}
-	virtual void			ShowViewPortPanel(const char * name, bool bShow = true, KeyValues *data = NULL);
+	/*383*/virtual void			InitialSpawn(void);
+	/*384*/virtual void			InitHUD(void) {}
+	/*385*/virtual void			ShowViewPortPanel(const char * name, bool bShow = true, KeyValues *data = NULL);
 
-	virtual void			PlayerDeathThink(void);
+	/*386*/virtual void			PlayerDeathThink(void);
 
-	virtual void			Jump(void);
-	virtual void			Duck(void);
-
-
-	virtual void			PreThink(void);
-	virtual void			PostThink(void);
-	virtual void			DamageEffect(float flDamage, int fDamageType);
-
-	virtual void			OnDamagedByExplosion(const CTakeDamageInfo &info);
-
-	virtual bool			ShouldFadeOnDeath(void) { return FALSE; }
-
-	virtual bool			IsFakeClient(void) const;
-
-	virtual const Vector	GetPlayerMins(void) const; // uses local player
-	virtual const Vector	GetPlayerMaxs(void) const; // uses local player
-
-	virtual float			CalcRoll(const QAngle& angles, const Vector& velocity, float rollangle, float rollspeed);
-
-	virtual void			PackDeadPlayerItems(void);
-	virtual void			RemoveAllItems(bool removeSuit);
+	/*387*/virtual void			Jump(void);
+	/*388*/virtual void			Duck(void);
 
 
-	virtual void			Weapon_SetLast(CBaseCombatWeapon *pWeapon);
-	virtual bool			Weapon_ShouldSetLast(CBaseCombatWeapon *pOldWeapon, CBaseCombatWeapon *pNewWeapon) { return true; }
-	virtual bool			Weapon_ShouldSelectItem(CBaseCombatWeapon *pWeapon);
+	/*389*/virtual void			PreThink(void);
+	/*390*/virtual void			PostThink(void);
+	/*391*/virtual void			DamageEffect(float flDamage, int fDamageType);
+
+	/*392*/virtual void			OnDamagedByExplosion(const CTakeDamageInfo &info);
+
+	/*393*/virtual bool			ShouldFadeOnDeath(void) { return FALSE; }
+
+	/*394*/virtual bool			IsFakeClient(void) const;
+
+	/*395*/virtual const Vector	GetPlayerMins(void) const; // uses local player
+	/*396*/virtual const Vector	GetPlayerMaxs(void) const; // uses local player
+
+	/*397*/virtual float			CalcRoll(const QAngle& angles, const Vector& velocity, float rollangle, float rollspeed);
+
+	/*398*/virtual void			PackDeadPlayerItems(void);
+	/*399*/virtual void			RemoveAllItems(bool removeSuit);
 
 
-	virtual void			OnMyWeaponFired(CBaseCombatWeapon *weapon);	// call this when this player fires a weapon to allow other systems to react
-	virtual float			GetTimeSinceWeaponFired(void) const;			// returns the time, in seconds, since this player fired a weapon
-	virtual bool			IsFiringWeapon(void) const;					// return true if this player is currently firing their weapon
+	/*400*/virtual void			Weapon_SetLast(CBaseCombatWeapon *pWeapon);
+	/*401*/virtual bool			Weapon_ShouldSetLast(CBaseCombatWeapon *pOldWeapon, CBaseCombatWeapon *pNewWeapon) { return true; }
+	/*402*/virtual bool			Weapon_ShouldSelectItem(CBaseCombatWeapon *pWeapon);
+
+
+	/*403*/virtual void			OnMyWeaponFired(CBaseCombatWeapon *weapon);	// call this when this player fires a weapon to allow other systems to react
+	/*404*/virtual float		GetTimeSinceWeaponFired(void) const;			// returns the time, in seconds, since this player fired a weapon
+	/*405*/virtual bool			IsFiringWeapon(void) const;					// return true if this player is currently firing their weapon
 
 	// JOHN:  sends custom messages if player HUD data has changed  (eg health, ammo)
-	virtual void			UpdateClientData(void);
+	/*406*/virtual void			UpdateClientData(void);
 
-	virtual void			ExitLadder() {}
-	virtual surfacedata_t*	GetLadderSurface(const Vector &origin);
+	/*407*/virtual void			ExitLadder() {}
+	/*408*/virtual surfacedata_t*	GetLadderSurface(const Vector &origin);
 
-	virtual void			SetFlashlightEnabled(bool bState) { };
-	virtual int				FlashlightIsOn(void) { return false; }
-	virtual void			FlashlightTurnOn(void) { };
-	virtual void			FlashlightTurnOff(void) { };
-	virtual bool			IsIlluminatedByFlashlight(CBaseEntity *pEntity, float *flReturnDot) { return false; }
+	/*409*/virtual void			SetFlashlightEnabled(bool bState) { };
+	/*410*/virtual int			FlashlightIsOn(void) { return false; }
+	/*411*/virtual void			FlashlightTurnOn(void) { };
+	/*412*/virtual void			FlashlightTurnOff(void) { };
+	/*413*/virtual bool			IsIlluminatedByFlashlight(CBaseEntity *pEntity, float *flReturnDot) { return false; }
 
-	virtual void			UpdateStepSound(surfacedata_t *psurface, const Vector &vecOrigin, const Vector &vecVelocity);
-	virtual void			PlayStepSound(Vector &vecOrigin, surfacedata_t *psurface, float fvol, bool force);
-	virtual const char*		GetOverrideStepSound(const char *pszBaseStepSoundName) { return pszBaseStepSoundName; }
-	virtual void			GetStepSoundVelocities(float *velwalk, float *velrun);
-	virtual void			SetStepSoundTime(stepsoundtimes_t iStepSoundTime, bool bWalking);
-	virtual void			DeathSound(const CTakeDamageInfo &info);
-	virtual const char*		GetSceneSoundToken(void) { return ""; }
+	/*414*/virtual void			UpdateStepSound(surfacedata_t *psurface, const Vector &vecOrigin, const Vector &vecVelocity);
+	/*415*/virtual void			PlayStepSound(Vector &vecOrigin, surfacedata_t *psurface, float fvol, bool force);
+	/*416*/virtual const char*	GetOverrideStepSound(const char *pszBaseStepSoundName) { return pszBaseStepSoundName; }
+	/*417*/virtual void			GetStepSoundVelocities(float *velwalk, float *velrun);
+	/*418*/virtual void			SetStepSoundTime(stepsoundtimes_t iStepSoundTime, bool bWalking);
+	/*419*/virtual void			DeathSound(const CTakeDamageInfo &info);
+	/*420*/virtual const char*	GetSceneSoundToken(void) { return ""; }
 
-	virtual void			OnEmitFootstepSound(const CSoundParameters& params, const Vector& vecOrigin, float fVolume) {}
+	/*421*/virtual void			OnEmitFootstepSound(const CSoundParameters& params, const Vector& vecOrigin, float fVolume) {}
 
-	virtual void			SetAnimation(PLAYER_ANIM playerAnim);
+	/*422*/virtual void			SetAnimation(PLAYER_ANIM playerAnim);
 
 	// custom player functions
-	virtual void			ImpulseCommands(void);
-	virtual void			CheatImpulseCommands(int iImpulse);
-	virtual bool			ClientCommand(const CCommand &args);
+	/*423*/virtual void			ImpulseCommands(void);
+	/*424*/virtual void			CheatImpulseCommands(int iImpulse);
+	/*425*/virtual bool			ClientCommand(const CCommand &args);
 
 	// Observer functions
-	virtual bool			StartObserverMode(int mode); // true, if successful
-	virtual void			StopObserverMode(void);	// stop spectator mode
-	virtual bool			ModeWantsSpectatorGUI(int iMode) { return true; }
-	virtual bool			SetObserverMode(int mode); // sets new observer mode, returns true if successful
-	virtual int				GetObserverMode(void); // returns observer mode or OBS_NONE
-	virtual bool			SetObserverTarget(CBaseEntity * target);
-	virtual void			ObserverUse(bool bIsPressed); // observer pressed use
-	virtual CBaseEntity*	GetObserverTarget(void); // returns players targer or NULL
-	virtual CBaseEntity*	FindNextObserverTarget(bool bReverse); // returns next/prev player to follow or NULL
-	virtual int				GetNextObserverSearchStartPoint(bool bReverse); // Where we should start looping the player list in a FindNextObserverTarget call
-	virtual bool			IsValidObserverTarget(CBaseEntity * target); // true, if player is allowed to see this target
-	virtual void			CheckObserverSettings(); // checks, if target still valid (didn't die etc)
-	virtual void			JumptoPosition(const Vector &origin, const QAngle &angles);
-	virtual void			ForceObserverMode(int mode); // sets a temporary mode, force because of invalid targets
-	virtual void			ResetObserverMode(); // resets all observer related settings
-	virtual void			ValidateCurrentObserverTarget(void); // Checks the current observer target, and moves on if it's not valid anymore
-	virtual void			AttemptToExitFreezeCam(void);
+	/*426*/virtual bool			StartObserverMode(int mode); // true, if successful
+	/*427*/virtual void			StopObserverMode(void);	// stop spectator mode
+	/*428*/virtual bool			ModeWantsSpectatorGUI(int iMode) { return true; }
+	/*429*/virtual bool			SetObserverMode(int mode); // sets new observer mode, returns true if successful
+	/*430*/virtual int			GetObserverMode(void); // returns observer mode or OBS_NONE
+	/*431*/virtual bool			SetObserverTarget(CBaseEntity * target);
+	/*432*/virtual void			ObserverUse(bool bIsPressed); // observer pressed use
+	/*433*/virtual CBaseEntity*	GetObserverTarget(void); // returns players targer or NULL
+	/*434*/virtual CBaseEntity*	FindNextObserverTarget(bool bReverse); // returns next/prev player to follow or NULL
+	/*435*/virtual int			GetNextObserverSearchStartPoint(bool bReverse); // Where we should start looping the player list in a FindNextObserverTarget call
+	/*436*/virtual bool			IsValidObserverTarget(CBaseEntity * target); // true, if player is allowed to see this target
+	/*437*/virtual void			CheckObserverSettings(); // checks, if target still valid (didn't die etc)
+	/*438*/virtual void			JumptoPosition(const Vector &origin, const QAngle &angles);
+	/*439*/virtual void			ForceObserverMode(int mode); // sets a temporary mode, force because of invalid targets
+	/*440*/virtual void			ResetObserverMode(); // resets all observer related settings
+	/*441*/virtual void			ValidateCurrentObserverTarget(void); // Checks the current observer target, and moves on if it's not valid anymore
+	/*442*/virtual void			AttemptToExitFreezeCam(void);
 
-	virtual bool			StartReplayMode(float fDelay, float fDuration, int iEntity);
-	virtual void			StopReplayMode();
-	virtual int				GetDelayTicks();
-	virtual int				GetReplayEntity();
+	/*443*/virtual bool			StartReplayMode(float fDelay, float fDuration, int iEntity);
+	/*444*/virtual void			StopReplayMode();
+	/*445*/virtual int			GetDelayTicks();
+	/*446*/virtual int			GetReplayEntity();
 
-	virtual void			CreateCorpse(void) { }
-	virtual CBaseEntity*	EntSelectSpawnPoint(void);
+	/*447*/virtual void			CreateCorpse(void) { }
+	/*448*/virtual CBaseEntity*	EntSelectSpawnPoint(void);
 
 	// Vehicles
-	virtual bool			GetInVehicle(IServerVehicle *pVehicle, int nRole);
-	virtual void			LeaveVehicle(const Vector &vecExitPoint = vec3_origin, const QAngle &vecExitAngles = vec3_angle);
+	/*449*/virtual bool			GetInVehicle(IServerVehicle *pVehicle, int nRole);
+	/*450*/virtual void			LeaveVehicle(const Vector &vecExitPoint = vec3_origin, const QAngle &vecExitAngles = vec3_angle);
 
 	// override these for 
-	virtual void			OnVehicleStart() {}
-	virtual void			OnVehicleEnd(Vector &playerDestPosition) {}
+	/*451*/virtual void			OnVehicleStart() {}
+	/*452*/virtual void			OnVehicleEnd(Vector &playerDestPosition) {}
 
 
-	virtual bool			BumpWeapon(CBaseCombatWeapon *pWeapon);
-	virtual void			SelectLastItem(void);
-	virtual void			SelectItem(const char *pstr, int iSubType = 0);
-	virtual void			ItemPostFrame(void);
-	virtual CBaseEntity*	GiveNamedItem(const char *szName, int iSubType = 0);
-	virtual void			CheckTrainUpdate(void);
+	/*453*/virtual bool			BumpWeapon(CBaseCombatWeapon *pWeapon);
+	/*454*/virtual void			SelectLastItem(void);
+	/*455*/virtual void			SelectItem(const char *pstr, int iSubType = 0);
+	/*456*/virtual void			ItemPostFrame(void);
+	/*457*/virtual CBaseEntity*	GiveNamedItem(const char *szName, int iSubType = 0);
+	/*458*/virtual void			CheckTrainUpdate(void);
 
-	virtual void			SetPlayerUnderwater(bool state);
+	/*459*/virtual void			SetPlayerUnderwater(bool state);
 
-	virtual bool			CanBreatheUnderwater() const { return false; }
-	virtual void			PlayerUse(void);
-	virtual void			PlayUseDenySound() {}
+	/*460*/virtual bool			CanBreatheUnderwater() const { return false; }
+	/*461*/virtual void			PlayerUse(void);
+	/*462*/virtual void			PlayUseDenySound() {}
 
-	virtual CBaseEntity*	FindUseEntity(void);
-	virtual bool			IsUseableEntity(CBaseEntity *pEntity, unsigned int requiredCaps);
+	/*463*/virtual CBaseEntity*	FindUseEntity(void);
+	/*464*/virtual bool			IsUseableEntity(CBaseEntity *pEntity, unsigned int requiredCaps);
 
 	// physics interactions
 	// mass/size limit set to zero for none
-	virtual void			PickupObject(CBaseEntity *pObject, bool bLimitMassAndSize = true) {}
-	virtual void			ForceDropOfCarriedPhysObjects(CBaseEntity *pOnlyIfHoldindThis = NULL) {}
-	virtual float			GetHeldObjectMass(IPhysicsObject *pHeldObject);
+	/*465*/virtual void			PickupObject(CBaseEntity *pObject, bool bLimitMassAndSize = true) {}
+	/*466*/virtual void			ForceDropOfCarriedPhysObjects(CBaseEntity *pOnlyIfHoldindThis = NULL) {}
+	/*467*/virtual float			GetHeldObjectMass(IPhysicsObject *pHeldObject);
 
-	virtual void			UpdateGeigerCounter(void);
+	/*468*/virtual void			UpdateGeigerCounter(void);
 
-	virtual Vector			GetAutoaimVector(float flScale);
-	virtual Vector			GetAutoaimVector(float flScale, float flMaxDist);
-	virtual void			GetAutoaimVector(autoaim_params_t &params);
+	/*469*/virtual Vector			GetAutoaimVector(float flScale);
+	/*471*/virtual Vector			GetAutoaimVector(float flScale, float flMaxDist);
+	/*471*/virtual void			GetAutoaimVector(autoaim_params_t &params);
 
-	virtual bool			ShouldAutoaim(void);
+	/*472*/virtual bool			ShouldAutoaim(void);
 
-	virtual void			ForceClientDllUpdate(void);  // Forces all client .dll specific data to be resent to client.
-	virtual void			ProcessUsercmds(CUserCmd *cmds, int numcmds, int totalcmds, int dropped_packets, bool paused);
+	/*473*/virtual void			ForceClientDllUpdate(void);  // Forces all client .dll specific data to be resent to client.
+	/*474*/virtual void			ProcessUsercmds(CUserCmd *cmds, int numcmds, int totalcmds, int dropped_packets, bool paused);
 
 	// Run a user command. The default implementation calls ::PlayerRunCommand. In TF, this controls a vehicle if
 	// the player is in one.
-	virtual void			PlayerRunCommand(CUserCmd *ucmd, IMoveHelper *moveHelper);
+	/*475*/virtual void			PlayerRunCommand(CUserCmd *ucmd, IMoveHelper *moveHelper);
 
-	virtual void			ChangeTeam(int iTeamNum, bool bAutoTeam, bool bSilent);
+	/*476*/virtual void			ChangeTeam(int iTeamNum, bool bAutoTeam, bool bSilent);
 
 	// say/sayteam allowed?
-	virtual bool			CanHearAndReadChatFrom(CBasePlayer *pPlayer) { return true; }
-	virtual bool			CanSpeak(void) { return true; }
+	/*477*/virtual bool			CanHearAndReadChatFrom(CBasePlayer *pPlayer) { return true; }
+	/*478*/virtual bool			CanSpeak(void) { return true; }
 
-	virtual void 			ModifyOrAppendPlayerCriteria(AI_CriteriaSet& set);
+	/*479*/virtual void 			ModifyOrAppendPlayerCriteria(AI_CriteriaSet& set);
 
-	virtual void			CheckChatText(char *p, int bufsize) {}
+	/*480*/virtual void			CheckChatText(char *p, int bufsize) {}
 
-	virtual void			CreateRagdollEntity(void) { return; }
+	/*481*/virtual void			CreateRagdollEntity(void) { return; }
 
-	virtual bool			ShouldAnnounceAchievement(void);
+	/*482*/virtual bool			ShouldAnnounceAchievement(void);
 
-	virtual bool			IsFollowingPhysics(void) { return false; }
+	/*483*/virtual bool			IsFollowingPhysics(void) { return false; }
 
-	virtual void			InitVCollision(const Vector &vecAbsOrigin, const Vector &vecAbsVelocity);
-	virtual void			UpdatePhysicsShadowToCurrentPosition();
+	/*484*/virtual void			InitVCollision(const Vector &vecAbsOrigin, const Vector &vecAbsVelocity);
+	/*485*/virtual void			UpdatePhysicsShadowToCurrentPosition();
 
 	// Hint system
-	virtual CHintSystem*	Hints(void) { return NULL; }
+	/*486*/virtual CHintSystem*	Hints(void) { return NULL; }
 
 	// Round gamerules
-	virtual bool			IsReadyToPlay(void) { return true; }
-	virtual bool			IsReadyToSpawn(void) { return true; }
-	virtual bool			ShouldGainInstantSpawn(void) { return false; }
-	virtual void			ResetPerRoundStats(void) { return; }
+	/*487*/virtual bool			IsReadyToPlay(void) { return true; }
+	/*488*/virtual bool			IsReadyToSpawn(void) { return true; }
+	/*489*/virtual bool			ShouldGainInstantSpawn(void) { return false; }
+	/*490*/virtual void			ResetPerRoundStats(void) { return; }
 
 
-	virtual void			ResetScores(void);
+	/*491*/virtual void			ResetScores(void);
 
-	virtual void			EquipSuit(bool bPlayEffects = true);
-	virtual void			RemoveSuit(void);
+	/*492*/virtual void			EquipSuit(bool bPlayEffects = true);
+	/*493*/virtual void			RemoveSuit(void);
 
-	virtual float			GetPlayerMaxSpeed();
+	/*494*/virtual float			GetPlayerMaxSpeed();
 
 	// Suicide...
-	virtual void			CommitSuicide(bool bExplode = false, bool bForce = false);
-	virtual void			CommitSuicide(const Vector &vecForce, bool bExplode = false, bool bForce = false);
+	/*495*/virtual void			CommitSuicide(bool bExplode = false, bool bForce = false);
+	/*496*/virtual void			CommitSuicide(const Vector &vecForce, bool bExplode = false, bool bForce = false);
 
-	virtual bool			IsBot() const;		// IMPORTANT: This returns true for ANY type of bot. If your game uses different, incompatible types of bots check your specific bot type before casting
-	virtual bool			IsBotOfType(int botType) const;	// return true if this player is a bot of the specific type (zero is invalid)
-	virtual int				GetBotType(void) const;			// return a unique int representing the type of bot instance this is
+	/*497*/virtual bool			IsBot() const;		// IMPORTANT: This returns true for ANY type of bot. If your game uses different, incompatible types of bots check your specific bot type before casting
+	/*498*/virtual bool			IsBotOfType(int botType) const;	// return true if this player is a bot of the specific type (zero is invalid)
+	/*499*/virtual int				GetBotType(void) const;			// return a unique int representing the type of bot instance this is
 
-	virtual CAI_Expresser *GetExpresser() { return NULL; }; // dont use will break.
+	/*500*/virtual CAI_Expresser *GetExpresser() { return NULL; }; // dont use will break.
 
 
-	virtual void			UpdateButtonState(int nUserCmdButtonMask);
+	/*501*/virtual void			UpdateButtonState(int nUserCmdButtonMask);
 
-	virtual int				SpawnArmorValue(void) const { return 0; }
+	/*502*/virtual int				SpawnArmorValue(void) const { return 0; }
 
-	virtual void			NetworkStateChanged_m_ArmorValue(void);
-	virtual void			NetworkStateChanged_m_ArmorValue(void*);
+	/*503*/virtual void			NetworkStateChanged_m_ArmorValue(void);
+	/*504*/virtual void			NetworkStateChanged_m_ArmorValue(void*);
 
 	// NVNT returns true if user has a haptic device
-	virtual bool			HasHaptics() { return m_bhasHaptics; }
+	/*505*/virtual bool			HasHaptics() { return m_bhasHaptics; }
 	// NVNT sets weather a user should receive haptic device messages.
-	virtual void			SetHaptics(bool has) { m_bhasHaptics = has; }
-	virtual unsigned int	PlayerSolidMask(bool brushOnly = false) const;	// returns the solid mask for the given player, so bots can have a more-restrictive set
+	/*506*/virtual void			SetHaptics(bool has) { m_bhasHaptics = has; }
+	/*507*/virtual unsigned int	PlayerSolidMask(bool brushOnly = false) const;	// returns the solid mask for the given player, so bots can have a more-restrictive set
 
 
-	virtual void			OnPlayerSay(char const*msg);
-	virtual void			RestrictPlayerPitch();
-	virtual float			GetSprintSpeed();
-	virtual float			GetWalkSpeed();
-	virtual float			GetCrouchedWalkSpeed();
-	virtual float			GetDuckSpeed();
-	virtual float			GetUnDuckSpeed();
-	virtual void			SetSprintSpeed(float speed);
-	virtual void			SetWalkSpeed(float speed);
-	virtual void			SetCrouchedWalkSpeed(float speed);
-	virtual void			SetDuckSpeed(float speed);
-	virtual void			SetUnDuckSpeed(float speed);
-	virtual bool			CanAttack(void);
-	virtual void			MouseWheel();
-	virtual void			SetMouseWheel(int);
+	/*508*/virtual void			OnPlayerSay(char const*msg);
+	/*509*/virtual void			RestrictPlayerPitch();
+	/*510*/virtual float			GetSprintSpeed();
+	/*511*/virtual float			GetWalkSpeed();
+	/*512*/virtual float			GetCrouchedWalkSpeed();
+	/*513*/virtual float			GetDuckSpeed();
+	/*514*/virtual float			GetUnDuckSpeed();
+	/*515*/virtual void			SetSprintSpeed(float speed);
+	/*516*/virtual void			SetWalkSpeed(float speed);
+	/*517*/virtual void			SetCrouchedWalkSpeed(float speed);
+	/*518*/virtual void			SetDuckSpeed(float speed);
+	/*519*/virtual void			SetUnDuckSpeed(float speed);
+	/*520*/virtual bool			CanAttack(void);
+	/*521*/virtual void			MouseWheel();
+	/*522*/virtual void			SetMouseWheel(int);
 public:
 	BYTE	pad_unk05[0x4];
 	// How much of a movement time buffer can we process from this user?

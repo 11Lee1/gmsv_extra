@@ -96,7 +96,7 @@ void Interfaces::FindOtherInterfaces() {
 	}
 
 	void* RandomSeed = GetProcAddress(GetModuleHandleA("vstdlib.dll"), "RandomSeed");
-	PRINT_PTRCHECK("RandomSeed procaddress", RandomSeed);
+	PRINT_PTRCHECK("RandomSeed Function", RandomSeed);
 	if (RandomSeed)
 		random = *(CUniformRandomStream**)((uintptr_t)RandomSeed + 0x5);
 

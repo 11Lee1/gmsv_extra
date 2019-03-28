@@ -21,7 +21,7 @@ public:
 	CBaseHL2MPCombatWeapon(const CBaseHL2MPCombatWeapon &);
 
 public:
-	/*435*/virtual bool	WeaponShouldBeLowered();
+	/*435*/virtual bool		WeaponShouldBeLowered();
 
 public:
 	bool			m_bLowered;			// Whether the viewmodel is raised or lowered

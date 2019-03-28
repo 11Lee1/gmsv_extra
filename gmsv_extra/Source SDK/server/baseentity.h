@@ -178,8 +178,6 @@ public:
 	DECLARE_CLASS_NOBASE(CBaseEntity);
 	virtual ~CBaseEntity();
 	
-	// prediction system
-	DECLARE_PREDICTABLE();
 	// network data
 	DECLARE_SERVERCLASS();
 	// data description
@@ -420,7 +418,7 @@ public:
 	/*198*/virtual bool			IsWeapon(void);
 	/*199*/virtual bool			IsVehicle(void);
 	/*200*/virtual bool			IsJeep(void);
-	/*201*/virtual bool			UsesLua(void);
+	/*201*/virtual int			UsesLua(void);
 	/*202*/virtual int			GetLuaEntityType(void);
 	/*203*/virtual	void		PushEntity(void);
 	/*204*/virtual void			Push_This_Entity(void);
@@ -441,7 +439,7 @@ public:
 	/*219*/virtual void			UpdateBeforeRemove(int);
 	/*220*/virtual char const*	GetLuaScriptName(void);
 	/*221*/virtual bool			SpawnedViaLua(void);
-	/*222*/virtual void			OverridePosition(void);
+	/*222*/virtual void			OverridePosition(void); 
 	/*223*/virtual void			InitializeScriptedEntity(char const*);
 	/*224*/virtual void			ClearLuaData(void);
 	/*225*/virtual void*		GetLuaTable(void);	/////////////////////// FIX ME
@@ -468,7 +466,7 @@ public:
 		return nullptr;
 	}
 	Vector GetAbsOrigin() { return m_vecAbsOrigin; }
-	inline bool HasSpawnFlags(int nFlags) const
+	bool HasSpawnFlags(int nFlags) const
 	{
 		return (m_spawnflags & nFlags) != 0;
 	}

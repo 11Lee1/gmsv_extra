@@ -23,8 +23,6 @@ public:
 	CBaseAnimating();
 	~CBaseAnimating();
 
-	DECLARE_PREDICTABLE();
-
 	enum
 	{
 		NUM_POSEPAREMETERS = 24,

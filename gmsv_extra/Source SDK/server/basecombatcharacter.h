@@ -119,7 +119,6 @@ public:
 
 	DECLARE_SERVERCLASS();
 	DECLARE_DATADESC();
-	DECLARE_PREDICTABLE();
 
 public:
 	virtual const impactdamagetable_t&	GetPhysicsImpactDamageTable(void);

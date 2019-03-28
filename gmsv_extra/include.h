@@ -48,14 +48,8 @@
 #include "GLUA/LuaNetworkedVars.h"
 #include "GLUA/CScriptedEntity.h"
 
-#include "Source SDK/server/baseentity.h"
-#include "Source SDK/server/baseanimating.h"
-#include "Source SDK/server/BaseAnimatingOverlay.h"
-#include "Source SDK/server/baseflex.h"
-#include "Source SDK/server/basecombatcharacter.h"
-#include "Source SDK/server/player.h"
-#include "Source SDK/server/basemultiplayerplayer.h"
-#include "Source SDK/server/hl2/hl2_player.h"
-#include "Source SDK/server/hl2mp/hl2mp_player.h"
+
 #include "Source SDK/server/gmod/gmodplayer.h"
+
+
 #endif

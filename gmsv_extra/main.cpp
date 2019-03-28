@@ -24,18 +24,16 @@ void Loop()
 		{
 			edict_t* entedict = g_pInterfaces->EngineServer()->PEntityOfEntIndex(i);
 			if (entedict) {
-				CGMOD_Player* ent = (CGMOD_Player*)entedict->GetUnknown();
-				if (ent && (ent->UsesLua() && !!ent->m_iClassname || ent->IsPlayer()) ) {
-					//printf("ent #%i:  %s      = 0x%X\n",i, ent->m_iClassname, ent);
-					if (ent->IsPlayer()) {
-
-						ent->m_ArmorValue = 1337;
-					
+				CBaseEntity* ent = (CBaseEntity*)entedict->GetUnknown();
+				if (ent) {
+					if (ent->IsWeapon()) {
+						//printf("ent #%i:  %s      = 0x%X\n",i, ent->m_iClassname, ent);
+						printf("Weapon %s: 0x%X\n", ent->m_iClassname, ent);
 					}
 				}
 			}
 		}
-		Sleep(1000); // who cares we just want to loop shit for it's values etc
+		Sleep(  (int)(1000 * g_pInterfaces->Globals()->interval_per_tick) ); // who cares we just want to loop shit for it's values etc
 	} while (1);
 }
 

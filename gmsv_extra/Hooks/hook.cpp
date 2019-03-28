@@ -13,6 +13,8 @@ Hooks::Hooks() {
 }
 Hooks::~Hooks() {
 	UnhookFunctions();
+
+	// incase you forget to unhook something your game wont break.
 	if (h_IServerGameClients)
 		h_IServerGameClients->~VMTHook();
 

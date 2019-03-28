@@ -6,35 +6,37 @@ VMTHook::VMTHook(void* instance) {
 		return;
 
 	m_pVMT = *(void**)instance;
+	VMTInfo = new CUtlVector<vmthooks_t>;
 }
 
 VMTHook::~VMTHook() {
-	for (int i = 0; i < VMTInfo.size(); i++) {
-		UnhookFunction(VMTInfo[i].index);
+	for (int i = 0; i < VMTInfo->Size(); i++) {
+		UnhookFunction(VMTInfo->Element(i).index);
 	}
+	delete VMTInfo;
 }
 bool VMTHook::FindHookWithIndex(int index, vmthooks_t& hook) {
-	if (!VMTInfo.size())
+	if (!VMTInfo->Size())
 		return false;
 
-	for (int i = 0; i < VMTInfo.size(); i++) {
-		if (VMTInfo[i].index != index)
+	for (int i = 0; i < VMTInfo->Size(); i++) {
+		if (VMTInfo->Element(i).index != index)
 			continue;
 
-		hook = VMTInfo[i];
+		hook = VMTInfo->Element(i);
 		return true;
 	}
 	return false;
 }
 void VMTHook::DeleteObjectWithIndex(int index) {
-	if (!VMTInfo.size())
+	if (!VMTInfo->Size())
 		return;
 
-	for (int i = 0; i < VMTInfo.size(); i++) {
-		if (VMTInfo[i].index != index)
+	for (int i = 0; i < VMTInfo->Size(); i++) {
+		if (VMTInfo->Element(i).index != index)
 			continue;
 
-		VMTInfo.erase(VMTInfo.begin() + i);
+		VMTInfo->Remove(i);
 		return;
 	}
 }
@@ -44,7 +46,7 @@ void* VMTHook::HookFunction(int index, void* pfnHook) {
 		return nullptr;
 
 	unsigned int OriginalFunctionPtr = ((unsigned int*)m_pVMT)[index];
-	VMTInfo.emplace_back(vmthooks_t{index,OriginalFunctionPtr });
+	VMTInfo->AddToTail(vmthooks_t{ index,OriginalFunctionPtr });
 
 	void* writelocation = (void*)((unsigned int)m_pVMT + (0x4 * index));
 	VirtualProtect(writelocation, 0x4, PAGE_EXECUTE_READWRITE, &OldProtect);
@@ -57,7 +59,7 @@ void* VMTHook::HookFunction(int index, void* pfnHook) {
 void* VMTHook::UnhookFunction(int index) {
 	DWORD OldProtect, OldProtect2;
 	vmthooks_t hook;
-	if (!VMTInfo.size() || !FindHookWithIndex(index,hook))
+	if (!VMTInfo->Size() || !FindHookWithIndex(index,hook))
 		return nullptr;
 
 

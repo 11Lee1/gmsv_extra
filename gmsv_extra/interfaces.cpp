@@ -2,22 +2,23 @@
 #include <regex>
 #include "util/util.h"
 #include "Source SDK/server/iplayerinfo.h"
+#include "Source SDK/tier1/color.h"
+#define PRINT_PTRCHECK(name,p)																				\
+	if(!p)																									\
+		ConColorMsg(1,Color(255,0,0),"failed getting %s: returned nullptr\n",name);			\
+	else																									\
+		ConColorMsg(1,Color(0,255,0),"found %s: 0x%X\n", name, p);							\
 
-#define PRINT_PTRCHECK(name,p)											\
-	if(!p)																\
-		printf("failed getting %s: returned nullptr\n",name);			\
-	else																\
-		printf("found %s: 0x%X\n", name, p);							\
 
 
-
-void PrintInterfaceNames(char const* moduel, InterfaceReg* reg) {
+void Interfaces::PrintInterfaceNames(char const* Module, InterfaceReg* reg) {
 	for (reg; reg; reg = reg->m_pNext) {
-		printf("%s ---> %s\n", moduel, reg->m_pName);
+		ConColorMsg(1,Color(255,0,255),"%s ---> %s\n", Module, reg->m_pName);
 	}
 }
 Interfaces::Interfaces() {
-	printf("Setting up interfaces \n");
+	*(void**)&ConColorMsg = GetProcAddress(GetModuleHandleA("tier0.dll"), "ConColorMsg");
+	ConColorMsg(1, Color(0, 255, 255), "Setting up interfaces \n");
 	_SetupInterfaces();
 }
 Interfaces::~Interfaces() {
@@ -32,11 +33,12 @@ void Interfaces::_SetupInterfaces() {
 void Interfaces::GetInterfaceRegistries() {
 	m_pServerDLLInterfaceReg = GetInterfaceReg("server.dll");
 	PRINT_PTRCHECK("server.dll Interface registry", m_pServerDLLInterfaceReg);
-	//PrintInterfaceNames("server.dll", m_pServerDLLInterfaceReg);
 
 	m_pEngineDLLInterfaceReg = GetInterfaceReg("engine.dll");
 	PRINT_PTRCHECK("engine.dll Interface registry", m_pServerDLLInterfaceReg);
-	//PrintInterfaceNames("engine.dll", m_pEngineDLLInterfaceReg);
+
+	m_pvstdlibDLLInterfaceReg = GetInterfaceReg("vstdlib.dll");
+	PRINT_PTRCHECK("vstdlib.dll Interface registry", m_pvstdlibDLLInterfaceReg);
 }
 void Interfaces::GetInterfaces() {
 	m_pServerEnts = (IServerGameEnts*)GetInterface("server.dll", "ServerGameEnts001");
@@ -69,6 +71,10 @@ void Interfaces::GetInterfaces() {
 	playerinfomgr = (IPlayerInfoManager*)GetInterface("server.dll", "PlayerInfoManager002");
 	PRINT_PTRCHECK("PlayerInfoManager002", playerinfomgr);
 
+	cvar = (ICvar*)GetInterface("vstdlib.dll", "VEngineCvar004");
+	PRINT_PTRCHECK("VEngineCvar004", cvar);
+
+
 	if (m_pLuaShared)
 		g_Lua = (GarrysMod::Lua::ILuaBase*)LuaShared()->GetLuaInterface(1); // server
 
@@ -88,7 +94,6 @@ void Interfaces::FindOtherInterfaces() {
 		g_pLuaNetworkedVars = *(CLuaNetworkedVars**)(GetNetworkedIntFn + 0x72);
 		PRINT_PTRCHECK("CLuaNetworkedVars from GetNetworkedInt function", g_pLuaNetworkedVars);
 	}
-	
 
 	void* RandomSeed = GetProcAddress(GetModuleHandleA("vstdlib.dll"), "RandomSeed");
 	PRINT_PTRCHECK("RandomSeed procaddress", RandomSeed);

@@ -21,6 +21,7 @@ class CUniformRandomStream;
 class IStaticPropMgrServer;
 class IEngineTrace;
 class IPlayerInfoManager;
+class ICvar;
 namespace GarrysMod
 {
 	namespace Lua
@@ -28,6 +29,7 @@ namespace GarrysMod
 		class ILuaBase;
 	};
 };
+class Color;
 class Interfaces
 {
 public:
@@ -42,7 +44,7 @@ private:
 	void*	GetInterface(char const* Module, char const* InterfaceName);
 	void*	GetInterface(InterfaceReg* Reg, char const* InterfaceName); // if you dont know/care about the version.
 	InterfaceReg*	GetInterfaceReg(char const* Module);
-
+	void	PrintInterfaceNames(char const* Module, InterfaceReg* reg);
 
 public:
 	IMemAlloc* MemAlloc() { return m_pMemAlloc; }
@@ -60,10 +62,13 @@ public:
 	CUniformRandomStream*	Random() { return *(CUniformRandomStream**)random; }
 	IPlayerInfoManager*	PlayerInfoMgr() { return playerinfomgr; }
 	CGlobalVars*  Globals();
+	ICvar* CVar() { return cvar; }
+
 private:
 	// Interface registries 
 	InterfaceReg* m_pServerDLLInterfaceReg;
 	InterfaceReg* m_pEngineDLLInterfaceReg;
+	InterfaceReg* m_pvstdlibDLLInterfaceReg;
 
 	// Interfaces
 	IMemAlloc* m_pMemAlloc;
@@ -78,6 +83,7 @@ private:
 	IEngineTrace* enginetrace;
 	CUniformRandomStream* random;
 	IPlayerInfoManager*	playerinfomgr;
+	ICvar* cvar;
 
 	// globals
 	CGlobalVars* gpGlobals;
@@ -87,6 +93,8 @@ private:
 public:
 	// GMod & GMod Lua shit
 	GarrysMod::Lua::ILuaBase* g_Lua;
+
+	void(*ConColorMsg)(int, const Color&, const tchar*, ...);
 };
 extern Interfaces* g_pInterfaces;
 #endif

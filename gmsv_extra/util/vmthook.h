@@ -1,6 +1,7 @@
 #ifndef VMTHOOK_H
 #define VMTHOOK_H
 #include "../include/baseinclude.h"
+#include "../Source SDK/tier1/utlvector.h"
 class VMTHook
 {
 public:
@@ -19,6 +20,6 @@ private:
 	void DeleteObjectWithIndex(int index);
 private:
 	void* m_pVMT = nullptr;
-	std::vector<vmthooks_t> VMTInfo;
+	CUtlVector<vmthooks_t>*	VMTInfo = nullptr;	
 };
 #endif

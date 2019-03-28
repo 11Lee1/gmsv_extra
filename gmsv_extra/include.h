@@ -51,5 +51,7 @@
 
 #include "Source SDK/server/gmod/gmodplayer.h"
 
-
+#include "Source SDK/basecombatweapon_shared.h"
+#include "Source SDK/server/gmod/weaponswep.h"
+#include "Source SDK/server/gmod/sentanim.h"
 #endif

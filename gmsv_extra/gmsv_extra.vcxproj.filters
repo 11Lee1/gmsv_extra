@@ -109,6 +109,9 @@
     <Filter Include="Header Files\Source SDK\server\gmod">
       <UniqueIdentifier>{8d10f6d1-8145-4bd0-bf46-b9485dd0ba15}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Source SDK\econ">
+      <UniqueIdentifier>{292e7247-0972-4c1a-848f-4cbff1d21eae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -720,6 +723,48 @@
       <Filter>Header Files\Source SDK</Filter>
     </ClInclude>
     <ClInclude Include="Source SDK\server\gmod\gmodplayer.h">
+      <Filter>Header Files\Source SDK\server\gmod</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\basecombatweapon_shared.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\vphysics_interface.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\predictable_entity.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\predictioncopy.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\shared_classnames.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\weapon_parse.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\baseviewmodel_shared.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\baseplayer_shared.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\econ\ihasowner.h">
+      <Filter>Header Files\Source SDK\econ</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\hl2mp\hl2mp_weapon_parse.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\hl2mp\weapon_hl2mpbase.h">
+      <Filter>Header Files\Source SDK\hl2mp</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\hl2mp\weapon_hl2mpbasehlmpcombatweapon.h">
+      <Filter>Header Files\Source SDK\hl2mp</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\gmod\weaponswep.h">
+      <Filter>Header Files\Source SDK\server\gmod</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\gmod\sentanim.h">
       <Filter>Header Files\Source SDK\server\gmod</Filter>
     </ClInclude>
   </ItemGroup>

@@ -160,8 +160,11 @@
     <ClInclude Include="LUA\LuaUserData.h" />
     <ClInclude Include="Source SDK\ai_activity.h" />
     <ClInclude Include="Source SDK\appframework\IAppSystem.h" />
+    <ClInclude Include="Source SDK\basecombatweapon_shared.h" />
     <ClInclude Include="Source SDK\baseentity_shared.h" />
     <ClInclude Include="Source SDK\basehandle.h" />
+    <ClInclude Include="Source SDK\baseplayer_shared.h" />
+    <ClInclude Include="Source SDK\baseviewmodel_shared.h" />
     <ClInclude Include="Source SDK\bitvec.h" />
     <ClInclude Include="Source SDK\bspfile.h" />
     <ClInclude Include="Source SDK\bspflags.h" />
@@ -172,6 +175,7 @@
     <ClInclude Include="Source SDK\datamap.h" />
     <ClInclude Include="Source SDK\dt_common.h" />
     <ClInclude Include="Source SDK\dt_send.h" />
+    <ClInclude Include="Source SDK\econ\ihasowner.h" />
     <ClInclude Include="Source SDK\edict.h" />
     <ClInclude Include="Source SDK\ehandle.h" />
     <ClInclude Include="Source SDK\eiface.h" />
@@ -192,6 +196,8 @@
     <ClInclude Include="Source SDK\hintsystem.h" />
     <ClInclude Include="Source SDK\hl2mp\hl2mp_gamerules.h" />
     <ClInclude Include="Source SDK\hl2mp\hl2mp_player_shared.h" />
+    <ClInclude Include="Source SDK\hl2mp\hl2mp_weapon_parse.h" />
+    <ClInclude Include="Source SDK\hl2mp\weapon_hl2mpbasehlmpcombatweapon.h" />
     <ClInclude Include="Source SDK\hl2\hl_movedata.h" />
     <ClInclude Include="Source SDK\icvar.h" />
     <ClInclude Include="Source SDK\igamemovement.h" />
@@ -229,6 +235,8 @@
     <ClInclude Include="Source SDK\playernet_vars.h" />
     <ClInclude Include="Source SDK\PlayerState.h" />
     <ClInclude Include="Source SDK\predictableid.h" />
+    <ClInclude Include="Source SDK\predictable_entity.h" />
+    <ClInclude Include="Source SDK\predictioncopy.h" />
     <ClInclude Include="Source SDK\recipientfilter.h" />
     <ClInclude Include="Source SDK\sceneentity_shared.h" />
     <ClInclude Include="Source SDK\serverclass.h" />
@@ -248,6 +256,8 @@
     <ClInclude Include="Source SDK\server\damagemodifier.h" />
     <ClInclude Include="Source SDK\server\fogcontroller.h" />
     <ClInclude Include="Source SDK\server\gmod\gmodplayer.h" />
+    <ClInclude Include="Source SDK\server\gmod\sentanim.h" />
+    <ClInclude Include="Source SDK\server\gmod\weaponswep.h" />
     <ClInclude Include="Source SDK\server\hl2mp\hl2mp_player.h" />
     <ClInclude Include="Source SDK\server\hl2\hl2_player.h" />
     <ClInclude Include="Source SDK\server\hl2\hl2_playerlocaldata.h" />
@@ -260,6 +270,7 @@
     <ClInclude Include="Source SDK\server\variant_t.h" />
     <ClInclude Include="Source SDK\server\world.h" />
     <ClInclude Include="Source SDK\shareddefs.h" />
+    <ClInclude Include="Source SDK\shared_classnames.h" />
     <ClInclude Include="Source SDK\simtimer.h" />
     <ClInclude Include="Source SDK\SoundEmitterSystem\isoundemittersystembase.h" />
     <ClInclude Include="Source SDK\soundenvelope.h" />
@@ -315,7 +326,10 @@
     <ClInclude Include="Source SDK\usercmd.h" />
     <ClInclude Include="Source SDK\util_shared.h" />
     <ClInclude Include="Source SDK\vcollide.h" />
+    <ClInclude Include="Source SDK\vphysics_interface.h" />
     <ClInclude Include="Source SDK\vstdlib\random.h" />
+    <ClInclude Include="Source SDK\hl2mp\weapon_hl2mpbase.h" />
+    <ClInclude Include="Source SDK\weapon_parse.h" />
     <ClInclude Include="Source SDK\weapon_proficiency.h" />
     <ClInclude Include="Source SDK\worldsize.h" />
     <ClInclude Include="Source SDK\zip_uncompressed.h" />

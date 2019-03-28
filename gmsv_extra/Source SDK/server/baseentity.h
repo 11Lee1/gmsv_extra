@@ -466,10 +466,33 @@ public:
 		return nullptr;
 	}
 	Vector GetAbsOrigin() { return m_vecAbsOrigin; }
-	bool HasSpawnFlags(int nFlags) const
+	inline bool HasSpawnFlags(int nFlags) const
 	{
 		return (m_spawnflags & nFlags) != 0;
 	}
+
+
+#ifdef _WIN32 // feels ghetto holy shit lol.
+	bool IsSWEP() {
+		if (!this || !this->UsesLua() || !this->IsWeapon())
+			return false;
+
+		if (this->GetServerClass()->m_ClassID != 234)
+			return false;
+
+		return true;
+	}
+	
+	bool IsSENT_anim() {  // ENT.Type = "anim" btw
+		if (!this || !this->UsesLua())
+			return false;
+
+		if (this->GetServerClass()->m_ClassID != 131)
+			return false;
+
+		return true;
+	}
+#endif
 public:
 	BYTE	pad_unk00[0x8];
 

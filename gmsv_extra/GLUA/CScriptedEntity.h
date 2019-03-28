@@ -3,7 +3,7 @@
 
 #include "IScriptedEntity.h"
 class CBaseEntity;
-class CScriptedEntity : public IScriptedEntity		// know this works for weapons.  I'll test other entities.
+class CScriptedEntity : public IScriptedEntity
 {
 public:
 	virtual void NetworkStateChanged() { }
@@ -11,6 +11,8 @@ public:
 	char const* GetScriptName() { return m_ScriptName; }
 	char const* GetModuleName() { return m_ModuleName; }
 	char const* GetSelfName() { return m_SelfName; }
+private:
+	// dont use.
 	void SetScriptName(char const* Name) {
 		V_strncpy(m_ScriptName, Name, 0x40);
 		V_strlower(m_ScriptName);
@@ -25,30 +27,6 @@ public:
 	/*0x50*/char const*		m_pScriptName;
 	/*0x54*/char			m_ModuleName[0x40/*64*/];
 	/*0x94*/char			m_SelfName[0x40/*64*/];
-
-	/*
-	CWeaponSwep stuff.
-	char			m_cWorldModel[0x50];
-	char			m_cViewModel[0x50];
-	char			m_cPrintName[0x50];
-	char			m_cIDK[0x50]; // returns ar2 on weapons.
-	char			m_cIDK2[0x50]; // returns ar2 on weapons.
-	char const*		m_cpClassName2; // returns pointer to m_cClassName
-	int				m_iIDK0;
-	int				m_iIDK1;
-	int				m_iIDK2;
-	int				m_iIDK3;
-	int				m_iIDK4;
-	int				m_iIDK5;
-	int				m_iIDK6;
-	int				m_iIDK7;
-	int				m_iIDK8;
-	int				m_iIDK9;
-	int				m_iIDK10;
-	int				m_iIDK11;
-	int				m_iIDK12;
-	CBaseEntity*	m_pOwnerEntity;
-	*/
 };
 
 #endif

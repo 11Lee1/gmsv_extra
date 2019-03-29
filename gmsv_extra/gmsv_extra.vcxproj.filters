@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\include">
-      <UniqueIdentifier>{e7b9e147-5bce-4370-8cc9-ea9d028e063b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\util">
       <UniqueIdentifier>{4893dc1f-1fab-4b9d-ab52-c7ed3db5fced}</UniqueIdentifier>
     </Filter>
@@ -112,6 +109,9 @@
     <Filter Include="Header Files\Source SDK\econ">
       <UniqueIdentifier>{292e7247-0972-4c1a-848f-4cbff1d21eae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Source SDK\toolframework">
+      <UniqueIdentifier>{c4aaae32-c55b-4f6d-a25a-d2892b1e998b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -180,14 +180,17 @@
     <ClCompile Include="Source SDK\interval.cpp">
       <Filter>Source Files\Source SDK</Filter>
     </ClCompile>
+    <ClCompile Include="Source SDK\tier1\utlbuffer.cpp">
+      <Filter>Source Files\Source SDK\tier1</Filter>
+    </ClCompile>
+    <ClCompile Include="Source SDK\tier1\generichash.cpp">
+      <Filter>Source Files\Source SDK\tier1</Filter>
+    </ClCompile>
+    <ClCompile Include="Source SDK\tier1\tier1.cpp">
+      <Filter>Source Files\Source SDK\tier1</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\baseinclude.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
-    <ClInclude Include="include.h">
-      <Filter>Header Files\include</Filter>
-    </ClInclude>
     <ClInclude Include="util\util.h">
       <Filter>Header Files\util</Filter>
     </ClInclude>
@@ -766,6 +769,60 @@
     </ClInclude>
     <ClInclude Include="Source SDK\server\gmod\sentanim.h">
       <Filter>Header Files\Source SDK\server\gmod</Filter>
+    </ClInclude>
+    <ClInclude Include="include\baseinclude.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\toolframework\itoolentity.h">
+      <Filter>Header Files\Source SDK\toolframework</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\engine\ishadowmgr.h">
+      <Filter>Header Files\Source SDK\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\iclientrenderable.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\filesystem.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier0\mem.h">
+      <Filter>Header Files\Source SDK\tier0</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\refcount.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\filesystem_passthru.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\vstdlib\IKeyValuesSystem.h">
+      <Filter>Header Files\Source SDK\vstdlib</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\vstdlib\vstdlib.h">
+      <Filter>Header Files\Source SDK\vstdlib</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\utlbuffer.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\byteswap.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\characterset.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\UtlSortVector.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\tier1.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\vstdlib\iprocessutils.h">
+      <Filter>Header Files\Source SDK\vstdlib</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\convar_serverbounded.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

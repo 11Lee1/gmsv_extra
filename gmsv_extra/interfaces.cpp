@@ -5,20 +5,20 @@
 #include "Source SDK/tier1/color.h"
 #define PRINT_PTRCHECK(name,p)																				\
 	if(!p)																									\
-		ConColorMsg(1,Color(255,0,0),"failed getting %s: returned nullptr\n",name);			\
+		printf("failed getting %s: returned nullptr\n",name);			\
 	else																									\
-		ConColorMsg(1,Color(0,255,0),"found %s: 0x%X\n", name, p);							\
+		printf("found %s: 0x%X\n", name, p);							\
 
 
 
 void Interfaces::PrintInterfaceNames(char const* Module, InterfaceReg* reg) {
 	for (reg; reg; reg = reg->m_pNext) {
-		ConColorMsg(1,Color(255,0,255),"%s ---> %s\n", Module, reg->m_pName);
+		printf("%s ---> %s\n", Module, reg->m_pName);
 	}
 }
 Interfaces::Interfaces() {
 	*(void**)&ConColorMsg = GetProcAddress(GetModuleHandleA("tier0.dll"), "ConColorMsg");
-	ConColorMsg(1, Color(0, 255, 255), "Setting up interfaces \n");
+	printf("Setting up interfaces \n");
 	_SetupInterfaces();
 }
 Interfaces::~Interfaces() {
@@ -33,12 +33,19 @@ void Interfaces::_SetupInterfaces() {
 void Interfaces::GetInterfaceRegistries() {
 	m_pServerDLLInterfaceReg = GetInterfaceReg("server.dll");
 	PRINT_PTRCHECK("server.dll Interface registry", m_pServerDLLInterfaceReg);
+	PrintInterfaceNames("server.dll", m_pServerDLLInterfaceReg);
 
 	m_pEngineDLLInterfaceReg = GetInterfaceReg("engine.dll");
-	PRINT_PTRCHECK("engine.dll Interface registry", m_pServerDLLInterfaceReg);
+	PRINT_PTRCHECK("engine.dll Interface registry", m_pEngineDLLInterfaceReg);
+	PrintInterfaceNames("server.dll", m_pEngineDLLInterfaceReg);
 
 	m_pvstdlibDLLInterfaceReg = GetInterfaceReg("vstdlib.dll");
 	PRINT_PTRCHECK("vstdlib.dll Interface registry", m_pvstdlibDLLInterfaceReg);
+	PrintInterfaceNames("vstdlib.dll", m_pvstdlibDLLInterfaceReg);
+
+	m_pFileSystem_stdioInterfaceReg = GetInterfaceReg("filesystem_stdio.dll");
+	PRINT_PTRCHECK("filesystem_stdio.dll Interface registry", m_pFileSystem_stdioInterfaceReg);
+	PrintInterfaceNames("filesystem_stdio.dll", m_pFileSystem_stdioInterfaceReg);
 }
 void Interfaces::GetInterfaces() {
 	m_pServerEnts = (IServerGameEnts*)GetInterface("server.dll", "ServerGameEnts001");
@@ -73,7 +80,6 @@ void Interfaces::GetInterfaces() {
 
 	cvar = (ICvar*)GetInterface("vstdlib.dll", "VEngineCvar004");
 	PRINT_PTRCHECK("VEngineCvar004", cvar);
-
 
 	if (m_pLuaShared)
 		g_Lua = (GarrysMod::Lua::ILuaBase*)LuaShared()->GetLuaInterface(1); // server

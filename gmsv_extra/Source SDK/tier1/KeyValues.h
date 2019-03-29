@@ -23,8 +23,8 @@
 #endif
 
 #include "utlvector.h"
+#include "UtlSortVector.h"
 #include "Color.h"
-
 #define FOR_EACH_SUBKEY( kvRoot, kvSubKey ) \
 	for ( KeyValues * kvSubKey = kvRoot->GetFirstSubKey(); kvSubKey != NULL; kvSubKey = kvSubKey->GetNextKey() )
 

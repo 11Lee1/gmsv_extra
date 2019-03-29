@@ -41,6 +41,7 @@
 
 #include "Source SDK/usercmd.h"
 
+#include "Source SDK/tier1/KeyValues.h"
 #include "LUA/LuaInterface.h"
 
 

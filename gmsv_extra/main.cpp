@@ -4,50 +4,40 @@
 
 Interfaces* g_pInterfaces = nullptr;
 Hooks* hooks = nullptr;
-HMODULE hModule = nullptr;
-HANDLE mainThread = nullptr;
+IMemAlloc* g_pMemAlloc = nullptr;
 
-
-//#define __INJECT
+#define __INJECT
 #define MODULENAME "gmsv_extra_win32"
 void AttachConsole(char const* name);
 void Loop();
-int main();
+void main();
+void detatch(HANDLE thread);
 
 
 
-#ifdef __INJECT // note: calling require("extra") in lua will run the module but spit out an error via lua
+#ifdef __INJECT
 BOOL __stdcall DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) { 
-	switch (ul_reason_for_call)
-	{
-	case DLL_PROCESS_ATTACH:
-		CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)main, hModule, 0, nullptr);
-		break;
-	case DLL_THREAD_ATTACH:
-		break;
-	case DLL_THREAD_DETACH:
-		break;
-	case DLL_PROCESS_DETACH:
-		break;
-	}
-	return TRUE;
+	static HANDLE thread = nullptr;
+
+	if(ul_reason_for_call == DLL_PROCESS_ATTACH)
+		thread = CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)main, hModule, 0, nullptr);
+	if (ul_reason_for_call == DLL_PROCESS_DETACH) 
+		detatch(thread);
+
+	return true;
 }
 #else
+HANDLE thread = nullptr;
 GMOD_MODULE_OPEN()
 {
 	AttachConsole("Console");
-	mainThread = CreateThread(nullptr,0, (LPTHREAD_START_ROUTINE)main, GetModuleHandleA(MODULENAME), 0, nullptr);
+	thread = CreateThread(nullptr,0, (LPTHREAD_START_ROUTINE)main, GetModuleHandleA(MODULENAME), 0, nullptr);
 	return 1;
 }
 
 GMOD_MODULE_CLOSE()
 {
-	auto lol = hooks;
-	hooks->~Hooks();
-	g_pInterfaces->~Interfaces();
-	if (TerminateThread(mainThread, 0)) {
-		g_pInterfaces->ConColorMsg(1,Color(255,0,0),"terminating thread\n");
-	}
+	detatch(thread);
 	return 1;
 }
 #endif // __INJECT
@@ -72,14 +62,16 @@ void AttachConsole(char const* name) {
 void Loop() {
 
 	do {
+
+		auto luanetworkvars = g_pInterfaces->LuaNetworkedVars();
 		int entitycnt = g_pInterfaces->EngineServer()->GetEntityCount();
 		for (int i = 1; i < entitycnt; i++)
 		{
 			edict_t* entedict = g_pInterfaces->EngineServer()->PEntityOfEntIndex(i);
 			if (entedict) {
 				CBaseEntity* ent = (CBaseEntity*)entedict->GetUnknown();
-				if (ent && ent->IsSWEP()) {
-					//printf("ent %s:    0x%X\n", ent->m_iClassname, ent);
+				if (ent && ent->IsPlayer()) {
+					printf("ent %s:    0x%X\n", ent->m_iClassname, ent);
 				}
 			}
 		}
@@ -87,13 +79,19 @@ void Loop() {
 	} while (1);
 }
 
-int main() {
+void main() {
 #ifdef __INJECT
-	//AttachConsole("Console");
+	AttachConsole("Console");
 #endif
 	g_pInterfaces = new Interfaces();
+	g_pMemAlloc = g_pInterfaces->m_pMemAlloc;
 	hooks = new Hooks();
-	//Loop();
-
-	return 1;
+	Loop();
+}
+void detatch(HANDLE thread) {
+	hooks->~Hooks();
+	g_pInterfaces->~Interfaces();
+	if (TerminateThread(thread, 0)) {
+		g_pInterfaces->ConColorMsg(1, Color(255, 0, 0), "terminating thread\n");
+	}
 }

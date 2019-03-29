@@ -22,6 +22,7 @@ class IStaticPropMgrServer;
 class IEngineTrace;
 class IPlayerInfoManager;
 class ICvar;
+class IKeyValuesSystem;
 namespace GarrysMod
 {
 	namespace Lua
@@ -63,15 +64,18 @@ public:
 	IPlayerInfoManager*	PlayerInfoMgr() { return playerinfomgr; }
 	CGlobalVars*  Globals();
 	ICvar* CVar() { return cvar; }
-
+	IKeyValuesSystem* KeyValuesSystem() { return keyvaluessystem; }
 private:
 	// Interface registries 
 	InterfaceReg* m_pServerDLLInterfaceReg;
 	InterfaceReg* m_pEngineDLLInterfaceReg;
 	InterfaceReg* m_pvstdlibDLLInterfaceReg;
+	InterfaceReg* m_pFileSystem_stdioInterfaceReg;
 
 	// Interfaces
+public:
 	IMemAlloc* m_pMemAlloc;
+private:
 	IServerGameEnts* m_pServerEnts;
 	IVEngineServer* m_pEngineServer;
 	IServerGameDLL* m_pServerGameDLL;
@@ -81,15 +85,17 @@ private:
 	CLuaShared* m_pLuaShared;
 	IStaticPropMgrServer* staticpropmgr;
 	IEngineTrace* enginetrace;
-	CUniformRandomStream* random;
+	void* random;
 	IPlayerInfoManager*	playerinfomgr;
 	ICvar* cvar;
 
+	IKeyValuesSystem* keyvaluessystem;
+
 	// globals
-	CGlobalVars* gpGlobals;
+	void* gpGlobals;
 
 	// GMod & GMod Lua shit
-	CLuaNetworkedVars* g_pLuaNetworkedVars;
+	void* g_pLuaNetworkedVars;
 public:
 	// GMod & GMod Lua shit
 	GarrysMod::Lua::ILuaBase* g_Lua;

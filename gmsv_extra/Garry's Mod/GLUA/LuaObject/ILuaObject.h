@@ -10,17 +10,17 @@ namespace GarrysMod
 		{
 		public:
 			/*0 - 0*/virtual void			Set(ILuaObject* pObject) = 0;
-			/*1 - 4*/virtual int			SetFromStack(int pos) = 0;
+			/*1 - 4*/virtual void			SetFromStack(int pos) = 0;
 			/*1 - 8*/virtual void			UnReference() = 0;
 			/*2 - 12*/virtual int			GetType() = 0;
 			/*3 - 16*/virtual char const*	GetString() = 0;
 			/*4 - 20*/virtual float			GetFloat() = 0;
 			/*5 - 24*/virtual int			GetInt() = 0;
 			/*6 - 28*/virtual void*			GetUserData() = 0;
-			/*7 - 32*/virtual void			SetMember(char const*) = 0;
+			/*////////////////// 7 - 32*/virtual void			SetMember(char const*, ILuaObject* pObject) = 0;
 			/*8 - 36*/virtual void			SetMember(float, CFunc Fn) = 0;
 			/*9 - 40*/virtual void			SetMember(float, char const*) = 0;
-			/*10 - 44*/virtual void			Setmember(float, bool) = 0;
+			/*10 - 44*/virtual void			SetMember(float, bool) = 0;
 			/*11 - 48*/virtual void			SetMember(float, float) = 0;
 			/*12 - 52*/virtual void			SetMember(float, ILuaObject* pObject) = 0;
 			/*13 - 56*/virtual void			SetMember(float) = 0;
@@ -29,7 +29,7 @@ namespace GarrysMod
 			/*16 - 68*/virtual void			SetMember(char const*, bool) = 0;
 			/*17 - 72*/virtual void			SetMember(char const*, float) = 0;
 			/*18 - 76*/virtual void			SetMember(ILuaObject* pObject1, ILuaObject* pObject2) = 0;
-			/*19 - 80*/virtual void			SetMember(char const*, ILuaObject* pObject) = 0;
+			/*///////////////////19 - 80*/virtual void			SetMember(char const*) = 0;
 			/*20 - 84*/virtual bool			GetMemberBool(char const*, bool) = 0;
 			/*21 - 88*/virtual int			GetMemberInt(char const*, int) = 0;
 			/*22 - 92*/virtual float		GetMemberFloat(char const*, float) = 0;
@@ -69,14 +69,14 @@ namespace GarrysMod
 			/*56 - 228*/virtual void		Init() = 0;
 			/*57 - 232*/virtual void		SetFromGlobal(char const*) = 0;
 			/*58 - 236*/virtual int			GetStringLen(unsigned int*) = 0;
-			/*59 - 240*/virtual ILuaObject*	GetMemberUInt(char const*, unsigned int) = 0;
+			/*59 - 240*/virtual unsigned int	GetMemberUInt(char const*, unsigned int) = 0;
 			/*60 - 244*/virtual void		SetMember(char const*, unsigned long) = 0;
-			/*61 - 252*/virtual void		SetReference(int) = 0;
-			/*62 - 256*/virtual void		RemoveMember(float) = 0;
-			/*63 - 260*/virtual void		RemoveMember(char const*) = 0;
-			/*64 - 264*/virtual bool		MemberIsNil(char const*) = 0;
-			/*65 - 268*/virtual void		SetMemberDouble(float, double) = 0;
-			/*66 - 272*/virtual double		GetMemberDouble(char const*, double) = 0;
+			/*61 - 248*/virtual void		SetReference(int) = 0;
+			/*62 - 252*/virtual void		RemoveMember(float) = 0;
+			/*63 - 256*/virtual void		RemoveMember(char const*) = 0;
+			/*64 - 260*/virtual bool		MemberIsNil(char const*) = 0;
+			/*65 - 264*/virtual void		SetMemberDouble(float, double) = 0;
+			/*66 - 268*/virtual double		GetMemberDouble(char const*, double) = 0;
 		};
 	};
 };

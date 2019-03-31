@@ -4,9 +4,6 @@ namespace GarrysMod
 {
 	namespace Lua
 	{
-		CLuaGameObject::~CLuaGameObject() {
-		
-		}
 		CBaseEntity* CLuaGameObject::GetMemberEntity(char const*, CBaseEntity*) {
 			return nullptr;
 		}

@@ -11,7 +11,6 @@ namespace GarrysMod
 		class CLuaGameObject : public CLuaObject
 		{
 		public:
-			virtual ~CLuaGameObject();
 			/*67 - 276*/virtual CBaseEntity*	GetMemberEntity(char const*, CBaseEntity*);
 			/*68 - 280*/virtual void			SetMemberEntity(char const*, CBaseEntity*);
 			/*69 - 284*/virtual void			SetMemberEntity(float, CBaseEntity*);

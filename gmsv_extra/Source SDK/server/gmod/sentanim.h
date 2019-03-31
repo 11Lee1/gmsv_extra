@@ -2,7 +2,7 @@
 #define SENTANIM_H
 
 #include "../BaseAnimatingOverlay.h"
-#include "../../../GLUA/CScriptedEntity.h"
+#include "../../../Garry's Mod/GLUA/CScriptedEntity.h"
 
 // Reasons behind a pickup
 enum PhysGunPickup_t

@@ -49,21 +49,6 @@
     <Filter Include="Source Files\Source SDK\server">
       <UniqueIdentifier>{3c230461-2702-40e1-b34e-5b3241f70f60}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\LUA">
-      <UniqueIdentifier>{f27de532-5a65-43aa-aac0-e311b15af87b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\GLUA">
-      <UniqueIdentifier>{4c31e633-e266-499d-9362-01b2ff3e357e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\GLUA">
-      <UniqueIdentifier>{37c89679-2992-4a1f-9d65-79f85afc3711}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\GLUA\LuaObject">
-      <UniqueIdentifier>{35e2f7bc-7b46-4025-9b22-1b8c32738075}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\GLUA\LuaObject">
-      <UniqueIdentifier>{73e8057e-14b7-4932-a4f3-d7f0589f74e4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\util\hooking">
       <UniqueIdentifier>{e39bfc83-399e-4fa9-958a-bb7bfa989d15}</UniqueIdentifier>
     </Filter>
@@ -112,6 +97,27 @@
     <Filter Include="Header Files\Source SDK\toolframework">
       <UniqueIdentifier>{c4aaae32-c55b-4f6d-a25a-d2892b1e998b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Garry%27s Mod">
+      <UniqueIdentifier>{2c6a7647-aedc-4476-a7bb-b658beb96d58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Garry%27s Mod\LUA">
+      <UniqueIdentifier>{f27de532-5a65-43aa-aac0-e311b15af87b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Garry%27s Mod\GLUA">
+      <UniqueIdentifier>{4c31e633-e266-499d-9362-01b2ff3e357e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Garry%27s Mod\GLUA\LuaObject">
+      <UniqueIdentifier>{73e8057e-14b7-4932-a4f3-d7f0589f74e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Garry%27s Mod">
+      <UniqueIdentifier>{44f6d886-51ff-4528-8133-52e7254bdb63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Garry%27s Mod\GLUA">
+      <UniqueIdentifier>{37c89679-2992-4a1f-9d65-79f85afc3711}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Garry%27s Mod\GLUA\LuaObject">
+      <UniqueIdentifier>{35e2f7bc-7b46-4025-9b22-1b8c32738075}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -150,15 +156,6 @@
     <ClCompile Include="interfaces.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GLUA\LuaNetworkedVars.cpp">
-      <Filter>Source Files\GLUA</Filter>
-    </ClCompile>
-    <ClCompile Include="GLUA\LuaObject\CLuaObject.cpp">
-      <Filter>Source Files\GLUA\LuaObject</Filter>
-    </ClCompile>
-    <ClCompile Include="GLUA\LuaObject\CLuaGameObject.cpp">
-      <Filter>Source Files\GLUA\LuaObject</Filter>
-    </ClCompile>
     <ClCompile Include="Hooks\hook.cpp">
       <Filter>Source Files\Hooks</Filter>
     </ClCompile>
@@ -188,6 +185,15 @@
     </ClCompile>
     <ClCompile Include="Source SDK\tier1\tier1.cpp">
       <Filter>Source Files\Source SDK\tier1</Filter>
+    </ClCompile>
+    <ClCompile Include="Garry%27s Mod\GLUA\LuaObject\CLuaGameObject.cpp">
+      <Filter>Source Files\Garry%27s Mod\GLUA\LuaObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Garry%27s Mod\GLUA\LuaObject\CLuaObject.cpp">
+      <Filter>Source Files\Garry%27s Mod\GLUA\LuaObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Garry%27s Mod\GLUA\LuaNetworkedVars.cpp">
+      <Filter>Source Files\Garry%27s Mod\GLUA</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -476,21 +482,6 @@
     <ClInclude Include="Source SDK\engine\ivmodelinfo.h">
       <Filter>Header Files\Source SDK\engine</Filter>
     </ClInclude>
-    <ClInclude Include="LUA\ILuaShared.h">
-      <Filter>Header Files\LUA</Filter>
-    </ClInclude>
-    <ClInclude Include="LUA\LuaBase.h">
-      <Filter>Header Files\LUA</Filter>
-    </ClInclude>
-    <ClInclude Include="LUA\LuaInterface.h">
-      <Filter>Header Files\LUA</Filter>
-    </ClInclude>
-    <ClInclude Include="LUA\LuaTypes.h">
-      <Filter>Header Files\LUA</Filter>
-    </ClInclude>
-    <ClInclude Include="LUA\LuaUserData.h">
-      <Filter>Header Files\LUA</Filter>
-    </ClInclude>
     <ClInclude Include="Source SDK\server\ServerNetworkProperty.h">
       <Filter>Header Files\Source SDK\server</Filter>
     </ClInclude>
@@ -526,30 +517,6 @@
     </ClInclude>
     <ClInclude Include="Source SDK\takedamageinfo.h">
       <Filter>Header Files\Source SDK</Filter>
-    </ClInclude>
-    <ClInclude Include="GLUA\LuaNetworkedVars.h">
-      <Filter>Header Files\GLUA</Filter>
-    </ClInclude>
-    <ClInclude Include="GLUA\LuaObject\ILuaObject.h">
-      <Filter>Header Files\GLUA\LuaObject</Filter>
-    </ClInclude>
-    <ClInclude Include="GLUA\LuaObject\CLuaObject.h">
-      <Filter>Header Files\GLUA\LuaObject</Filter>
-    </ClInclude>
-    <ClInclude Include="GLUA\LuaObject\CLuaGameObject.h">
-      <Filter>Header Files\GLUA\LuaObject</Filter>
-    </ClInclude>
-    <ClInclude Include="GLUA\CGMODDataTable.h">
-      <Filter>Header Files\GLUA</Filter>
-    </ClInclude>
-    <ClInclude Include="GLUA\IGMODDataTable.h">
-      <Filter>Header Files\GLUA</Filter>
-    </ClInclude>
-    <ClInclude Include="GLUA\IScriptedEntity.h">
-      <Filter>Header Files\GLUA</Filter>
-    </ClInclude>
-    <ClInclude Include="GLUA\CScriptedEntity.h">
-      <Filter>Header Files\GLUA</Filter>
     </ClInclude>
     <ClInclude Include="Source SDK\server\baseanimating.h">
       <Filter>Header Files\Source SDK\server</Filter>
@@ -823,6 +790,48 @@
     </ClInclude>
     <ClInclude Include="Source SDK\tier1\convar_serverbounded.h">
       <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Garry%27s Mod\CGMODRules.h">
+      <Filter>Header Files\Garry%27s Mod</Filter>
+    </ClInclude>
+    <ClInclude Include="Garry%27s Mod\GLUA\LuaObject\CLuaGameObject.h">
+      <Filter>Header Files\Garry%27s Mod\GLUA\LuaObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Garry%27s Mod\GLUA\LuaObject\CLuaObject.h">
+      <Filter>Header Files\Garry%27s Mod\GLUA\LuaObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Garry%27s Mod\GLUA\LuaObject\ILuaObject.h">
+      <Filter>Header Files\Garry%27s Mod\GLUA\LuaObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Garry%27s Mod\GLUA\CGMODDataTable.h">
+      <Filter>Header Files\Garry%27s Mod\GLUA</Filter>
+    </ClInclude>
+    <ClInclude Include="Garry%27s Mod\GLUA\CScriptedEntity.h">
+      <Filter>Header Files\Garry%27s Mod\GLUA</Filter>
+    </ClInclude>
+    <ClInclude Include="Garry%27s Mod\GLUA\IGMODDataTable.h">
+      <Filter>Header Files\Garry%27s Mod\GLUA</Filter>
+    </ClInclude>
+    <ClInclude Include="Garry%27s Mod\GLUA\IScriptedEntity.h">
+      <Filter>Header Files\Garry%27s Mod\GLUA</Filter>
+    </ClInclude>
+    <ClInclude Include="Garry%27s Mod\GLUA\LuaNetworkedVars.h">
+      <Filter>Header Files\Garry%27s Mod\GLUA</Filter>
+    </ClInclude>
+    <ClInclude Include="Garry%27s Mod\LUA\ILuaShared.h">
+      <Filter>Header Files\Garry%27s Mod\LUA</Filter>
+    </ClInclude>
+    <ClInclude Include="Garry%27s Mod\LUA\LuaBase.h">
+      <Filter>Header Files\Garry%27s Mod\LUA</Filter>
+    </ClInclude>
+    <ClInclude Include="Garry%27s Mod\LUA\LuaInterface.h">
+      <Filter>Header Files\Garry%27s Mod\LUA</Filter>
+    </ClInclude>
+    <ClInclude Include="Garry%27s Mod\LUA\LuaTypes.h">
+      <Filter>Header Files\Garry%27s Mod\LUA</Filter>
+    </ClInclude>
+    <ClInclude Include="Garry%27s Mod\LUA\LuaUserData.h">
+      <Filter>Header Files\Garry%27s Mod\LUA</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

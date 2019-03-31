@@ -42,12 +42,12 @@
 #include "Source SDK/usercmd.h"
 
 #include "Source SDK/tier1/KeyValues.h"
-#include "LUA/LuaInterface.h"
+#include "Garry's Mod/LUA/LuaInterface.h"
 
 
-#include "GLUA/CGMODDataTable.h"
-#include "GLUA/LuaNetworkedVars.h"
-#include "GLUA/CScriptedEntity.h"
+#include "Garry's Mod/GLUA/CGMODDataTable.h"
+#include "Garry's Mod/GLUA/LuaNetworkedVars.h"
+#include "Garry's Mod/GLUA/CScriptedEntity.h"
 
 
 #include "Source SDK/server/gmod/gmodplayer.h"

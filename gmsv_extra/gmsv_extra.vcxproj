@@ -117,9 +117,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GLUA\LuaNetworkedVars.cpp" />
-    <ClCompile Include="GLUA\LuaObject\CLuaGameObject.cpp" />
-    <ClCompile Include="GLUA\LuaObject\CLuaObject.cpp" />
+    <ClCompile Include="Garry%27s Mod\GLUA\LuaNetworkedVars.cpp" />
+    <ClCompile Include="Garry%27s Mod\GLUA\LuaObject\CLuaGameObject.cpp" />
+    <ClCompile Include="Garry%27s Mod\GLUA\LuaObject\CLuaObject.cpp" />
     <ClCompile Include="Hooks\CGMOD_Player\FireBullets.cpp" />
     <ClCompile Include="Hooks\hook.cpp" />
     <ClCompile Include="Hooks\ServerGameClients\ClientConnect.cpp" />
@@ -144,23 +144,24 @@
     <ClCompile Include="util\vmthook.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GLUA\CGMODDataTable.h" />
-    <ClInclude Include="GLUA\CScriptedEntity.h" />
-    <ClInclude Include="GLUA\IGMODDataTable.h" />
-    <ClInclude Include="GLUA\IScriptedEntity.h" />
-    <ClInclude Include="GLUA\LuaNetworkedVars.h" />
-    <ClInclude Include="GLUA\LuaObject\CLuaGameObject.h" />
-    <ClInclude Include="GLUA\LuaObject\CLuaObject.h" />
-    <ClInclude Include="GLUA\LuaObject\ILuaObject.h" />
+    <ClInclude Include="Garry%27s Mod\CGMODRules.h" />
+    <ClInclude Include="Garry%27s Mod\GLUA\CGMODDataTable.h" />
+    <ClInclude Include="Garry%27s Mod\GLUA\CScriptedEntity.h" />
+    <ClInclude Include="Garry%27s Mod\GLUA\IGMODDataTable.h" />
+    <ClInclude Include="Garry%27s Mod\GLUA\IScriptedEntity.h" />
+    <ClInclude Include="Garry%27s Mod\GLUA\LuaNetworkedVars.h" />
+    <ClInclude Include="Garry%27s Mod\GLUA\LuaObject\CLuaGameObject.h" />
+    <ClInclude Include="Garry%27s Mod\GLUA\LuaObject\CLuaObject.h" />
+    <ClInclude Include="Garry%27s Mod\GLUA\LuaObject\ILuaObject.h" />
     <ClInclude Include="Hooks\hook.h" />
     <ClInclude Include="include.h" />
     <ClInclude Include="include\baseinclude.h" />
     <ClInclude Include="interfaces.h" />
-    <ClInclude Include="LUA\ILuaShared.h" />
-    <ClInclude Include="LUA\LuaBase.h" />
-    <ClInclude Include="LUA\LuaInterface.h" />
-    <ClInclude Include="LUA\LuaTypes.h" />
-    <ClInclude Include="LUA\LuaUserData.h" />
+    <ClInclude Include="Garry%27s Mod\LUA\ILuaShared.h" />
+    <ClInclude Include="Garry%27s Mod\LUA\LuaBase.h" />
+    <ClInclude Include="Garry%27s Mod\LUA\LuaInterface.h" />
+    <ClInclude Include="Garry%27s Mod\LUA\LuaTypes.h" />
+    <ClInclude Include="Garry%27s Mod\LUA\LuaUserData.h" />
     <ClInclude Include="Source SDK\ai_activity.h" />
     <ClInclude Include="Source SDK\appframework\IAppSystem.h" />
     <ClInclude Include="Source SDK\basecombatweapon_shared.h" />

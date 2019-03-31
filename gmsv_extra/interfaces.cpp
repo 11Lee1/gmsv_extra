@@ -10,6 +10,7 @@
 		printf("found %s: 0x%X\n", name, p);							\
 
 
+#define DLL_IMPORT extern "C" __declspec(dllimport)
 
 void Interfaces::PrintInterfaceNames(char const* Module, InterfaceReg* reg) {
 	for (reg; reg; reg = reg->m_pNext) {
@@ -93,6 +94,10 @@ void Interfaces::FindOtherInterfaces() {
 
 
 #ifdef _WIN32 
+	m_pMemAlloc = GetProcAddress(GetModuleHandleA("tier0.dll"), "g_pMemAlloc");
+
+
+
 	// until I can find a better method.
 	uintptr_t GetNetworkedIntFn = Util::Pattern::FindPattern("server.dll", "55 8B EC 8B 45 08 56 50 8B 48 48 8B 11 FF 92 ? ? ? ? FF 05 ? ? ? ? 6A 01 6A 01 E8 ? ? ? ? 8B 0D ? ? ? ? 8B F0 83 C4 08 8B 01 85 F6 75 35 6A 03 FF 90 ? ? ? ? 8B F0 85 F6 74 66");
 	PRINT_PTRCHECK("GetNetworkedInt Function", GetNetworkedIntFn);

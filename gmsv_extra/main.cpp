@@ -84,7 +84,7 @@ void main() {
 	AttachConsole("Console");
 #endif
 	g_pInterfaces = new Interfaces();
-	g_pMemAlloc = g_pInterfaces->m_pMemAlloc;
+	g_pMemAlloc = g_pInterfaces->MemAlloc();
 	hooks = new Hooks();
 	Loop();
 }

@@ -3,9 +3,9 @@
 
 #include "../LUA/LuaInterface.h"
 #include "LuaObject/CLuaGameObject.h"
-#include "../Source SDK/server/baseentity.h"
-#include "../Source SDK/tier1/utlrbtree.h"
-#include "../Source SDK/tier1/utlmap.h"
+#include "../../Source SDK/server/baseentity.h"
+#include "../../Source SDK/tier1/utlrbtree.h"
+#include "../../Source SDK/tier1/utlmap.h"
 
 class CLuaNetworkedVars
 {

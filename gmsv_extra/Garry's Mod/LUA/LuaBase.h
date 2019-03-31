@@ -9,7 +9,7 @@
 #include <stddef.h>
 #include "LuaTypes.h"
 #include "LuaUserData.h"
-#include "../Source SDK/server/baseentity.h"
+#include "../../Source SDK/server/baseentity.h"
 struct lua_State;
 namespace GarrysMod
 {

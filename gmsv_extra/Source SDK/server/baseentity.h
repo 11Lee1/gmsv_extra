@@ -16,7 +16,7 @@
 #include "../collisionproperty.h"
 #include "../entityoutput.h"
 #include "../takedamageinfo.h"
-#include "../../GLUA/LuaObject/CLuaGameObject.h"
+#include "../../Garry's Mod/GLUA/LuaObject/CLuaGameObject.h"
 #include "../baseentity_shared.h"
 //entitylist.h
 enum notify_system_event_t

@@ -2,7 +2,7 @@
 #define WEAPONSWEP_H
 
 #include "../../hl2mp/weapon_hl2mpbasehlmpcombatweapon.h"
-#include "../../../GLUA/CScriptedEntity.h"
+#include "../../../Garry's Mod/GLUA/CScriptedEntity.h"
 
 
 class CWeaponSWEP : public CBaseHL2MPCombatWeapon

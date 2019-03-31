@@ -6,7 +6,7 @@
 #endif
 #include "include/baseinclude.h"
 #include "Source SDK/tier1/interface.h"
-#include "LUA/ILuaShared.h"
+#include "Garry's Mod/LUA/ILuaShared.h"
 class IMemAlloc;
 class IServerGameEnts;
 class IVEngineServer;
@@ -48,7 +48,7 @@ private:
 	void	PrintInterfaceNames(char const* Module, InterfaceReg* reg);
 
 public:
-	IMemAlloc* MemAlloc() { return m_pMemAlloc; }
+	IMemAlloc* MemAlloc() { return *(IMemAlloc**)m_pMemAlloc; }
 	IServerGameEnts* ServerEnts() { return m_pServerEnts; }
 	IVEngineServer*	EngineServer() { return m_pEngineServer; }
 	IServerGameDLL* ServerGameDLL() { return m_pServerGameDLL; }
@@ -73,9 +73,8 @@ private:
 	InterfaceReg* m_pFileSystem_stdioInterfaceReg;
 
 	// Interfaces
-public:
-	IMemAlloc* m_pMemAlloc;
 private:
+	void* m_pMemAlloc;
 	IServerGameEnts* m_pServerEnts;
 	IVEngineServer* m_pEngineServer;
 	IServerGameDLL* m_pServerGameDLL;

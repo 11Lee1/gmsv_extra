@@ -86,11 +86,6 @@ void main() {
 	g_pInterfaces = new Interfaces();
 	g_pMemAlloc = g_pInterfaces->MemAlloc();
 	hooks = new Hooks();
-
-
-	GarrysMod::Lua::CLuaObject xd;
-
-	xd.SetFromGlobal("xd");
 	Loop();
 }
 void detatch(HANDLE thread) {

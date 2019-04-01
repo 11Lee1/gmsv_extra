@@ -81,6 +81,10 @@ namespace GarrysMod
 			/*42 - 168*/virtual void				CreateMetaTableType(const char* strName, int iType) = 0;
 			/*43 - 172*/virtual const char*			CheckString(int iStackPos = -1) = 0; // 172 - 43 
 			/*44 - 176*/virtual double				CheckNumber(int iStackPos = -1) = 0;
+
+
+			// CLuaInterface.
+#ifdef _WIN32
 			/*45 - 180*/virtual int					ObjLen(int) = 0;
 			/*46 - 184*/virtual QAngle				GetAngle(int) = 0;
 			/*47 - 188*/virtual Vector				GetVector(int) = 0;
@@ -115,13 +119,13 @@ namespace GarrysMod
 			/*76 - 304*/virtual bool				IsClient(void) = 0;
 			/*77 - 308*/virtual bool				IsMenu(void) = 0;
 			/*78 - 312*/virtual int					DestroyObject(ILuaObject*) = 0;
-			/*79 - 216*/virtual int					CreateObject(void) = 0;
-			/*80 - 320*/virtual int					SetMember(ILuaObject*, ILuaObject*, ILuaObject*) = 0; // 320 - 80 
-			/*81 - 324*/virtual int					GetNewTable(void) = 0;
-			/*82 - 328*/virtual int					SetMember(ILuaObject*, float) = 0;
-			/*83 - 332*/virtual int					SetMember(ILuaObject*, float, ILuaObject*) = 0;
-			/*84 - 336*/virtual int					SetMember(ILuaObject*, const char*) = 0;
-			/*85 - 340*/virtual int					SetMember(ILuaObject*, const char*, ILuaObject*) = 0;
+			/*79 - 316*/virtual int					CreateObject(void) = 0;
+			/*80 - 320*/virtual int					SetMember(ILuaObject*, const char*, ILuaObject*) = 0;
+			/*81 - 324*/virtual int					SetMember(ILuaObject*, const char*) = 0;
+			/*82 - 328*/virtual int					SetMember(ILuaObject*, float, ILuaObject*) = 0;
+			/*83 - 332*/virtual int					SetMember(ILuaObject*, float) = 0;
+			/*84 - 336*/virtual int					SetMember(ILuaObject*, ILuaObject*, ILuaObject*) = 0; // 320 - 80 
+			/*85 - 340*/virtual int					GetNewTable(void) = 0;
 			/*86 - 344*/virtual int					SetType(unsigned char) = 0;
 			/*87 - 348*/virtual int					PushLong(long) = 0;
 			/*88 - 352*/virtual int					GetFlags(int) = 0;
@@ -164,7 +168,7 @@ namespace GarrysMod
 			/*125 - 500*/virtual int				AppendStackTrace(char*, unsigned long) = 0;
 			/*126 - 504*/virtual int				CreateConVar(const char*, const char*, const char*, int) = 0;
 			/*127 - 508*/virtual int				CreateConCommand(void) = 0;
-
+#endif
 			CBaseEntity* GetEntity(int iStackPos);
 			void PushEntity(CBaseEntity* Entity);
 		};

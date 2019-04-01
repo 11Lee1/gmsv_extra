@@ -118,6 +118,9 @@
     <Filter Include="Source Files\Garry%27s Mod\GLUA\LuaObject">
       <UniqueIdentifier>{35e2f7bc-7b46-4025-9b22-1b8c32738075}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Garry%27s Mod\LUA">
+      <UniqueIdentifier>{b19dd11f-e2b2-4521-996e-ec141886be99}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -194,6 +197,9 @@
     </ClCompile>
     <ClCompile Include="Garry%27s Mod\GLUA\LuaNetworkedVars.cpp">
       <Filter>Source Files\Garry%27s Mod\GLUA</Filter>
+    </ClCompile>
+    <ClCompile Include="Garry%27s Mod\LUA\LuaBase.cpp">
+      <Filter>Source Files\Garry%27s Mod\LUA</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

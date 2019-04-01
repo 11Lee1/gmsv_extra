@@ -17,7 +17,7 @@ namespace GarrysMod
 			/*4 - 20*/virtual float			GetFloat() = 0;
 			/*5 - 24*/virtual int			GetInt() = 0;
 			/*6 - 28*/virtual void*			GetUserData() = 0;
-			/*////////////////// 7 - 32*/virtual void			SetMember(char const*, ILuaObject* pObject) = 0;
+			/*7 - 32*/virtual void			SetMember(char const*, ILuaObject* pObject) = 0;
 			/*8 - 36*/virtual void			SetMember(float, CFunc Fn) = 0;
 			/*9 - 40*/virtual void			SetMember(float, char const*) = 0;
 			/*10 - 44*/virtual void			SetMember(float, bool) = 0;
@@ -29,7 +29,7 @@ namespace GarrysMod
 			/*16 - 68*/virtual void			SetMember(char const*, bool) = 0;
 			/*17 - 72*/virtual void			SetMember(char const*, float) = 0;
 			/*18 - 76*/virtual void			SetMember(ILuaObject* pObject1, ILuaObject* pObject2) = 0;
-			/*///////////////////19 - 80*/virtual void			SetMember(char const*) = 0;
+			/*19 - 80*/virtual void			SetMember(char const*) = 0;
 			/*20 - 84*/virtual bool			GetMemberBool(char const*, bool) = 0;
 			/*21 - 88*/virtual int			GetMemberInt(char const*, int) = 0;
 			/*22 - 92*/virtual float		GetMemberFloat(char const*, float) = 0;
@@ -39,7 +39,7 @@ namespace GarrysMod
 			/*26 - 108*/virtual void*		GetMemberUserData(char const*, void*) = 0;
 			/*27 - 112*/virtual ILuaObject*	GetMember(ILuaObject* pObject) = 0;
 			/*28 - 116*/virtual ILuaObject*	GetMember(ILuaObject*, char const*) = 0;
-			/*29 - 120*/virtual ILuaObject*	GetMember(char const*, ILuaObject*) = 0;
+			/*29 - 120*/virtual void		GetMember(char const*, ILuaObject*) = 0;
 			/*30 - 124*/virtual void		SetMetaTable(ILuaObject*) = 0;
 			/*31 - 128*/virtual void		SetUserData(void*) = 0;
 			/*32 - 132*/virtual void		Push() = 0;
@@ -51,7 +51,7 @@ namespace GarrysMod
 			/*38 - 156*/virtual bool		IsUserData() = 0;
 			/*39 - 160*/virtual void		Remove_Me_1(char const*, void*) = 0; // actual name lol.
 			/*40 - 164*/virtual bool		GetBool() = 0;
-			/*41 - 168*/virtual void		PushMemberFast(int) = 0;
+			/*41 - 168*/virtual int			PushMemberFast(int) = 0;
 			/*42 - 172*/virtual void		SetMemberFast(int, int) = 0;
 			/*43 - 176*/virtual void		SetFloat(float) = 0;
 			/*44 - 180*/virtual void		SetString(char const*) = 0;

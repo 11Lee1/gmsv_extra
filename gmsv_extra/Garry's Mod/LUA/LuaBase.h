@@ -81,10 +81,7 @@ namespace GarrysMod
 			/*42 - 168*/virtual void				CreateMetaTableType(const char* strName, int iType) = 0;
 			/*43 - 172*/virtual const char*			CheckString(int iStackPos = -1) = 0; // 172 - 43 
 			/*44 - 176*/virtual double				CheckNumber(int iStackPos = -1) = 0;
-
-
-			// CLuaInterface.
-#ifdef _WIN32
+#ifdef _WIN32 // CLuaInterface.
 			/*45 - 180*/virtual int					ObjLen(int) = 0;
 			/*46 - 184*/virtual QAngle				GetAngle(int) = 0;
 			/*47 - 188*/virtual Vector				GetVector(int) = 0;
@@ -92,16 +89,16 @@ namespace GarrysMod
 			/*49 - 196*/virtual int					PushVector(Vector const&) = 0;
 			/*50 - 200*/virtual int					SetState(lua_State*) = 0;
 			/*51 - 204*/virtual int					CreateMetaTable(const char*) = 0;
-			/*52 - 208*/virtual char				PushMetaTable(int) = 0;
+			/*52 - 208*/virtual bool				PushMetaTable(int) = 0;
 			/*53 - 212*/virtual int					PushUserType(void*, int) = 0;
 			/*54 - 216*/virtual void**				SetUserType(int, void*) = 0;
 			/*55 - 220*/virtual char				Init(void*/*ILuaCallback* */, bool) = 0;
 			/*56 - 224*/virtual int					Shutdown(void) = 0;
 			/*57 - 228*/virtual int					Cycle(void) = 0;
-			/*58 - 232*/virtual int					Global(void) = 0;
+			/*58 - 232*/virtual CLuaObject*			Global(void) = 0;
 			/*59 - 236*/virtual int					Lua_GetObject(int) = 0; // 236 - 59
 			/*60 - 240*/virtual int					PushLuaObject(void*/*ILuaObject* */) = 0; // 240 - 60
-			/*61 - 244*/virtual int					PushLuaFunction(int*, CFunc) = 0;
+			/*61 - 244*/virtual int					PushLuaFunction(CFunc) = 0;
 			/*62 - 248*/virtual int					LuaError(const char*, int) = 0;
 			/*63 - 252*/virtual int					TypeError(const char*, int) = 0;
 			/*64 - 256*/virtual int					CallInternal(int, int) = 0;
@@ -171,6 +168,8 @@ namespace GarrysMod
 #endif
 			CBaseEntity* GetEntity(int iStackPos);
 			void PushEntity(CBaseEntity* Entity);
+			void PushVector(Vector const* vec);
+			void PushAngle(QAngle const* ang);
 		};
 	}
 }

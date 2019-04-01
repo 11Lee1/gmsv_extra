@@ -62,152 +62,207 @@ namespace GarrysMod
 				return nullptr;
 
 		}
-		void CLuaObject::SetMember(char const*) {
-			/*
-
-				finish me.
-
-			*/
+		void CLuaObject::SetMember(char const* name) {
+			g_pInterfaces->g_Lua->SetMember(this, name);
 		}
-		void CLuaObject::SetMember(float, CFunc Fn) {
-			/*
-
-				finish me.
-
-			*/
+		void CLuaObject::SetMember(float fl, CFunc Fn) {
+			if (this->IsTable()) {
+				g_pInterfaces->g_Lua->PushLuaFunction(Fn);
+				g_pInterfaces->g_Lua->SetMember(this, fl);
+			}
 		}
-		void CLuaObject::SetMember(float, char const*) {
-			/*
-
-				finish me.
-
-			*/
+		void CLuaObject::SetMember(float fl, char const* name) {
+			if (this->IsTable()) {
+				g_pInterfaces->g_Lua->PushString(name);
+				g_pInterfaces->g_Lua->SetMember(this, fl);
+			}
 		}
-		void CLuaObject::SetMember(float, bool) { 
-			/*
-
-				finish me.
-
-			*/
+		void CLuaObject::SetMember(float fl, bool Bool) { 
+			if (this->IsTable()) {
+				g_pInterfaces->g_Lua->PushBool(Bool);
+				this->SetMember(fl);
+			}
 		}
-		void CLuaObject::SetMember(float, float) {
-			/*
-
-				finish me.
-
-			*/
+		void CLuaObject::SetMember(float fl1, float fl2) {
+			if (this->IsTable()) {
+				g_pInterfaces->g_Lua->PushNumber(fl2);
+				this->SetMember(fl1);
+			}
 		}
-		void CLuaObject::SetMember(float, ILuaObject* pObject) {
-			/*
-
-				finish me.
-
-			*/
+		void CLuaObject::SetMember(float fl, ILuaObject* pObject) {
+			g_pInterfaces->g_Lua->SetMember(this, fl, pObject);
 		}
-		void CLuaObject::SetMember(float) {
-			/*
-
-				finish me.
-
-			*/
+		void CLuaObject::SetMember(float fl) {
+			g_pInterfaces->g_Lua->SetMember(this, fl);
 		}
-		void CLuaObject::SetMember(char const*, CFunc Fn) {
-			/*
-
-				finish me.
-
-			*/
+		void CLuaObject::SetMember(char const* name, CFunc Fn) {
+			if (this->IsTable()) {
+				g_pInterfaces->g_Lua->PushLuaFunction(Fn);
+				g_pInterfaces->g_Lua->SetMember(this, name);
+			}
 		}
-		void CLuaObject::SetMember(char const*, char const*) {
-			/*
-
-				finish me.
-
-			*/
+		void CLuaObject::SetMember(char const* name1, char const* name2) {
+			if (this->IsTable()) {
+				g_pInterfaces->g_Lua->PushString(name2, 0);
+				g_pInterfaces->g_Lua->SetMember(this, name1);
+			}
 		}
-		void CLuaObject::SetMember(char const*, bool) {
-			/*
-
-				finish me.
-
-			*/
+		void CLuaObject::SetMember(char const* name, bool Bool) {
+			if (this->IsTable()) {
+				g_pInterfaces->g_Lua->PushBool(Bool);
+				this->SetMember(name);
+			}
 		}
-		void CLuaObject::SetMember(char const*, float) {
-			/*
-
-				finish me.
-
-			*/
+		void CLuaObject::SetMember(char const* name, float fl) {
+			if (this->IsTable()) {
+				g_pInterfaces->g_Lua->PushNumber(fl);
+				this->SetMember(name);
+			}
 		}
 		void CLuaObject::SetMember(ILuaObject* pObject1, ILuaObject* pObject2) {
 			/*
 
 				finish me.
 
+				.text:000B5390 arg_0           = dword ptr  8
+				.text:000B5390 arg_4           = dword ptr  0Ch
+				.text:000B5390                 push    ebp
+				.text:000B5391                 mov     ebp, esp
+				.text:000B5393                 push    [ebp+arg_4]
+				.text:000B5396                 mov     edx, ecx
+				.text:000B5398                 mov     ecx, g_Lua
+				.text:000B539E                 push    [ebp+arg_0]
+				.text:000B53A1                 push    edx
+				.text:000B53A2                 mov     eax, [ecx]
+				.text:000B53A4                 call    dword ptr [eax+140h]
+				.text:000B53AA                 pop     ebp
+				.text:000B53AB                 retn    8
 			*/
 		}
-		void CLuaObject::SetMember(char const*, ILuaObject* pObject) {
-			/*
-
-				finish me.
-
-			*/
+		void CLuaObject::SetMember(char const* name, ILuaObject* pObject) {
+			g_pInterfaces->g_Lua->SetMember(this, name, pObject);
 		}
-		bool CLuaObject::GetMemberBool(char const*, bool) {
-			/*
+		bool CLuaObject::GetMemberBool(char const* name , bool ret) {
+			if (!this->IsTable() || this->m_iLUA_TYPE != Type::TABLE /*ugh? garry u okay bro?*/) 
+				return ret;
 
-				finish me.
-
-			*/
-			return 0; 
+			this->Push();
+			g_pInterfaces->g_Lua->PushString(name, 0);
+			g_pInterfaces->g_Lua->GetTable(-2);
+			bool isbool = g_pInterfaces->g_Lua->GetType(-1) == Type::BOOL;
+			if (!isbool) {
+				g_pInterfaces->g_Lua->Pop(2);
+				return ret;
+			}
+			bool out = g_pInterfaces->g_Lua->GetBool(-1);
+			g_pInterfaces->g_Lua->Pop(2);
+			return out;
 		}  
-		int CLuaObject::GetMemberInt(char const*, int) {
-			/*
+		int CLuaObject::GetMemberInt(char const* name, int ret) {
+			if (!this->IsTable())
+				return ret;
 
-				finish me.
-
-			*/
-			return 0;
+			this->Push();
+			g_pInterfaces->g_Lua->PushString(name, 0);
+			g_pInterfaces->g_Lua->GetTable(-2);
+			bool isnumber = g_pInterfaces->g_Lua->GetType(-1) == Type::NUMBER;
+			if (!isnumber) {
+				g_pInterfaces->g_Lua->Pop(2);
+				return ret;
+			}
+			double out = g_pInterfaces->g_Lua->GetNumber(-1);
+			out = floor(out);
+			g_pInterfaces->g_Lua->Pop(2);
+			return out;
 		}   
-		float CLuaObject::GetMemberFloat(char const*, float) {
-			/*
+		float CLuaObject::GetMemberFloat(char const* name, float ret) {
+			if (!this->IsTable())
+				return ret;
 
-				finish me.
-
-			*/
-			return 0;
+			this->Push();
+			g_pInterfaces->g_Lua->PushString(name, 0);
+			g_pInterfaces->g_Lua->GetTable(-2);
+			bool isnumber = g_pInterfaces->g_Lua->GetType(-1) == Type::NUMBER;
+			if (!isnumber) {
+				g_pInterfaces->g_Lua->Pop(2);
+				return ret;
+			}
+			double out = g_pInterfaces->g_Lua->GetNumber(-1);
+			g_pInterfaces->g_Lua->Pop(2);
+			return out;
 		}  
-		char const* CLuaObject::GetMemberStr(float, char const*) {
-			/*
+		char const* CLuaObject::GetMemberStr(float fl, char const* ret) {
+			if (!this->IsTable())
+				return ret;
 
-				finish me.
-
-			*/
-			return nullptr;
+			this->Push();
+			g_pInterfaces->g_Lua->PushNumber(fl);
+			g_pInterfaces->g_Lua->GetTable(-2);
+			bool isstring = g_pInterfaces->g_Lua->GetType(-1) == Type::STRING;
+			if (!isstring) {
+				g_pInterfaces->g_Lua->Pop(2);
+				return ret;
+			}
+			char const* out = g_pInterfaces->g_Lua->GetString(-1,0);
+			g_pInterfaces->g_Lua->Pop(2);
+			return out;
 		}   
-		char const* CLuaObject::GetMemberStr(char const*, char const*) {
-			/*
-
-				finish me.
-
-			*/
-			return nullptr;
+		char const* CLuaObject::GetMemberStr(char const* name1, char const* ret) {
+			if (this->IsTable()) {
+				this->Push();
+				g_pInterfaces->g_Lua->PushString(name1, 0);
+				g_pInterfaces->g_Lua->GetTable(-2);
+				bool isstring = g_pInterfaces->g_Lua->GetType(-1) == Type::STRING;
+				if (isstring) {
+					char const* out = g_pInterfaces->g_Lua->GetString(-1, 0);
+					g_pInterfaces->g_Lua->Pop(2);
+					return out;
+				}
+				else {
+					g_pInterfaces->g_Lua->Pop(2);
+					return ret;
+				}
+			}
+			else
+				return "";
 		}  
-		void* CLuaObject::GetMemberUserData(float, void*) {
-			/*
+		void* CLuaObject::GetMemberUserData(float fl, void* userdata) {
+			if (!this->IsTable())
+				return userdata;
 
-				finish me.
+			this->Push();
+			g_pInterfaces->g_Lua->PushNumber(fl);
+			g_pInterfaces->g_Lua->GetTable(-2);
+			bool isuserdata = g_pInterfaces->g_Lua->isUserData(-1);
+			if (isuserdata) {
+				g_pInterfaces->g_Lua->Pop(2);
+				return userdata;
+			}
+			unsigned int udata = (unsigned int)g_pInterfaces->g_Lua->GetUserdata(-1);
+			g_pInterfaces->g_Lua->Pop(2);
+			if (*(BYTE*)(udata + 4) == 9 && !*(unsigned int*)udata)
+				return userdata;
 
-			*/
-			return nullptr;
+			return (void*)udata;
 		}  
-		void* CLuaObject::GetMemberUserData(char const*, void*) {
-			/*
+		void* CLuaObject::GetMemberUserData(char const* name, void* userdata) {
+			if (!this->IsTable())
+				return userdata;
 
-				finish me.
+			this->Push();
+			g_pInterfaces->g_Lua->PushString(name, 0);
+			g_pInterfaces->g_Lua->GetTable(-2);
+			bool isuserdata = g_pInterfaces->g_Lua->isUserData(-1);
+			if (isuserdata) {
+				g_pInterfaces->g_Lua->Pop(2);
+				return userdata;
+			}
+			unsigned int udata = (unsigned int)g_pInterfaces->g_Lua->GetUserdata(-1);
+			g_pInterfaces->g_Lua->Pop(2);
+			if (*(BYTE*)(udata + 4) == 9 && !*(unsigned int*)udata)
+				return userdata;
 
-			*/
-			return nullptr;
+			return (void*)udata;
 		}  
 		ILuaObject* CLuaObject::GetMember(ILuaObject* pObject) {
 			/*
@@ -215,9 +270,10 @@ namespace GarrysMod
 				finish me.
 
 			*/
+
 			return nullptr;
 		}  
-		ILuaObject* CLuaObject::GetMember(ILuaObject*, char const*) {
+		ILuaObject* CLuaObject::GetMember(ILuaObject* object, char const*) {
 			/*
 
 				finish me.
@@ -225,13 +281,16 @@ namespace GarrysMod
 			*/
 			return nullptr;
 		}  
-		ILuaObject* CLuaObject::GetMember(char const* name, ILuaObject* object) {
-			/*
-
-				finish me.
-
-			*/
-			return nullptr;
+		void CLuaObject::GetMember(char const* name, ILuaObject* object) {
+			if (this->IsTable()) {
+				this->Push();
+				g_pInterfaces->g_Lua->PushString(name, 0);
+				g_pInterfaces->g_Lua->GetTable(-2);
+				object->SetFromStack(-1);
+				g_pInterfaces->g_Lua->Pop(2);
+			}
+			else
+				object->UnReference();
 		}   
 		void CLuaObject::SetMetaTable(ILuaObject* object) {
 			this->Push();
@@ -319,19 +378,23 @@ namespace GarrysMod
 			g_pInterfaces->g_Lua->Pop(-1);
 			return out;
 		}
-		void CLuaObject::PushMemberFast(int) {
-			/*
+		int CLuaObject::PushMemberFast(int i1) {
+			if (!this->IsTable())
+				return 0;
 
-				finish me.
-
-			*/
+			this->Push();
+			g_pInterfaces->g_Lua->Push(i1);
+			g_pInterfaces->g_Lua->GetTable(-2);
+			if (g_pInterfaces->g_Lua->IsType(-1, 0)) {
+				g_pInterfaces->g_Lua->Pop(1);
+				return 0;
+			}
+			return 1;
 		}
-		void CLuaObject::SetMemberFast(int, int) {
-			/*
-
-				finish me.
-
-			*/
+		void CLuaObject::SetMemberFast(int i1, int i2) {
+			if (this->IsTable()) {
+				g_pInterfaces->g_Lua->SetMemberFast(this, i1, i2);
+			}
 		}
 		void CLuaObject::SetFloat(float val) {
 			g_pInterfaces->g_Lua->PushNumber(val);
@@ -404,11 +467,8 @@ namespace GarrysMod
 			this->SetMember(val);
 		}
 		void CLuaObject::SetMemberNil(char const* name) {
-			/*
-
-				finish me.
-
-			*/
+			g_pInterfaces->g_Lua->PushNil();
+			this->SetMember(name);
 		}
 		bool CLuaObject::Debug_IsUnreferenced() {
 			return this->m_iref == -1;
@@ -419,12 +479,9 @@ namespace GarrysMod
 			this->m_iref = -1;
 			this->m_pLua = g_pInterfaces->g_Lua;
 		}
-		void CLuaObject::SetFromGlobal(char const*) {
-			/*
-
-				finish me.
-
-			*/
+		void CLuaObject::SetFromGlobal(char const* name) {
+			CLuaObject* global = g_pInterfaces->g_Lua->Global();
+			global->GetMember(name, this);
 		}
 		int CLuaObject::GetStringLen(unsigned int* len) {
 			this->Push();
@@ -448,12 +505,13 @@ namespace GarrysMod
 			g_pInterfaces->g_Lua->Pop(2);
 			return val;
 		}
-		void CLuaObject::SetMember(char const*, unsigned long) {
-			/*
-
-				finish me.
-
-			*/
+		void CLuaObject::SetMember(char const* name , unsigned long ul) {
+			char buffer[256] = {};
+			if (this->IsTable()) {
+				V_snprintf(buffer, 256, "%llu", name, ul);
+				g_pInterfaces->g_Lua->PushString(buffer, 0);
+				g_pInterfaces->g_Lua->SetMember(this, name);
+			}
 		}
 		void CLuaObject::SetReference(int val) {
 			/*
@@ -462,19 +520,13 @@ namespace GarrysMod
 
 			*/
 		}
-		void CLuaObject::RemoveMember(float) {
-			/*
-
-				finish me.
-
-			*/
+		void CLuaObject::RemoveMember(float fl) {
+			g_pInterfaces->g_Lua->PushNil();
+			g_pInterfaces->g_Lua->SetMember(this, fl);
 		}
 		void CLuaObject::RemoveMember(char const* name) {
-			/*
-			
-				finish me.
-			
-			*/
+			g_pInterfaces->g_Lua->PushNil();
+			g_pInterfaces->g_Lua->SetMember(this, name);
 		}
 		bool CLuaObject::MemberIsNil(char const* name) {
 			this->Push();

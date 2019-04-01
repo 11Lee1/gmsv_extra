@@ -42,7 +42,7 @@ namespace GarrysMod
 			/*1 - 0*/virtual void*				GetMemberUserData(char const*, void*);
 			/*1 - 0*/virtual ILuaObject*		GetMember(ILuaObject* pObject);
 			/*1 - 0*/virtual ILuaObject*		GetMember(ILuaObject*, char const*);
-			/*1 - 0*/virtual ILuaObject*		GetMember(char const*, ILuaObject*);
+			/*1 - 0*/virtual void				GetMember(char const*, ILuaObject*);
 			/*1 - 0*/virtual void				SetMetaTable(ILuaObject*);
 			/*1 - 0*/virtual void				SetUserData(void*);
 			/*1 - 0*/virtual void				Push();
@@ -54,7 +54,7 @@ namespace GarrysMod
 			/*1 - 0*/virtual bool				IsUserData();
 			/*1 - 0*/virtual void				Remove_Me_1(char const*, void*); // actual name ;
 			/*1 - 0*/virtual bool				GetBool();
-			/*1 - 0*/virtual void				PushMemberFast(int);
+			/*1 - 0*/virtual int				PushMemberFast(int);
 			/*1 - 0*/virtual void				SetMemberFast(int, int);
 			/*1 - 0*/virtual void				SetFloat(float);
 			/*1 - 0*/virtual void				SetString(char const*);

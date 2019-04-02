@@ -12,6 +12,8 @@ namespace GarrysMod
 		class CLuaObject : public ILuaObject
 		{
 		public:
+			CLuaObject();
+			CLuaObject(int, int);
 			/*0 - 0*/virtual void				Set(ILuaObject* pObject);
 			/*1 - 0*/virtual void				SetFromStack(int pos);
 			/*1 - 0*/virtual void				UnReference();

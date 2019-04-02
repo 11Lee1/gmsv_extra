@@ -6,6 +6,25 @@ namespace GarrysMod
 {
 	namespace Lua
 	{
+		CLuaObject::CLuaObject() {
+			this->dontknow = 0;
+			this->m_iLUA_TYPE = -1;
+			this->m_iref = -1;
+			this->m_pLua = g_pInterfaces->g_Lua;
+		}
+		CLuaObject::CLuaObject(int i0, int i1) {
+			this->dontknow = 0;
+			this->m_iLUA_TYPE = -1;
+			this->m_iref = -1;
+			this->m_pLua = g_pInterfaces->g_Lua;
+			this->SetReference(i0);
+			if (g_pInterfaces->g_Lua) {
+				if (i1 != -1 && i1 != this->m_iLUA_TYPE) {
+					// char buffer[0x100] = { };
+					// unexpected type.
+				}
+			}
+		}
 		void CLuaObject::Set(ILuaObject* pObject) {
 			if (pObject) {
 				pObject->Push();
@@ -16,7 +35,7 @@ namespace GarrysMod
 				this->UnReference();
 		}
 		void CLuaObject::SetFromStack(int pos) {
-			this->RemoveMember(pos);
+			this->SetReference(pos);
 		}
 		void CLuaObject::UnReference() {
 			if (this->m_iref != -1){
@@ -514,11 +533,18 @@ namespace GarrysMod
 			}
 		}
 		void CLuaObject::SetReference(int val) {
-			/*
+			this->UnReference();
+			this->dontknow = g_pInterfaces->g_Lua->isUserData(val);
+			this->m_iLUA_TYPE = g_pInterfaces->g_Lua->GetType(val);
+			this->m_pLua = g_pInterfaces->g_Lua;
 
-				finish me.
+			bool TypeIsNil = this->m_iLUA_TYPE == Type::NIL;
+			if (TypeIsNil)
+				g_pInterfaces->g_Lua->PushNil();
+			else
+				g_pInterfaces->g_Lua->Push(val);
 
-			*/
+			this->m_iref = g_pInterfaces->g_Lua->ReferenceCreate();
 		}
 		void CLuaObject::RemoveMember(float fl) {
 			g_pInterfaces->g_Lua->PushNil();

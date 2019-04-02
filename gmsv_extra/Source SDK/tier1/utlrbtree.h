@@ -672,18 +672,17 @@ I  CUtlRBTree<T, I, L, M>::NewNode()
 	// Nothing in the free list; add.
 	if (m_FirstFree == InvalidIndex())
 	{
-		Assert(m_Elements.IsValidIterator(m_LastAlloc) || m_NumElements == 0);
 		typename M::Iterator_t it = m_Elements.IsValidIterator(m_LastAlloc) ? m_Elements.Next(m_LastAlloc) : m_Elements.First();
 		if (!m_Elements.IsValidIterator(it))
 		{
+			MEM_ALLOC_CREDIT_CLASS();
 			m_Elements.Grow();
 
 			it = m_Elements.IsValidIterator(m_LastAlloc) ? m_Elements.Next(m_LastAlloc) : m_Elements.First();
 
-			Assert(m_Elements.IsValidIterator(it));
 			if (!m_Elements.IsValidIterator(it))
 			{
-			
+				//Error( "CUtlRBTree overflow!\n" );
 			}
 		}
 		m_LastAlloc = it;
@@ -864,8 +863,6 @@ I CUtlRBTree<T, I, L, M>::InsertAt(I parent, bool leftchild)
 	I i = NewNode();
 	LinkToParent(i, parent, leftchild);
 	++m_NumElements;
-
-	Assert(IsValid());
 
 	return i;
 }
@@ -1464,8 +1461,6 @@ void CUtlRBTree<T, I, L, M>::SetLessFunc(const typename CUtlRBTree<T, I, L, M>::
 template < class T, class I, typename L, class M >
 void CUtlRBTree<T, I, L, M>::FindInsertionPosition(T const &insert, I &parent, bool &leftchild)
 {
-	Assert(m_LessFunc);
-
 	/* find where node belongs */
 	I current = m_Root;
 	parent = InvalidIndex();

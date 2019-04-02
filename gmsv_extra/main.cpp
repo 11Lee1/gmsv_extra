@@ -86,6 +86,7 @@ void main() {
 	g_pInterfaces = new Interfaces();
 	g_pMemAlloc = g_pInterfaces->MemAlloc();
 	hooks = new Hooks();
+
 	Loop();
 }
 void detatch(HANDLE thread) {

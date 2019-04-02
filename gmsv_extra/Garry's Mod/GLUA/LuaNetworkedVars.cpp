@@ -1,4 +1,5 @@
 #include "LuaNetworkedVars.h"
+#include "LuaObject/CLuaGameObject.h"
 
 bool CLuaNetworkedVars::GetNetworkedVar(CBaseEntity* Ent, char const* VarName, int type, CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t &Element) {
 	if (!Ent)

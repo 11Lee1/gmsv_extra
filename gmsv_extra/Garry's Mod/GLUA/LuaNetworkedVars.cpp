@@ -1,6 +1,26 @@
 #include "LuaNetworkedVars.h"
 #include "LuaObject/CLuaGameObject.h"
 
+
+void CLuaNetworkedVars::AddNetworkStringTest(CBaseEntity* ent, char const* key, char const* text) {
+	if (!ent)
+		return;
+	LuaNetworkedVar_t netvar;
+
+	CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t Element;
+
+	netvar.m_LuaGameObject = GarrysMod::Lua::CLuaGameObject();
+	netvar.m_LuaGameObject.SetString(text);
+	Element.key = key;
+	Element.elem = netvar;
+
+	auto xdasd = g_pInterfaces;
+ 	auto index = m_Ents[ent->GetRefEHandle().GetEntryIndex()].NetVars.Insert(Element);
+	m_Ents[ent->GetRefEHandle().GetEntryIndex()].NetVars[index].elem.m_iNetworkStringID = g_pInterfaces->NetworkStringTableContainer()->FindTable("networkstring")->AddString(true, key);
+
+}
+
+
 bool CLuaNetworkedVars::GetNetworkedVar(CBaseEntity* Ent, char const* VarName, int type, CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t &Element) {
 	if (!Ent)
 		return false;

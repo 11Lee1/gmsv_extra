@@ -21,6 +21,7 @@
 
 #include "../tier0/memalloc.h"
 #include "../tier0/memdbgon.h"
+#include "../../interfaces.h"
 
 #pragma warning (disable:4100)
 #pragma warning (disable:4514)
@@ -721,10 +722,12 @@ void CUtlMemory<T, I>::Grow(int num)
 
 	if (m_pMemory)
 	{
-		m_pMemory = (T*)realloc(m_pMemory, m_nAllocationCount * sizeof(T));
+		MEM_ALLOC_CREDIT_CLASS();
+		m_pMemory = (T*)g_pInterfaces->MemAlloc()->Realloc(m_pMemory, m_nAllocationCount * sizeof(T));
 	}
 	else
 	{
+		MEM_ALLOC_CREDIT_CLASS();
 		m_pMemory = (T*)malloc(m_nAllocationCount * sizeof(T));
 	}
 }

@@ -82,6 +82,10 @@ void Interfaces::GetInterfaces() {
 	cvar = (ICvar*)GetInterface("vstdlib.dll", "VEngineCvar004");
 	PRINT_PTRCHECK("VEngineCvar004", cvar);
 
+	nwstringtbl = (INetworkStringTableContainer*)GetInterface("engine.dll", "VEngineServerStringTable001");
+	PRINT_PTRCHECK("VEngineServerStringTable001", nwstringtbl);
+
+
 	if (m_pLuaShared)
 		g_Lua = (GarrysMod::Lua::ILuaBase*)LuaShared()->GetLuaInterface(1); // server
 

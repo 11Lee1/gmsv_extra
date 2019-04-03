@@ -81,7 +81,7 @@ namespace GarrysMod
 			/*42 - 168*/virtual void				CreateMetaTableType(const char* strName, int iType) = 0;
 			/*43 - 172*/virtual const char*			CheckString(int iStackPos = -1) = 0; // 172 - 43 
 			/*44 - 176*/virtual double				CheckNumber(int iStackPos = -1) = 0;
-#ifdef _WIN32 // CLuaInterface.
+#ifdef _WIN32 // CLuaInterface 
 			/*45 - 180*/virtual int					ObjLen(int) = 0;
 			/*46 - 184*/virtual QAngle				GetAngle(int) = 0;
 			/*47 - 188*/virtual Vector				GetVector(int) = 0;

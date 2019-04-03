@@ -138,7 +138,8 @@ namespace GarrysMod
 				this->SetMember(name);
 			}
 		}
-		void CLuaObject::SetMember(ILuaObject* pObject1, ILuaObject* pObject2) {
+		
+		//void CLuaObject::SetMember(ILuaObject* pObject1, ILuaObject* pObject2) {
 			/*
 
 				finish me.
@@ -157,7 +158,7 @@ namespace GarrysMod
 				.text:000B53AA                 pop     ebp
 				.text:000B53AB                 retn    8
 			*/
-		}
+		//}
 		void CLuaObject::SetMember(char const* name, ILuaObject* pObject) {
 			g_pInterfaces->g_Lua->SetMember(this, name, pObject);
 		}

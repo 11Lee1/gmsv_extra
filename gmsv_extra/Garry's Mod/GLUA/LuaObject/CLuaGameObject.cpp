@@ -6,6 +6,9 @@ namespace GarrysMod
 {
 	namespace Lua
 	{
+		CLuaGameObject::CLuaGameObject() : CLuaObject() {
+			luaobj = CLuaObject();
+		}
 		CBaseEntity* CLuaGameObject::GetMemberEntity(char const* name, CBaseEntity* ret) {
 			if (!this->IsTable())
 				return nullptr;

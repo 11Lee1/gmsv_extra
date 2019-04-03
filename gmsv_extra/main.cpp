@@ -19,7 +19,7 @@ void detatch(HANDLE thread);
 BOOL __stdcall DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) { 
 	static HANDLE thread = nullptr;
 
-	if(ul_reason_for_call == DLL_PROCESS_ATTACH)
+	if (ul_reason_for_call == DLL_PROCESS_ATTACH)
 		thread = CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)main, hModule, 0, nullptr);
 	if (ul_reason_for_call == DLL_PROCESS_DETACH) 
 		detatch(thread);
@@ -87,9 +87,14 @@ void main() {
 	g_pMemAlloc = g_pInterfaces->MemAlloc();
 	hooks = new Hooks();
 
+
+	g_pInterfaces->LuaNetworkedVars()->AddNetworkStringTest((CBaseEntity*)g_pInterfaces->EngineServer()->PEntityOfEntIndex(1)->GetUnknown(), "test", "1337");
+
 	Loop();
 }
 void detatch(HANDLE thread) {
+	if (!thread)
+		return;
 	hooks->~Hooks();
 	g_pInterfaces->~Interfaces();
 	if (TerminateThread(thread, 0)) {

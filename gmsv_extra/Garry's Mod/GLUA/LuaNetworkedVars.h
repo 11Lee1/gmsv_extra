@@ -13,7 +13,8 @@ public:
 	struct LuaNetworkedVar_t
 	{
 		GarrysMod::Lua::CLuaGameObject m_LuaGameObject;
-		BYTE pad_unk00[0x8];
+		float m_flLastUpdate			= 0;
+		int m_iNetworkStringID			= -1;
 	};
 
 	struct LuaNetworkedVarEnts_t
@@ -30,6 +31,8 @@ public:
 	CBaseEntity*GetNWEntity(CBaseEntity* Ent, char const* VarName);
 	Vector		GetNWVector(CBaseEntity* Ent, char const* VarName);
 	QAngle		GetNWAngle(CBaseEntity* Ent, char const* VarName);
+
+	void		AddNetworkStringTest(CBaseEntity* ent, char const* key, char const* text);
 protected:
 	bool		GetNetworkedVar(CBaseEntity* Ent, char const* VarName,int type, CUtlMap<char const*, LuaNetworkedVar_t, unsigned short>::Node_t &Element);
 

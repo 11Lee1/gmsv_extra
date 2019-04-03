@@ -23,6 +23,7 @@ class IEngineTrace;
 class IPlayerInfoManager;
 class ICvar;
 class IKeyValuesSystem;
+class INetworkStringTableContainer;
 namespace GarrysMod
 {
 	namespace Lua
@@ -63,6 +64,7 @@ public:
 	CUniformRandomStream*	Random() { return *(CUniformRandomStream**)random; }
 	IPlayerInfoManager*	PlayerInfoMgr() { return playerinfomgr; }
 	CGlobalVars*  Globals();
+	INetworkStringTableContainer* NetworkStringTableContainer() { return nwstringtbl; }
 	ICvar* CVar() { return cvar; }
 	IKeyValuesSystem* KeyValuesSystem() { return keyvaluessystem; }
 private:
@@ -84,6 +86,7 @@ private:
 	CLuaShared* m_pLuaShared;
 	IStaticPropMgrServer* staticpropmgr;
 	IEngineTrace* enginetrace;
+	INetworkStringTableContainer* nwstringtbl;
 	void* random;
 	IPlayerInfoManager*	playerinfomgr;
 	ICvar* cvar;

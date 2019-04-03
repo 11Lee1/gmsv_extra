@@ -175,7 +175,6 @@ void CUtlSortVector<T, LessFunc, BaseVector>::SetLessContext(void *pCtx)
 template <class T, class LessFunc, class BaseVector>
 int CUtlSortVector<T, LessFunc, BaseVector>::Insert(const T& src)
 {
-	AssertFatal(!m_bNeedsSort);
 
 	int pos = FindLessOrEqual(src) + 1;
 	this->GrowVector();
@@ -200,7 +199,6 @@ int CUtlSortVector<T, LessFunc, BaseVector>::InsertNoSort(const T& src)
 template <class T, class LessFunc, class BaseVector>
 int CUtlSortVector<T, LessFunc, BaseVector>::InsertIfNotFound(const T& src)
 {
-	AssertFatal(!m_bNeedsSort);
 	bool bFound;
 	int pos = FindLessOrEqual(src, &bFound);
 	if (bFound)
@@ -278,7 +276,6 @@ template <class T, class LessFunc, class BaseVector>
 template < typename TKey >
 int CUtlSortVector<T, LessFunc, BaseVector>::Find(const TKey& src) const
 {
-	AssertFatal(!m_bNeedsSort);
 
 	LessFunc less;
 
@@ -332,7 +329,6 @@ template <class T, class LessFunc, class BaseVector>
 template < typename TKey >
 int CUtlSortVector<T, LessFunc, BaseVector>::FindLessOrEqual(const TKey& src, bool *pFound) const
 {
-	AssertFatal(!m_bNeedsSort);
 
 	LessFunc less;
 	int start = 0, end = this->Count() - 1;
@@ -370,7 +366,6 @@ template <class T, class LessFunc, class BaseVector>
 template < typename TKey >
 int CUtlSortVector<T, LessFunc, BaseVector>::FindLess(const TKey& src) const
 {
-	AssertFatal(!m_bNeedsSort);
 
 	LessFunc less;
 	int start = 0, end = this->Count() - 1;

@@ -13,7 +13,7 @@ namespace GarrysMod
 			if (!this->IsTable())
 				return nullptr;
 
-			void* userdata = this->GetMemberUserData(name, nullptr);
+			void* userdata = this->GetMemberUserData_1(name, nullptr);
 			if (!userdata)
 				return ret;
 
@@ -23,13 +23,13 @@ namespace GarrysMod
 
 			return (CBaseEntity*)g_pInterfaces->EngineServer()->PEntityOfEntIndex(entindex)->GetUnknown();
 		}
-		void CLuaGameObject::SetMemberEntity(char const* name, CBaseEntity* pEnt) {
+		void CLuaGameObject::SetMemberEntity_0(char const* name, CBaseEntity* pEnt) {
 			if (this->IsTable()) {
 				g_pInterfaces->g_Lua->PushEntity(pEnt);
 				g_pInterfaces->g_Lua->SetMember(this, name);
 			}
 		}
-		void CLuaGameObject::SetMemberEntity(float fl, CBaseEntity* pEnt) {
+		void CLuaGameObject::SetMemberEntity_1(float fl, CBaseEntity* pEnt) {
 			if (this->IsTable()) {
 				g_pInterfaces->g_Lua->PushEntity(pEnt);
 				g_pInterfaces->g_Lua->SetMember(this, fl);
@@ -55,31 +55,31 @@ namespace GarrysMod
 			this->SetFromStack(-1);
 			g_pInterfaces->g_Lua->Pop(1);
 		}
-		void CLuaGameObject::SetMemberVector(float fl, Vector* vec) {
+		void CLuaGameObject::SetMemberVector_0(float fl, Vector* vec) {
 			if (this->IsTable()) {
 				g_pInterfaces->g_Lua->PushVector(vec);
 				g_pInterfaces->g_Lua->SetMember(this, fl);
 			}
 		}
-		void CLuaGameObject::SetMemberVector(char const* name, Vector& vec) {
+		void CLuaGameObject::SetMemberVector_1(char const* name, Vector& vec) {
 			if (this->IsTable()) {
 				g_pInterfaces->g_Lua->PushVector(vec);
 				g_pInterfaces->g_Lua->SetMember(this, name);
 			}
 		}
-		void CLuaGameObject::SetMemberVector(char const* name, Vector* vec) {
+		void CLuaGameObject::SetMemberVector_2(char const* name, Vector* vec) {
 			if (this->IsTable()) {
 				g_pInterfaces->g_Lua->PushVector(vec);
 				g_pInterfaces->g_Lua->SetMember(this, name);
 			}
 		}
-		Vector& CLuaGameObject::GetMemberVector(int i1) { 
+		Vector& CLuaGameObject::GetMemberVector_0(int i1) { 
 			Vector* out = &Vector(0,0,0);
-			return *(Vector*)this->GetMemberUserData((float)i1, out);
+			return *(Vector*)this->GetMemberUserData_0((float)i1, out);
 		}
-		Vector& CLuaGameObject::GetMemberVector(char const* name, Vector* ret) { 
+		Vector& CLuaGameObject::GetMemberVector_1(char const* name, Vector* ret) { 
 			Vector* out = ret;
-			return *(Vector*)this->GetMemberUserData(name, out);
+			return *(Vector*)this->GetMemberUserData_1(name, out);
 		}
 		Vector& CLuaGameObject::GetVector() { 
 			return *(Vector*)this->GetUserData();
@@ -95,7 +95,7 @@ namespace GarrysMod
 		}
 		QAngle& CLuaGameObject::GetMemberAngle(char const* name, QAngle* ret) { 
 			QAngle* out = ret;
-			return *(QAngle*)this->GetMemberUserData(name, out);
+			return *(QAngle*)this->GetMemberUserData_1(name, out);
 		}
 		QAngle& CLuaGameObject::GetAngle() { 
 			return *(QAngle*)this->GetUserData();

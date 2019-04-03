@@ -133,11 +133,11 @@ public:
 	operator const T *() { return m_pObject; }
 	operator T *() { return m_pObject; }
 
-	int			operator=(int i) { AssertMsg(i == 0, "Only NULL allowed on integer assign"); m_pObject = 0; return 0; }
+	int			operator=(int i) { m_pObject = 0; return 0; }
 	T *			operator=(T *p) { m_pObject = p; return p; }
 
 	bool        operator !() const { return (!m_pObject); }
-	bool        operator!=(int i) const { AssertMsg(i == 0, "Only NULL allowed on integer compare"); return (m_pObject != NULL); }
+	bool        operator!=(int i) const { return (m_pObject != NULL); }
 	bool		operator==(const void *p) const { return (m_pObject == p); }
 	bool		operator!=(const void *p) const { return (m_pObject != p); }
 	bool		operator==(T *p) const { return operator==((void *)p); }

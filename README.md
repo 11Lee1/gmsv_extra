@@ -6,5 +6,3 @@ wip, I'll work on it/improve on it when I feel like it.
 
 TODO:
 - Linux implementation 
-
-![alt text](https://my.mixtape.moe/ftwpnh.png)

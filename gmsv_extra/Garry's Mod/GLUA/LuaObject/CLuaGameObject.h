@@ -29,6 +29,10 @@ namespace GarrysMod
 			/*82 - 328*/virtual QAngle&			GetMemberAngle(char const*, QAngle*);
 			/*83 - 332*/virtual QAngle&			GetAngle();
 			/*84 - 336*/virtual bool			IsAngle();
+
+		public:
+			void	SetVector(Vector vec);
+			void	SetAngle(QAngle ang);
 		public:
 			CLuaObject luaobj;
 		};

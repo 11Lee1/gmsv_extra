@@ -86,7 +86,9 @@ namespace GarrysMod
 			/*66 - 0*/virtual void				SetMemberDouble_1(float, double);
 			/*67 - 0*/virtual double			GetMemberDouble(char const*, double);
 		public:
-			bool		dontknow;
+			void	SetBool(bool val);
+		public:
+			bool		m_bUserData;
 			int			m_iLUA_TYPE;		// lua type, string, number, vector, etc.
 			int			m_iref;				// ref, for reference push etc.
 			ILuaBase*	m_pLua;				// dont use this for function overrides, you WILL crash if not now eventually.

@@ -7,13 +7,13 @@ namespace GarrysMod
 	namespace Lua
 	{
 		CLuaObject::CLuaObject() {
-			this->dontknow = 0;
+			this->m_bUserData = 0;
 			this->m_iLUA_TYPE = -1;
 			this->m_iref = -1;
 			this->m_pLua = g_pInterfaces->g_Lua;
 		}
 		CLuaObject::CLuaObject(int i0, int i1) {
-			this->dontknow = 0;
+			this->m_bUserData = 0;
 			this->m_iLUA_TYPE = -1;
 			this->m_iref = -1;
 			this->m_pLua = g_pInterfaces->g_Lua;
@@ -45,7 +45,7 @@ namespace GarrysMod
 						g_pInterfaces->g_Lua->ReferenceFree(m_iref);
 				}
 			}
-			this->dontknow = 0;
+			this->m_bUserData = 0;
 			this->m_iLUA_TYPE = -1;
 			this->m_iref = -1;
 		}
@@ -80,6 +80,10 @@ namespace GarrysMod
 			if (!this->IsUserData())
 				return nullptr;
 
+			this->Push();
+			void* UserdataOut = g_pInterfaces->g_Lua->GetUserdata(-1);
+			g_pInterfaces->g_Lua->Pop(1);
+			return UserdataOut;
 		}
 		void CLuaObject::SetMember_0(char const* name) {
 			g_pInterfaces->g_Lua->SetMember(this, name);
@@ -378,13 +382,7 @@ namespace GarrysMod
 			return false;
 		}
 		bool CLuaObject::IsUserData() {
-			if (!g_pInterfaces->g_Lua)
-				return false;
-
-			if (m_iLUA_TYPE == Type::USERDATA)
-				return true;
-
-			return false;
+			return this->m_bUserData;
 		}
 		void CLuaObject::Remove_Me_1(char const*, void*) {
 			// does nothing
@@ -494,7 +492,7 @@ namespace GarrysMod
 			return this->m_iref == -1;
 		}
 		void CLuaObject::Init() {
-			this->dontknow = 0;
+			this->m_bUserData = 0;
 			this->m_iLUA_TYPE = -1;
 			this->m_iref = -1;
 			this->m_pLua = g_pInterfaces->g_Lua;
@@ -535,7 +533,7 @@ namespace GarrysMod
 		}
 		void CLuaObject::SetReference(int val) {
 			this->UnReference();
-			this->dontknow = g_pInterfaces->g_Lua->isUserData(val);
+			this->m_bUserData = g_pInterfaces->g_Lua->isUserData(val);
 			this->m_iLUA_TYPE = g_pInterfaces->g_Lua->GetType(val);
 			this->m_pLua = g_pInterfaces->g_Lua;
 
@@ -580,6 +578,12 @@ namespace GarrysMod
 				g_pInterfaces->g_Lua->Pop(2);
 			}
 			return val; 
+		}
+
+		void CLuaObject::SetBool(bool val) {
+			g_pInterfaces->g_Lua->PushBool(val);
+			this->SetFromStack(-1);
+			g_pInterfaces->g_Lua->Pop(1);
 		}
 	};
 };

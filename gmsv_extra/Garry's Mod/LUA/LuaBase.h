@@ -168,8 +168,6 @@ namespace GarrysMod
 #endif
 			CBaseEntity* GetEntity(int iStackPos);
 			void PushEntity(CBaseEntity* Entity);
-			void PushVector(Vector const* vec);
-			void PushAngle(QAngle const* ang);
 		};
 	}
 }

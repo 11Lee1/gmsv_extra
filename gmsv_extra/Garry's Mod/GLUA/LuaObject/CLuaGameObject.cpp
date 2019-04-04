@@ -57,7 +57,7 @@ namespace GarrysMod
 		}
 		void CLuaGameObject::SetMemberVector_0(float fl, Vector* vec) {
 			if (this->IsTable()) {
-				g_pInterfaces->g_Lua->PushVector(vec);
+				g_pInterfaces->g_Lua->PushVector(*vec);
 				g_pInterfaces->g_Lua->SetMember(this, fl);
 			}
 		}
@@ -69,7 +69,7 @@ namespace GarrysMod
 		}
 		void CLuaGameObject::SetMemberVector_2(char const* name, Vector* vec) {
 			if (this->IsTable()) {
-				g_pInterfaces->g_Lua->PushVector(vec);
+				g_pInterfaces->g_Lua->PushVector(*vec);
 				g_pInterfaces->g_Lua->SetMember(this, name);
 			}
 		}
@@ -82,14 +82,14 @@ namespace GarrysMod
 			return *(Vector*)this->GetMemberUserData_1(name, out);
 		}
 		Vector& CLuaGameObject::GetVector() { 
-			return *(Vector*)this->GetUserData();
+			return **(Vector**)this->GetUserData();
 		}
 		bool CLuaGameObject::IsVector() { 
 			return this->GetType() == Type::VECTOR;
 		}
 		void CLuaGameObject::SetMemberAngle(char const* name, QAngle* ang) {
 			if (this->IsTable()) {
-				g_pInterfaces->g_Lua->PushAngle(ang);
+				g_pInterfaces->g_Lua->PushAngle(*ang);
 				g_pInterfaces->g_Lua->SetMember(this, name);
 			}
 		}
@@ -98,10 +98,21 @@ namespace GarrysMod
 			return *(QAngle*)this->GetMemberUserData_1(name, out);
 		}
 		QAngle& CLuaGameObject::GetAngle() { 
-			return *(QAngle*)this->GetUserData();
+			return **(QAngle**)this->GetUserData();
 		}
 		bool CLuaGameObject::IsAngle() { 
 			return this->GetType() == Type::ANGLE;
+		}
+
+		void CLuaGameObject::SetVector(Vector vec) {
+			g_pInterfaces->g_Lua->PushVector(vec);
+			this->SetFromStack(-1);
+			g_pInterfaces->g_Lua->Pop(1);
+		}
+		void CLuaGameObject::SetAngle(QAngle ang) {
+			g_pInterfaces->g_Lua->PushAngle(ang);
+			this->SetFromStack(-1);
+			g_pInterfaces->g_Lua->Pop(1);
 		}
 	};
 };

@@ -88,8 +88,16 @@ void main() {
 	hooks = new Hooks();
 
 
-	g_pInterfaces->LuaNetworkedVars()->AddNetworkStringTest((CBaseEntity*)g_pInterfaces->EngineServer()->PEntityOfEntIndex(1)->GetUnknown(), "test", "1337");
+	//g_pInterfaces->LuaNetworkedVars()->AddNetworkStringTest((CBaseEntity*)g_pInterfaces->EngineServer()->PEntityOfEntIndex(1)->GetUnknown(), "test", "1337");
+	g_pInterfaces->LuaNetworkedVars()->SetNWBool((CBaseEntity*)g_pInterfaces->EngineServer()->PEntityOfEntIndex(1)->GetUnknown(), "bool test", true);
+	g_pInterfaces->LuaNetworkedVars()->SetNWInt((CBaseEntity*)g_pInterfaces->EngineServer()->PEntityOfEntIndex(1)->GetUnknown(), "int test",  1337);
+	g_pInterfaces->LuaNetworkedVars()->SetNWFloat((CBaseEntity*)g_pInterfaces->EngineServer()->PEntityOfEntIndex(1)->GetUnknown(), "float test", 1.337);
+	g_pInterfaces->LuaNetworkedVars()->SetNWString((CBaseEntity*)g_pInterfaces->EngineServer()->PEntityOfEntIndex(1)->GetUnknown(), "string test", "test string");
+	g_pInterfaces->LuaNetworkedVars()->SetNWEntity((CBaseEntity*)g_pInterfaces->EngineServer()->PEntityOfEntIndex(1)->GetUnknown(), "ent test", (CBaseEntity*)g_pInterfaces->EngineServer()->PEntityOfEntIndex(1)->GetUnknown());
+	g_pInterfaces->LuaNetworkedVars()->SetNWAngle((CBaseEntity*)g_pInterfaces->EngineServer()->PEntityOfEntIndex(1)->GetUnknown(), "ang test", QAngle(1, 2, 3));
+	g_pInterfaces->LuaNetworkedVars()->SetNWVector((CBaseEntity*)g_pInterfaces->EngineServer()->PEntityOfEntIndex(1)->GetUnknown(), "vec test", Vector(1, 2, 4));
 
+	QAngle lol = g_pInterfaces->LuaNetworkedVars()->GetNWAngle((CBaseEntity*)g_pInterfaces->EngineServer()->PEntityOfEntIndex(1)->GetUnknown(), "ang test");
 	Loop();
 }
 void detatch(HANDLE thread) {

@@ -125,7 +125,7 @@ public:
 #endif
 	PROCESS_CLC_MESSAGE(CmdKeyValues) = 0;
 
-	virtual void ProcessGMod_ClientToServer(CLC_GMod_ClientToServer*) = 0;
+	PROCESS_CLC_MESSAGE(GMod_ClientToServer) = 0;
 };
 
 class SVC_Print;

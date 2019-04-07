@@ -649,7 +649,7 @@ public:
 	// Hook for player spawning
 	virtual void			ClientSpawned(edict_t *pPlayer) = 0;
 
-	virtual void			GMOD_ReceiveClientMessage(int, edict_t* pPlayer, bf_read* , int);
+	virtual void			GMOD_ReceiveClientMessage(int dunno, edict_t* pPlayer, bf_read* data, int length);
 	virtual void			GMOD_ClientConnected(int);
 	virtual void			GMOD_SentClientStringTables(int);
 };

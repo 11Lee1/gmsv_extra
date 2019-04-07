@@ -140,6 +140,7 @@ void Hooks::SetupHooks() {
 void Hooks::HookFunctions() {
 	// IServerGameClients
 	HookClientConnect();
+	HookGMOD_ReceiveClientMessage();
 
 	// CGMOD_Player
 	Hook_CGMOD_Player__FireBullets();
@@ -147,6 +148,7 @@ void Hooks::HookFunctions() {
 void Hooks::UnhookFunctions() {
 	// IServerGameClients
 	UnhookClientConnect();
+	UnHookGMOD_ReceiveClientMessage();
 
 	// CGMOD_Player
 	Unhook_CGMOD_Player__FireBullets();

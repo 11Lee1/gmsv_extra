@@ -130,10 +130,12 @@
     <ClCompile Include="Garry%27s Mod\GLUA\LuaObject\CLuaGameObject.cpp" />
     <ClCompile Include="Garry%27s Mod\GLUA\LuaObject\CLuaObject.cpp" />
     <ClCompile Include="Garry%27s Mod\LUA\LuaBase.cpp" />
+    <ClCompile Include="Garry%27s Mod\Networking\ClientToServer.cpp" />
     <ClCompile Include="Hooks\CGMOD_Player\FireBullets.cpp" />
     <ClCompile Include="Hooks\CNetChan\SendNetMsg.cpp" />
     <ClCompile Include="Hooks\hook.cpp" />
     <ClCompile Include="Hooks\ServerGameClients\ClientConnect.cpp" />
+    <ClCompile Include="Hooks\ServerGameClients\GMOD_ReceiveClientMessage.cpp" />
     <ClCompile Include="interfaces.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Source SDK\interval.cpp" />
@@ -165,6 +167,7 @@
     <ClInclude Include="Garry%27s Mod\GLUA\LuaObject\CLuaGameObject.h" />
     <ClInclude Include="Garry%27s Mod\GLUA\LuaObject\CLuaObject.h" />
     <ClInclude Include="Garry%27s Mod\GLUA\LuaObject\ILuaObject.h" />
+    <ClInclude Include="Garry%27s Mod\Networking\ClientToServer.h" />
     <ClInclude Include="Garry%27s Mod\Networking\ServerToClient.h" />
     <ClInclude Include="Hooks\hook.h" />
     <ClInclude Include="include.h" />

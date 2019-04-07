@@ -2,6 +2,8 @@
 #include "include.h"
 #include "Hooks/hook.h"
 
+#include "Garry's Mod/Networking/ClientToServer.h"
+
 Interfaces* g_pInterfaces = nullptr;
 Hooks* hooks = nullptr;
 IMemAlloc* g_pMemAlloc = nullptr;
@@ -78,23 +80,27 @@ void Loop() {
 		Sleep((int)(1000 * g_pInterfaces->Globals()->interval_per_tick)); // who cares we just want to loop shit for it's values etc
 	} while (1);
 }
-
+void test_12(edict_t* pPlayer) {
+	printf("reached callback!\n");
+}
 void main() {
 #ifdef __INJECT
 	AttachConsole("Console");
 #endif
 	g_pInterfaces = new Interfaces();
 	g_pMemAlloc = g_pInterfaces->MemAlloc();
+	g_pGModNetMsgReceiver = new GMod_NetReceive();
 	hooks = new Hooks();
 
 
 	CGameServer* gameserver = *(CGameServer**)((*(unsigned int**)g_pInterfaces->EngineServer())[44]/*MessageEnd*/ + 0xE5 + 0x1);
 	CGameClient* xd = (CGameClient*)gameserver->m_Clients[0];
-
+	
+	CNetChan* test = (CNetChan*)xd->m_NetChannel;
 	CNetChan* test1 = (CNetChan*)g_pInterfaces->EngineServer()->GetPlayerNetInfo(1);  // fix cnetchan
 	QAngle lol = g_pInterfaces->LuaNetworkedVars()->GetNWAngle((CBaseEntity*)g_pInterfaces->EngineServer()->PEntityOfEntIndex(1)->GetUnknown(), "test");
 
-	//Loop();
+	net_Receive("test_12", test_12);
 }
 void detatch(HANDLE thread) {
 	if (!thread)

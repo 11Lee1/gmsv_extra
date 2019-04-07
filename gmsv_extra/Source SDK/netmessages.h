@@ -804,4 +804,15 @@ private:
 	char		m_szCvarNameBuffer[256];
 };
 
+class CLC_GMod_ClientToServer : public CNetMessage
+{
+public:
+	IClientMessageHandler *m_pMessageHandler;
+	int			m_iSize;
+	bf_read		m_DataIn;
+};
+
+
+
+
 #endif // NETMESSAGES_H

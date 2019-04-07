@@ -133,6 +133,9 @@
     <Filter Include="Header Files\Source SDK\steam">
       <UniqueIdentifier>{a70848cc-7cdd-497a-b97e-c3968c073146}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Garry%27s Mod\Networking">
+      <UniqueIdentifier>{24e51fc6-235d-4d03-80c3-b97dedcd2b87}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -218,6 +221,12 @@
     </ClCompile>
     <ClCompile Include="Hooks\CNetChan\SendNetMsg.cpp">
       <Filter>Source Files\Hooks\CNetChan</Filter>
+    </ClCompile>
+    <ClCompile Include="Garry%27s Mod\Networking\ClientToServer.cpp">
+      <Filter>Source Files\Garry%27s Mod\Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="Hooks\ServerGameClients\GMOD_ReceiveClientMessage.cpp">
+      <Filter>Source Files\Hooks\ServerGameClients</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -970,6 +979,9 @@
     </ClInclude>
     <ClInclude Include="Source SDK\ihltvdirector.h">
       <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Garry%27s Mod\Networking\ClientToServer.h">
+      <Filter>Header Files\Garry%27s Mod\Networking</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -10,6 +10,4 @@
 
 extern INetMessage* g_pCurrentOutgoingNetMessage;
 
-
-
 #endif

@@ -1,5 +1,6 @@
 #include "interfaces.h" // interfaces.
 #include "include.h"
+#include "Source SDK/engine/baseserver.h"
 #include "Hooks/hook.h"
 
 Interfaces* g_pInterfaces = nullptr;
@@ -88,17 +89,15 @@ void main() {
 	hooks = new Hooks();
 
 
-	//g_pInterfaces->LuaNetworkedVars()->AddNetworkStringTest((CBaseEntity*)g_pInterfaces->EngineServer()->PEntityOfEntIndex(1)->GetUnknown(), "test", "1337");
-	g_pInterfaces->LuaNetworkedVars()->SetNWBool((CBaseEntity*)g_pInterfaces->EngineServer()->PEntityOfEntIndex(1)->GetUnknown(), "bool test", true);
-	g_pInterfaces->LuaNetworkedVars()->SetNWInt((CBaseEntity*)g_pInterfaces->EngineServer()->PEntityOfEntIndex(1)->GetUnknown(), "int test",  1337);
-	g_pInterfaces->LuaNetworkedVars()->SetNWFloat((CBaseEntity*)g_pInterfaces->EngineServer()->PEntityOfEntIndex(1)->GetUnknown(), "float test", 1.337);
-	g_pInterfaces->LuaNetworkedVars()->SetNWString((CBaseEntity*)g_pInterfaces->EngineServer()->PEntityOfEntIndex(1)->GetUnknown(), "string test", "test string");
-	g_pInterfaces->LuaNetworkedVars()->SetNWEntity((CBaseEntity*)g_pInterfaces->EngineServer()->PEntityOfEntIndex(1)->GetUnknown(), "ent test", (CBaseEntity*)g_pInterfaces->EngineServer()->PEntityOfEntIndex(1)->GetUnknown());
-	g_pInterfaces->LuaNetworkedVars()->SetNWAngle((CBaseEntity*)g_pInterfaces->EngineServer()->PEntityOfEntIndex(1)->GetUnknown(), "ang test", QAngle(1, 2, 3));
-	g_pInterfaces->LuaNetworkedVars()->SetNWVector((CBaseEntity*)g_pInterfaces->EngineServer()->PEntityOfEntIndex(1)->GetUnknown(), "vec test", Vector(1, 2, 4));
+	//IVEngineServer::MessageEnd contains pointer to sv (CBaseServer) + 230
+	CBaseServer* baseserver = *(CBaseServer**)((*(unsigned int**)g_pInterfaces->EngineServer())[44]/*MessageEnd*/ + 0xE5 + 0x1);
+	CBaseClient* xd = baseserver->m_Clients[0];
+	xd->SetName("XDXDdsa");
 
-	QAngle lol = g_pInterfaces->LuaNetworkedVars()->GetNWAngle((CBaseEntity*)g_pInterfaces->EngineServer()->PEntityOfEntIndex(1)->GetUnknown(), "ang test");
-	Loop();
+	CNetChan* test1 = (CNetChan*)g_pInterfaces->EngineServer()->GetPlayerNetInfo(1);  // fix cnetchan
+	QAngle lol = g_pInterfaces->LuaNetworkedVars()->GetNWAngle((CBaseEntity*)g_pInterfaces->EngineServer()->PEntityOfEntIndex(1)->GetUnknown(), "test");
+
+	//Loop();
 }
 void detatch(HANDLE thread) {
 	if (!thread)

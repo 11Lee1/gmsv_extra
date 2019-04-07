@@ -69,7 +69,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LibraryPath>C:\Program Files %28x86%29\Windows Kits\10\Lib\10.0.17763.0\um;C:\Program Files %28x86%29\Windows Kits\10\Lib\10.0.17763.0\um\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
@@ -106,6 +108,7 @@
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -128,6 +131,7 @@
     <ClCompile Include="Garry%27s Mod\GLUA\LuaObject\CLuaObject.cpp" />
     <ClCompile Include="Garry%27s Mod\LUA\LuaBase.cpp" />
     <ClCompile Include="Hooks\CGMOD_Player\FireBullets.cpp" />
+    <ClCompile Include="Hooks\CNetChan\SendNetMsg.cpp" />
     <ClCompile Include="Hooks\hook.cpp" />
     <ClCompile Include="Hooks\ServerGameClients\ClientConnect.cpp" />
     <ClCompile Include="interfaces.cpp" />
@@ -142,6 +146,7 @@
     <ClCompile Include="Source SDK\tier1\convar.cpp" />
     <ClCompile Include="Source SDK\tier1\generichash.cpp" />
     <ClCompile Include="Source SDK\tier1\KeyValues.cpp" />
+    <ClCompile Include="Source SDK\tier1\NetAdr.cpp" />
     <ClCompile Include="Source SDK\tier1\strtools.cpp" />
     <ClCompile Include="Source SDK\tier1\strtools_unicode.cpp" />
     <ClCompile Include="Source SDK\tier1\tier1.cpp" />
@@ -160,6 +165,7 @@
     <ClInclude Include="Garry%27s Mod\GLUA\LuaObject\CLuaGameObject.h" />
     <ClInclude Include="Garry%27s Mod\GLUA\LuaObject\CLuaObject.h" />
     <ClInclude Include="Garry%27s Mod\GLUA\LuaObject\ILuaObject.h" />
+    <ClInclude Include="Garry%27s Mod\Networking\ServerToClient.h" />
     <ClInclude Include="Hooks\hook.h" />
     <ClInclude Include="include.h" />
     <ClInclude Include="include\baseinclude.h" />
@@ -190,7 +196,12 @@
     <ClInclude Include="Source SDK\edict.h" />
     <ClInclude Include="Source SDK\ehandle.h" />
     <ClInclude Include="Source SDK\eiface.h" />
+    <ClInclude Include="Source SDK\engine\baseclient.h" />
+    <ClInclude Include="Source SDK\engine\baseserver.h" />
+    <ClInclude Include="Source SDK\engine\common.h" />
+    <ClInclude Include="Source SDK\engine\enginesingleuserfilter.h" />
     <ClInclude Include="Source SDK\engine\engine_launcher_api.h" />
+    <ClInclude Include="Source SDK\engine\event_system.h" />
     <ClInclude Include="Source SDK\engine\ICollideable.h" />
     <ClInclude Include="Source SDK\engine\IEngineSound.h" />
     <ClInclude Include="Source SDK\engine\IEngineTrace.h" />
@@ -198,8 +209,11 @@
     <ClInclude Include="Source SDK\engine\ishadowmgr.h" />
     <ClInclude Include="Source SDK\engine\IStaticPropMgr.h" />
     <ClInclude Include="Source SDK\engine\ivmodelinfo.h" />
+    <ClInclude Include="Source SDK\engine\net.h" />
+    <ClInclude Include="Source SDK\engine\net_chan.h" />
     <ClInclude Include="Source SDK\engine\SndInfo.h" />
     <ClInclude Include="Source SDK\entityoutput.h" />
+    <ClInclude Include="Source SDK\event_flags.h" />
     <ClInclude Include="Source SDK\filesystem.h" />
     <ClInclude Include="Source SDK\filesystem_passthru.h" />
     <ClInclude Include="Source SDK\gamerules.h" />
@@ -213,17 +227,23 @@
     <ClInclude Include="Source SDK\hl2mp\hl2mp_weapon_parse.h" />
     <ClInclude Include="Source SDK\hl2mp\weapon_hl2mpbasehlmpcombatweapon.h" />
     <ClInclude Include="Source SDK\hl2\hl_movedata.h" />
+    <ClInclude Include="Source SDK\iclient.h" />
     <ClInclude Include="Source SDK\iclientrenderable.h" />
     <ClInclude Include="Source SDK\icvar.h" />
+    <ClInclude Include="Source SDK\igameevents.h" />
     <ClInclude Include="Source SDK\igamemovement.h" />
     <ClInclude Include="Source SDK\igamesystem.h" />
     <ClInclude Include="Source SDK\ihandleentity.h" />
     <ClInclude Include="Source SDK\imovehelper.h" />
+    <ClInclude Include="Source SDK\inetchannel.h" />
     <ClInclude Include="Source SDK\inetchannelinfo.h" />
+    <ClInclude Include="Source SDK\inetmessage.h" />
+    <ClInclude Include="Source SDK\inetmsghandler.h" />
     <ClInclude Include="Source SDK\interval.h" />
     <ClInclude Include="Source SDK\irecipientfilter.h" />
     <ClInclude Include="Source SDK\isaverestore.h" />
     <ClInclude Include="Source SDK\iscenetokenprocessor.h" />
+    <ClInclude Include="Source SDK\iserver.h" />
     <ClInclude Include="Source SDK\iserverentity.h" />
     <ClInclude Include="Source SDK\iservernetworkable.h" />
     <ClInclude Include="Source SDK\iserverunknown.h" />
@@ -245,6 +265,7 @@
     <ClInclude Include="Source SDK\mathlib\vmatrix.h" />
     <ClInclude Include="Source SDK\mathlib\vplane.h" />
     <ClInclude Include="Source SDK\multiplay_gamerules.h" />
+    <ClInclude Include="Source SDK\netmessages.h" />
     <ClInclude Include="Source SDK\networkstringtabledefs.h" />
     <ClInclude Include="Source SDK\networkvar.h" />
     <ClInclude Include="Source SDK\playernet_vars.h" />
@@ -252,6 +273,9 @@
     <ClInclude Include="Source SDK\predictableid.h" />
     <ClInclude Include="Source SDK\predictable_entity.h" />
     <ClInclude Include="Source SDK\predictioncopy.h" />
+    <ClInclude Include="Source SDK\protocol.h" />
+    <ClInclude Include="Source SDK\proto_version.h" />
+    <ClInclude Include="Source SDK\qlimits.h" />
     <ClInclude Include="Source SDK\recipientfilter.h" />
     <ClInclude Include="Source SDK\sceneentity_shared.h" />
     <ClInclude Include="Source SDK\serverclass.h" />
@@ -290,6 +314,11 @@
     <ClInclude Include="Source SDK\SoundEmitterSystem\isoundemittersystembase.h" />
     <ClInclude Include="Source SDK\soundenvelope.h" />
     <ClInclude Include="Source SDK\soundflags.h" />
+    <ClInclude Include="Source SDK\SteamCommon.h" />
+    <ClInclude Include="Source SDK\steam\isteamclient.h" />
+    <ClInclude Include="Source SDK\steam\isteammasterserverupdater.h" />
+    <ClInclude Include="Source SDK\steam\steamclientpublic.h" />
+    <ClInclude Include="Source SDK\steam\steamtypes.h" />
     <ClInclude Include="Source SDK\string_t.h" />
     <ClInclude Include="Source SDK\studio.h" />
     <ClInclude Include="Source SDK\takedamageinfo.h" />
@@ -327,7 +356,9 @@
     <ClInclude Include="Source SDK\tier1\iconvar.h" />
     <ClInclude Include="Source SDK\tier1\interface.h" />
     <ClInclude Include="Source SDK\tier1\KeyValues.h" />
+    <ClInclude Include="Source SDK\tier1\netadr.h" />
     <ClInclude Include="Source SDK\tier1\refcount.h" />
+    <ClInclude Include="Source SDK\tier1\smartptr.h" />
     <ClInclude Include="Source SDK\tier1\strtools.h" />
     <ClInclude Include="Source SDK\tier1\tier1.h" />
     <ClInclude Include="Source SDK\tier1\utlblockmemory.h" />
@@ -348,6 +379,7 @@
     <ClInclude Include="Source SDK\toolframework\itoolentity.h" />
     <ClInclude Include="Source SDK\trace.h" />
     <ClInclude Include="Source SDK\usercmd.h" />
+    <ClInclude Include="Source SDK\userid.h" />
     <ClInclude Include="Source SDK\util_shared.h" />
     <ClInclude Include="Source SDK\vcollide.h" />
     <ClInclude Include="Source SDK\vphysics_interface.h" />
@@ -359,6 +391,7 @@
     <ClInclude Include="Source SDK\weapon_parse.h" />
     <ClInclude Include="Source SDK\weapon_proficiency.h" />
     <ClInclude Include="Source SDK\worldsize.h" />
+    <ClInclude Include="Source SDK\xbox\xboxstubs.h" />
     <ClInclude Include="Source SDK\zip_uncompressed.h" />
     <ClInclude Include="util\pattern.h" />
     <ClInclude Include="util\util.h" />

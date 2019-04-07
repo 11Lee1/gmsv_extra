@@ -3,6 +3,7 @@
 #include "../Source SDK/eiface.h"
 #include "../Source SDK/server/gmod/gmodplayer.h"
 #include "../Source SDK/edict.h"
+#include "../Source SDK/engine/net_chan.h"
 #include <windows.h>
 
 Hooks::Hooks() {
@@ -27,10 +28,10 @@ void Hooks::SetupHooks() {
 	
 
 	while (!h_CGMOD_Player) {
-		for (int i = 1; i < g_pInterfaces->Globals()->maxClients; i++) {
+		for (int i = 1; i < g_pInterfaces->Globals()->maxClients; i++) { // only loops players.
 			edict_t* ent = g_pInterfaces->EngineServer()->PEntityOfEntIndex(i);
 			if (ent && ent->GetUnknown()) {
-				if (((CGMOD_Player*)ent->GetUnknown())->IsPlayer()) {
+				if (((CGMOD_Player*)ent->GetUnknown())->IsPlayer() && !h_CGMOD_Player) {
 					h_CGMOD_Player = new VMTHook(ent->GetUnknown());
 					break; 
 				}

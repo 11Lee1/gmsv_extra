@@ -105,6 +105,9 @@ protected:	//hook
 	
 	// CGMOD_Player
 	void	Hook_CGMOD_Player__FireBullets();
+
+	// CNetChan
+	void Hook_CNetChan__SendNetMsg();
 protected:	//unhook
 	void	UnhookFunctions();
 
@@ -113,9 +116,13 @@ protected:	//unhook
 
 	// CGMOD_Player
 	void	Unhook_CGMOD_Player__FireBullets();
+
+	// CNetChan
+	void	Unhook_CNetChan__SendNetMsg();
 protected:
 	VMTHook* h_IServerGameClients;
 	VMTHook* h_CGMOD_Player;
+	VMTHook* h_CNetChan;
 };
 extern Hooks* hooks;
 

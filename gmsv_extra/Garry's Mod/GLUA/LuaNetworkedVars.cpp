@@ -36,7 +36,7 @@ int CLuaNetworkedVars::AddNetworkedVar(CBaseEntity* Ent, char const* Key) {
 	Element.key = Key;
 	Element.elem = netvar;
 
-	unsigned short index = m_Ents[entindex].NetVars.Insert(Element);
+	short index = m_Ents[entindex].NetVars.Insert(Element);
 	m_Ents[entindex].NetVars[index].elem.m_iNetworkStringID = g_pInterfaces->NetworkStringTableContainer()->FindTable("networkstring")->AddString(true, Key); // Use table id instead of comparing all the strings xd
 	return index;
 }
@@ -47,7 +47,7 @@ bool CLuaNetworkedVars::GetNWBool(CBaseEntity* Ent, char const* VarName) {
 		return false;
 
 	int EntIndex = Ent->GetRefEHandle().GetEntryIndex();
-	unsigned short index = FindNetWorkedVar(Ent, VarName, GarrysMod::Lua::Type::BOOL);
+	short index = FindNetWorkedVar(Ent, VarName, GarrysMod::Lua::Type::BOOL);
 
 	if (index != -1)
 		return m_Ents[EntIndex].NetVars[index].elem.m_LuaGameObject.GetBool();
@@ -59,7 +59,7 @@ int CLuaNetworkedVars::GetNWInt(CBaseEntity* Ent, char const* VarName) {
 		return 0;
 
 	int EntIndex = Ent->GetRefEHandle().GetEntryIndex();
-	unsigned short index = FindNetWorkedVar(Ent, VarName, GarrysMod::Lua::Type::NUMBER);
+	short index = FindNetWorkedVar(Ent, VarName, GarrysMod::Lua::Type::NUMBER);
 
 	if (index != -1)
 		return m_Ents[EntIndex].NetVars[index].elem.m_LuaGameObject.GetInt();
@@ -71,7 +71,7 @@ float CLuaNetworkedVars::GetNWFloat(CBaseEntity* Ent, char const* VarName) {
 		return 0.f;
 
 	int EntIndex = Ent->GetRefEHandle().GetEntryIndex();
-	unsigned short index = FindNetWorkedVar(Ent, VarName, GarrysMod::Lua::Type::NUMBER);
+	short index = FindNetWorkedVar(Ent, VarName, GarrysMod::Lua::Type::NUMBER);
 
 	if (index != -1)
 		return m_Ents[EntIndex].NetVars[index].elem.m_LuaGameObject.GetFloat();
@@ -83,7 +83,7 @@ char const* CLuaNetworkedVars::GetNWString(CBaseEntity* Ent, char const* VarName
 		return "";
 
 	int EntIndex = Ent->GetRefEHandle().GetEntryIndex();
-	unsigned short index = FindNetWorkedVar(Ent, VarName, GarrysMod::Lua::Type::STRING);
+	short index = FindNetWorkedVar(Ent, VarName, GarrysMod::Lua::Type::STRING);
 
 	if (index != -1)
 		return m_Ents[EntIndex].NetVars[index].elem.m_LuaGameObject.GetString();
@@ -95,7 +95,7 @@ CBaseEntity* CLuaNetworkedVars::GetNWEntity(CBaseEntity* Ent, char const* VarNam
 		return nullptr;
 
 	int EntIndex = Ent->GetRefEHandle().GetEntryIndex();
-	unsigned short index = FindNetWorkedVar(Ent, VarName, GarrysMod::Lua::Type::ENTITY);
+	short index = FindNetWorkedVar(Ent, VarName, GarrysMod::Lua::Type::ENTITY);
 
 	if (index != -1)
 		return m_Ents[EntIndex].NetVars[index].elem.m_LuaGameObject.GetEntity();
@@ -107,7 +107,7 @@ Vector CLuaNetworkedVars::GetNWVector(CBaseEntity* Ent, char const* VarName) {
 		return vec3_origin;
 
 	int EntIndex = Ent->GetRefEHandle().GetEntryIndex();
-	unsigned short index = FindNetWorkedVar(Ent, VarName, GarrysMod::Lua::Type::VECTOR);
+	short index = FindNetWorkedVar(Ent, VarName, GarrysMod::Lua::Type::VECTOR);
 
 	if (index != -1)
 		return m_Ents[EntIndex].NetVars[index].elem.m_LuaGameObject.GetVector();
@@ -119,7 +119,7 @@ QAngle CLuaNetworkedVars::GetNWAngle(CBaseEntity* Ent, char const* VarName) {
 		return vec3_angle;
 
 	int EntIndex = Ent->GetRefEHandle().GetEntryIndex();
-	unsigned short index = FindNetWorkedVar(Ent, VarName, GarrysMod::Lua::Type::ANGLE);
+	short index = FindNetWorkedVar(Ent, VarName, GarrysMod::Lua::Type::ANGLE);
 
 	if (index != -1)
 		return m_Ents[EntIndex].NetVars[index].elem.m_LuaGameObject.GetAngle();

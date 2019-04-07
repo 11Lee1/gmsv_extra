@@ -121,6 +121,18 @@
     <Filter Include="Source Files\Garry%27s Mod\LUA">
       <UniqueIdentifier>{b19dd11f-e2b2-4521-996e-ec141886be99}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Garry%27s Mod\Networking">
+      <UniqueIdentifier>{3056939c-e8ad-45da-a41e-733b1feef39c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Hooks\CNetChan">
+      <UniqueIdentifier>{baea64ed-9fdf-4dab-8321-39ba14a20bf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Source SDK\xbox">
+      <UniqueIdentifier>{d7212f4e-7379-45e0-870f-003ecb8197a1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Source SDK\steam">
+      <UniqueIdentifier>{a70848cc-7cdd-497a-b97e-c3968c073146}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -200,6 +212,12 @@
     </ClCompile>
     <ClCompile Include="Garry%27s Mod\LUA\LuaBase.cpp">
       <Filter>Source Files\Garry%27s Mod\LUA</Filter>
+    </ClCompile>
+    <ClCompile Include="Source SDK\tier1\NetAdr.cpp">
+      <Filter>Source Files\Source SDK\tier1</Filter>
+    </ClCompile>
+    <ClCompile Include="Hooks\CNetChan\SendNetMsg.cpp">
+      <Filter>Source Files\Hooks\CNetChan</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -838,6 +856,90 @@
     </ClInclude>
     <ClInclude Include="Garry%27s Mod\LUA\LuaUserData.h">
       <Filter>Header Files\Garry%27s Mod\LUA</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\inetchannel.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\engine\net_chan.h">
+      <Filter>Header Files\Source SDK\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\engine\net.h">
+      <Filter>Header Files\Source SDK\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\engine\common.h">
+      <Filter>Header Files\Source SDK\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\qlimits.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\netadr.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\inetmessage.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Garry%27s Mod\Networking\ServerToClient.h">
+      <Filter>Header Files\Garry%27s Mod\Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\engine\baseserver.h">
+      <Filter>Header Files\Source SDK\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\iserver.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\inetmsghandler.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\netmessages.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\protocol.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\igameevents.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\proto_version.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\xbox\xboxstubs.h">
+      <Filter>Header Files\Source SDK\xbox</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\engine\event_system.h">
+      <Filter>Header Files\Source SDK\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\event_flags.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\engine\enginesingleuserfilter.h">
+      <Filter>Header Files\Source SDK\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\steam\isteammasterserverupdater.h">
+      <Filter>Header Files\Source SDK\steam</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\steam\isteamclient.h">
+      <Filter>Header Files\Source SDK\steam</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\steam\steamtypes.h">
+      <Filter>Header Files\Source SDK\steam</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\steam\steamclientpublic.h">
+      <Filter>Header Files\Source SDK\steam</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\engine\baseclient.h">
+      <Filter>Header Files\Source SDK\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\smartptr.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\userid.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\SteamCommon.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\iclient.h">
+      <Filter>Header Files\Source SDK</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

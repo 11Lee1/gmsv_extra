@@ -1,6 +1,5 @@
 #include "interfaces.h" // interfaces.
 #include "include.h"
-#include "Source SDK/engine/baseserver.h"
 #include "Hooks/hook.h"
 
 Interfaces* g_pInterfaces = nullptr;
@@ -89,10 +88,8 @@ void main() {
 	hooks = new Hooks();
 
 
-	//IVEngineServer::MessageEnd contains pointer to sv (CBaseServer) + 230
-	CBaseServer* baseserver = *(CBaseServer**)((*(unsigned int**)g_pInterfaces->EngineServer())[44]/*MessageEnd*/ + 0xE5 + 0x1);
-	CBaseClient* xd = baseserver->m_Clients[0];
-	xd->SetName("XDXDdsa");
+	CGameServer* gameserver = *(CGameServer**)((*(unsigned int**)g_pInterfaces->EngineServer())[44]/*MessageEnd*/ + 0xE5 + 0x1);
+	CGameClient* xd = (CGameClient*)gameserver->m_Clients[0];
 
 	CNetChan* test1 = (CNetChan*)g_pInterfaces->EngineServer()->GetPlayerNetInfo(1);  // fix cnetchan
 	QAngle lol = g_pInterfaces->LuaNetworkedVars()->GetNWAngle((CBaseEntity*)g_pInterfaces->EngineServer()->PEntityOfEntIndex(1)->GetUnknown(), "test");

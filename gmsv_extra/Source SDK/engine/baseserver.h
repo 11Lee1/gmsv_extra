@@ -155,13 +155,13 @@ public: // IConnectionlessPacketHandler implementation
 
 protected:
 
+
 	virtual IClient *ConnectClient(netadr_t &adr, int protocol, int challenge, int authProtocol,
 		const char *name, const char *password, const char *hashedCDkey, int cdKeyLen);
 
 	virtual CBaseClient *GetFreeClient(netadr_t &adr);
 
-	virtual CBaseClient *CreateNewClient(int slot) { return NULL; }; // must be derived
-
+	virtual int		GetDeltaFrame(int);
 
 	virtual bool	FinishCertificateCheck(netadr_t &adr, int nAuthProtocol, const char *szRawCertificate) { return true; };
 

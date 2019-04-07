@@ -54,4 +54,7 @@
 #include "Source SDK/server/gmod/weaponswep.h"
 #include "Source SDK/server/gmod/sentanim.h"
 #include "Source SDK/engine/net_chan.h"
+
+#include "Source SDK/engine/sv_client.h"
+#include "Source SDK/engine/server.h"
 #endif

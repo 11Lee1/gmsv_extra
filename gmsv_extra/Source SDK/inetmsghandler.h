@@ -41,6 +41,8 @@ public:
 	virtual void FileDenied(const char *fileName, unsigned int transferID) = 0;	// a file request was denied by other side
 
 	virtual void FileSent(const char *fileName, unsigned int transferID) = 0;	// we sent a file
+
+	virtual bool ShouldAcceptFile(char const* fileName, unsigned int transferID) = 0;
 };
 
 #define PROCESS_NET_MESSAGE( name )	\
@@ -103,6 +105,7 @@ class CLC_FileCRCCheck;
 class CLC_FileMD5Check;
 class CLC_SaveReplay;
 class CLC_CmdKeyValues;
+class CLC_GMod_ClientToServer;
 
 class IClientMessageHandler : public INetMessageHandler
 {
@@ -121,6 +124,8 @@ public:
 	PROCESS_CLC_MESSAGE(SaveReplay) = 0;
 #endif
 	PROCESS_CLC_MESSAGE(CmdKeyValues) = 0;
+
+	virtual void ProcessGMod_ClientToServer(CLC_GMod_ClientToServer*) = 0;
 };
 
 class SVC_Print;

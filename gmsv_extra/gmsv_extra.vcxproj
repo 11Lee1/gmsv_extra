@@ -198,6 +198,7 @@
     <ClInclude Include="Source SDK\eiface.h" />
     <ClInclude Include="Source SDK\engine\baseclient.h" />
     <ClInclude Include="Source SDK\engine\baseserver.h" />
+    <ClInclude Include="Source SDK\engine\clientframe.h" />
     <ClInclude Include="Source SDK\engine\common.h" />
     <ClInclude Include="Source SDK\engine\enginesingleuserfilter.h" />
     <ClInclude Include="Source SDK\engine\engine_launcher_api.h" />
@@ -211,7 +212,12 @@
     <ClInclude Include="Source SDK\engine\ivmodelinfo.h" />
     <ClInclude Include="Source SDK\engine\net.h" />
     <ClInclude Include="Source SDK\engine\net_chan.h" />
+    <ClInclude Include="Source SDK\engine\packed_entity.h" />
+    <ClInclude Include="Source SDK\engine\precache.h" />
+    <ClInclude Include="Source SDK\engine\quakedef.h" />
+    <ClInclude Include="Source SDK\engine\server.h" />
     <ClInclude Include="Source SDK\engine\SndInfo.h" />
+    <ClInclude Include="Source SDK\engine\sv_client.h" />
     <ClInclude Include="Source SDK\entityoutput.h" />
     <ClInclude Include="Source SDK\event_flags.h" />
     <ClInclude Include="Source SDK\filesystem.h" />
@@ -234,6 +240,7 @@
     <ClInclude Include="Source SDK\igamemovement.h" />
     <ClInclude Include="Source SDK\igamesystem.h" />
     <ClInclude Include="Source SDK\ihandleentity.h" />
+    <ClInclude Include="Source SDK\ihltvdirector.h" />
     <ClInclude Include="Source SDK\imovehelper.h" />
     <ClInclude Include="Source SDK\inetchannel.h" />
     <ClInclude Include="Source SDK\inetchannelinfo.h" />
@@ -314,6 +321,7 @@
     <ClInclude Include="Source SDK\SoundEmitterSystem\isoundemittersystembase.h" />
     <ClInclude Include="Source SDK\soundenvelope.h" />
     <ClInclude Include="Source SDK\soundflags.h" />
+    <ClInclude Include="Source SDK\soundinfo.h" />
     <ClInclude Include="Source SDK\SteamCommon.h" />
     <ClInclude Include="Source SDK\steam\isteamclient.h" />
     <ClInclude Include="Source SDK\steam\isteammasterserverupdater.h" />
@@ -337,6 +345,7 @@
     <ClInclude Include="Source SDK\tier0\platform.h" />
     <ClInclude Include="Source SDK\tier0\protected_things.h" />
     <ClInclude Include="Source SDK\tier0\threadtools.h" />
+    <ClInclude Include="Source SDK\tier0\tslist.h" />
     <ClInclude Include="Source SDK\tier0\valve_minmax_off.h" />
     <ClInclude Include="Source SDK\tier0\valve_minmax_on.h" />
     <ClInclude Include="Source SDK\tier0\valve_off.h" />
@@ -356,6 +365,7 @@
     <ClInclude Include="Source SDK\tier1\iconvar.h" />
     <ClInclude Include="Source SDK\tier1\interface.h" />
     <ClInclude Include="Source SDK\tier1\KeyValues.h" />
+    <ClInclude Include="Source SDK\tier1\mempool.h" />
     <ClInclude Include="Source SDK\tier1\netadr.h" />
     <ClInclude Include="Source SDK\tier1\refcount.h" />
     <ClInclude Include="Source SDK\tier1\smartptr.h" />

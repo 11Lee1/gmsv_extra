@@ -255,8 +255,6 @@ private:
 
 
 	CNetworkStatTrace	m_Trace;
-
-	// CGameClient Here.
 };
 
 

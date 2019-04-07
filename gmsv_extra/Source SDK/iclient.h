@@ -65,28 +65,30 @@ public:
 	virtual void	ClientPrintf(PRINTF_FORMAT_STRING const char *fmt, ...) = 0;
 
 	// client has established network channels, nothing else
-virtual bool	IsConnected(void) const = 0;
-// client is downloading signon data
-virtual bool	IsSpawned(void) const = 0;
-// client active is ingame, receiving snapshots
-virtual bool	IsActive(void) const = 0;
-// returns true, if client is not a real player
-virtual bool	IsFakeClient(void) const = 0;
-// returns true, if client is a HLTV proxy
-virtual bool	IsHLTV(void) const = 0;
+	virtual bool	IsConnected(void) const = 0;
+	// client is downloading signon data
+	virtual bool	IsSpawned(void) const = 0;
+	// client active is ingame, receiving snapshots
+	virtual bool	IsActive(void) const = 0;
+	// returns true, if client is not a real player
+	virtual bool	IsFakeClient(void) const = 0;
+	// returns true, if client is a HLTV proxy
+	virtual bool	IsHLTV(void) const = 0;
+	/*
 #if defined( REPLAY_ENABLED )
-// returns true, if client is a Replay proxy
-virtual bool	IsReplay(void) const = 0;
+	// returns true, if client is a Replay proxy
+	virtual bool	IsReplay(void) const = 0;
 #else
-// !KLUDGE! Reduce number of #ifdefs required
-inline bool		IsReplay(void) const { return false; }
+	// !KLUDGE! Reduce number of #ifdefs required
+	inline bool		IsReplay(void) const { return false; }
 #endif
-// returns true, if client hears this player
-virtual bool	IsHearingClient(int index) const = 0;
-// returns true, if client hears this player by proximity
-virtual bool	IsProximityHearingClient(int index) const = 0;
+	*/
+	// returns true, if client hears this player
+	virtual bool	IsHearingClient(int index) const = 0;
+	// returns true, if client hears this player by proximity
+	virtual bool	IsProximityHearingClient(int index) const = 0;
 
-virtual void	SetMaxRoutablePayloadSize(int nMaxRoutablePayloadSize) = 0;
+	virtual void	SetMaxRoutablePayloadSize(int nMaxRoutablePayloadSize) = 0;
 };
 
 #endif // ICLIENT_H

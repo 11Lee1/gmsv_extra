@@ -941,5 +941,35 @@
     <ClInclude Include="Source SDK\iclient.h">
       <Filter>Header Files\Source SDK</Filter>
     </ClInclude>
+    <ClInclude Include="Source SDK\engine\sv_client.h">
+      <Filter>Header Files\Source SDK\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\engine\clientframe.h">
+      <Filter>Header Files\Source SDK\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\mempool.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier0\tslist.h">
+      <Filter>Header Files\Source SDK\tier0</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\soundinfo.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\engine\server.h">
+      <Filter>Header Files\Source SDK\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\engine\packed_entity.h">
+      <Filter>Header Files\Source SDK\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\engine\quakedef.h">
+      <Filter>Header Files\Source SDK\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\engine\precache.h">
+      <Filter>Header Files\Source SDK\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\ihltvdirector.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

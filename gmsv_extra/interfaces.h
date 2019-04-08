@@ -24,6 +24,7 @@ class IPlayerInfoManager;
 class ICvar;
 class IKeyValuesSystem;
 class INetworkStringTableContainer;
+class CGameServer;
 namespace GarrysMod
 {
 	namespace Lua
@@ -56,17 +57,18 @@ public:
 	IServerGameClients* ServerGameClients() { return m_pServerGameClients; }
 	IServerDLLSharedAppSystems* ServerDLLSharedAppSystems() { return m_pServerDLLSharedAppSystems; }
 	IServerGameTags* ServerGameTags() { return m_pServerGameTags; }
-	IStaticPropMgrServer* StaticPropMgr() { return staticpropmgr; }
-	IEngineTrace* EngineTrace() { return enginetrace; }
+	IStaticPropMgrServer* StaticPropMgr() { return m_pStaticPropMgr; }
+	IEngineTrace* EngineTrace() { return m_pEngineTrace; }
 
 	CLuaShared* LuaShared() { return m_pLuaShared; }
 	CLuaNetworkedVars* LuaNetworkedVars() { return *(CLuaNetworkedVars**)g_pLuaNetworkedVars; }
 	CUniformRandomStream*	Random() { return *(CUniformRandomStream**)random; }
-	IPlayerInfoManager*	PlayerInfoMgr() { return playerinfomgr; }
+	IPlayerInfoManager*	PlayerInfoMgr() { return m_pPlayerInfoManager; }
 	CGlobalVars*  Globals();
-	INetworkStringTableContainer* NetworkStringTableContainer() { return nwstringtbl; }
-	ICvar* CVar() { return cvar; }
+	INetworkStringTableContainer* NetworkStringTableContainer() { return m_pNetworkStringTableContainer; }
+	ICvar* CVar() { return m_pCVar; }
 	IKeyValuesSystem* KeyValuesSystem() { return keyvaluessystem; }
+	CGameServer* GameServer() { return m_pSv; }
 private:
 	// Interface registries 
 	InterfaceReg* m_pServerDLLInterfaceReg;
@@ -84,15 +86,16 @@ private:
 	IServerDLLSharedAppSystems* m_pServerDLLSharedAppSystems;
 	IServerGameTags* m_pServerGameTags;
 	CLuaShared* m_pLuaShared;
-	IStaticPropMgrServer* staticpropmgr;
-	IEngineTrace* enginetrace;
-	INetworkStringTableContainer* nwstringtbl;
+	IStaticPropMgrServer* m_pStaticPropMgr;
+	IEngineTrace* m_pEngineTrace;
+	INetworkStringTableContainer* m_pNetworkStringTableContainer;
 	void* random;
-	IPlayerInfoManager*	playerinfomgr;
-	ICvar* cvar;
+	IPlayerInfoManager*	m_pPlayerInfoManager;
+	ICvar* m_pCVar;
 
 	IKeyValuesSystem* keyvaluessystem;
 
+	CGameServer* m_pSv;
 	// globals
 	void* gpGlobals;
 

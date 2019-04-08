@@ -178,6 +178,7 @@
     <ClInclude Include="Garry%27s Mod\LUA\LuaInterface.h" />
     <ClInclude Include="Garry%27s Mod\LUA\LuaTypes.h" />
     <ClInclude Include="Garry%27s Mod\LUA\LuaUserData.h" />
+    <ClInclude Include="project\project.h" />
     <ClInclude Include="Source SDK\ai_activity.h" />
     <ClInclude Include="Source SDK\appframework\IAppSystem.h" />
     <ClInclude Include="Source SDK\basecombatweapon_shared.h" />

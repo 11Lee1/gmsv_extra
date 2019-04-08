@@ -3,6 +3,9 @@
 #include "util/util.h"
 #include "Source SDK/server/iplayerinfo.h"
 #include "Source SDK/tier1/color.h"
+
+IMemAlloc* g_pMemAlloc = nullptr;
+Interfaces* g_pInterfaces = nullptr;
 #define PRINT_PTRCHECK(name,p)																				\
 	if(!p)																									\
 		printf("failed getting %s: returned nullptr\n",name);			\
@@ -70,20 +73,20 @@ void Interfaces::GetInterfaces() {
 	m_pLuaShared = (CLuaShared*)GetInterface("lua_shared.dll", "LUASHARED003");
 	PRINT_PTRCHECK("LUASHARED003", m_pLuaShared);
 
-	staticpropmgr = (IStaticPropMgrServer*)GetInterface("engine.dll", "StaticPropMgrServer002");
-	PRINT_PTRCHECK("StaticPropMgrServer002", staticpropmgr);
+	m_pStaticPropMgr = (IStaticPropMgrServer*)GetInterface("engine.dll", "StaticPropMgrServer002");
+	PRINT_PTRCHECK("StaticPropMgrServer002", m_pStaticPropMgr);
 
-	enginetrace = (IEngineTrace*)GetInterface("engine.dll", "EngineTraceServer003");
-	PRINT_PTRCHECK("EngineTraceServer003", enginetrace);
+	m_pEngineTrace = (IEngineTrace*)GetInterface("engine.dll", "EngineTraceServer003");
+	PRINT_PTRCHECK("EngineTraceServer003", m_pEngineTrace);
 
-	playerinfomgr = (IPlayerInfoManager*)GetInterface("server.dll", "PlayerInfoManager002");
-	PRINT_PTRCHECK("PlayerInfoManager002", playerinfomgr);
+	m_pPlayerInfoManager = (IPlayerInfoManager*)GetInterface("server.dll", "PlayerInfoManager002");
+	PRINT_PTRCHECK("PlayerInfoManager002", m_pPlayerInfoManager);
 
-	cvar = (ICvar*)GetInterface("vstdlib.dll", "VEngineCvar004");
-	PRINT_PTRCHECK("VEngineCvar004", cvar);
+	m_pCVar = (ICvar*)GetInterface("vstdlib.dll", "VEngineCvar004");
+	PRINT_PTRCHECK("VEngineCvar004", m_pCVar);
 
-	nwstringtbl = (INetworkStringTableContainer*)GetInterface("engine.dll", "VEngineServerStringTable001");
-	PRINT_PTRCHECK("VEngineServerStringTable001", nwstringtbl);
+	m_pNetworkStringTableContainer = (INetworkStringTableContainer*)GetInterface("engine.dll", "VEngineServerStringTable001");
+	PRINT_PTRCHECK("VEngineServerStringTable001", m_pNetworkStringTableContainer);
 
 
 	if (m_pLuaShared)
@@ -116,8 +119,14 @@ void Interfaces::FindOtherInterfaces() {
 		random = *(CUniformRandomStream**)((uintptr_t)RandomSeed + 0x5);
 
 	PRINT_PTRCHECK("random(CUniformRandomStream) from RandomSeed function", random);
+
+	m_pSv = *(CGameServer**)((*(unsigned int**)this->EngineServer())[44]/*MessageEnd*/ + 0xE5 + 0x1);
+	PRINT_PTRCHECK("m_pSv(CGameServer) from CVEngineServer::MessageEnd function", m_pSv);
 #endif
 
+
+
+	g_pMemAlloc = g_pInterfaces->MemAlloc();
 }
 
 
@@ -175,5 +184,5 @@ InterfaceReg* Interfaces::GetInterfaceReg(char const* Module) {
 
 
 CGlobalVars* Interfaces::Globals() {
-	return playerinfomgr->GetGlobalVars();
+	return m_pPlayerInfoManager->GetGlobalVars();
 }

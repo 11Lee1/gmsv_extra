@@ -136,6 +136,9 @@
     <Filter Include="Source Files\Garry%27s Mod\Networking">
       <UniqueIdentifier>{24e51fc6-235d-4d03-80c3-b97dedcd2b87}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\project">
+      <UniqueIdentifier>{6f022d8a-a968-451f-b309-d321af14b4ac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -982,6 +985,9 @@
     </ClInclude>
     <ClInclude Include="Garry%27s Mod\Networking\ClientToServer.h">
       <Filter>Header Files\Garry%27s Mod\Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="project\project.h">
+      <Filter>Header Files\project</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

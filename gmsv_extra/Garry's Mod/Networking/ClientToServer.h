@@ -10,6 +10,7 @@
 #include "../../Source SDK/netmessages.h"
 #include "../../Source SDK/networkstringtabledefs.h"
 #include "../../Source SDK/tier1/utlvector.h"
+#include "../../Source SDK/tier1/color.h"
 
 class GMod_NetReceive
 {
@@ -33,6 +34,18 @@ public:
 
 	void AddReceiver(char const* NetMsgName, GModNetMsgReceiveCallBackFn fn, bool CreateNewString = true /*create a new one if one isn't found*/);
 	void ProcessNetMsg(int dunno, edict_t* pPlayer, bf_read* data, int length);
+
+	BYTE	ReadByte();
+	char*	ReadString();
+	Vector	ReadVector();
+	QAngle	ReadAngle();
+	BYTE	ReadBit();
+	double	ReadDouble();
+	Color	ReadColor();
+	int		ReadInt(int bitcount);
+	CBaseEntity* ReadEntity();
+
+
 protected:
 	void CallReceivers(edict_t* pPlayer, unsigned int NetworkID);
 	void ResetData() { CurrentData.m_iDunno = -1; CurrentData.m_pPlayer = nullptr; CurrentData.m_pData = nullptr; CurrentData.m_iLength = -1; }
@@ -40,7 +53,9 @@ protected:
 	
 protected:
 	CUtlVector<GModNetMsgReceive_t>* Receivers = nullptr;
+	char NetMsgStringBuffer[0xFFFF];
 public:
+	char* nullstr = "\0";
 	GModNetMsgData_t		CurrentData;
 };
 extern GMod_NetReceive* g_pGModNetMsgReceiver;
@@ -48,5 +63,39 @@ extern GMod_NetReceive* g_pGModNetMsgReceiver;
 
 #define net_Receive(messageName,callbackfn)						\
 	g_pGModNetMsgReceiver->AddReceiver(messageName,callbackfn);	\
+
+#define net_ReadByte()							\
+	g_pGModNetMsgReceiver->ReadByte();			\
+
+#define net_ReadString()						\
+	g_pGModNetMsgReceiver->ReadString();		\
+
+#define net_DisposeString(str)							\
+	if(str && str != g_pGModNetMsgReceiver->nullstr)	\
+		delete[] str;									\
+
+#define net_ReadVector()						\
+	g_pGModNetMsgReceiver->ReadVector();		\
+
+#define net_ReadAngle()							\
+	g_pGModNetMsgReceiver->ReadAngle();			\
+
+#define net_ReadBit()							\
+	g_pGModNetMsgReceiver->ReadBit();			\
+	
+#define net_ReadBool()							\
+	g_pGModNetMsgReceiver->ReadBit();			\
+
+#define net_ReadDouble()						\
+	g_pGModNetMsgReceiver->ReadDouble();		\
+
+#define net_ReadColor()							\
+	g_pGModNetMsgReceiver->ReadColor();			\
+
+#define net_ReadInt(bits)						\
+	g_pGModNetMsgReceiver->ReadInt(bits);		\
+
+#define net_ReadEntity()						\
+	g_pGModNetMsgReceiver->ReadEntity();		\
 
 #endif

@@ -1,5 +1,6 @@
 #include "ClientToServer.h"
 #include "../../interfaces.h"
+#include "../../Source SDK/eiface.h"
 GMod_NetReceive* g_pGModNetMsgReceiver = nullptr;
 GMod_NetReceive::GMod_NetReceive() {
 	Receivers = new CUtlVector<GModNetMsgReceive_t>;
@@ -35,15 +36,15 @@ void GMod_NetReceive::ProcessNetMsg(int dunno, edict_t* pPlayer, bf_read* data, 
 	int SaveCurBit = data->m_iCurBit;
 
 	BYTE Type = data->ReadByte();
-	length = length - 8;
+	length -= 8;
 	if (length < 8 || Type >= 5) {
 		printf("Blocking invalid GMod packet - Length: %i Type: %i\n", length, Type);
 		return;
 	}
 	else if (Type == 0) {
-		this->FillData(dunno, pPlayer, data, length);
 		short NetworkStringID = data->ReadShort();
-		char const* netnsgname = g_pInterfaces->NetworkStringTableContainer()->FindTable("networkstring")->GetString(NetworkStringID);
+		length -= 16;
+		this->FillData(dunno, pPlayer, data, length);
 		this->CallReceivers(pPlayer, NetworkStringID);
 	}
 	data->m_iCurBit = SaveCurBit;
@@ -63,4 +64,93 @@ void GMod_NetReceive::CallReceivers(edict_t* pPlayer, unsigned int NetworkID) {
 		element.m_CallBackFn(pPlayer);
 		CurrentData.m_pData->m_iCurBit = SaveCurBit;
 	}
+}
+
+BYTE GMod_NetReceive::ReadByte() {
+	if (!this->CurrentData.m_pData)
+		return 0;
+
+	return this->CurrentData.m_pData->ReadByte();
+}
+
+char* GMod_NetReceive::ReadString() {
+	if (!this->CurrentData.m_pData)
+		return this->nullstr;
+
+	if (this->CurrentData.m_pData->ReadString(NetMsgStringBuffer, 0xFFFF)) {
+		int len = V_strlen(NetMsgStringBuffer) + 1;
+		char* out = new char[len];
+		V_strncpy(out, NetMsgStringBuffer, len);
+		return out;
+	}
+
+	return this->nullstr;
+}
+
+Vector GMod_NetReceive::ReadVector() {
+	if (!this->CurrentData.m_pData)
+		return vec3_origin;
+
+	Vector out(0, 0, 0);
+
+	this->CurrentData.m_pData->ReadBitVec3Coord(out);
+	return out;
+}
+
+QAngle GMod_NetReceive::ReadAngle() {
+	if (!this->CurrentData.m_pData)
+		return vec3_angle;
+
+	QAngle out(0, 0, 0);
+
+	this->CurrentData.m_pData->ReadBitAngles(out);
+
+	return out;
+}
+
+BYTE GMod_NetReceive::ReadBit() {
+	if (!this->CurrentData.m_pData)
+		return 0;
+
+	return this->CurrentData.m_pData->ReadOneBit();
+}
+
+double GMod_NetReceive::ReadDouble() {
+	if (!this->CurrentData.m_pData)
+		return 0.0;
+
+	double out;
+	this->CurrentData.m_pData->ReadBits(&out, 64);
+	return out;
+}
+
+Color GMod_NetReceive::ReadColor() {
+	if (!this->CurrentData.m_pData)
+		return Color(0,0,0,0);
+
+	BYTE R = this->ReadByte();
+	BYTE G = this->ReadByte();
+	BYTE B = this->ReadByte();
+	BYTE A = this->ReadByte();
+	return Color(R,G,B,A);
+}
+
+int GMod_NetReceive::ReadInt(int bitcount) {
+	if (!this->CurrentData.m_pData)
+		return 0;
+
+	return this->CurrentData.m_pData->ReadUBitLong(bitcount);
+}
+
+CBaseEntity* GMod_NetReceive::ReadEntity() {
+	if (!this->CurrentData.m_pData)
+		return nullptr;
+
+	short index = net_ReadInt(16);
+
+	edict_t* edict = g_pInterfaces->EngineServer()->PEntityOfEntIndex(index);
+	if (!edict)
+		return nullptr;
+
+	return (CBaseEntity*)edict->GetUnknown();
 }

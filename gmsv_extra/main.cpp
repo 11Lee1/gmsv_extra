@@ -82,6 +82,10 @@ void Loop() {
 }
 void test_12(edict_t* pPlayer) {
 	printf("reached callback!\n");
+	char* str = net_ReadString();
+	printf("out: %s\n", str);
+
+	net_DisposeString(str);		// so we don't have memory leaks
 }
 void main() {
 #ifdef __INJECT

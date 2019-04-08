@@ -6,5 +6,4 @@ wip, I'll work on it/improve on it when I feel like it.  Build on x86 debug/rele
 
 TODO:
 - Server -> Client networking
-- Client -> Server networking 
 - Linux implementation 

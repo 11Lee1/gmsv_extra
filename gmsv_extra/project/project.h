@@ -11,7 +11,6 @@ void TestCallBack(edict_t* pPlayer) {
 	net_DisposeString(str);		// so we don't have memory leaks
 }
 
-
 void projectMain() {
 	net_Receive("test_12", TestCallBack);
 }

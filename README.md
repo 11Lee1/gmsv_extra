@@ -6,3 +6,8 @@ TODO:
 - Server -> Client networking
 - Linux implementation 
 - x86-64 support
+
+
+Contact:
+Steam: http://steamcommunity.com/profiles/76561198046014135
+Discord: Lee#1625

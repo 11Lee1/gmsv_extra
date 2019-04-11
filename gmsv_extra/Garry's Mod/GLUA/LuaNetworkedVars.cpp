@@ -1,5 +1,6 @@
 #include "LuaNetworkedVars.h"
 #include "LuaObject/CLuaGameObject.h"
+#include "../Networking/gmod_net_util.h"
 
 int CLuaNetworkedVars::FindNetWorkedVar(CBaseEntity* Ent, char const* Key, int TypeID, bool CreateNewIfNotFound) {
 	if (!Ent)
@@ -37,7 +38,7 @@ int CLuaNetworkedVars::AddNetworkedVar(CBaseEntity* Ent, char const* Key) {
 	Element.elem = netvar;
 
 	short index = m_Ents[entindex].NetVars.Insert(Element);
-	m_Ents[entindex].NetVars[index].elem.m_iNetworkStringID = g_pInterfaces->NetworkStringTableContainer()->FindTable("networkstring")->AddString(true, Key); // Use table id instead of comparing all the strings xd
+	m_Ents[entindex].NetVars[index].elem.m_iNetworkStringID = g_pInterfaces->NetworkStringTableContainer()->GetTable(NetworkstringTableID)->AddString(true, Key);
 	return index;
 }
 

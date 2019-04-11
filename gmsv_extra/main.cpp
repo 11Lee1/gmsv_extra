@@ -53,6 +53,8 @@ void detatch(HANDLE thread) {
 		return;
 	hooks->~Hooks();
 	g_pInterfaces->~Interfaces();
+	delete g_pGModNetMsgReceiver;
+	delete g_pGMod_ServerToClient;
 	if (TerminateThread(thread, 0)) {
 		g_pInterfaces->ConColorMsg(1, Color(255, 0, 0), "terminating thread\n");
 	}

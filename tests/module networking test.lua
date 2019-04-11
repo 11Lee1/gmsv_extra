@@ -35,6 +35,6 @@ net.SendToServer();
     [
         Console output:
 
-        out: (pointer to player edict) Test Net Message
+        out: Test Net Message
     ]
 */

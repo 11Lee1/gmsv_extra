@@ -68,6 +68,7 @@ void GMod_NetReceive::CallReceivers(edict_t* pPlayer, unsigned int NetworkID) {
 			continue;
 
 		element.m_CallBackFn(pPlayer);
+		this->DeleteReadStrings();
 		CurrentData.m_pData->m_iCurBit = SaveCurBit;
 	}
 }

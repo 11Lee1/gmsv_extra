@@ -39,18 +39,18 @@ bool GMod_ServerToClient::SendNetMsg(CBasePlayer* player) {
 		return false;
 
 	CBaseClient* client = this->FindClient(player);
-	bool sucess = client->SendNetMsg(*m_pCurrentOutGoing,this->m_bReliable);
+	bool success = client->SendNetMsg(*m_pCurrentOutGoing,this->m_bReliable);
 	this->RemoveCurrentMessage();
-	return sucess;
+	return success;
 }
 
 bool GMod_ServerToClient::SendNetMsg(CBaseClient* client) {
 	if (!m_pCurrentOutGoing)
 		return false;
 
-	bool sucess = client->SendNetMsg(*m_pCurrentOutGoing, this->m_bReliable);
+	bool success = client->SendNetMsg(*m_pCurrentOutGoing, this->m_bReliable);
 	this->RemoveCurrentMessage();
-	return sucess;
+	return success;
 }
 
 bool GMod_ServerToClient::SendNetMsg(CRecipientFilter& filter) {

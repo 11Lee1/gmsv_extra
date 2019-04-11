@@ -68,7 +68,7 @@
 
 #define MIN_ROUTABLE_PAYLOAD		16		// minimum playload size
 
-#define NETMSG_TYPE_BITS	5	// must be 2^NETMSG_TYPE_BITS > SVC_LASTMSG
+#define NETMSG_TYPE_BITS	6	// must be 2^NETMSG_TYPE_BITS > SVC_LASTMSG
 
 // This is the payload plus any header info (excluding UDP header)
 

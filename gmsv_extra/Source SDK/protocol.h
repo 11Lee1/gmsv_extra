@@ -139,6 +139,8 @@ enum
 
 #define SVC_LASTMSG			31	// last known server messages
 
+#define svc_GMod_ServerToClient 33
+
 //
 // client to server
 //

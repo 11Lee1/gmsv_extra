@@ -58,6 +58,7 @@
 #include "Source SDK/engine/sv_client.h"
 #include "Source SDK/engine/server.h"
 
-
+#include "Garry's Mod/Networking/gmod_net_util.h"
 #include "Garry's Mod/Networking/ClientToServer.h"
+#include "Garry's Mod/Networking/ServerToClient.h"
 #endif

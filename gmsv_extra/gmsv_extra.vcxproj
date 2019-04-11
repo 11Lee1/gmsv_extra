@@ -45,7 +45,7 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -71,6 +71,9 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LibraryPath>C:\Program Files %28x86%29\Windows Kits\10\Lib\10.0.17763.0\um;C:\Program Files %28x86%29\Windows Kits\10\Lib\10.0.17763.0\um\x86;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LibraryPath>C:\Program Files %28x86%29\Windows Kits\10\Lib\10.0.17763.0\um\x64;C:\Program Files %28x86%29\Windows Kits\10\Lib\10.0.17763.0\um;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -113,16 +116,22 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <IntrinsicFunctions>false</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <ConformanceMode>true</ConformanceMode>
+      <ConformanceMode>false</ConformanceMode>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -131,6 +140,8 @@
     <ClCompile Include="Garry%27s Mod\GLUA\LuaObject\CLuaObject.cpp" />
     <ClCompile Include="Garry%27s Mod\LUA\LuaBase.cpp" />
     <ClCompile Include="Garry%27s Mod\Networking\ClientToServer.cpp" />
+    <ClCompile Include="Garry%27s Mod\Networking\gmod_net_util.cpp" />
+    <ClCompile Include="Garry%27s Mod\Networking\ServerToClient.cpp" />
     <ClCompile Include="Hooks\CGMOD_Player\FireBullets.cpp" />
     <ClCompile Include="Hooks\CNetChan\SendNetMsg.cpp" />
     <ClCompile Include="Hooks\hook.cpp" />
@@ -139,9 +150,14 @@
     <ClCompile Include="interfaces.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Source SDK\interval.cpp" />
+    <ClCompile Include="Source SDK\mathlib\IceKey.cpp" />
     <ClCompile Include="Source SDK\mathlib\mathlib_base.cpp" />
     <ClCompile Include="Source SDK\mathlib\sse.cpp" />
+    <ClCompile Include="Source SDK\netmessages.cpp" />
+    <ClCompile Include="Source SDK\server\baseentity.cpp" />
     <ClCompile Include="Source SDK\server\gametrace_dll.cpp" />
+    <ClCompile Include="Source SDK\server\recipientfilter.cpp" />
+    <ClCompile Include="Source SDK\server\team.cpp" />
     <ClCompile Include="Source SDK\tier1\bitbuf.cpp" />
     <ClCompile Include="Source SDK\tier1\checksum_crc.cpp" />
     <ClCompile Include="Source SDK\tier1\checksum_md5.cpp" />
@@ -155,6 +171,7 @@
     <ClCompile Include="Source SDK\tier1\utlbuffer.cpp" />
     <ClCompile Include="Source SDK\tier1\utlstring.cpp" />
     <ClCompile Include="Source SDK\usercmd.cpp" />
+    <ClCompile Include="Source SDK\util_shared.cpp" />
     <ClCompile Include="util\vmthook.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +185,7 @@
     <ClInclude Include="Garry%27s Mod\GLUA\LuaObject\CLuaObject.h" />
     <ClInclude Include="Garry%27s Mod\GLUA\LuaObject\ILuaObject.h" />
     <ClInclude Include="Garry%27s Mod\Networking\ClientToServer.h" />
+    <ClInclude Include="Garry%27s Mod\Networking\gmod_net_util.h" />
     <ClInclude Include="Garry%27s Mod\Networking\ServerToClient.h" />
     <ClInclude Include="Hooks\hook.h" />
     <ClInclude Include="include.h" />
@@ -189,6 +207,7 @@
     <ClInclude Include="Source SDK\bitvec.h" />
     <ClInclude Include="Source SDK\bspfile.h" />
     <ClInclude Include="Source SDK\bspflags.h" />
+    <ClInclude Include="Source SDK\cdll_int.h" />
     <ClInclude Include="Source SDK\cmodel.h" />
     <ClInclude Include="Source SDK\collisionproperty.h" />
     <ClInclude Include="Source SDK\const.h" />
@@ -240,6 +259,7 @@
     <ClInclude Include="Source SDK\iclient.h" />
     <ClInclude Include="Source SDK\iclientrenderable.h" />
     <ClInclude Include="Source SDK\icvar.h" />
+    <ClInclude Include="Source SDK\IEffects.h" />
     <ClInclude Include="Source SDK\igameevents.h" />
     <ClInclude Include="Source SDK\igamemovement.h" />
     <ClInclude Include="Source SDK\igamesystem.h" />
@@ -251,6 +271,7 @@
     <ClInclude Include="Source SDK\inetmessage.h" />
     <ClInclude Include="Source SDK\inetmsghandler.h" />
     <ClInclude Include="Source SDK\interval.h" />
+    <ClInclude Include="Source SDK\ipredictionsystem.h" />
     <ClInclude Include="Source SDK\irecipientfilter.h" />
     <ClInclude Include="Source SDK\isaverestore.h" />
     <ClInclude Include="Source SDK\iscenetokenprocessor.h" />
@@ -265,6 +286,7 @@
     <ClInclude Include="Source SDK\mathlib\bumpvects.h" />
     <ClInclude Include="Source SDK\mathlib\compressed_light_cube.h" />
     <ClInclude Include="Source SDK\mathlib\compressed_vector.h" />
+    <ClInclude Include="Source SDK\mathlib\IceKey.h" />
     <ClInclude Include="Source SDK\mathlib\mathlib.h" />
     <ClInclude Include="Source SDK\mathlib\math_pfns.h" />
     <ClInclude Include="Source SDK\mathlib\sse.h" />
@@ -275,10 +297,12 @@
     <ClInclude Include="Source SDK\mathlib\vector4d.h" />
     <ClInclude Include="Source SDK\mathlib\vmatrix.h" />
     <ClInclude Include="Source SDK\mathlib\vplane.h" />
+    <ClInclude Include="Source SDK\model_types.h" />
     <ClInclude Include="Source SDK\multiplay_gamerules.h" />
     <ClInclude Include="Source SDK\netmessages.h" />
     <ClInclude Include="Source SDK\networkstringtabledefs.h" />
     <ClInclude Include="Source SDK\networkvar.h" />
+    <ClInclude Include="Source SDK\particle_parse.h" />
     <ClInclude Include="Source SDK\playernet_vars.h" />
     <ClInclude Include="Source SDK\PlayerState.h" />
     <ClInclude Include="Source SDK\predictableid.h" />
@@ -316,6 +340,7 @@
     <ClInclude Include="Source SDK\server\player.h" />
     <ClInclude Include="Source SDK\server\playerlocaldata.h" />
     <ClInclude Include="Source SDK\server\ServerNetworkProperty.h" />
+    <ClInclude Include="Source SDK\server\team.h" />
     <ClInclude Include="Source SDK\server\timedeventmgr.h" />
     <ClInclude Include="Source SDK\server\variant_t.h" />
     <ClInclude Include="Source SDK\server\world.h" />
@@ -396,6 +421,7 @@
     <ClInclude Include="Source SDK\userid.h" />
     <ClInclude Include="Source SDK\util_shared.h" />
     <ClInclude Include="Source SDK\vcollide.h" />
+    <ClInclude Include="Source SDK\vphysics\object_hash.h" />
     <ClInclude Include="Source SDK\vphysics_interface.h" />
     <ClInclude Include="Source SDK\vstdlib\IKeyValuesSystem.h" />
     <ClInclude Include="Source SDK\vstdlib\iprocessutils.h" />

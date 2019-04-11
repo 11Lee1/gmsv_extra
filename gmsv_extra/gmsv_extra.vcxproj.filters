@@ -139,6 +139,9 @@
     <Filter Include="Header Files\project">
       <UniqueIdentifier>{6f022d8a-a968-451f-b309-d321af14b4ac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Source SDK\vphysics">
+      <UniqueIdentifier>{0e35243c-0703-4f5f-aae5-fbe904092bbe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -230,6 +233,30 @@
     </ClCompile>
     <ClCompile Include="Hooks\ServerGameClients\GMOD_ReceiveClientMessage.cpp">
       <Filter>Source Files\Hooks\ServerGameClients</Filter>
+    </ClCompile>
+    <ClCompile Include="Garry%27s Mod\Networking\ServerToClient.cpp">
+      <Filter>Source Files\Garry%27s Mod\Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="Source SDK\netmessages.cpp">
+      <Filter>Source Files\Source SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="Source SDK\server\recipientfilter.cpp">
+      <Filter>Source Files\Source SDK\server</Filter>
+    </ClCompile>
+    <ClCompile Include="Source SDK\server\baseentity.cpp">
+      <Filter>Source Files\Source SDK\server</Filter>
+    </ClCompile>
+    <ClCompile Include="Source SDK\server\team.cpp">
+      <Filter>Source Files\Source SDK\server</Filter>
+    </ClCompile>
+    <ClCompile Include="Source SDK\util_shared.cpp">
+      <Filter>Source Files\Source SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="Source SDK\mathlib\IceKey.cpp">
+      <Filter>Source Files\Source SDK\mathlib</Filter>
+    </ClCompile>
+    <ClCompile Include="Garry%27s Mod\Networking\gmod_net_util.cpp">
+      <Filter>Source Files\Garry%27s Mod\Networking</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -988,6 +1015,33 @@
     </ClInclude>
     <ClInclude Include="project\project.h">
       <Filter>Header Files\project</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\team.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\ipredictionsystem.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\model_types.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\IEffects.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\vphysics\object_hash.h">
+      <Filter>Header Files\Source SDK\vphysics</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\mathlib\IceKey.h">
+      <Filter>Header Files\Source SDK\mathlib</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\particle_parse.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\cdll_int.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Garry%27s Mod\Networking\gmod_net_util.h">
+      <Filter>Header Files\Garry%27s Mod\Networking</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

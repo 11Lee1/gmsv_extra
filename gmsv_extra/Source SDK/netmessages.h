@@ -812,7 +812,28 @@ public:
 	bf_read		m_DataIn;
 };
 
-
+class SVC_GMod_ServerToClient : public CNetMessage
+{
+public:													
+	bool			ReadFromBuffer(bf_read &buffer) { printf("ReadFromBuffer Called\n"); return true; }
+	bool			WriteToBuffer(bf_write &buffer) { 
+		m_nLength = m_DataOut.GetNumBitsWritten();
+		buffer.WriteUBitLong(GetType(), NETMSG_TYPE_BITS);
+		buffer.WriteUBitLong(m_nLength, 20);	// where we get our famous 65536 byte max.
+		
+		printf("0x%X\n", m_DataOut.GetBasePointer());
+		return buffer.WriteBits(m_DataOut.GetBasePointer(), m_nLength);
+	}
+	const char		*ToString() const { return "from gmsv_extra"; }
+	int				GetType() const { return svc_GMod_ServerToClient; } 
+	const char		*GetName() const { return "svc_GMod_ServerToClient"; }
+	IServerMessageHandler *m_pMessageHandler; 
+	bool Process() { return m_pMessageHandler->ProcessGMod_ServerToClient(this); }
+public:
+	int						m_nLength;
+	bf_read					m_DataIn;
+	bf_write				m_DataOut;
+};
 
 
 #endif // NETMESSAGES_H

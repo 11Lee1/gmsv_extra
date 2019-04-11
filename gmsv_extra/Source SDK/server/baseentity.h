@@ -172,6 +172,7 @@ class AI_CriteriaSet;
 class CAI_BaseNPC;
 class gamevcollisionevent_t;
 class ILuaObject;
+class CTeam;
 class CBaseEntity : public IServerEntity
 {
 public:
@@ -457,7 +458,8 @@ public:
 	/*237*/virtual INextBot* 	GetNextBot(void);
 
 public:
-
+	inline int GetTeamNumber() const { return m_iTeamNum; }
+	inline int entindex() const { return m_Network.entindex(); };
 	soundlevel_t LookupSoundLevel(char const* soundname) { soundlevel_t nothing; return nothing; }
 	CAI_BaseNPC *MyNPCPointer(void) {
 		if (this->IsNPC())

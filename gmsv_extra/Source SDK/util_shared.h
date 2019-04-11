@@ -16,6 +16,8 @@
 #include "networkvar.h"
 #include "engine/IEngineTrace.h"
 #include "engine/IStaticPropMgr.h"
+#include "iserverunknown.h"
+#include "shareddefs.h"
 
 //-----------------------------------------------------------------------------
 // Forward declarations
@@ -594,7 +596,7 @@ class RealTimeCountdownTimer : public CountdownTimer
 		return Plat_FloatTime();
 	}
 };
-
+class KeyValues;
 char* ReadAndAllocStringValue(KeyValues *pSub, const char *pName, const char *pFilename = NULL);
 
 int UTIL_StringFieldToInt(const char *szValue, const char **pValueStrings, int iNumStrings);

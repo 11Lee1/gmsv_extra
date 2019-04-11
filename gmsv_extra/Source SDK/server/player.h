@@ -18,6 +18,7 @@
 #include "../hintsystem.h"
 #include "../SoundEmitterSystem/isoundemittersystembase.h"
 #include "../util_shared.h"
+#include "../cdll_int.h"
 
 #if defined USES_ECON_ITEMS
 #include "game_item_schema.h"
@@ -526,6 +527,17 @@ public:
 	/*520*/virtual bool				CanAttack(void);
 	/*521*/virtual void				MouseWheel();
 	/*522*/virtual void				SetMouseWheel(int);
+
+public:
+		bool	IsHLTV(void) const { return pl.hltv; }
+		bool	IsReplay(void) const { return pl.replay; }
+		int		GetUserID() const {
+			player_info_t pi;
+			if (!g_pInterfaces->EngineServer()->GetPlayerInfo(entindex(), &pi))
+				return -1;
+			
+			return pi.userID;
+		}
 public:
 	BYTE	pad_unk05[0x4];
 	// How much of a movement time buffer can we process from this user?

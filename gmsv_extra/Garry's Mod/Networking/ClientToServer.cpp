@@ -1,4 +1,5 @@
 #include "ClientToServer.h"
+#include "gmod_net_util.h"
 #include "../../interfaces.h"
 #include "../../Source SDK/eiface.h"
 GMod_NetReceive* g_pGModNetMsgReceiver = nullptr;
@@ -14,13 +15,13 @@ void GMod_NetReceive::AddReceiver(char const* NetMsgName, GModNetMsgReceiveCallB
 	if (!NetMsgName || !fn)
 		return;
 
-	INetworkStringTable* networkstringtbl = g_pInterfaces->NetworkStringTableContainer()->FindTable("networkstring");
+	INetworkStringTable* networkstringtbl = g_pInterfaces->NetworkStringTableContainer()->GetTable(NetworkstringTableID);
 	if (!networkstringtbl)
 		return;
 
 	unsigned short index = networkstringtbl->FindStringIndex(NetMsgName);
 	if (index == INVALID_STRING_INDEX && CreateNewString) {
-		index = networkstringtbl->AddString(1, NetMsgName);
+		index = networkstringtbl->AddString(true, NetMsgName);
 	}
 	else if (index == INVALID_STRING_INDEX && !CreateNewString)
 		return;
@@ -77,7 +78,7 @@ char* GMod_NetReceive::ReadString() {
 	if (!this->CurrentData.m_pData)
 		return this->nullstr;
 
-	if (this->CurrentData.m_pData->ReadString(NetMsgStringBuffer, 0xFFFF)) {
+	if (this->CurrentData.m_pData->ReadString(NetMsgStringBuffer, 0xFFFD)) {
 		int len = V_strlen(NetMsgStringBuffer) + 1;
 		char* out = new char[len];
 		V_strncpy(out, NetMsgStringBuffer, len);

@@ -63,7 +63,7 @@ public:
 	void			AddPlayersFromBitMask(CBitVec< ABSOLUTE_PLAYER_LIMIT >& playerbits);
 	void			RemovePlayersFromBitMask(CBitVec< ABSOLUTE_PLAYER_LIMIT >& playerbits);
 
-private:
+public:
 
 	bool				m_bReliable;
 	bool				m_bInitMessage;

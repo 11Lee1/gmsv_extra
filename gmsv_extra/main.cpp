@@ -41,7 +41,9 @@ void main() {
 	AttachConsole("Console");
 #endif
 	g_pInterfaces = new Interfaces();
+	NetworkstringTableID = g_pInterfaces->NetworkStringTableContainer()->FindTable("networkstring")->GetTableId();
 	g_pGModNetMsgReceiver = new GMod_NetReceive();
+	g_pGMod_ServerToClient = new GMod_ServerToClient();
 	hooks = new Hooks();
 	projectMain();
 }

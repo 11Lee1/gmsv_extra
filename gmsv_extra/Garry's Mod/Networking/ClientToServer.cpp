@@ -5,10 +5,14 @@
 GMod_NetReceive* g_pGModNetMsgReceiver = nullptr;
 GMod_NetReceive::GMod_NetReceive() {
 	Receivers = new CUtlVector<GModNetMsgReceive_t>;
+	ReadStrings = new CUtlVector<char*>;
 }
 GMod_NetReceive::~GMod_NetReceive() {
 	if (Receivers) {
 		Receivers->~CUtlVector();
+	}
+	if (ReadStrings) {
+		ReadStrings->~CUtlVector();
 	}
 }
 void GMod_NetReceive::AddReceiver(char const* NetMsgName, GModNetMsgReceiveCallBackFn fn, bool CreateNewString) {
@@ -50,6 +54,7 @@ void GMod_NetReceive::ProcessNetMsg(int dunno, edict_t* pPlayer, bf_read* data, 
 	}
 	data->m_iCurBit = SaveCurBit;
 	this->ResetData();
+	this->DeleteReadStrings();
 }
 void GMod_NetReceive::CallReceivers(edict_t* pPlayer, unsigned int NetworkID) {
 	if (!CurrentData.m_pData)
@@ -65,6 +70,17 @@ void GMod_NetReceive::CallReceivers(edict_t* pPlayer, unsigned int NetworkID) {
 		element.m_CallBackFn(pPlayer);
 		CurrentData.m_pData->m_iCurBit = SaveCurBit;
 	}
+}
+void GMod_NetReceive::AddString(char* str) {
+	ReadStrings->AddToTail(str);
+}
+void GMod_NetReceive::DeleteReadStrings() {
+	for (int i = 0; i < ReadStrings->Size(); i++) {
+		char* str = ReadStrings->Element(i);
+		if (str)	
+			delete[] str;									
+	}
+	ReadStrings->RemoveAll();
 }
 
 BYTE GMod_NetReceive::ReadByte() {
@@ -82,6 +98,7 @@ char* GMod_NetReceive::ReadString() {
 		int len = V_strlen(NetMsgStringBuffer) + 1;
 		char* out = new char[len];
 		V_strncpy(out, NetMsgStringBuffer, len);
+		AddString(out);
 		return out;
 	}
 

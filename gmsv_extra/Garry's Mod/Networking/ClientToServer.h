@@ -48,13 +48,15 @@ protected:
 	void CallReceivers(edict_t* pPlayer, unsigned int NetworkID);
 	void ResetData() { CurrentData.m_iDunno = -1; CurrentData.m_pPlayer = nullptr; CurrentData.m_pData = nullptr; CurrentData.m_iLength = -1; }
 	void FillData(int dunno, edict_t* pPlayer, bf_read* data, int length) { CurrentData.m_iDunno = dunno; CurrentData.m_pPlayer = pPlayer; CurrentData.m_pData = data; CurrentData.m_iLength = length; }
-	
+	void AddString(char* str);
+	void DeleteReadStrings();
 protected:
 	CUtlVector<GModNetMsgReceive_t>* Receivers = nullptr;
 	char NetMsgStringBuffer[0xFFFF];
 public:
 	char* nullstr = "\0";
 	GModNetMsgData_t		CurrentData;
+	CUtlVector<char*>* ReadStrings = nullptr;
 };
 extern GMod_NetReceive* g_pGModNetMsgReceiver;
 
@@ -67,10 +69,6 @@ extern GMod_NetReceive* g_pGModNetMsgReceiver;
 
 #define net_ReadString()						\
 	g_pGModNetMsgReceiver->ReadString();		\
-
-#define net_DisposeString(str)							\
-	if(str && str != g_pGModNetMsgReceiver->nullstr)	\
-		delete[] str;									\
 
 #define net_ReadVector()						\
 	g_pGModNetMsgReceiver->ReadVector();		\

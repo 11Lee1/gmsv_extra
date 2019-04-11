@@ -8,7 +8,6 @@ void TestCallBack(edict_t* pPlayer) {
 	char* str = net_ReadString();
 	printf("out: %s\n", str);
 
-	net_DisposeString(str);		// so we don't have memory leaks
 }
 
 void projectMain() {

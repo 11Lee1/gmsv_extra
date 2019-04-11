@@ -20,6 +20,7 @@ private:
 	void DeleteObjectWithIndex(int index);
 private:
 	void* m_pVMT = nullptr;
+	int size = 0;
 	CUtlVector<vmthooks_t>*	VMTInfo = nullptr;	
 };
 #endif

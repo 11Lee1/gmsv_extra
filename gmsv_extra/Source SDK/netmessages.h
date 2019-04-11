@@ -820,8 +820,6 @@ public:
 		m_nLength = m_DataOut.GetNumBitsWritten();
 		buffer.WriteUBitLong(GetType(), NETMSG_TYPE_BITS);
 		buffer.WriteUBitLong(m_nLength, 20);	// where we get our famous 65536 byte max.
-		
-		printf("0x%X\n", m_DataOut.GetBasePointer());
 		return buffer.WriteBits(m_DataOut.GetBasePointer(), m_nLength);
 	}
 	const char		*ToString() const { return "from gmsv_extra"; }

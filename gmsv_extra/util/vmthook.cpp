@@ -7,6 +7,17 @@ VMTHook::VMTHook(void* instance) {
 
 	m_pVMT = *(void**)instance;
 	VMTInfo = new CUtlVector<vmthooks_t>;
+	this->size;
+	while (true) {
+		unsigned int ptr = ((unsigned int*)m_pVMT)[this->size + 1];
+
+		if ((unsigned short)(ptr >> 16)) { // good enough I guess..?  
+			this->size = this->size + 1;
+		}
+		else
+			break;
+
+	}
 }
 
 VMTHook::~VMTHook() {
@@ -42,7 +53,7 @@ void VMTHook::DeleteObjectWithIndex(int index) {
 }
 void* VMTHook::HookFunction(int index, void* pfnHook) {
 	DWORD OldProtect, OldProtect2;
-	if (!((unsigned int*)m_pVMT)[index])
+	if (!((unsigned int*)m_pVMT)[index] || index > this->size)
 		return nullptr;
 
 	unsigned int OriginalFunctionPtr = ((unsigned int*)m_pVMT)[index];
@@ -59,7 +70,7 @@ void* VMTHook::HookFunction(int index, void* pfnHook) {
 void* VMTHook::UnhookFunction(int index) {
 	DWORD OldProtect, OldProtect2;
 	vmthooks_t hook;
-	if (!VMTInfo->Size() || !FindHookWithIndex(index,hook))
+	if (!VMTInfo->Size() || !FindHookWithIndex(index,hook) || index > this->size)
 		return nullptr;
 
 

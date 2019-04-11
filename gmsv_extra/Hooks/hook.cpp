@@ -52,7 +52,7 @@ void Hooks::SetupHooks() {
 		stuff to keep in mind.
 
 		an object that inherits virtual functions from other object will not share the same VMT pointer if
-		new virtual functions are declared (that's why I did above) I'll do another visual because 
+		new or old virtual functions are declared or overrided (that's why I did above) I'll do another visual because 
 		I know I didn't explain that properly.
 
 
@@ -79,6 +79,9 @@ void Hooks::SetupHooks() {
 		class CRandom : public CSomething
 		{
 		public:
+			void PrintMSG(char const* msg) override {
+				printf("override %s\n",msg);
+			}
 			virtual void PrintRandomMessage() {
 				printf("%s\n",RandomMessage);
 			}
@@ -103,7 +106,7 @@ void Hooks::SetupHooks() {
 			0x00002008	=	0x00001337	<--- RandomMessage
 
 			CRandom VMT
-			0x00007000	=	0x00000100	<--- inherited from CSomething
+			0x00007000	=	0x00000100	<--- PrintMSG function override 
 			0x00007004	=	0x00000200	<--- inherited from CSomething
 			0x00007008	=	0x00000300	<--- PrintRandomMessage
 

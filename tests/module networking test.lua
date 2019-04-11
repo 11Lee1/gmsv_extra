@@ -1,3 +1,7 @@
+/*
+    lua_openscript_cl "module networking test.lua";
+*/
+
 net.Receive("Test send", function(len)
     if(!len)then
         print("no data");

@@ -56,7 +56,7 @@ void detatch(HANDLE thread) {
 	delete g_pGModNetMsgReceiver;
 	delete g_pGMod_ServerToClient;
 	if (TerminateThread(thread, 0)) {
-		g_pInterfaces->ConColorMsg(1, Color(255, 0, 0), "terminating thread\n");
+		printf("terminating thread\n");
 	}
 }
 void AttachConsole(char const* name) {

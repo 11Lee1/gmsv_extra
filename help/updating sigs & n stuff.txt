@@ -140,7 +140,7 @@ CLuaNetworkedVars   - easy
     if(Entity) {
         unsigned int Something = (unsigned int)(*(void**)Some_ptr + 0xAC)(2);
         if(sub_9BB10(dword_9489A0,Entity,Something)) {
-            return;
+            return 1;
         }
     }
 

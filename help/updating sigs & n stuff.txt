@@ -11,7 +11,7 @@ we're gonna do CLuaNetworkedVars then do CGameServer, since it's the hardest.
 CLuaNetworkedVars   - easy
 [
     To be honest for something like this it's REALLY easy to do, and I'm going to explain it in a way
-    that will (hopefully) make it that anyone can do it with ease.
+    that will (hopefully) make it so that anyone can do it with ease.
 
     Open server.dll in IDA like this https://gyazo.com/da40ea464602f5e5f656ae625897e37c
     I set the image base to 0 for preference, just click okay on everything until it asks you to

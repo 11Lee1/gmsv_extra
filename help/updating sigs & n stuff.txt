@@ -277,6 +277,7 @@ CGameServer         - really easy
     double click it and you'll be brought to
     I'm not going to explain how to find the pointer because I feel like I explained it in CLuaNetworkedVars decently enough, but I'll point out where it is.
     here's the function https://github.com/VSES/SourceEngine2007/blob/43a5c90a5ada1e69ca044595383be67f40b33c61/se2007/engine/vengineserver_impl.cpp#L1094
+    thankfully you can just compare a lot of the functions from there it saves a lot of time.
     .text:00156C40 sub_156C40      proc near               ; DATA XREF: .rdata:0033D2FCo
     .text:00156C40
     .text:00156C40 var_104         = byte ptr -104h

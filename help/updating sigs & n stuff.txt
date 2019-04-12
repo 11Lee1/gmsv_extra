@@ -1,3 +1,5 @@
+I'm really bad at explaining shit so take it easy on me
+
 Programs used:
 1. IDA
     1. SigMaker (not needed)

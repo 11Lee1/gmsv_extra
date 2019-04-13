@@ -295,7 +295,8 @@ public:
 
 
 
-
+public:
+	Hull_t GetHullType() const { return m_eHull; }
 
 
 public:

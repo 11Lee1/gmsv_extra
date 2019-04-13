@@ -710,7 +710,6 @@ I  CUtlRBTree<T, I, L, M>::NewNode()
 template < class T, class I, typename L, class M >
 void  CUtlRBTree<T, I, L, M>::FreeNode(I i)
 {
-	Assert(IsValidIndex(i) && (i != InvalidIndex()));
 	Destruct(&Element(i));
 	SetLeftChild(i, i); // indicates it's in not in the tree
 	SetRightChild(i, m_FirstFree);
@@ -1085,8 +1084,6 @@ void CUtlRBTree<T, I, L, M>::RemoveAt(I elem)
 
 		FreeNode(elem);
 		--m_NumElements;
-
-		Assert(IsValid());
 	}
 }
 

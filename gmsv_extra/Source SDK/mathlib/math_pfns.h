@@ -1,3 +1,5 @@
+#ifndef _MATH_PFNS_H
+#define _MATH_PFNS_H
 
 // These globals are initialized by mathlib and redirected based on available fpu features
 extern float(*pfSqrt)(float x);
@@ -20,4 +22,6 @@ extern float(*pfFastCos)(float x);
 // the FPU or SSE register state and can be scheduled better, too.
 #undef FastSqrt
 #define FastSqrt(x)			::sqrtf(x)
+#endif
+
 #endif

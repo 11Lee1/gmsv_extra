@@ -18,35 +18,8 @@
 #include "../takedamageinfo.h"
 #include "../../Garry's Mod/GLUA/LuaObject/CLuaGameObject.h"
 #include "../baseentity_shared.h"
-//entitylist.h
-enum notify_system_event_t
-{
-	NOTIFY_EVENT_TELEPORT = 0,
-	NOTIFY_EVENT_DESTROY,
-};
-struct notify_teleport_params_t
-{
-	Vector prevOrigin;
-	QAngle prevAngles;
-	bool physicsRotate;
-};
-struct notify_destroy_params_t
-{
-};
-
-struct notify_system_event_params_t
-{
-	union
-	{
-		const notify_teleport_params_t *pTeleport;
-		const notify_destroy_params_t *pDestroy;
-	};
-	notify_system_event_params_t(const notify_teleport_params_t *pInTeleport) { pTeleport = pInTeleport; }
-	notify_system_event_params_t(const notify_destroy_params_t *pInDestroy) { pDestroy = pInDestroy; }
-};
-
-// end entitylist.h
-
+#include "../entitylist_base.h"
+#include "../worldsize.h"
 #define DECLARE_PREDICTABLE()											\
 	public:																\
 		static typedescription_t m_PredDesc[];							\
@@ -173,6 +146,19 @@ class CAI_BaseNPC;
 class gamevcollisionevent_t;
 class ILuaObject;
 class CTeam;
+struct notify_system_event_params_t;
+enum notify_system_event_t;
+
+class CBaseEntity;
+inline CBaseEntity *GetContainingEntity(edict_t *pent)
+{
+	if (pent && pent->GetUnknown())
+	{
+		return (CBaseEntity*)pent->GetUnknown();
+	}
+
+	return NULL;
+}
 class CBaseEntity : public IServerEntity
 {
 public:
@@ -458,6 +444,178 @@ public:
 	/*237*/virtual INextBot* 	GetNextBot(void);
 
 public:
+	// Why do we have two separate static Instance functions?
+	static CBaseEntity *Instance(const CBaseHandle &hEnt);
+	static CBaseEntity *Instance(const edict_t *pent);
+	static CBaseEntity *Instance(edict_t *pent);
+	static CBaseEntity* Instance(int iEnt);
+
+
+	inline const char* GetClassname()
+	{
+		return STRING(m_iClassname);
+	}
+
+	inline CCollisionProperty *CollisionProp()
+	{
+		return &m_Collision;
+	}
+
+	inline const CCollisionProperty *CollisionProp() const
+	{
+		return &m_Collision;
+	}
+
+	Vector& GetAbsVelocity() {
+		return this->m_vecAbsVelocity;
+	}
+	bool IsWorld() { return this->entindex() == 0; }
+	inline void AddSpawnFlags(int nFlags);
+	inline void RemoveSpawnFlags(int nFlags);
+	inline int GetFlags() { return this->m_fFlags; }
+	inline bool IsMarkedForDeletion(void) { return (m_iEFlags & EFL_KILLME); }
+	FORCEINLINE bool NamesMatch(const char *pszQuery, string_t nameToMatch)
+	{
+		if (nameToMatch == NULL_STRING)
+			return (!pszQuery || *pszQuery == 0 || *pszQuery == '*');
+
+		const char *pszNameToMatch = STRING(nameToMatch);
+
+		// If the pointers are identical, we're identical
+		if (pszNameToMatch == pszQuery)
+			return true;
+
+		while (*pszNameToMatch && *pszQuery)
+		{
+			unsigned char cName = *pszNameToMatch;
+			unsigned char cQuery = *pszQuery;
+			// simple ascii case conversion
+			if (cName == cQuery)
+				;
+			else if (cName - 'A' <= (unsigned char)'Z' - 'A' && cName - 'A' + 'a' == cQuery)
+				;
+			else if (cName - 'a' <= (unsigned char)'z' - 'a' && cName - 'a' + 'A' == cQuery)
+				;
+			else
+				break;
+			++pszNameToMatch;
+			++pszQuery;
+		}
+
+		if (*pszQuery == 0 && *pszNameToMatch == 0)
+			return true;
+
+		// @TODO (toml 03-18-03): Perhaps support real wildcards. Right now, only thing supported is trailing *
+		if (*pszQuery == '*')
+			return true;
+
+		return false;
+	}
+	bool NameMatchesComplex(const char *pszNameOrWildcard)
+	{
+		if (!Q_stricmp("!player", pszNameOrWildcard))
+			return IsPlayer();
+
+		return NamesMatch(pszNameOrWildcard, m_iName);
+	}
+	bool	ClassMatchesComplex(const char *pszClassOrWildcard)
+	{
+		return NamesMatch(pszClassOrWildcard, m_iClassname);
+	}
+	inline bool ClassMatches(const char *pszClassOrWildcard)
+	{
+		if (IDENT_STRINGS(m_iClassname, pszClassOrWildcard))
+			return true;
+		return ClassMatchesComplex(pszClassOrWildcard);
+	}
+	inline bool NameMatches(const char *pszNameOrWildcard)
+	{
+		if (IDENT_STRINGS(m_iName, pszNameOrWildcard))
+			return true;
+		return NameMatchesComplex(pszNameOrWildcard);
+	}
+	inline bool IsEFlagSet(int nEFlagMask) const
+	{
+		return (m_iEFlags & nEFlagMask) != 0;
+	}
+	int GetFirstThinkTick()
+	{
+		int minTick = TICK_NEVER_THINK;
+		if (m_nNextThinkTick > 0)
+		{
+			minTick = m_nNextThinkTick;
+		}
+
+		for (int i = 0; i < m_aThinkFunctions.Count(); i++)
+		{
+			int next = m_aThinkFunctions[i].m_nNextThinkTick;
+			if (next > 0)
+			{
+				if (next < minTick || minTick == TICK_NEVER_THINK)
+				{
+					minTick = next;
+				}
+			}
+		}
+		return minTick;
+	}
+	inline CServerNetworkProperty *NetworkProp()
+	{
+		return &m_Network;
+	}
+	inline edict_t			*edict(void) { return NetworkProp()->edict(); }
+
+	int DispatchUpdateTransmitState()
+	{
+		edict_t *ed = edict();
+		if (m_nTransmitStateOwnedCounter != 0)
+			return ed ? ed->m_fStateFlags : 0;
+
+		int ret = UpdateTransmitState();
+
+		return ret;
+	}
+	inline const Vector& GetLocalOrigin(void) const
+	{
+		return m_vecOrigin;
+	}
+	void SetLocalOrigin(const Vector& origin)
+	{
+		// Safety check against NaN's or really huge numbers
+		if (!IsEntityPositionReasonable(origin))
+		{
+			return;
+		}
+
+		if (m_vecOrigin != origin)
+		{
+			m_vecOrigin = origin;
+		}
+	}
+
+	bool IsInWorld(void)
+	{
+		if (!this)
+			return true;
+
+		// position 
+		if (GetAbsOrigin().x >= MAX_COORD_INTEGER) return false;
+		if (GetAbsOrigin().y >= MAX_COORD_INTEGER) return false;
+		if (GetAbsOrigin().z >= MAX_COORD_INTEGER) return false;
+		if (GetAbsOrigin().x <= MIN_COORD_INTEGER) return false;
+		if (GetAbsOrigin().y <= MIN_COORD_INTEGER) return false;
+		if (GetAbsOrigin().z <= MIN_COORD_INTEGER) return false;
+		// speed
+		
+		if (GetAbsVelocity().x >= 2000) return false;
+		if (GetAbsVelocity().y >= 2000) return false;
+		if (GetAbsVelocity().z >= 2000) return false;
+		if (GetAbsVelocity().x <= -2000) return false;
+		if (GetAbsVelocity().y <= -2000) return false;
+		if (GetAbsVelocity().z <= -2000) return false;
+
+		return true;
+	}
 	inline int GetTeamNumber() const { return m_iTeamNum; }
 	inline int entindex() const { return m_Network.entindex(); };
 	soundlevel_t LookupSoundLevel(char const* soundname) { soundlevel_t nothing; return nothing; }
@@ -467,13 +625,29 @@ public:
 
 		return nullptr;
 	}
-	Vector GetAbsOrigin() { return m_vecAbsOrigin; }
+	Vector& GetAbsOrigin() { return m_vecAbsOrigin; }
 	inline bool HasSpawnFlags(int nFlags) const
 	{
 		return (m_spawnflags & nFlags) != 0;
 	}
+	inline void AddEFlags(int nEFlagMask)
+	{
+		m_iEFlags |= nEFlagMask;
 
-
+		if (nEFlagMask & (EFL_FORCE_CHECK_TRANSMIT | EFL_IN_SKYBOX))
+		{
+			DispatchUpdateTransmitState();
+		}
+	}
+	void PhysicsCheckForEntityUntouch() {}
+	inline bool GetCheckUntouch() const
+	{
+		return IsEFlagSet(EFL_CHECK_UNTOUCH);
+	}
+	inline bool IsPointSized() const
+	{
+		return CollisionProp()->BoundingRadius() == 0.0f;
+	}
 #ifdef _WIN32 // feels ghetto holy shit lol.
 	bool IsSWEP() {
 		if (!this || !this->UsesLua() || !this->IsWeapon())
@@ -696,4 +870,86 @@ public:
 
 	BYTE	pad_unk03[0xD14]; //0x1390  End of BaseEntity
 };
+inline void CBaseEntity::AddSpawnFlags(int nFlags)
+{
+	m_spawnflags |= nFlags;
+}
+inline void CBaseEntity::RemoveSpawnFlags(int nFlags)
+{
+	m_spawnflags &= ~nFlags;
+}
+inline CBaseEntity *CBaseEntity::Instance(const edict_t *pent)
+{
+	return GetContainingEntity(const_cast<edict_t*>(pent));
+}
+
+#include "util.h"
+inline CBaseEntity *CBaseEntity::Instance(edict_t *pent)
+{
+	if (!pent)
+	{
+		pent = INDEXENT(0);
+	}
+	return GetContainingEntity(pent);
+}
+
+inline CBaseEntity* CBaseEntity::Instance(int iEnt)
+{
+	return Instance(INDEXENT(iEnt));
+}
+
+
+
+
+
+
+
+
+
+
+class CPointEntity : public CBaseEntity
+{
+public:
+	DECLARE_CLASS(CPointEntity, CBaseEntity);
+
+	void	Spawn(void);
+	virtual int	ObjectCaps(void) { return BaseClass::ObjectCaps() & ~FCAP_ACROSS_TRANSITION; }
+	virtual bool KeyValue(const char *szKeyName, const char *szValue);
+private:
+};
+
+// Has a position + size
+class CServerOnlyEntity : public CBaseEntity
+{
+	DECLARE_CLASS(CServerOnlyEntity, CBaseEntity);
+public:
+	//CServerOnlyEntity() : CBaseEntity(true) {}
+
+	virtual int ObjectCaps(void) { return (BaseClass::ObjectCaps() & ~FCAP_ACROSS_TRANSITION); }
+};
+
+// Has only a position, no size
+class CServerOnlyPointEntity : public CServerOnlyEntity
+{
+	DECLARE_CLASS(CServerOnlyPointEntity, CServerOnlyEntity);
+
+public:
+	virtual bool KeyValue(const char *szKeyName, const char *szValue);
+};
+
+// Has no position or size
+class CLogicalEntity : public CServerOnlyEntity
+{
+	DECLARE_CLASS(CLogicalEntity, CServerOnlyEntity);
+
+public:
+	virtual bool KeyValue(const char *szKeyName, const char *szValue);
+};
+
+
+inline bool FClassnameIs(CBaseEntity *pEntity, const char *szClassname)
+{
+	return pEntity->ClassMatches(szClassname);
+}
+
 #endif

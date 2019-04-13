@@ -142,6 +142,9 @@
     <Filter Include="Header Files\Source SDK\vphysics">
       <UniqueIdentifier>{0e35243c-0703-4f5f-aae5-fbe904092bbe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Source SDK\datacache">
+      <UniqueIdentifier>{a74df585-fa14-4521-a73e-f2663fe475e7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -257,6 +260,30 @@
     </ClCompile>
     <ClCompile Include="Garry%27s Mod\Networking\gmod_net_util.cpp">
       <Filter>Source Files\Garry%27s Mod\Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="Source SDK\entitylist_base.cpp">
+      <Filter>Source Files\Source SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="Source SDK\server\entitylist.cpp">
+      <Filter>Source Files\Source SDK\server</Filter>
+    </ClCompile>
+    <ClCompile Include="Source SDK\collisionutils.cpp">
+      <Filter>Source Files\Source SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="Source SDK\server\util.cpp">
+      <Filter>Source Files\Source SDK\server</Filter>
+    </ClCompile>
+    <ClCompile Include="Source SDK\igamesystem.cpp">
+      <Filter>Source Files\Source SDK</Filter>
+    </ClCompile>
+    <ClCompile Include="Source SDK\mathlib\sseconst.cpp">
+      <Filter>Source Files\Source SDK\mathlib</Filter>
+    </ClCompile>
+    <ClCompile Include="Source SDK\mathlib\ssemath.cpp">
+      <Filter>Source Files\Source SDK\mathlib</Filter>
+    </ClCompile>
+    <ClCompile Include="Source SDK\server\player.cpp">
+      <Filter>Source Files\Source SDK\server</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1042,6 +1069,108 @@
     </ClInclude>
     <ClInclude Include="Garry%27s Mod\Networking\gmod_net_util.h">
       <Filter>Header Files\Garry%27s Mod\Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\entitylist_base.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\entitylist.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\collisionutils.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\mapentities.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\mapentities_shared.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\client.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\ai_initutils.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\ai_basenpc.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\ai_node.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\bitstring.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\ai_debug.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\fmtstr.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\ai_debug_shared.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\ai_default.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\ai_schedule.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\ai_condition.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\ai_task.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\ai_movetypes.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\ai_navtype.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\ai_namespaces.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\ai_npcstate.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\ai_moveshoot.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\activitylist.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\ai_navgoaltype.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\eventlist.h">
+      <Filter>Header Files\Source SDK</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\soundent.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\ai_navigator.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\ai_motor.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\AI_Interest_Target.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\functors.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\tier1\utlenvelope.h">
+      <Filter>Header Files\Source SDK\tier1</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\globalstate.h">
+      <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\datacache\imdlcache.h">
+      <Filter>Header Files\Source SDK\datacache</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\server\util.h">
+      <Filter>Header Files\Source SDK\server</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

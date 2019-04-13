@@ -23,6 +23,7 @@
 // UNDONE: Do these need GameInit/GameShutdown as well?
 // UNDONE: Remove the Pre/Post entity semantics and rely on system ordering?
 // FIXME: Remove all ifdef CLIENT_DLL if we can...
+class CUserCmd;
 abstract_class IGameSystem
 {
 public:
@@ -58,7 +59,7 @@ public:
 	virtual bool	IsPerFrame() = 0;
 
 	// destructor, cleans up automagically....
-	virtual ~IGameSystem();
+	virtual ~IGameSystem() {};
 
 	// Client systems can use this to get at the map name
 	static char const*	MapName();
@@ -104,7 +105,7 @@ class IGameSystemPerFrame : public IGameSystem
 {
 public:
 	// destructor, cleans up automagically....
-	virtual ~IGameSystemPerFrame();
+	virtual ~IGameSystemPerFrame() { };
 
 #ifdef CLIENT_DLL
 	// Called before rendering
@@ -236,7 +237,7 @@ private:
 class CAutoGameSystemPerFrame : public CBaseGameSystemPerFrame
 {
 public:
-	CAutoGameSystemPerFrame(char const *name = NULL);
+	CAutoGameSystemPerFrame(char const *name = NULL) {}
 	CAutoGameSystemPerFrame *m_pNext;
 
 	virtual char const *Name() { return m_pszName ? m_pszName : "unnamed"; }

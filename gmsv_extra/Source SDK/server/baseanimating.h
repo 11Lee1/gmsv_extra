@@ -82,6 +82,10 @@ public:
 	/*270*/virtual CBaseEntity*	GetBoneManipulator(bool);
 	/*271*/virtual void			SetFlexManipulator(CBaseEntity*);
 	/*272*/virtual CBaseEntity*	GetFlexManipulator(bool);
+
+public:
+	inline int GetSequence() { return m_nSequence; }
+	inline CStudioHdr* GetModelPtr() { return m_pStudioHdr; }
 public:
 	// animation needs
 	float				m_flGroundSpeed;	// computed linear movement rate for current sequence

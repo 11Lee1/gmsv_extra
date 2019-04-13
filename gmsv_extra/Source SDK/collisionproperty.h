@@ -207,7 +207,7 @@ public:
 
 private:
 	// Transforms an AABB measured in collision space to a box that surrounds it in world space
-	void CollisionAABBToWorldAABB(const Vector &entityMins, const Vector &entityMaxs, Vector *pWorldMins, Vector *pWorldMaxs) const;
+	void CollisionAABBToWorldAABB(const Vector &entityMins, const Vector &entityMaxs, Vector *pWorldMins, Vector *pWorldMaxs) const {};
 
 	// Expand trigger bounds..
 	void ComputeVPhysicsSurroundingBox(Vector *pVecWorldMins, Vector *pVecWorldMaxs);

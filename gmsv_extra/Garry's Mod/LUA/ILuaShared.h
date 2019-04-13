@@ -20,7 +20,7 @@ public:
 	virtual int MountLuaAdd(const char*, const char*) = 0;
 	virtual int UnMountLua(const char*) = 0;
 	virtual void SetFileContents() = 0; // does legit nothing
-	virtual int SetLuaFindHook(void*/*LuaClientDatatableHook**/) = 0;
+	virtual int SetLuaFindHook(void*/*LuaClientDatatableHook* */) = 0;
 	virtual int FindScripts() = 0;
 	virtual void* GetStackTraces() = 0;
 };

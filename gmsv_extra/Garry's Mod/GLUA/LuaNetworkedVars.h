@@ -45,6 +45,6 @@ protected:
 	int			AddNetworkedVar(CBaseEntity* Ent, char const* Key);
 
 
-	LuaNetworkedVarEnts_t m_Ents[ENT_ENTRY_MASK];
+	LuaNetworkedVarEnts_t m_Ents[0xFFFF];
 };
 #endif

@@ -1,3 +1,9 @@
+#ifndef SSEMATH_H
+#define SSEMATH_H
+
+#include "vector.h"
+#include "mathlib.h"
+
 #define USE_STDC_FOR_SIMD 0
 
 #if (!defined(_X360) && (USE_STDC_FOR_SIMD == 0))
@@ -61,7 +67,7 @@ void inline SinCos(float radians, float &sine, float &cosine)
 	sine = sin(sine);
 	cosine = cos(cosine);
 }
-void(*pfFastSinCos)(float x, float& s, float& c) = SinCos;
+
 // A 16-byte aligned int32 datastructure
 // (for use when writing out fltx4's as SIGNED
 // ints).
@@ -1548,3 +1554,6 @@ FORCEINLINE fltx4 BiasSIMD(const fltx4 &val, const fltx4 &precalc_param)
 // Box/plane test 
 // NOTE: The w component of emins + emaxs must be 1 for this to work
 //-----------------------------------------------------------------------------
+
+
+#endif

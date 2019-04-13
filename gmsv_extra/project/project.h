@@ -3,19 +3,25 @@
 #include "../interfaces.h"
 #include "../include.h"
 #include "../Hooks/hook.h"
-
 void TestCallBack(edict_t* pPlayer) {
 	char* str = net_ReadString();
 	printf("out: %s\n", str);
 
 }
 
+#include "../util/util.h"
 void projectMain() {
+	uintptr_t UpdateEntityVars = Util::Pattern::FindPattern("server.dll", "55 8B EC 51 57 8B 7D 08 89 4D FC");
+
+	CGlobalEntityList* Entlist = **(CGlobalEntityList***)(UpdateEntityVars + 0x54 + 0x2);
+	printf("thing = 0x%X\n", Entlist);
+
+
+	printf("player = 0x%X\n", Entlist->FindEntityByClassname(Entlist->FirstEnt(), "player"));
 	util_AddNetworkString("Test send");
 	util_AddNetworkString("Test Receive");
 
 	net_Receive("Test Receive", TestCallBack);
-
 	// setting reliable to false so the netmessage gets sent on the same packet as the SVC_UpdateStringTable 
 	// (networkstring dictionary update) net message, since we're doing this all at the same time.
 	// Also if the packet with the dictionary update has already been sent/arrived then you can
@@ -30,4 +36,5 @@ void projectMain() {
 	}
 	net_Broadcast();
 }
+
 #endif

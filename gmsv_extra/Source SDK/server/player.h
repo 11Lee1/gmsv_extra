@@ -538,6 +538,20 @@ public:
 			
 			return pi.userID;
 		}
+
+		void EyeVectors(Vector *pForward, Vector *pRight = NULL, Vector *pUp = NULL)
+		{
+			if (GetVehicle() != NULL)
+			{
+				// Cache or retrieve our calculated position in the vehicle
+				AngleVectors(m_vecVehicleViewAngles, pForward, pRight, pUp);
+			}
+			else
+			{
+				AngleVectors(EyeAngles(), pForward, pRight, pUp);
+			}
+		}
+
 public:
 	BYTE	pad_unk05[0x4];
 	// How much of a movement time buffer can we process from this user?
@@ -824,6 +838,8 @@ public:
 	DECLARE_SERVERCLASS();
 
 };
+
+CBaseEntity *FindEntityForward(CBasePlayer *pMe, bool fHull);
 
 typedef CHandle<CBasePlayer> CBasePlayerHandle;
 

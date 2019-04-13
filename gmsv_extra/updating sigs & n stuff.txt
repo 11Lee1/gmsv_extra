@@ -1,0 +1,424 @@
+I'm really bad at explaining shit so take it easy on me
+
+Programs used:
+1. IDA
+    1. SigMaker (not needed)
+    2. Class Informer (not needed but I'm using it because it'll save me time and effort.)
+2. ReClass.NET
+
+
+we're gonna do CLuaNetworkedVars then do CGameServer, since it's the hardest.
+
+
+CLuaNetworkedVars   - easy
+[
+    To be honest for something like this it's REALLY easy to do, and I'm going to explain it in a way
+    that will (hopefully) make it so that anyone can do it with ease.
+
+    Open server.dll in IDA like this https://gyazo.com/da40ea464602f5e5f656ae625897e37c
+    I set the image base to 0 for preference, just click okay on everything until it asks you to
+    load the pdb and click no there.  It will take a while to load but you'll know when it's done loading 
+    when at the bottom left it says something like "AU:  idle"
+
+    Close every window that isn't "IDA View", "Hex View" and "Strings Window".
+        You can open these by going to View->Open Subviews
+            Disassembly is "IDA View"
+            Hex Dump is "Hex View"
+            Strings is "Strings Window"
+
+    Right click anywhere within the "IDA View" click synchronize with -> "Hex View" so wherever 
+    you click within the disassembly will be highlighted in the hex view
+
+    Go to the strings window press CTRL+F and search for "GetNW" and a list of strings like this
+    will show up https://gyazo.com/5ec00bcd653fdda995ceef0c5310a230
+
+    Double click any one of them (I'm going to use GetNWInt) and it will bring you to the disassembly window. 
+    like this https://gyazo.com/e1cd799aebe600300566a47ef2a734be 
+
+    Click one of the cross references and you'll be brought to something like this.
+    https://gyazo.com/d9742203360a474b17c8cf03de397ea3 and just click on the function offset
+    which is "sub_E6400" in the screenshot and it'll bring you to the function in the disassembly
+    
+
+
+    Since you're probably using the free version of IDA you probably wont have the decompiler plugin
+    or any plugins.  So We're gonna go through it all using the Disassembly window.  Reading the 
+    assembly isn't terribly difficult and we can skim through a lot of the bullshit.
+
+    You'll be brough to a function that looks like
+    .text:000E6400 sub_E6400       proc near               ; DATA XREF: .data:008A4958o
+    .text:000E6400                                         ; .data:008A4970o ...
+    .text:000E6400
+    .text:000E6400 var_C           = qword ptr -0Ch
+    .text:000E6400 arg_0           = dword ptr  8
+    .text:000E6400
+    .text:000E6400                 push    ebp                  
+    .text:000E6401                 mov     ebp, esp             
+    .text:000E6403                 mov     eax, [ebp+arg_0]     
+    .text:000E6406                 push    esi
+    .text:000E6407                 push    eax
+    .text:000E6408                 mov     ecx, [eax+48h]
+    .text:000E640B                 mov     edx, [ecx]
+    .text:000E640D                 call    dword ptr [edx+0C8h]     <-- calling some function in that objects vmt
+    .text:000E6413                 inc     dword_8A495C             <-- increment something
+    .text:000E6419                 push    1
+    .text:000E641B                 push    1
+    .text:000E641D                 call    sub_DF020                <-- calling some function with the inputs (1,1)
+    .text:000E6422                 mov     ecx, dword_946B04        <-- something into ecx register 
+    .text:000E6428                 mov     esi, eax                 <-- moving return value from sub_DF020 into esi register 
+    .text:000E642A                 add     esp, 8                   
+    .text:000E642D                 mov     eax, [ecx]               <-- moving value stored in dword_8A495C into eax register 
+    .text:000E642F                 test    esi, esi                 <-- testing value stored in esi
+    .text:000E6431                 jnz     short loc_E6468          <-- jump to loc_E6468 if it's not zero
+    .text:000E6433                 push    3                            //  I'll just tell you what it's doing / looks like to save myself time.
+    .text:000E6435                 call    dword ptr [eax+0ECh]         //  It pretty much calls a GetEntity function with the inputs being stack position
+    .text:000E643B                 mov     esi, eax                     //  and bool and returns an entity from the lua stack and tests if it returns null
+    .text:000E643D                 test    esi, esi                     //  or not.  We're going to assume it returned something and goto our jump location
+    .text:000E643F                 jz      short loc_E64A7              //  loc_E6468
+    .text:000E6441                 mov     edx, [esi]                   
+    .text:000E6443                 mov     ecx, esi                     
+    .text:000E6445                 mov     edx, [edx+88h]
+    .text:000E644B                 call    edx
+    .text:000E644D                 test    al, al
+    .text:000E644F                 jnz     short loc_E64A7
+    .text:000E6451
+    .text:000E6451 loc_E6451:                              ; CODE XREF: sub_E6400+A5j
+    .text:000E6451                 mov     ecx, dword_946B04
+    .text:000E6457                 push    esi
+    .text:000E6458                 mov     eax, [ecx]
+    .text:000E645A                 call    dword ptr [eax+0F0h]
+    .text:000E6460                 mov     eax, 1
+    .text:000E6465                 pop     esi
+    .text:000E6466                 pop     ebp
+    .text:000E6467                 retn
+    .text:000E6468 ; ---------------------------------------------------------------------------
+    .text:000E6468
+    .text:000E6468 loc_E6468:                              ; CODE XREF: sub_E6400+31j
+    .text:000E6468                 push    2                    
+    .text:000E646A                 call    dword ptr [eax+0ACh]     <-- calling function with offset 0xAC from eax with int 2.
+    .text:000E6470                 mov     ecx, dword_9489A0        <-- moving value stored in dword_9489A0 to ecx
+    .text:000E6476                 push    eax                      <-- pushing value in eax register 
+    .text:000E6477                 push    esi                      <-- pushing value in esi register (our entity from get entity function)
+    .text:000E6478                 call    sub_9BB10                <-- calling some function, should look something like sub_9BB10(dword_9489A0,esi,eax)
+    .text:000E647D                 test    eax, eax                 <-- test return value
+    .text:000E647F                 jnz     short loc_E64BA          <-- jump to loc_E64BA if the test returns anything but 0
+    .text:000E6481                 mov     ecx, dword_946B04        // this is pretty much all we really need to be honest.
+    .text:000E6487                 push    3
+    .text:000E6489                 mov     eax, [ecx]
+    .text:000E648B                 call    dword ptr [eax+0ECh]
+    .text:000E6491                 mov     esi, eax
+    .text:000E6493                 test    esi, esi
+    .text:000E6495                 jz      short loc_E64A7
+    .text:000E6497                 mov     edx, [esi]
+    .text:000E6499                 mov     ecx, esi
+    .text:000E649B                 mov     edx, [edx+88h]
+    .text:000E64A1                 call    edx
+    .text:000E64A3                 test    al, al
+    .text:000E64A5                 jz      short loc_E6451
+    .text:000E64A7
+    .text:000E64A7 loc_E64A7:                              ; CODE XREF: sub_E6400+3Fj
+    .text:000E64A7                                         ; sub_E6400+4Fj ...
+    .text:000E64A7                 mov     ecx, dword_946B04
+    .text:000E64AD                 sub     esp, 8
+    .text:000E64B0                 fldz
+    .text:000E64B2                 mov     eax, [ecx]
+    .text:000E64B4                 fstp    [esp+0Ch+var_C]
+    .text:000E64B7                 call    dword ptr [eax+78h]
+    .text:000E64BA
+    .text:000E64BA loc_E64BA:                              ; CODE XREF: sub_E6400+7Fj
+    .text:000E64BA                 mov     eax, 1               <--- end of the funciton
+    .text:000E64BF                 pop     esi                  
+    .text:000E64C0                 pop     ebp                  
+    .text:000E64C1                 retn                         
+    .text:000E64C1 sub_E6400       endp
+
+
+    now if we look back and try to rebuild the function and it should look something like
+
+    unsigned int Entity     = sub_DF020(1,true);
+    unsigned int Some_ptr   = dword_946B04;
+    if(Entity) {
+        unsigned int Something = (unsigned int)(*(void**)Some_ptr + 0xAC)(2);
+        if(sub_9BB10(dword_9489A0,Entity,Something)) {
+            return 1;
+        }
+    }
+
+    At this point we can pretty much assume dword_9489A0 is our pointer to CLuaNetworkedVars just basted on the given inputs of the sub_9BB10 function.
+    We can make sure of this using ReClass.NET or whatever you want to use by making a signature and using the pattern searching function
+    in the project.
+
+    To make a signature we go to the top of the function sub_E6400 and click the .text part at the very first instruction .text:000E6400
+    then goto the Hex Dump (Hex View) we should see something like this:
+
+    000E63F0                              CC CC CC CC CC CC CC  .+....^]+¦¦¦¦¦¦¦
+    000E6400  55 8B EC 8B 45 08 56 50  8B 48 48 8B 11 FF 92 C8  Uï8ïE.VPïHHï. Æ+
+    000E6410  00 00 00 FF 05 5C 49 8A  00 6A 01 6A 01 E8 FE 8B  ... .\Iè.j.j.F¦ï
+    000E6420  FF FF 8B 0D 04 6B 94 00  8B F0 83 C4 08 8B 01 85    ï..kö.ï=â-.ï.à
+    000E6430  F6 75 35 6A 03 FF 90 EC  00 00 00 8B F0 85 F6 74  ÷u5j. .8...ï=à÷t
+    000E6440  66 8B 16 8B CE 8B 92 88  00 00 00 FF D2 84 C0 75  fï.ï+ïÆê... -ä+u
+    000E6450  56 8B 0D 04 6B 94 00 56  8B 01 FF 90 F0 00 00 00  Vï..kö.Vï. .=...
+    000E6460  B8 01 00 00 00 5E 5D C3  6A 02 FF 90 AC 00 00 00  +....^]+j. .¼...
+    000E6470  8B 0D A0 89 94 00 50 56  E8 93 56 FB FF 85 C0 75  ï.áëö.PVFôVv à+u
+    000E6480  39 8B 0D 04 6B 94 00 6A  03 8B 01 FF 90 EC 00 00  9ï..kö.j.ï. .8..
+    000E6490  00 8B F0 85 F6 74 10 8B  16 8B CE 8B 92 88 00 00  .ï=à÷t.ï.ï+ïÆê..
+    000E64A0  00 FF D2 84 C0 74 AA 8B  0D 04 6B 94 00 83 EC 08  . -ä+t¬ï..kö.â8.
+    000E64B0  D9 EE 8B 01 DD 1C 24 FF  50 78 B8 01 00 00 00 5E  +eï.¦.$ Px+....^
+    000E64C0  5D C3 CC CC CC CC CC CC  CC CC CC CC CC CC CC CC  ]+¦¦¦¦¦¦¦¦¦¦¦¦¦¦
+
+    Lets make this somewhat readable now and structure it like our function in the disassembly window using the opcodes (goto: http://ref.x86asm.net/coder32.html 
+    if you're interested)
+
+    55                      push    ebp
+    8B EC                   mov     ebp, esp
+    8B 45 08                mov     eax, [ebp+arg_0]
+    56                      push    esi
+    50                      push    eax
+    8B 48 48                mov     ecx, [eax+48h]
+    8B 11                   mov     edx, [ecx]
+    FF 92 C8 00 00 00       call    dword ptr [edx+0C8h]
+    FF 05 5C 49 8A 00       inc     dword_8A495C
+    6A 01                   push    1
+    6A 01                   push    1
+    E8 FE 8B FF FF          call    sub_DF020
+    8B 0D 04 6B 94 00       mov     ecx, dword_946B04
+    8B F0                   mov     esi, eax
+    83 C4 08                add     esp, 8
+    8B 01                   mov     eax, [ecx]
+    85 F6                   test    esi, esi
+    75 35                   jnz     short loc_E6468
+    6A 03                   push    3
+    FF 90 EC 00 00 00       call    dword ptr [eax+0ECh]
+    8B F0                   mov     esi, eax
+    85 F6                   test    esi, esi
+    74 66                   jz      short loc_E64A7
+    8B 16                   mov     edx, [esi]
+    8B CE                   mov     ecx, esi
+    8B 92 88 00 00 00       mov     edx, [edx+88h]
+    FF D2                   call    edx
+    84 C0                   test    al, al
+    75 56                   jnz     short loc_E64A7
+
+    This should be more than enough.
+
+    what the FindPattern function basically does is compare all the bytes in the input string with the ones in the module until it finds a match.
+    ? will signify that the byte is of an unknown value like our offsets like dword_8A495C will be unknown. so lets make a signature to the function now.
+    
+    anyway make a signature yourself or use sigmaker plugin self explanatory on how to make it. 
+    MINE -------> 55 8B EC 8B 45 08 56 50 8B 48 48 8B 11 FF 92 ? ? ? ? FF 05 ? ? ? ? 6A 01 6A 01 E8 ? ? ? ? 8B 0D ? ? ? ? 8B F0 83 C4 08 8B 01 85 F6 
+    SIG MAKER --> 55 8B EC 8B 45 08 56 50 8B 48 48 8B 11 FF 92 ? ? ? ? FF 05 ? ? ? ? 6A 01 6A 01 E8 ? ? ? ? 8B 0D ? ? ? ? 8B F0 83 C4 08 8B 01 85 F6 75 35 6A 03 FF 90 ? ? ? ? 8B F0 85 F6 74 66
+
+    we can now check if that works by scrolling to the top of the disassembly window selecting anywhere near the top and pressing ALT+B and pasting our string 
+    like this: https://i.imgur.com/QhbUHU2.png and it should goto our function.  
+
+    we can now go to our project and do something like: https://i.imgur.com/P5oRaJ0.png and When we inject or load the module the console will 
+    output a pointer to the first byte in in the function and we can use that in ReClass.NET to view the function as it's loaded in memory right now.
+    https://i.imgur.com/56y6NSQ.gifv
+
+    we can now view our function in memory, with all the pointers n stuff https://i.imgur.com/2PpavK8.png
+
+    to find dword_9489A0 we take the address were it was first referenced to in ida and subract it by the functions address 0x000E6470 - 0x000E6400 which is 
+    112 or 0x70.  So lets add 0x70 to our function address we retrieved with out pattern scanning function 0x2A556400 + 0x70 = 0x2A556470 https://i.imgur.com/dwXnMcx.png
+    and there we go we have our address A0 89 DB 2A (0x2ADB89A0 bc little endian xd), now we know that part of memory is allocated as a pointer for the address of the 
+    CLuaNetworkedVars class.
+
+    and we can do something like this 
+
+    #include "../util/util.h"
+    void projectMain() {
+        uintptr_t pFn = Util::Pattern::FindPattern("server.dll", "55 8B EC 8B 45 08 56 50 8B 48 48 8B 11 FF 92 ? ? ? ? FF 05 ? ? ? ? 6A 01 6A 01 E8 ? ? ? ? 8B 0D ? ? ? ? 8B F0 83 C4 08 8B 01 85 F6");
+        unsigned int* g_pLuaNetworkedVars = nullptr;
+        if (pFn) {
+            g_pLuaNetworkedVars = *(unsigned int**)(pFn + 0x70 + 0x2);
+            if (*g_pLuaNetworkedVars)
+                g_pLuaNetworkedVars = *(unsigned int**)g_pLuaNetworkedVars;
+            else
+                g_pLuaNetworkedVars = nullptr;
+        }
+
+        // or we could do unsigned int* g_pLuaNetworkedVars = **(unsigned int***)(pFn + 0x70 + 0x2);
+        // but we'll reach an access violation if it's not storing a value currently.
+        printf("0x%X\n", g_pLuaNetworkedVars);
+    }
+    
+    my CLuaNetworkedVars class isn't technically correct, but whatever.
+
+    and there you go pretty easy.  takes maybe 5-10 minutes.
+
+]
+
+CGameServer         - really easy
+[
+    Since we already got a pointer to CVEngineServer via CreateInterface and the pointer to CGameServer is contained in one of the 
+    functions in CVEngineServer VMT obtaining a pointer to it is pretty simple.
+
+    Open engine.dll in IDA like this https://i.imgur.com/qSIiZ8f.png
+    I set the image base to 0 for preference, just click okay on everything untill it asks you to
+    load the pdb and click no there.  It will take a while to load but you'll know when it's done loading 
+    when at the bottom left it says something like "AU:  idle"
+
+    Close every window that isn't "IDA View" and "Hex View".
+        You can open these by going to View->Open Subviews
+            Disassembly is "IDA View"
+            Hex Dump is "Hex View"
+
+    Right click anywhere within the "IDA View" click synchronize with -> "Hex View" so wherever 
+    you click within the disassembly will be highlighed in the hex view
+
+    load the Class Informer plugin search CVEngineserver click the type that says CVEngineServer and you'll be brought to the disassembly
+    window with the VMT visable.  https://i.imgur.com/Jn9cq4X.png
+
+    Locate the MessageEnd function which should be index #44 in the array unless the name changes from "VEngineServer021" to something 
+    else you can pretty much assume the function offset in the vmt is correct.  All you have to do to locate it is subtract the address in the array by
+    the address of the first object in it and divide the result by 4 and check if the resulting number is 44.  So like ((0x0033D300 - 0x0033D24C) / 4 ) = index.
+    
+    https://i.imgur.com/vKNBQ1v.png - messageend function
+
+    double click it and you'll be brought to
+    I'm not going to explain how to find the pointer because I feel like I explained it in CLuaNetworkedVars decently enough, but I'll point out where it is.
+    here's the function https://github.com/VSES/SourceEngine2007/blob/43a5c90a5ada1e69ca044595383be67f40b33c61/se2007/engine/vengineserver_impl.cpp#L1094
+    thankfully you can just compare a lot of the functions from there it saves a lot of time.
+    .text:00156C40 sub_156C40      proc near               ; DATA XREF: .rdata:0033D2FCo
+    .text:00156C40
+    .text:00156C40 var_104         = byte ptr -104h
+    .text:00156C40 var_4           = dword ptr -4
+    .text:00156C40
+    .text:00156C40                 push    ebp
+    .text:00156C41                 mov     ebp, esp
+    .text:00156C43                 sub     esp, 104h
+    .text:00156C49                 cmp     byte_41FEE8, 0
+    .text:00156C50                 jnz     short loc_156C63
+    .text:00156C52                 push    offset aMessage_endCal ; "MESSAGE_END called with no active messa"...
+    .text:00156C57                 call    sub_1F87E0
+    .text:00156C5C                 add     esp, 4
+    .text:00156C5F                 mov     esp, ebp
+    .text:00156C61                 pop     ebp
+    .text:00156C62                 retn
+    .text:00156C63 ; ---------------------------------------------------------------------------
+    .text:00156C63
+    .text:00156C63 loc_156C63:                             ; CODE XREF: sub_156C40+10j
+    .text:00156C63                 mov     ecx, dword_41FEE0
+    .text:00156C69                 push    esi
+    .text:00156C6A                 cmp     ecx, offset dword_41FF40
+    .text:00156C70                 jnz     loc_156D31
+    .text:00156C76                 mov     ecx, dword_9DBBF0
+    .text:00156C7C                 lea     edx, [ebp+var_4]
+    .text:00156C7F                 mov     esi, dword_41FF50
+    .text:00156C85                 push    edx
+    .text:00156C86                 mov     [ebp+var_4], 0FFFFFFFFh
+    .text:00156C8D                 lea     edx, [ebp+var_104]
+    .text:00156C93                 mov     eax, [ecx]
+    .text:00156C95                 push    100h
+    .text:00156C9A                 push    edx
+    .text:00156C9B                 push    esi
+    .text:00156C9C                 mov     eax, [eax+74h]
+    .text:00156C9F                 call    eax
+    .text:00156CA1                 test    al, al
+    .text:00156CA3                 jnz     short loc_156CB9
+    .text:00156CA5                 push    esi
+    .text:00156CA6                 push    offset aUnableToFindUs ; "Unable to find user message for index %"...
+    .text:00156CAB                 call    ds:Warning
+    .text:00156CB1                 add     esp, 8
+    .text:00156CB4                 jmp     loc_156D8C
+    .text:00156CB9 ; ---------------------------------------------------------------------------
+    .text:00156CB9
+    .text:00156CB9 loc_156CB9:                             ; CODE XREF: sub_156C40+63j
+    .text:00156CB9                 mov     eax, dword_41FF7C
+    .text:00156CBE                 mov     ecx, [ebp+var_4]
+    .text:00156CC1                 add     eax, 7
+    .text:00156CC4                 sar     eax, 3
+    .text:00156CC7                 cmp     ecx, 0FFFFFFFFh
+    .text:00156CCA                 jnz     short loc_156CF3
+    .text:00156CCC                 cmp     eax, 0FFh
+    .text:00156CD1                 jle     short loc_156D10
+    .text:00156CD3                 push    0FFh
+    .text:00156CD8                 push    eax
+    .text:00156CD9                 lea     eax, [ebp+var_104]
+    .text:00156CDF                 push    eax
+    .text:00156CE0                 push    offset aDll_messageend ; "DLL_MessageEnd:  Refusing to send user "...
+    .text:00156CE5                 call    ds:Warning
+    .text:00156CEB                 add     esp, 10h
+    .text:00156CEE                 jmp     loc_156D8C
+    .text:00156CF3 ; ---------------------------------------------------------------------------
+    .text:00156CF3
+    .text:00156CF3 loc_156CF3:                             ; CODE XREF: sub_156C40+8Aj
+    .text:00156CF3                 cmp     ecx, eax
+    .text:00156CF5                 jz      short loc_156D10
+    .text:00156CF7                 push    ecx
+    .text:00156CF8                 push    eax
+    .text:00156CF9                 lea     eax, [ebp+var_104]
+    .text:00156CFF                 push    eax
+    .text:00156D00                 push    offset aUserMsgSDBytes ; "User Msg '%s': %d bytes written, expect"...
+    .text:00156D05                 call    ds:Warning
+    .text:00156D0B                 add     esp, 10h
+    .text:00156D0E                 jmp     short loc_156D8C
+    .text:00156D10 ; ---------------------------------------------------------------------------
+    .text:00156D10
+    .text:00156D10 loc_156D10:                             ; CODE XREF: sub_156C40+91j
+    .text:00156D10                                         ; sub_156C40+B5j
+    .text:00156D10                 mov     ecx, dword_41FEE0
+    .text:00156D16
+    .text:00156D16 loc_156D16:                             ; CODE XREF: sub_156C40+109j
+    .text:00156D16                 test    eax, eax
+    .text:00156D18                 js      short loc_156D8C
+    .text:00156D1A                 mov     eax, dword_41FED8
+    .text:00156D1F                 test    eax, eax
+    .text:00156D21                 jz      short loc_156D67
+    .text:00156D23                 push    eax
+    .text:00156D24                 push    ecx
+    .text:00156D25                 mov     ecx, offset dword_65C500     <---------------------------------------------------- ITS HERE 
+    .text:00156D2A                 call    sub_158D10
+    .text:00156D2F                 jmp     short loc_156D8C
+    .text:00156D31 ; ---------------------------------------------------------------------------
+    .text:00156D31
+    .text:00156D31 loc_156D31:                             ; CODE XREF: sub_156C40+30j
+    .text:00156D31                 cmp     ecx, offset off_41FEF4
+    .text:00156D37                 jnz     short loc_156D7E
+    .text:00156D39                 mov     eax, dword_41FF34
+    .text:00156D3E                 add     eax, 7
+    .text:00156D41                 sar     eax, 3
+    .text:00156D44                 cmp     eax, 0FFh
+    .text:00156D49                 jle     short loc_156D16
+    .text:00156D4B                 push    0FFh
+    .text:00156D50                 push    eax
+    .text:00156D51                 push    dword_41FF04
+    .text:00156D57                 push    offset aEntityMessageT ; "Entity Message to %i, %i bytes written "...
+    .text:00156D5C                 call    ds:Warning
+    .text:00156D62                 add     esp, 10h
+    .text:00156D65                 jmp     short loc_156D8C
+    .text:00156D67 ; ---------------------------------------------------------------------------
+    .text:00156D67
+    .text:00156D67 loc_156D67:                             ; CODE XREF: sub_156C40+E1j
+    .text:00156D67                 movzx   eax, byte_41FEDC
+    .text:00156D6E                 push    eax
+    .text:00156D6F                 push    1
+    .text:00156D71                 push    ecx
+    .text:00156D72                 mov     ecx, offset dword_65C500 <---------------------------------------------------- ITS HERE
+    .text:00156D77                 call    sub_158E90
+    .text:00156D7C                 jmp     short loc_156D8C
+    .text:00156D7E ; ---------------------------------------------------------------------------
+    .text:00156D7E
+    .text:00156D7E loc_156D7E:                             ; CODE XREF: sub_156C40+F7j
+    .text:00156D7E                 push    offset aMessageendUnkn ; "MessageEnd unknown message type.\n"
+    .text:00156D83                 call    ds:Warning
+    .text:00156D89                 add     esp, 4
+    .text:00156D8C
+    .text:00156D8C loc_156D8C:                             ; CODE XREF: sub_156C40+74j
+    .text:00156D8C                                         ; sub_156C40+AEj ...
+    .text:00156D8C                 mov     dword_41FED8, 0
+    .text:00156D96                 mov     byte_41FEDC, 0
+    .text:00156D9D                 mov     dword_41FEE4, 0
+    .text:00156DA7                 mov     byte_41FEE8, 0
+    .text:00156DAE                 mov     dword_41FEEC, 0FFFFFFFFh
+    .text:00156DB8                 mov     dword_41FEF0, 0
+    .text:00156DC2                 mov     dword_41FEE0, 0
+    .text:00156DCC                 pop     esi
+    .text:00156DCD                 mov     esp, ebp
+    .text:00156DCF                 pop     ebp
+    .text:00156DD0                 retn
+    .text:00156DD0 sub_156C40      endp
+
+    so yeah that was pretty easy eh?
+    m_pSv = *(CGameServer**)((*(unsigned int**)this->EngineServer())[44]/*MessageEnd*/ + 0xE5 + 0x1);
+
+]

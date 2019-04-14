@@ -11,7 +11,6 @@ void TestCallBack(edict_t* pPlayer) {
 }
 
 void projectMain() {
-	g_pInterfaces->g_Lua->MsgColor(Color(255, 0, 0, 255), "test message!!!!! %i", 1337);
 	util_AddNetworkString("Test send");
 	util_AddNetworkString("Test Receive");
 

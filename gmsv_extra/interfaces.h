@@ -27,13 +27,7 @@ class IKeyValuesSystem;
 class INetworkStringTableContainer;
 class CGameServer;
 class CGlobalEntityList;
-namespace GarrysMod
-{
-	namespace Lua
-	{
-		class ILuaBase;
-	};
-};
+class CLuaInterface;
 class Color;
 class Interfaces
 {
@@ -107,7 +101,7 @@ private:
 	void* g_pLuaNetworkedVars;
 public:
 	// GMod & GMod Lua shit
-	GarrysMod::Lua::ILuaBase* g_Lua;
+	CLuaInterface* g_Lua;
 
 	void(*ConColorMsg)(int, const Color&, const tchar*, ...);
 };

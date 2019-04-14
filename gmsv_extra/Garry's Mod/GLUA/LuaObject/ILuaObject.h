@@ -1,5 +1,7 @@
 #ifndef ILUAOBJECT_H
 #define ILUAOBJECT_H
+
+#include "../../../Source SDK/mathlib/mathlib.h"
 struct lua_State;
 namespace GarrysMod
 {

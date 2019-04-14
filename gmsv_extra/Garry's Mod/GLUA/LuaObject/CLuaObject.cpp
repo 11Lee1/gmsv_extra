@@ -1,7 +1,7 @@
 #include "CLuaObject.h"
 #include "../../../interfaces.h" // interfaces.
-#include "../../../Garry's Mod/LUA/LuaBase.h"
-
+#include "../../LUA/Interface.h"
+#include "../../../Source SDK/tier1/strtools.h"
 namespace GarrysMod
 {
 	namespace Lua
@@ -39,7 +39,7 @@ namespace GarrysMod
 		}
 		void CLuaObject::UnReference() {
 			if (this->m_iref != -1){
-				ILuaBase* lua = this->m_pLua;
+				CLuaInterface* lua = this->m_pLua;
 				if (g_pInterfaces->g_Lua == lua) {
 					if (lua)
 						g_pInterfaces->g_Lua->ReferenceFree(m_iref);

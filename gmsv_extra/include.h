@@ -42,7 +42,7 @@
 #include "Source SDK/usercmd.h"
 
 #include "Source SDK/tier1/KeyValues.h"
-#include "Garry's Mod/LUA/LuaInterface.h"
+#include "Garry's Mod/LUA/Interface.h"
 
 
 #include "Garry's Mod/GLUA/CGMODDataTable.h"

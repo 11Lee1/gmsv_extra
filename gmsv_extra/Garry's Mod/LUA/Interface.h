@@ -1,7 +1,8 @@
 #ifndef GARRYSMOD_LUA_INTERFACE_H
 #define GARRYSMOD_LUA_INTERFACE_H
 
-#include "LuaBase.h"
+#include "Base.h"
+#include "CLuaInterface.h"
 
 struct lua_State
 {

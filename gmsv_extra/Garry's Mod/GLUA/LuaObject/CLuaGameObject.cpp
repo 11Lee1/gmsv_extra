@@ -1,6 +1,6 @@
 #include "CLuaGameObject.h"
-#include "../../../Garry's Mod/LUA/LuaBase.h"
 #include "../../../interfaces.h" // interfaces.
+#include "../../LUA/Interface.h"
 #include "../../../Source SDK/eiface.h"
 namespace GarrysMod
 {

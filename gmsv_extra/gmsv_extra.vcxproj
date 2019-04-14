@@ -138,7 +138,7 @@
     <ClCompile Include="Garry%27s Mod\GLUA\LuaNetworkedVars.cpp" />
     <ClCompile Include="Garry%27s Mod\GLUA\LuaObject\CLuaGameObject.cpp" />
     <ClCompile Include="Garry%27s Mod\GLUA\LuaObject\CLuaObject.cpp" />
-    <ClCompile Include="Garry%27s Mod\LUA\LuaBase.cpp" />
+    <ClCompile Include="Garry%27s Mod\LUA\Base.cpp" />
     <ClCompile Include="Garry%27s Mod\Networking\ClientToServer.cpp" />
     <ClCompile Include="Garry%27s Mod\Networking\gmod_net_util.cpp" />
     <ClCompile Include="Garry%27s Mod\Networking\ServerToClient.cpp" />
@@ -193,6 +193,8 @@
     <ClInclude Include="Garry%27s Mod\GLUA\LuaObject\CLuaGameObject.h" />
     <ClInclude Include="Garry%27s Mod\GLUA\LuaObject\CLuaObject.h" />
     <ClInclude Include="Garry%27s Mod\GLUA\LuaObject\ILuaObject.h" />
+    <ClInclude Include="Garry%27s Mod\LUA\CLuaInterface.h" />
+    <ClInclude Include="Garry%27s Mod\LUA\ILuaInterface.h" />
     <ClInclude Include="Garry%27s Mod\Networking\ClientToServer.h" />
     <ClInclude Include="Garry%27s Mod\Networking\gmod_net_util.h" />
     <ClInclude Include="Garry%27s Mod\Networking\ServerToClient.h" />
@@ -201,10 +203,10 @@
     <ClInclude Include="include\baseinclude.h" />
     <ClInclude Include="interfaces.h" />
     <ClInclude Include="Garry%27s Mod\LUA\ILuaShared.h" />
-    <ClInclude Include="Garry%27s Mod\LUA\LuaBase.h" />
-    <ClInclude Include="Garry%27s Mod\LUA\LuaInterface.h" />
-    <ClInclude Include="Garry%27s Mod\LUA\LuaTypes.h" />
-    <ClInclude Include="Garry%27s Mod\LUA\LuaUserData.h" />
+    <ClInclude Include="Garry%27s Mod\LUA\Base.h" />
+    <ClInclude Include="Garry%27s Mod\LUA\Interface.h" />
+    <ClInclude Include="Garry%27s Mod\LUA\Types.h" />
+    <ClInclude Include="Garry%27s Mod\LUA\UserData.h" />
     <ClInclude Include="project\project.h" />
     <ClInclude Include="Source SDK\activitylist.h" />
     <ClInclude Include="Source SDK\ai_activity.h" />

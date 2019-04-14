@@ -1,7 +1,7 @@
 #ifndef LUANETWORKEDVARS_H
 #define LUANETWORKEDVARS_H
 
-#include "../LUA/LuaInterface.h"
+#include "../LUA/Interface.h"
 #include "LuaObject/CLuaGameObject.h"
 #include "../../Source SDK/server/baseentity.h"
 #include "../../Source SDK/tier1/utlrbtree.h"

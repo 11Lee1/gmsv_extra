@@ -222,9 +222,6 @@
     <ClCompile Include="Garry%27s Mod\GLUA\LuaNetworkedVars.cpp">
       <Filter>Source Files\Garry%27s Mod\GLUA</Filter>
     </ClCompile>
-    <ClCompile Include="Garry%27s Mod\LUA\LuaBase.cpp">
-      <Filter>Source Files\Garry%27s Mod\LUA</Filter>
-    </ClCompile>
     <ClCompile Include="Source SDK\tier1\NetAdr.cpp">
       <Filter>Source Files\Source SDK\tier1</Filter>
     </ClCompile>
@@ -287,6 +284,9 @@
     </ClCompile>
     <ClCompile Include="util\Source UTIL.cpp">
       <Filter>Source Files\util</Filter>
+    </ClCompile>
+    <ClCompile Include="Garry%27s Mod\LUA\Base.cpp">
+      <Filter>Source Files\Garry%27s Mod\LUA</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -914,18 +914,6 @@
     <ClInclude Include="Garry%27s Mod\LUA\ILuaShared.h">
       <Filter>Header Files\Garry%27s Mod\LUA</Filter>
     </ClInclude>
-    <ClInclude Include="Garry%27s Mod\LUA\LuaBase.h">
-      <Filter>Header Files\Garry%27s Mod\LUA</Filter>
-    </ClInclude>
-    <ClInclude Include="Garry%27s Mod\LUA\LuaInterface.h">
-      <Filter>Header Files\Garry%27s Mod\LUA</Filter>
-    </ClInclude>
-    <ClInclude Include="Garry%27s Mod\LUA\LuaTypes.h">
-      <Filter>Header Files\Garry%27s Mod\LUA</Filter>
-    </ClInclude>
-    <ClInclude Include="Garry%27s Mod\LUA\LuaUserData.h">
-      <Filter>Header Files\Garry%27s Mod\LUA</Filter>
-    </ClInclude>
     <ClInclude Include="Source SDK\inetchannel.h">
       <Filter>Header Files\Source SDK</Filter>
     </ClInclude>
@@ -1177,6 +1165,24 @@
     </ClInclude>
     <ClInclude Include="util\Source UTIL.h">
       <Filter>Header Files\util</Filter>
+    </ClInclude>
+    <ClInclude Include="Garry%27s Mod\LUA\CLuaInterface.h">
+      <Filter>Header Files\Garry%27s Mod\LUA</Filter>
+    </ClInclude>
+    <ClInclude Include="Garry%27s Mod\LUA\ILuaInterface.h">
+      <Filter>Header Files\Garry%27s Mod\LUA</Filter>
+    </ClInclude>
+    <ClInclude Include="Garry%27s Mod\LUA\Base.h">
+      <Filter>Header Files\Garry%27s Mod\LUA</Filter>
+    </ClInclude>
+    <ClInclude Include="Garry%27s Mod\LUA\Interface.h">
+      <Filter>Header Files\Garry%27s Mod\LUA</Filter>
+    </ClInclude>
+    <ClInclude Include="Garry%27s Mod\LUA\Types.h">
+      <Filter>Header Files\Garry%27s Mod\LUA</Filter>
+    </ClInclude>
+    <ClInclude Include="Garry%27s Mod\LUA\UserData.h">
+      <Filter>Header Files\Garry%27s Mod\LUA</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

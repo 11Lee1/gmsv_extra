@@ -3,12 +3,15 @@
 #include "../interfaces.h"
 #include "../include.h"
 #include "../Hooks/hook.h"
+
 void TestCallBack(edict_t* pPlayer) {
 	char* str = net_ReadString();
 	printf("out: %s\n", str);
 
 }
+
 void projectMain() {
+	g_pInterfaces->g_Lua->MsgColor(Color(255, 0, 0, 255), "test message!!!!! %i", 1337);
 	util_AddNetworkString("Test send");
 	util_AddNetworkString("Test Receive");
 

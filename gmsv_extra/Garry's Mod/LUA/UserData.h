@@ -1,4 +1,3 @@
-
 #ifndef GARRYSMOD_LUA_USERDATA_H
 #define GARRYSMOD_LUA_USERDATA_H
 
@@ -15,4 +14,3 @@ namespace GarrysMod
 }
 
 #endif 
-

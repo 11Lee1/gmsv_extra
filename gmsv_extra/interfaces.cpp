@@ -90,7 +90,7 @@ void Interfaces::GetInterfaces() {
 
 
 	if (m_pLuaShared)
-		g_Lua = (GarrysMod::Lua::ILuaBase*)LuaShared()->GetLuaInterface(1); // server
+		g_Lua = (CLuaInterface*)LuaShared()->GetLuaInterface(1); // server
 
 	PRINT_PTRCHECK("g_Lua", g_Lua);
 }

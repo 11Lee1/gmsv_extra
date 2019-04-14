@@ -1,9 +1,9 @@
 #ifndef CLUAOBJECT_H
 #define CLUAOBJECT_H
-
-#include "../../../Source SDK/mathlib/mathlib.h"
 #include "ILuaObject.h"
+
 class CBaseEntity;
+class CLuaInterface;
 namespace GarrysMod
 {
 	namespace Lua
@@ -88,10 +88,10 @@ namespace GarrysMod
 		public:
 			void	SetBool(bool val);
 		public:
-			bool		m_bUserData;
-			int			m_iLUA_TYPE;		// lua type, string, number, vector, etc.
-			int			m_iref;				// ref, for reference push etc.
-			ILuaBase*	m_pLua;				// dont use this for function overrides, you WILL crash if not now eventually.
+			bool			m_bUserData;
+			int				m_iLUA_TYPE;		// lua type, string, number, vector, etc.
+			int				m_iref;				// ref, for reference push etc.
+			CLuaInterface*	m_pLua;				// dont use this for function overrides, you WILL crash if not now eventually.
 		};
 	};
 };

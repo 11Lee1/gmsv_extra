@@ -4,7 +4,6 @@
 
 struct lua_State;
 class CLuaGameCallback;
-class GarrysMod::Lua::CLuaObject;
 class CLuaInterface : public ILuaInterface
 {
 public:

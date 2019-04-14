@@ -6,7 +6,7 @@ CBaseEntity* CLuaInterface::GetEntity(int iStackPos) {
 	if (!g_pInterfaces->g_Lua)
 		return nullptr;
 
-	void* userdata = nullptr;
+	GarrysMod::Lua::UserData* userdata = nullptr;
 	if (!this->IsType(iStackPos, GarrysMod::Lua::Type::ENTITY) || (userdata = this->GetUserdata(iStackPos), !userdata) || !(*(void**)userdata)) {
 		this->Error("Tried to use a NULL Entity!");
 		return nullptr;

@@ -1,10 +1,9 @@
 #ifndef ILUAINTERFACE_H
 #define ILUAINTERFACE_H
-
 #include "Base.h"
 #include "../GLUA/LuaObject/CLuaGameObject.h"
-
 #include "../../Source SDK/tier1/color.h"
+
 class ILuaCallback;
 class ILuaThreadedCall;
 class ILuaInterface : public GarrysMod::Lua::ILuaBase

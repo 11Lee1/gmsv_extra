@@ -8,16 +8,7 @@ void TestCallBack(edict_t* pPlayer) {
 	printf("out: %s\n", str);
 
 }
-
-#include "../util/util.h"
 void projectMain() {
-	uintptr_t UpdateEntityVars = Util::Pattern::FindPattern("server.dll", "55 8B EC 51 57 8B 7D 08 89 4D FC");
-
-	CGlobalEntityList* Entlist = **(CGlobalEntityList***)(UpdateEntityVars + 0x54 + 0x2);
-	printf("thing = 0x%X\n", Entlist);
-
-
-	printf("player = 0x%X\n", Entlist->FindEntityByClassname(Entlist->FirstEnt(), "player"));
 	util_AddNetworkString("Test send");
 	util_AddNetworkString("Test Receive");
 

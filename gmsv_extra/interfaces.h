@@ -7,6 +7,7 @@
 #include "include/baseinclude.h"
 #include "Source SDK/tier1/interface.h"
 #include "Garry's Mod/LUA/ILuaShared.h"
+
 class IMemAlloc;
 class IServerGameEnts;
 class IVEngineServer;
@@ -25,6 +26,7 @@ class ICvar;
 class IKeyValuesSystem;
 class INetworkStringTableContainer;
 class CGameServer;
+class CGlobalEntityList;
 namespace GarrysMod
 {
 	namespace Lua
@@ -69,6 +71,7 @@ public:
 	ICvar* CVar() { return m_pCVar; }
 	IKeyValuesSystem* KeyValuesSystem() { return keyvaluessystem; }
 	CGameServer* GameServer() { return m_pSv; }
+	CGlobalEntityList* EntityList() { return *(CGlobalEntityList**)m_pEntityList; }
 private:
 	// Interface registries 
 	InterfaceReg* m_pServerDLLInterfaceReg;
@@ -96,6 +99,7 @@ private:
 	IKeyValuesSystem* keyvaluessystem;
 
 	CGameServer* m_pSv;
+	void* m_pEntityList;
 	// globals
 	void* gpGlobals;
 

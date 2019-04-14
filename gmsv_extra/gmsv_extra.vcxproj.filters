@@ -285,6 +285,9 @@
     <ClCompile Include="Source SDK\server\player.cpp">
       <Filter>Source Files\Source SDK\server</Filter>
     </ClCompile>
+    <ClCompile Include="util\Source UTIL.cpp">
+      <Filter>Source Files\util</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="util\util.h">
@@ -1171,6 +1174,9 @@
     </ClInclude>
     <ClInclude Include="Source SDK\server\util.h">
       <Filter>Header Files\Source SDK\server</Filter>
+    </ClInclude>
+    <ClInclude Include="util\Source UTIL.h">
+      <Filter>Header Files\util</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

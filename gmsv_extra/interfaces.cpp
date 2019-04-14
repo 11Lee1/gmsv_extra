@@ -10,7 +10,7 @@ Interfaces* g_pInterfaces = nullptr;
 	if(!p)																									\
 		printf("failed getting %s: returned nullptr\n",name);			\
 	else																									\
-		printf("found %s: 0x%X\n", name, p);							\
+		printf("found %s: 0x%p\n", name, p);							\
 
 
 #define DLL_IMPORT extern "C" __declspec(dllimport)
@@ -106,22 +106,35 @@ void Interfaces::FindOtherInterfaces() {
 
 
 	// until I can find a better method.
-	uintptr_t GetNetworkedIntFn = Util::Pattern::FindPattern("server.dll", "55 8B EC 8B 45 08 56 50 8B 48 48 8B 11 FF 92 ? ? ? ? FF 05 ? ? ? ? 6A 01 6A 01 E8 ? ? ? ? 8B 0D ? ? ? ? 8B F0 83 C4 08 8B 01 85 F6 75 35 6A 03 FF 90 ? ? ? ? 8B F0 85 F6 74 66");
-	PRINT_PTRCHECK("GetNetworkedInt Function", GetNetworkedIntFn);
-	if (GetNetworkedIntFn) {
-		g_pLuaNetworkedVars = *(CLuaNetworkedVars**)(GetNetworkedIntFn + 0x72);
-		PRINT_PTRCHECK("CLuaNetworkedVars from GetNetworkedInt function", g_pLuaNetworkedVars);
+	uintptr_t GetNetworkedVarFn = Util::Pattern::FindPattern("server.dll", "55 8B EC 8B 45 08 56 50 8B 48 48 8B 11 FF 92 ? ? ? ? FF 05 ? ? ? ? 6A 01 6A 01 E8 ? ? ? ? 8B 0D ? ? ? ? 8B F0 83 C4 08 8B 01 85 F6 75 35 6A 03 FF 90 ? ? ? ? 8B F0 85 F6 74 66");
+	PRINT_PTRCHECK("GetNetworkedVar Function", GetNetworkedVarFn);
+	if (GetNetworkedVarFn) {
+		g_pLuaNetworkedVars = *(CLuaNetworkedVars**)(GetNetworkedVarFn + 0x72);
+		PRINT_PTRCHECK("CLuaNetworkedVars from GetNetworkedVar function", g_pLuaNetworkedVars);
+
+		//Getting EntityList from Get_Entity function inside of GetNetworkedVar Function
+
+		// .text:000E61DD          call    Get_Entity
+		// 000E61DD  E8 3E 8E FF FF
+		
+		unsigned int jmp_from = GetNetworkedVarFn + 0x1D + 0x4;
+		m_pEntityList = *(void**)((jmp_from + (short)(*(unsigned short*)(jmp_from - 0x3) - *(unsigned short*)(jmp_from - 0x1))/*Get_Entity*/) + 0x4A + 0x1);
+		PRINT_PTRCHECK("CGlobalEntityList ptr from GetNetworkedVar -> Get_Entity function", m_pEntityList);
 	}
+	
+
+
+
 
 	void* RandomSeed = GetProcAddress(GetModuleHandleA("vstdlib.dll"), "RandomSeed");
 	PRINT_PTRCHECK("RandomSeed Function", RandomSeed);
 	if (RandomSeed)
 		random = *(CUniformRandomStream**)((uintptr_t)RandomSeed + 0x5);
-
 	PRINT_PTRCHECK("random(CUniformRandomStream) from RandomSeed function", random);
 
 	m_pSv = *(CGameServer**)((*(unsigned int**)this->EngineServer())[44]/*MessageEnd*/ + 0xE5 + 0x1);
 	PRINT_PTRCHECK("m_pSv(CGameServer) from CVEngineServer::MessageEnd function", m_pSv);
+
 #endif
 	g_pMemAlloc = this->MemAlloc();
 }
@@ -166,9 +179,9 @@ InterfaceReg* Interfaces::GetInterfaceReg(char const* Module) {
 	{
 		unsigned short offset2 = *(unsigned short*)((uintptr_t)createinterface + 0x7);
 		if (offset2 == 0xFFFF || offset2 == 0x0000)
-			return **(InterfaceReg***)((uintptr_t)(((uintptr_t)createinterface + 0x8) + (*(unsigned short*)((uintptr_t)createinterface + 0x5) - offset2)) + 0x6);
+			return **(InterfaceReg***)((uintptr_t)(((uintptr_t)createinterface + 0x8) + (short)(*(unsigned short*)((uintptr_t)createinterface + 0x5) - offset2)) + 0x6);
 		else
-			return **(InterfaceReg***)((uintptr_t)(((uintptr_t)createinterface + 0x8) + (*(unsigned int*)((uintptr_t)createinterface + 0x5))) + 0x6);
+			return **(InterfaceReg***)((uintptr_t)((*(unsigned int*)((uintptr_t)createinterface + 0x5))));
 
 		break;
 	}

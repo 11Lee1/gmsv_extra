@@ -138,7 +138,7 @@
     <ClCompile Include="Garry%27s Mod\GLUA\LuaNetworkedVars.cpp" />
     <ClCompile Include="Garry%27s Mod\GLUA\LuaObject\CLuaGameObject.cpp" />
     <ClCompile Include="Garry%27s Mod\GLUA\LuaObject\CLuaObject.cpp" />
-    <ClCompile Include="Garry%27s Mod\LUA\Base.cpp" />
+    <ClCompile Include="Garry%27s Mod\LUA\CLuaInterface.cpp" />
     <ClCompile Include="Garry%27s Mod\Networking\ClientToServer.cpp" />
     <ClCompile Include="Garry%27s Mod\Networking\gmod_net_util.cpp" />
     <ClCompile Include="Garry%27s Mod\Networking\ServerToClient.cpp" />

@@ -1,4 +1,3 @@
-
 #ifndef GARRYSMOD_LUA_TYPES_H
 #define GARRYSMOD_LUA_TYPES_H
 

@@ -9,12 +9,11 @@ void TestCallBack(edict_t* pPlayer) {
 	printf("out: %s\n", str);
 
 }
-
 void projectMain() {
-	util_AddNetworkString("Test send");
-	util_AddNetworkString("Test Receive");
+	util_AddNetworkString("Test send");			
+	util_AddNetworkString("Test Receive");		
 
-	net_Receive("Test Receive", TestCallBack);
+	net_Receive("Test Receive", TestCallBack);	
 	// setting reliable to false so the netmessage gets sent on the same packet as the SVC_UpdateStringTable 
 	// (networkstring dictionary update) net message, since we're doing this all at the same time.
 	// Also if the packet with the dictionary update has already been sent/arrived then you can

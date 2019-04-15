@@ -2,6 +2,7 @@
 #include "../../interfaces.h"
 #include "../../Source SDK/server/baseentity.h"
 #include "../../Source SDK/eiface.h"
+#include "../GLUA/CLuaGameCallback.h"
 
 #ifdef _WIN32
 #include <libloaderapi.h>
@@ -683,23 +684,19 @@ bool CLuaInterface::CallInternal(int iStackPos, int iNumReturnValues) {
 	this->m_ProtectedFunctionReturns[3] = nullptr;
 
 	if (iNumReturnValues > 0) {
-		int SavenRetValues = iNumReturnValues;
-		int index = 0;
-		do {
+		for (int i = 0; i < iNumReturnValues; i++) {
 			GarrysMod::Lua::CLuaObject* tempobj = this->NewTemporaryObject();
-			index++;
-			this->m_ProtectedFunctionReturns[index] = tempobj;
-		} while (!(SavenRetValues-- == 1));
+			this->m_ProtectedFunctionReturns[i] = tempobj;
+		}
 	}
 	if (this->CallFunctionProtected(iStackPos, iNumReturnValues, false)) {
 		if (iNumReturnValues > 0) {
-			int index = 0;
-			do {
-				if (!this->m_ProtectedFunctionReturns[index]) {
-					this->m_ProtectedFunctionReturns[index] = this->NewTemporaryObject();
+			for (int i = 0; i < iNumReturnValues; i++) {
+				if (!this->m_ProtectedFunctionReturns[i]) {
+					this->m_ProtectedFunctionReturns[i] = this->NewTemporaryObject();
 				}
-				this->m_ProtectedFunctionReturns[index]->SetFromStack(~index++);
-			} while (index < iNumReturnValues);
+				this->m_ProtectedFunctionReturns[i]->SetFromStack(~i);
+			}
 		}
 		return true;
 	}
@@ -852,3 +849,151 @@ bool CLuaInterface::IsClient() {
 bool CLuaInterface::IsMenu() {
 	return this->m_cLuaState == GarrysMod::Lua::Menu;
 }
+
+void CLuaInterface::DestroyObject(GarrysMod::Lua::ILuaObject* pObj) {
+	this->m_pLuaCallBack->DestroyLuaObject(pObj);
+}
+
+GarrysMod::Lua::CLuaObject* CLuaInterface::CreateObject() {
+	return this->m_pLuaCallBack->CreateLuaObject();
+}
+
+void CLuaInterface::SetMember(GarrysMod::Lua::ILuaObject* pObj0, const char* szName, GarrysMod::Lua::ILuaObject* pObj1) {
+	if (pObj0->IsTable()) {
+		pObj0->Push();
+		this->PushString(szName, 0);
+		if (pObj1)
+			pObj1->Push();
+		else
+			this->PushNil();
+
+		this->SetTable(-3);
+		this->Pop(1);
+	}
+}
+
+void CLuaInterface::SetMember(GarrysMod::Lua::ILuaObject* pObj, const char* szName) {
+	if (pObj->IsTable()) {
+		pObj->Push();
+		this->PushString(szName, 0);
+		this->Push(-3);
+		this->SetTable(-3);
+		this->Pop(2);
+	}
+}
+
+void CLuaInterface::SetMember(GarrysMod::Lua::ILuaObject* pObj0, float val, GarrysMod::Lua::ILuaObject* pObj1) {
+	pObj0->Push();
+	this->PushNumber(val);
+	if (pObj1)
+		pObj1->Push();
+	else
+		this->PushNil();
+	
+	this->SetTable(-3);
+	this->Pop(1);
+}
+
+void CLuaInterface::SetMember(GarrysMod::Lua::ILuaObject* pObj, float val) {
+	pObj->Push();
+	this->PushNumber(val);
+	this->Push(-3);
+	this->SetTable(-3);
+	this->Pop(2);
+}
+
+void CLuaInterface::SetMember(GarrysMod::Lua::ILuaObject* pObj0, GarrysMod::Lua::ILuaObject* pObj1, GarrysMod::Lua::ILuaObject* pObj2) {
+	if (pObj0->IsTable()) {
+		pObj0->Push();
+		pObj1->Push();
+		if (pObj2)
+			pObj2->Push();
+		else
+			this->PushNil();
+
+		this->SetTable(-3);
+		this->Pop(1);
+	}
+}
+
+GarrysMod::Lua::CLuaObject* CLuaInterface::GetNewTable() {
+	this->CreateTable();
+	GarrysMod::Lua::CLuaObject* ret = this->Lua_GetObject(-1);
+	this->Pop(1);
+	return ret;
+}
+
+void CLuaInterface::SetType(unsigned char type) {
+	this->m_cLuaState = type;
+}
+
+void CLuaInterface::PushLong(long val) {
+	this->PushNumber(val);
+}
+
+int CLuaInterface::GetFlags(int iStackPos) {
+	// finish me
+	return 0;
+}
+
+bool CLuaInterface::FindOnObjectsMetaTable(int iStackPos, int dunno) {
+	typedef int(*lua_typeFn)(lua_State*, int);
+	static lua_typeFn lua_type = nullptr;
+	if (!lua_type)
+		lua_type = (lua_typeFn)GETADR("lua_shared.dll", "lua_type");
+
+	if (!this->GetMetaTable(iStackPos))
+		return false;
+
+	this->Push(dunno);
+	this->GetTable(-2);
+	if (!lua_type(this->m_LuaState,-1)) {
+		this->Pop(1);
+		return false;
+	}
+	return true;
+}
+
+bool CLuaInterface::FindObjectsOnMetaTable(int iStackPos, int dunno) {
+	typedef int(*lua_typeFn)(lua_State*, int);
+	static lua_typeFn lua_type = nullptr;
+	if (!lua_type)
+		lua_type = (lua_typeFn)GETADR("lua_shared.dll", "lua_type");
+
+	this->Push(iStackPos);
+	this->Push(dunno);
+	this->GetTable(-2);
+	return lua_type(this->m_LuaState, -1) != 0;
+}
+
+void CLuaInterface::SetMemberFast(GarrysMod::Lua::ILuaObject* pObj, int dunno, int dunno1) {
+	pObj->Push();
+	this->Push(dunno);
+	this->Push(dunno1);
+	this->SetTable(-3);
+	this->Pop(1);
+}
+
+int CLuaInterface::RunString(const char* szDunno0, const char* szDunno1, const char* szDunno2, bool bDunno0, bool bDunno1) {
+	return this->RunStringEx(szDunno0, szDunno1, szDunno2, bDunno0, bDunno1, true, true);
+}
+
+bool CLuaInterface::IsEqual(GarrysMod::Lua::ILuaObject* pObj0, GarrysMod::Lua::ILuaObject* pObj1) {
+	if (pObj0 && pObj1 && pObj0->GetType() == pObj1->GetType()) {
+		pObj0->Push();
+		pObj1->Push();
+		bool retval = this->Equal(-1, -2) != 0;
+		this->Pop(2);
+		return retval;
+	}
+	else
+		return false;
+
+	return false;
+}
+
+void CLuaInterface::Error(char const* szError) {
+	this->ThrowError(szError);
+}
+
+//this is all I'm willing to do

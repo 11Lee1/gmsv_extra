@@ -86,23 +86,23 @@ public: // ILuaInterface
 	/*75 - 300*/virtual bool				IsServer(void);
 	/*76 - 304*/virtual bool				IsClient(void);
 	/*77 - 308*/virtual bool				IsMenu(void);
-	/*78 - 312*/virtual int					DestroyObject(GarrysMod::Lua::ILuaObject*);
+	/*78 - 312*/virtual void				DestroyObject(GarrysMod::Lua::ILuaObject* pObj);
 	/*79 - 316*/virtual GarrysMod::Lua::CLuaObject*  CreateObject(void);
-	/*80 - 320*/virtual int					SetMember(GarrysMod::Lua::ILuaObject*, const char*, GarrysMod::Lua::ILuaObject*);
-	/*81 - 324*/virtual int					SetMember(GarrysMod::Lua::ILuaObject*, const char*);
-	/*82 - 328*/virtual int					SetMember(GarrysMod::Lua::ILuaObject*, float, GarrysMod::Lua::ILuaObject*);
-	/*83 - 332*/virtual int					SetMember(GarrysMod::Lua::ILuaObject*, float);
-	/*84 - 336*/virtual int					SetMember(GarrysMod::Lua::ILuaObject*, GarrysMod::Lua::ILuaObject*, GarrysMod::Lua::ILuaObject*) = 0; // 320 -;
-	/*85 - 340*/virtual int					GetNewTable(void);
-	/*86 - 344*/virtual int					SetType(unsigned char);
-	/*87 - 348*/virtual int					PushLong(long);
-	/*88 - 352*/virtual int					GetFlags(int);
-	/*89 - 356*/virtual int					FindOnObjectsMetaTable(int, int);
-	/*90 - 360*/virtual int					FindObjectsOnMetaTable(int, int);
-	/*91 - 364*/virtual int					SetMemberFast(GarrysMod::Lua::ILuaObject*, int, int);
+	/*80 - 320*/virtual void				SetMember(GarrysMod::Lua::ILuaObject* pObj0, const char* szName, GarrysMod::Lua::ILuaObject* pObj1);
+	/*81 - 324*/virtual void				SetMember(GarrysMod::Lua::ILuaObject* pObj, const char* szName);
+	/*82 - 328*/virtual void				SetMember(GarrysMod::Lua::ILuaObject* pObj0, float val, GarrysMod::Lua::ILuaObject* pObj1);
+	/*83 - 332*/virtual void				SetMember(GarrysMod::Lua::ILuaObject* pObj, float val);
+	/*84 - 336*/virtual void				SetMember(GarrysMod::Lua::ILuaObject* pObj0, GarrysMod::Lua::ILuaObject* pObj1, GarrysMod::Lua::ILuaObject* pObj2);
+	/*85 - 340*/virtual GarrysMod::Lua::CLuaObject* GetNewTable(void);
+	/*86 - 344*/virtual void				SetType(unsigned char type); // setting the state server menu client.
+	/*87 - 348*/virtual void				PushLong(long val);
+	/*88 - 352*/virtual int					GetFlags(int iStackPos);
+	/*89 - 356*/virtual bool				FindOnObjectsMetaTable(int iStackPos, int dunno);
+	/*90 - 360*/virtual bool				FindObjectsOnMetaTable(int iStackPos, int dunno);
+	/*91 - 364*/virtual void				SetMemberFast(GarrysMod::Lua::ILuaObject* pObj, int, int);
 	/*92 - 368*/virtual int					RunString(const char*, const char*, const char*, bool, bool);
-	/*93 - 372*/virtual bool				IsEqual(GarrysMod::Lua::ILuaObject*, GarrysMod::Lua::ILuaObject*);
-	/*94 - 376*/virtual int					Error(const char*);
+	/*93 - 372*/virtual bool				IsEqual(GarrysMod::Lua::ILuaObject* pObj0, GarrysMod::Lua::ILuaObject* pObj1);
+	/*94 - 376*/virtual void				Error(const char*);	
 	/*95 - 380*/virtual int					GetStringOrError(int);
 	/*96 - 384*/virtual int					RunLuaModule(const char*);
 	/*97 - 388*/virtual int					FindAndRunScript(const char*, bool, bool, const char*, bool);
@@ -142,24 +142,24 @@ public:
 	void				PushEntity(CBaseEntity* Entity);
 public:
 #ifdef _WIN32
-	lua_State*			m_LuaState;				// 0x4  -  functions from the lua interface use functions from the LuaAPI using this pointer.
-	unsigned int        m_uiUNK_000;			// 0x8
-	char*				m_UNK_000;				// 0xC
-	unsigned int        m_uiUNK_001;			// 0x10
-	char                PAD_UNK_000[0x8];		// 0x14       
-	char*				m_UNK_001;				// 0x1C
-	void*				m_pUNK_000;				// 0x20
-	char                PAD_UNK_001[0x4];		// 0x24
+	lua_State*							m_LuaState;				// 0x4  -  functions from the lua interface use functions from the LuaAPI using this pointer.
+	unsigned int						m_uiUNK_000;			// 0x8
+	char*								m_UNK_000;				// 0xC
+	unsigned int						m_uiUNK_001;			// 0x10
+	char								PAD_UNK_000[0x8];		// 0x14       
+	char*								m_UNK_001;				// 0x1C
+	void*								m_pUNK_000;				// 0x20
+	char								PAD_UNK_001[0x4];		// 0x24
 	GarrysMod::Lua::CLuaObject*			m_ProtectedFunctionReturns[0x4];	// 0x28->0x34
-	GarrysMod::Lua::CLuaObject*			m_TempObjects[32];		// 0x38
-	char                m_cLuaState;			// 0xB8  -  uses the enums Client, Server, Menu.
-	CLuaGameCallback*	m_LuaCBUNK_000;			// 0xBC
-	unsigned int        m_uiUNK_002;			// 0xC0
-	char                PAD_UNK_003[0x1C];		// 0xC4
-	int					m_iCurrentTempObject;	// 0xE0
+	GarrysMod::Lua::CLuaObject*			m_TempObjects[32];		// 0x38->0xB4
+	char								m_cLuaState;			// 0xB8  -  uses the enums Client, Server, Menu.
+	CLuaGameCallback*					m_pLuaCallBack;			// 0xBC  -  wow I wish I knew about this before.
+	unsigned int						m_uiUNK_002;			// 0xC0
+	char								PAD_UNK_003[0x1C];		// 0xC4
+	int									m_iCurrentTempObject;	// 0xE0
 	GarrysMod::Lua::CLuaObject*			m_Global;				// 0xE4
 	GarrysMod::Lua::CLuaObject*			m_LuaObjUNK_001;		// 0xE8
-	int                 m_iNumMetaTables;		// 0xEC
+	int									m_iNumMetaTables;		// 0xEC
 	GarrysMod::Lua::CLuaObject*			m_MetaTables[0xFF];		// 0xF0->0x4FC  -  Referenced in PushMetaTable.
 	// size - 0x500
 #endif

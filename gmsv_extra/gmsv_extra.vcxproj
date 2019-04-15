@@ -186,8 +186,10 @@
   <ItemGroup>
     <ClInclude Include="Garry%27s Mod\CGMODRules.h" />
     <ClInclude Include="Garry%27s Mod\GLUA\CGMODDataTable.h" />
+    <ClInclude Include="Garry%27s Mod\GLUA\CLuaGameCallback.h" />
     <ClInclude Include="Garry%27s Mod\GLUA\CScriptedEntity.h" />
     <ClInclude Include="Garry%27s Mod\GLUA\IGMODDataTable.h" />
+    <ClInclude Include="Garry%27s Mod\GLUA\ILuaGameCallback.h" />
     <ClInclude Include="Garry%27s Mod\GLUA\IScriptedEntity.h" />
     <ClInclude Include="Garry%27s Mod\GLUA\LuaNetworkedVars.h" />
     <ClInclude Include="Garry%27s Mod\GLUA\LuaObject\CLuaGameObject.h" />

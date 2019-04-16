@@ -145,6 +145,24 @@
     <Filter Include="Header Files\Source SDK\datacache">
       <UniqueIdentifier>{a74df585-fa14-4521-a73e-f2663fe475e7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Garry%27s Mod\Exports">
+      <UniqueIdentifier>{45d02707-a553-4a84-aabe-e6fea1f46654}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Garry%27s Mod\Exports\win32">
+      <UniqueIdentifier>{f5109854-db72-4854-9ce5-30f77f65f3df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Garry%27s Mod\Exports\win32\lua_shared">
+      <UniqueIdentifier>{7c563955-2237-451c-873c-8eade5c9ec69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Garry%27s Mod\Exports">
+      <UniqueIdentifier>{4c3849e1-4eef-4a37-840d-41e60c607ead}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Garry%27s Mod\Exports\win32">
+      <UniqueIdentifier>{42598983-f6ae-4063-8d4b-be018639e430}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Garry%27s Mod\Exports\win32\lua_shared">
+      <UniqueIdentifier>{81005db1-ea59-4f0d-b5ea-8d701790dc60}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -287,6 +305,12 @@
     </ClCompile>
     <ClCompile Include="Garry%27s Mod\LUA\CLuaInterface.cpp">
       <Filter>Source Files\Garry%27s Mod\LUA</Filter>
+    </ClCompile>
+    <ClCompile Include="Garry%27s Mod\Exports\win32\lua_shared\lua_shared exports.cpp">
+      <Filter>Source Files\Garry%27s Mod\Exports\win32\lua_shared</Filter>
+    </ClCompile>
+    <ClCompile Include="Garry%27s Mod\Exports\exports.cpp">
+      <Filter>Source Files\Garry%27s Mod\Exports</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1189,6 +1213,12 @@
     </ClInclude>
     <ClInclude Include="Garry%27s Mod\GLUA\ILuaGameCallback.h">
       <Filter>Header Files\Garry%27s Mod\GLUA</Filter>
+    </ClInclude>
+    <ClInclude Include="Garry%27s Mod\Exports\exports.h">
+      <Filter>Header Files\Garry%27s Mod\Exports</Filter>
+    </ClInclude>
+    <ClInclude Include="Garry%27s Mod\Exports\win32\lua_shared\lua_shared exports.h">
+      <Filter>Header Files\Garry%27s Mod\Exports\win32\lua_shared</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

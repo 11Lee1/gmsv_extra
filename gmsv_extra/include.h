@@ -5,6 +5,7 @@
 #endif
 // for now.
 #include "include/baseinclude.h"
+#include "Garry's Mod/Exports/exports.h"
 
 
 // mind aswell make this like cbase.h

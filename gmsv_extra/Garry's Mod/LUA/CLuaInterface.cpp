@@ -3,18 +3,7 @@
 #include "../../Source SDK/server/baseentity.h"
 #include "../../Source SDK/eiface.h"
 #include "../GLUA/CLuaGameCallback.h"
-
-#ifdef _WIN32
-#include <libloaderapi.h>
-#define GETADR(Module,Name)											\
-	(unsigned int)GetProcAddress(GetModuleHandleA(Module), Name)	\
-
-#elif __linux__ 
-#include <dlfcn.h>
-#define GETADR(Module,Name)											\
-	(unsigned int)dlsym(dlopen(Module, RTLD_NOW), Name);			\
-
-#endif
+#include "../Exports/exports.h"
 
 
 CBaseEntity* CLuaInterface::GetEntity(int iStackPos) {
@@ -41,8 +30,8 @@ void CLuaInterface::PushEntity(CBaseEntity* Entity) {
 int CLuaInterface::Top() {
 	typedef int(*lua_gettopFn)(lua_State*);
 	static lua_gettopFn lua_gettop = nullptr;
-	if(!lua_gettop)
-		lua_gettop = (lua_gettopFn)GETADR("lua_shared.dll", "lua_gettop");
+	if (!lua_gettop)
+		lua_gettop = (lua_gettopFn)exports::lua_shared::lua_gettop;
 
 	return lua_gettop(this->m_LuaState);
 }
@@ -51,7 +40,7 @@ void CLuaInterface::Push(int iStackPos) {
 	typedef void(*lua_pushvalueFn)(lua_State*, int);
 	static lua_pushvalueFn lua_pushvalue = nullptr;
 	if (!lua_pushvalue)
-		lua_pushvalue = (lua_pushvalueFn)GETADR("lua_shared.dll", "lua_pushvalue");
+		lua_pushvalue = (lua_pushvalueFn)exports::lua_shared::lua_pushvalue;
 
 	lua_pushvalue(this->m_LuaState, iStackPos);
 }
@@ -60,7 +49,7 @@ void CLuaInterface::Pop(int iAmt) {
 	typedef void(*lua_settopFn)(lua_State*, int);
 	static lua_settopFn lua_settop = nullptr;
 	if (!lua_settop)
-		lua_settop = (lua_settopFn)GETADR("lua_shared.dll", "lua_settop");
+		lua_settop = (lua_settopFn)exports::lua_shared::lua_settop;
 
 	lua_settop(this->m_LuaState, iAmt);
 }
@@ -69,7 +58,7 @@ void CLuaInterface::GetTable(int iStackPos) {
 	typedef void(*lua_gettableFn)(lua_State*, int);
 	static lua_gettableFn lua_gettable = nullptr;
 	if (!lua_gettable)
-		lua_gettable = (lua_gettableFn)GETADR("lua_shared.dll", "lua_gettable");
+		lua_gettable = (lua_gettableFn)exports::lua_shared::lua_gettable;
 
 	lua_gettable(this->m_LuaState, iStackPos);
 }
@@ -78,7 +67,7 @@ void CLuaInterface::GetField(int iStackPos, char const* strName) {
 	typedef void(*lua_getfieldFn)(lua_State*, int, char const*);
 	static lua_getfieldFn lua_getfield = nullptr;
 	if (!lua_getfield)
-		lua_getfield = (lua_getfieldFn)GETADR("lua_shared.dll", "lua_getfield");
+		lua_getfield = (lua_getfieldFn)exports::lua_shared::lua_getfield;
 
 	lua_getfield(this->m_LuaState, iStackPos, strName);
 }
@@ -87,7 +76,7 @@ void CLuaInterface::SetField(int iStackPos, char const* strName) {
 	typedef void(*lua_setfieldFn)(lua_State*, int, char const*);
 	static lua_setfieldFn lua_setfield = nullptr;
 	if (!lua_setfield)
-		lua_setfield = (lua_setfieldFn)GETADR("lua_shared.dll", "lua_setfield");
+		lua_setfield = (lua_setfieldFn)exports::lua_shared::lua_setfield;
 
 	lua_setfield(this->m_LuaState, iStackPos, strName);
 }
@@ -96,7 +85,7 @@ void CLuaInterface::CreateTable() {
 	typedef void(*lua_createtableFn)(lua_State*, int, int);
 	static lua_createtableFn lua_createtable = nullptr;
 	if (!lua_createtable)
-		lua_createtable = (lua_createtableFn)GETADR("lua_shared.dll", "lua_createtable");
+		lua_createtable = (lua_createtableFn)exports::lua_shared::lua_createtable;
 
 	lua_createtable(this->m_LuaState, 0, 0);
 }
@@ -105,7 +94,7 @@ void CLuaInterface::SetTable(int i) {
 	typedef void(*lua_settableFn)(lua_State*, int);
 	static lua_settableFn lua_settable = nullptr;
 	if (!lua_settable)
-		lua_settable = (lua_settableFn)GETADR("lua_shared.dll", "lua_settable");
+		lua_settable = (lua_settableFn)exports::lua_shared::lua_settable;
 
 	lua_settable(this->m_LuaState, i);
 }
@@ -114,7 +103,7 @@ void CLuaInterface::SetMetaTable(int i) {
 	typedef void(*lua_setmetatableFn)(lua_State*, int);
 	static lua_setmetatableFn lua_setmetatable = nullptr;
 	if (!lua_setmetatable)
-		lua_setmetatable = (lua_setmetatableFn)GETADR("lua_shared.dll", "lua_setmetatable");
+		lua_setmetatable = (lua_setmetatableFn)exports::lua_shared::lua_setmetatable;
 
 	lua_setmetatable(this->m_LuaState, i);
 }
@@ -123,7 +112,7 @@ bool CLuaInterface::GetMetaTable(int i) {
 	typedef unsigned int(*lua_getmetatableFn)(lua_State*, int);
 	static lua_getmetatableFn lua_getmetatable = nullptr;
 	if (!lua_getmetatable)
-		lua_getmetatable = (lua_getmetatableFn)GETADR("lua_shared.dll", "lua_getmetatable");
+		lua_getmetatable = (lua_getmetatableFn)exports::lua_shared::lua_getmetatable;
 
 	return lua_getmetatable(this->m_LuaState, i) != 0;
 }
@@ -132,7 +121,7 @@ void CLuaInterface::Call(int iArgs, int iResults) {
 	typedef void(*lua_callFn)(lua_State*, int, int);
 	static lua_callFn lua_call = nullptr;
 	if (!lua_call)
-		lua_call = (lua_callFn)GETADR("lua_shared.dll", "lua_call");
+		lua_call = (lua_callFn)exports::lua_shared::lua_call;
 
 	lua_call(this->m_LuaState, iArgs, iResults);
 	this->SetState(this->m_LuaState);	// 200
@@ -142,7 +131,7 @@ int CLuaInterface::PCall(int iArgs, int iResults, int iErrorFunc) {
 	typedef int(*lua_pcallFn)(lua_State*, int, int, int);
 	static lua_pcallFn lua_pcall = nullptr;
 	if (!lua_pcall)
-		lua_pcall = (lua_pcallFn)GETADR("lua_shared.dll", "lua_pcall");
+		lua_pcall = (lua_pcallFn)exports::lua_shared::lua_pcall;
 
 	int returnvalue = lua_pcall(this->m_LuaState, iArgs, iResults, iErrorFunc);
 	this->SetState(this->m_LuaState);
@@ -153,7 +142,7 @@ int CLuaInterface::Equal(int iA, int iB) {
 	typedef int(*lua_equalFn)(lua_State*, int, int);
 	static lua_equalFn lua_equal = nullptr;
 	if (!lua_equal)
-		lua_equal = (lua_equalFn)GETADR("lua_shared.dll", "lua_equal");
+		lua_equal = (lua_equalFn)exports::lua_shared::lua_equal;
 
 	return lua_equal(this->m_LuaState, iA, iB);
 }
@@ -162,7 +151,7 @@ int CLuaInterface::RawEqual(int iA, int iB) {
 	typedef int(*lua_rawequalFn)(lua_State*, int, int);
 	static lua_rawequalFn lua_rawequal = nullptr;
 	if (!lua_rawequal)
-		lua_rawequal = (lua_rawequalFn)GETADR("lua_shared.dll", "lua_rawequal");
+		lua_rawequal = (lua_rawequalFn)exports::lua_shared::lua_rawequal;
 
 	return lua_rawequal(this->m_LuaState, iA, iB);
 }
@@ -171,7 +160,7 @@ void CLuaInterface::Insert(int iStackPos) {
 	typedef void(*lua_insertFn)(lua_State*, int);
 	static lua_insertFn lua_insert = nullptr;
 	if (!lua_insert)
-		lua_insert = (lua_insertFn)GETADR("lua_shared.dll", "lua_insert");
+		lua_insert = (lua_insertFn)exports::lua_shared::lua_insert;
 
 	lua_insert(this->m_LuaState, iStackPos);
 }
@@ -180,7 +169,7 @@ void CLuaInterface::Remove(int iStackPos) {
 	typedef void(*lua_removeFn)(lua_State*, int);
 	static lua_removeFn lua_remove = nullptr;
 	if (!lua_remove)
-		lua_remove = (lua_removeFn)GETADR("lua_shared.dll", "lua_remove");
+		lua_remove = (lua_removeFn)exports::lua_shared::lua_remove;
 
 	lua_remove(this->m_LuaState, iStackPos);
 }
@@ -189,7 +178,7 @@ int CLuaInterface::Next(int iStackPos) {
 	typedef int(*lua_nextFn)(lua_State*, int);
 	static lua_nextFn lua_next = nullptr;
 	if (!lua_next)
-		lua_next = (lua_nextFn)GETADR("lua_shared.dll", "lua_next");
+		lua_next = (lua_nextFn)exports::lua_shared::lua_next;
 
 	return lua_next(this->m_LuaState, iStackPos);
 }
@@ -198,7 +187,7 @@ GarrysMod::Lua::UserData* CLuaInterface::NewUserdata(unsigned int iSize) {
 	typedef void* (*lua_newuserdataFn)(lua_State*, int);
 	static lua_newuserdataFn lua_newuserdata = nullptr;
 	if (!lua_newuserdata)
-		lua_newuserdata = (lua_newuserdataFn)GETADR("lua_shared.dll", "lua_newuserdata");
+		lua_newuserdata = (lua_newuserdataFn)exports::lua_shared::lua_newuserdata;
 
 	return (GarrysMod::Lua::UserData*)lua_newuserdata(this->m_LuaState, iSize);
 }
@@ -207,7 +196,7 @@ void CLuaInterface::ThrowError(char const* strError) {
 	typedef void(*luaL_errorFn)(lua_State*, char const*, char const*);
 	static luaL_errorFn luaL_error = nullptr;
 	if (!luaL_error)
-		luaL_error = (luaL_errorFn)GETADR("lua_shared.dll", "luaL_error");
+		luaL_error = (luaL_errorFn)exports::lua_shared::luaL_error;
 
 	luaL_error(this->m_LuaState, "%s", strError);
 }
@@ -224,7 +213,7 @@ void CLuaInterface::ArgError(int iArgNum, const char* strMessage) {
 	typedef void(*luaL_argerrorFn)(lua_State*, int, char const*);
 	static luaL_argerrorFn luaL_argerror = nullptr;
 	if (!luaL_argerror)
-		luaL_argerror = (luaL_argerrorFn)GETADR("lua_shared.dll", "luaL_argerror");
+		luaL_argerror = (luaL_argerrorFn)exports::lua_shared::luaL_argerror;
 
 	luaL_argerror(this->m_LuaState, iArgNum, strMessage);
 }
@@ -233,7 +222,7 @@ void CLuaInterface::RawGet(int iStackPos) {
 	typedef void(*lua_rawgetFn)(lua_State*, int);
 	static lua_rawgetFn lua_rawget = nullptr;
 	if (!lua_rawget)
-		lua_rawget = (lua_rawgetFn)GETADR("lua_shared.dll", "lua_rawget");
+		lua_rawget = (lua_rawgetFn)exports::lua_shared::lua_rawget;
 
 	lua_rawget(this->m_LuaState, iStackPos);
 }
@@ -242,7 +231,7 @@ void CLuaInterface::RawSet(int iStackPos) {
 	typedef void(*lua_rawsetFn)(lua_State*, int);
 	static lua_rawsetFn lua_rawset = nullptr;
 	if (!lua_rawset)
-		lua_rawset = (lua_rawsetFn)GETADR("lua_shared.dll", "lua_rawset");
+		lua_rawset = (lua_rawsetFn)exports::lua_shared::lua_rawset;
 
 	lua_rawset(this->m_LuaState, iStackPos);
 }
@@ -251,7 +240,7 @@ char const* CLuaInterface::GetString(int iStackPos, unsigned int* iOutLen) {
 	typedef char const* (*lua_tolstringFn)(lua_State*, int, unsigned int*);
 	static lua_tolstringFn lua_tolstring = nullptr;
 	if (!lua_tolstring)
-		lua_tolstring = (lua_tolstringFn)GETADR("lua_shared.dll", "lua_tolstring");
+		lua_tolstring = (lua_tolstringFn)exports::lua_shared::lua_tolstring;
 
 	return lua_tolstring(this->m_LuaState, iStackPos, iOutLen);
 }
@@ -260,7 +249,7 @@ double CLuaInterface::GetNumber(int iStackPos) {
 	typedef double(*lua_tonumberFn)(lua_State*, int);
 	static lua_tonumberFn lua_tonumber = nullptr;
 	if (!lua_tonumber)
-		lua_tonumber = (lua_tonumberFn)GETADR("lua_shared.dll", "lua_tonumber");
+		lua_tonumber = (lua_tonumberFn)exports::lua_shared::lua_tonumber;
 
 	return lua_tonumber(this->m_LuaState, iStackPos);
 }
@@ -269,7 +258,7 @@ bool CLuaInterface::GetBool(int iStackPos) {
 	typedef bool(*lua_tobooleanFn)(lua_State*, int);
 	static lua_tobooleanFn lua_toboolean = nullptr;
 	if (!lua_toboolean)
-		lua_toboolean = (lua_tobooleanFn)GETADR("lua_shared.dll", "lua_toboolean");
+		lua_toboolean = (lua_tobooleanFn)exports::lua_shared::lua_toboolean;
 
 	return lua_toboolean(this->m_LuaState, iStackPos) != 0;
 }
@@ -278,7 +267,7 @@ GarrysMod::Lua::CFunc CLuaInterface::GetCFunction(int iStackPos) {
 	typedef GarrysMod::Lua::CFunc(*lua_tocfunctionFn)(lua_State*, int);
 	static lua_tocfunctionFn lua_tocfunction = nullptr;
 	if (!lua_tocfunction)
-		lua_tocfunction = (lua_tocfunctionFn)GETADR("lua_shared.dll", "lua_tocfunction");
+		lua_tocfunction = (lua_tocfunctionFn)exports::lua_shared::lua_tocfunction;
 
 	return lua_tocfunction(this->m_LuaState, iStackPos);
 }
@@ -287,7 +276,7 @@ GarrysMod::Lua::UserData* CLuaInterface::GetUserdata(int iStackPos) {
 	typedef GarrysMod::Lua::UserData* (*lua_touserdataFn)(lua_State*, int);
 	static lua_touserdataFn lua_touserdata = nullptr;
 	if (!lua_touserdata)
-		lua_touserdata = (lua_touserdataFn)GETADR("lua_shared.dll", "lua_touserdata");
+		lua_touserdata = (lua_touserdataFn)exports::lua_shared::lua_touserdata;
 
 	return lua_touserdata(this->m_LuaState, iStackPos);
 }
@@ -296,7 +285,7 @@ void CLuaInterface::PushNil() {
 	typedef void(*lua_pushnilFn)(lua_State*);
 	static lua_pushnilFn lua_pushnil = nullptr;
 	if (!lua_pushnil)
-		lua_pushnil = (lua_pushnilFn)GETADR("lua_shared.dll", "lua_pushnil");
+		lua_pushnil = (lua_pushnilFn)exports::lua_shared::lua_pushnil;
 
 	lua_pushnil(this->m_LuaState);
 }
@@ -305,12 +294,12 @@ void CLuaInterface::PushString(char const* val, unsigned int iLen) {
 	typedef void(*lua_pushlstringFn)(lua_State*, char const*, unsigned int);
 	static lua_pushlstringFn lua_pushlstring = nullptr;
 	if (!lua_pushlstring)
-		lua_pushlstring = (lua_pushlstringFn)GETADR("lua_shared.dll", "lua_pushlstring");
+		lua_pushlstring = (lua_pushlstringFn)exports::lua_shared::lua_pushlstring;
 
 	typedef void(*lua_pushstringFn)(lua_State*, char const*);
 	static lua_pushstringFn lua_pushstring = nullptr;
 	if (!lua_pushstring)
-		lua_pushstring = (lua_pushstringFn)GETADR("lua_shared.dll", "lua_pushstring");
+		lua_pushstring = (lua_pushstringFn)exports::lua_shared::lua_pushstring;
 
 	if (iLen)
 		lua_pushlstring(this->m_LuaState, val, iLen);
@@ -322,7 +311,7 @@ void CLuaInterface::PushNumber(double val) {
 	typedef void(*lua_pushnumberFn)(lua_State*, double);
 	static lua_pushnumberFn lua_pushnumber = nullptr;
 	if (!lua_pushnumber)
-		lua_pushnumber = (lua_pushnumberFn)GETADR("lua_shared.dll", "lua_pushnumber");
+		lua_pushnumber = (lua_pushnumberFn)exports::lua_shared::lua_pushnumber;
 
 	lua_pushnumber(this->m_LuaState, val);
 }
@@ -331,7 +320,7 @@ void CLuaInterface::PushBool(bool val) {
 	typedef void(*lua_pushboolFn)(lua_State*, bool);
 	static lua_pushboolFn lua_pushbool = nullptr;
 	if (!lua_pushbool)
-		lua_pushbool = (lua_pushboolFn)GETADR("lua_shared.dll", "lua_pushbool");
+		lua_pushbool = (lua_pushboolFn)exports::lua_shared::lua_pushboolean;
 
 	lua_pushbool(this->m_LuaState, val);
 }
@@ -340,7 +329,7 @@ void CLuaInterface::PushCFunction(GarrysMod::Lua::CFunc val) {
 	typedef void(*lua_pushcclosureFn)(lua_State*, GarrysMod::Lua::CFunc val, int);
 	static lua_pushcclosureFn lua_pushcclosure = nullptr;
 	if (!lua_pushcclosure)
-		lua_pushcclosure = (lua_pushcclosureFn)GETADR("lua_shared.dll", "lua_pushcclosure");
+		lua_pushcclosure = (lua_pushcclosureFn)exports::lua_shared::lua_pushcclosure;
 
 	lua_pushcclosure(this->m_LuaState, val, 0);
 }
@@ -349,7 +338,7 @@ void CLuaInterface::PushCClosure(GarrysMod::Lua::CFunc val, int iVars) {
 	typedef void(*lua_pushcclosureFn)(lua_State*, GarrysMod::Lua::CFunc val, int);
 	static lua_pushcclosureFn lua_pushcclosure = nullptr;
 	if (!lua_pushcclosure)
-		lua_pushcclosure = (lua_pushcclosureFn)GETADR("lua_shared.dll", "lua_pushcclosure");
+		lua_pushcclosure = (lua_pushcclosureFn)exports::lua_shared::lua_pushcclosure;
 
 	lua_pushcclosure(this->m_LuaState, val, iVars);
 }
@@ -358,7 +347,7 @@ void CLuaInterface::PushUserdata(GarrysMod::Lua::UserData* userdata) {
 	typedef void(*lua_pushlightuserdataFn)(lua_State*, GarrysMod::Lua::UserData*);
 	static lua_pushlightuserdataFn lua_pushlightuserdata = nullptr;
 	if (!lua_pushlightuserdata)
-		lua_pushlightuserdata = (lua_pushlightuserdataFn)GETADR("lua_shared.dll", "lua_pushlightuserdata");
+		lua_pushlightuserdata = (lua_pushlightuserdataFn)exports::lua_shared::lua_pushlightuserdata;
 
 	lua_pushlightuserdata(this->m_LuaState, userdata);
 }
@@ -367,7 +356,7 @@ int CLuaInterface::ReferenceCreate() {
 	typedef int(*luaL_refFn)(lua_State*, int);
 	static luaL_refFn luaL_ref = nullptr;
 	if (!luaL_ref)
-		luaL_ref = (luaL_refFn)GETADR("lua_shared.dll", "luaL_ref");
+		luaL_ref = (luaL_refFn)exports::lua_shared::luaL_ref;
 
 	return luaL_ref(this->m_LuaState, -10000);
 }
@@ -376,7 +365,7 @@ void CLuaInterface::ReferenceFree(int i) {
 	typedef void(*luaL_unrefFn)(lua_State*, int, int);
 	static luaL_unrefFn luaL_unref = nullptr;
 	if (!luaL_unref)
-		luaL_unref = (luaL_unrefFn)GETADR("lua_shared.dll", "luaL_unref");
+		luaL_unref = (luaL_unrefFn)exports::lua_shared::luaL_unref;
 
 	luaL_unref(this->m_LuaState, -10000, i);
 }
@@ -385,7 +374,7 @@ void CLuaInterface::ReferencePush(int i) {
 	typedef void(*lua_rawgetiFn)(lua_State*, int, int);
 	static lua_rawgetiFn lua_rawgeti = nullptr;
 	if (!lua_rawgeti)
-		lua_rawgeti = (lua_rawgetiFn)GETADR("lua_shared.dll", "lua_rawgeti");
+		lua_rawgeti = (lua_rawgetiFn)exports::lua_shared::lua_rawgeti;
 
 	lua_rawgeti(this->m_LuaState, -10000, i);
 }
@@ -394,7 +383,7 @@ void CLuaInterface::PushSpecial(int iType) {
 	typedef void(*lua_pushvalueFn)(lua_State*, int);
 	static lua_pushvalueFn lua_pushvalue = nullptr;
 	if (!lua_pushvalue)
-		lua_pushvalue = (lua_pushvalueFn)GETADR("lua_shared.dll", "lua_pushvalue");
+		lua_pushvalue = (lua_pushvalueFn)exports::lua_shared::lua_pushvalue;
 
 	if (iType) {
 		if (iType == 1)
@@ -412,7 +401,7 @@ bool CLuaInterface::IsType(int iStackPos, int iType) {
 	typedef int(*lua_typeFn)(lua_State*, int);
 	static lua_typeFn lua_type = nullptr;
 	if (!lua_type)
-		lua_type = (lua_typeFn)GETADR("lua_shared.dll", "lua_type");
+		lua_type = (lua_typeFn)exports::lua_shared::lua_type;
 
 	int type = lua_type(this->m_LuaState, iStackPos);
 	if (type == iType)
@@ -427,7 +416,7 @@ int CLuaInterface::GetType(int iStackpos) {
 	typedef int(*lua_typeFn)(lua_State*, int);
 	static lua_typeFn lua_type = nullptr;
 	if (!lua_type)
-		lua_type = (lua_typeFn)GETADR("lua_shared.dll", "lua_type");
+		lua_type = (lua_typeFn)exports::lua_shared::lua_type;
 
 	int returntype = 0;
 	switch (lua_type(this->m_LuaState,iStackpos))
@@ -481,7 +470,7 @@ void CLuaInterface::CreateMetaTableType(char const* strName, int iType) {
 	typedef int(*luaL_newmetatable_typeFn)(lua_State*, char const*, int);
 	static luaL_newmetatable_typeFn luaL_newmetatable_type = nullptr;
 	if (!luaL_newmetatable_type)
-		luaL_newmetatable_type = (luaL_newmetatable_typeFn)GETADR("lua_shared.dll", "luaL_newmetatable_type");
+		luaL_newmetatable_type = (luaL_newmetatable_typeFn)exports::lua_shared::luaL_newmetatable_type;
 
 	int val = luaL_newmetatable_type(this->m_LuaState, strName, iType);
 	if (val && iType <= 0xFE) {
@@ -498,7 +487,7 @@ char const* CLuaInterface::CheckString(int iStackPos) {
 	typedef char const* (*luaL_checklstringFn)(lua_State*, int, int);
 	static luaL_checklstringFn luaL_checklstring = nullptr;
 	if (!luaL_checklstring)
-		luaL_checklstring = (luaL_checklstringFn)GETADR("lua_shared.dll", "luaL_checklstring");
+		luaL_checklstring = (luaL_checklstringFn)exports::lua_shared::luaL_checklstring;
 
 	return luaL_checklstring(this->m_LuaState, iStackPos, 0);
 }
@@ -507,7 +496,7 @@ double CLuaInterface::CheckNumber(int iStackPos) {
 	typedef double(*luaL_checknumberFn)(lua_State*, int);
 	static luaL_checknumberFn luaL_checknumber = nullptr;
 	if (!luaL_checknumber)
-		luaL_checknumber = (luaL_checknumberFn)GETADR("lua_shared.dll", "luaL_checknumber");
+		luaL_checknumber = (luaL_checknumberFn)exports::lua_shared::luaL_checknumber;
 
 	return luaL_checknumber(this->m_LuaState, iStackPos);
 }
@@ -518,7 +507,7 @@ int CLuaInterface::ObjLen(int iStackPos) {
 	typedef int(*lua_objlenFn)(lua_State*, int);
 	static lua_objlenFn lua_objlen = nullptr;
 	if (!lua_objlen)
-		lua_objlen = (lua_objlenFn)GETADR("lua_shared.dll", "lua_objlen");
+		lua_objlen = (lua_objlenFn)exports::lua_shared::lua_objlen;
 
 	return lua_objlen(this->m_LuaState, iStackPos);
 }
@@ -567,7 +556,7 @@ void CLuaInterface::CreateMetaTable(char const* szName) {
 	typedef int(*luaL_newmetatable_typeFn)(lua_State*, char const*, int);
 	static luaL_newmetatable_typeFn luaL_newmetatable_type = nullptr;
 	if (!luaL_newmetatable_type)
-		luaL_newmetatable_type = (luaL_newmetatable_typeFn)GETADR("lua_shared.dll", "luaL_newmetatable_type");
+		luaL_newmetatable_type = (luaL_newmetatable_typeFn)exports::lua_shared::luaL_newmetatable_type;
 
 	int numtables = this->m_iNumMetaTables;
 	if (luaL_newmetatable_type(this->m_LuaState, szName, numtables)) {
@@ -644,7 +633,7 @@ void CLuaInterface::PushLuaFunction(GarrysMod::Lua::CFunc Func) {
 	typedef void(*lua_pushcclosureFn)(lua_State*, GarrysMod::Lua::CFunc, int);
 	static lua_pushcclosureFn lua_pushcclosure = nullptr;
 	if (!lua_pushcclosure)
-		lua_pushcclosure = (lua_pushcclosureFn)GETADR("lua_shared.dll", "lua_pushcclosure");
+		lua_pushcclosure = (lua_pushcclosureFn)exports::lua_shared::lua_pushcclosure;
 
 	lua_pushcclosure(this->m_LuaState, Func, 0);
 }
@@ -653,7 +642,7 @@ int CLuaInterface::LuaError(char const* message, int args) {
 	typedef int(*luaL_argerrorFn)(lua_State*, int, char const*);
 	static luaL_argerrorFn luaL_argerror = nullptr;
 	if (!luaL_argerror)
-		luaL_argerror = (luaL_argerrorFn)GETADR("lua_shared.dll", "luaL_argerror");
+		luaL_argerror = (luaL_argerrorFn)exports::lua_shared::luaL_argerror;
 
 	if (args == -1)
 		return this->ErrorNoHalt("%s", message);
@@ -665,7 +654,7 @@ int CLuaInterface::TypeError(char const* message, int narg) {
 	typedef int(*luaL_typerrorFn)(lua_State*, int, char const*);
 	static luaL_typerrorFn luaL_typerror = nullptr;
 	if (!luaL_typerror)
-		luaL_typerror = (luaL_typerrorFn)GETADR("lua_shared.dll", "luaL_typerror");
+		luaL_typerror = (luaL_typerrorFn)exports::lua_shared::luaL_typerror;
 
 	return luaL_typerror(this->m_LuaState, narg, message);
 }
@@ -789,7 +778,7 @@ bool CLuaInterface::isUserData(int iStackPos) {
 	typedef int(*lua_typeFn)(lua_State*, int);
 	static lua_typeFn lua_type = nullptr;
 	if (!lua_type)
-		lua_type = (lua_typeFn)GETADR("lua_shared.dll", "lua_type");
+		lua_type = (lua_typeFn)exports::lua_shared::lua_type;
 
 	return lua_type(this->m_LuaState, iStackPos) == GarrysMod::Lua::Type::USERDATA;
 }
@@ -798,7 +787,7 @@ GarrysMod::Lua::ILuaObject* CLuaInterface::GetMetaTableObject(int iType) {
 	typedef unsigned int(*lua_getmetatableFn)(lua_State*, int);
 	static lua_getmetatableFn lua_getmetatable = nullptr;
 	if (!lua_getmetatable)
-		lua_getmetatable = (lua_getmetatableFn)GETADR("lua_shared.dll", "lua_getmetatable");
+		lua_getmetatable = (lua_getmetatableFn)exports::lua_shared::lua_getmetatable;
 
 	if (lua_getmetatable(this->m_LuaState, iType)) {
 		GarrysMod::Lua::ILuaObject* ret = this->NewTemporaryObject();
@@ -940,7 +929,7 @@ bool CLuaInterface::FindOnObjectsMetaTable(int iStackPos, int dunno) {
 	typedef int(*lua_typeFn)(lua_State*, int);
 	static lua_typeFn lua_type = nullptr;
 	if (!lua_type)
-		lua_type = (lua_typeFn)GETADR("lua_shared.dll", "lua_type");
+		lua_type = (lua_typeFn)exports::lua_shared::lua_type;
 
 	if (!this->GetMetaTable(iStackPos))
 		return false;
@@ -958,7 +947,7 @@ bool CLuaInterface::FindObjectsOnMetaTable(int iStackPos, int dunno) {
 	typedef int(*lua_typeFn)(lua_State*, int);
 	static lua_typeFn lua_type = nullptr;
 	if (!lua_type)
-		lua_type = (lua_typeFn)GETADR("lua_shared.dll", "lua_type");
+		lua_type = (lua_typeFn)exports::lua_shared::lua_type;
 
 	this->Push(iStackPos);
 	this->Push(dunno);

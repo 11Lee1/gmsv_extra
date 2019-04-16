@@ -40,6 +40,7 @@ void main() {
 #ifdef __ATTACH_CONSOLE
 	AttachConsole("Console");
 #endif
+	exports::FillExports();
 	g_pInterfaces = new Interfaces();
 	NetworkstringTableID = g_pInterfaces->NetworkStringTableContainer()->FindTable("networkstring")->GetTableId();
 	g_pGModNetMsgReceiver = new GMod_NetReceive();

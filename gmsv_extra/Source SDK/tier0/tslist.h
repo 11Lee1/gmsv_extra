@@ -191,7 +191,6 @@ public:
 #ifdef _DEBUG
 		if ((size_t)pNode % TSLIST_NODE_ALIGNMENT != 0)
 		{
-			Error("CTSListBase: Misaligned node\n");
 			DebuggerBreak();
 		}
 #endif

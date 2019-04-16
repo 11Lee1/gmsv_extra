@@ -9,6 +9,7 @@ void TestCallBack(edict_t* pPlayer) {
 	printf("out: %s\n", str);
 
 }
+
 void projectMain() {
 	util_AddNetworkString("Test send");			
 	util_AddNetworkString("Test Receive");		

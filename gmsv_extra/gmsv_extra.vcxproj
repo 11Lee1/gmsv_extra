@@ -85,6 +85,9 @@
       <FloatingPointModel>Fast</FloatingPointModel>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
+    <Link>
+      <LinkTimeCodeGeneration>Default</LinkTimeCodeGeneration>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -112,6 +115,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <LinkTimeCodeGeneration>UseFastLinkTimeCodeGeneration</LinkTimeCodeGeneration>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -135,6 +139,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Garry%27s Mod\Exports\exports.cpp" />
+    <ClCompile Include="Garry%27s Mod\Exports\win32\lua_shared\lua_shared exports.cpp" />
     <ClCompile Include="Garry%27s Mod\GLUA\LuaNetworkedVars.cpp" />
     <ClCompile Include="Garry%27s Mod\GLUA\LuaObject\CLuaGameObject.cpp" />
     <ClCompile Include="Garry%27s Mod\GLUA\LuaObject\CLuaObject.cpp" />
@@ -185,6 +191,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Garry%27s Mod\CGMODRules.h" />
+    <ClInclude Include="Garry%27s Mod\Exports\exports.h" />
+    <ClInclude Include="Garry%27s Mod\Exports\win32\lua_shared\lua_shared exports.h" />
     <ClInclude Include="Garry%27s Mod\GLUA\CGMODDataTable.h" />
     <ClInclude Include="Garry%27s Mod\GLUA\CLuaGameCallback.h" />
     <ClInclude Include="Garry%27s Mod\GLUA\CScriptedEntity.h" />

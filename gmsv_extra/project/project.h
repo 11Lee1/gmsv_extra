@@ -7,10 +7,11 @@
 void TestCallBack(edict_t* pPlayer) {
 	char* str = net_ReadString();
 	printf("out: %s\n", str);
-
 }
 
 void projectMain() {
+	unsigned int pcvar = (unsigned int)GetProcAddress(GetModuleHandleA("server.dll"), "cvar");
+	printf("cvar = 0x%p", pcvar);
 	util_AddNetworkString("Test send");			
 	util_AddNetworkString("Test Receive");		
 

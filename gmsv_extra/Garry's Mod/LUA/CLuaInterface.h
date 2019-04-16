@@ -151,7 +151,7 @@ public:
 	void*								m_pUNK_000;				// 0x20
 	char								PAD_UNK_001[0x4];		// 0x24
 	GarrysMod::Lua::CLuaObject*			m_ProtectedFunctionReturns[0x4];	// 0x28->0x34
-	GarrysMod::Lua::CLuaObject*			m_TempObjects[32];		// 0x38->0xB4
+	GarrysMod::Lua::CLuaObject*			m_TempObjects[0x20];	// 0x38->0xB4
 	char								m_cLuaState;			// 0xB8  -  uses the enums Client, Server, Menu.
 	CLuaGameCallback*					m_pLuaCallBack;			// 0xBC  -  wow I wish I knew about this before.
 	unsigned int						m_uiUNK_002;			// 0xC0

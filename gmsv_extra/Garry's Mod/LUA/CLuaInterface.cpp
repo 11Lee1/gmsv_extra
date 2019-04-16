@@ -660,7 +660,6 @@ int CLuaInterface::TypeError(char const* message, int narg) {
 }
 
 bool CLuaInterface::CallInternal(int iStackPos, int iNumReturnValues) {
-	// finish this properly, because I doubt this is correct.
 	if (this->GetType(iStackPos) != 6)
 		printf("Lua tried to call non functions\n");
 	
@@ -680,11 +679,11 @@ bool CLuaInterface::CallInternal(int iStackPos, int iNumReturnValues) {
 	}
 	if (this->CallFunctionProtected(iStackPos, iNumReturnValues, false)) {
 		if (iNumReturnValues > 0) {
-			for (int i = 0; i < iNumReturnValues; i++) {
+			for (int i = 0; i < iNumReturnValues;) {
 				if (!this->m_ProtectedFunctionReturns[i]) {
 					this->m_ProtectedFunctionReturns[i] = this->NewTemporaryObject();
 				}
-				this->m_ProtectedFunctionReturns[i]->SetFromStack(~i);
+				this->m_ProtectedFunctionReturns[i]->SetFromStack(~i++);
 			}
 		}
 		return true;

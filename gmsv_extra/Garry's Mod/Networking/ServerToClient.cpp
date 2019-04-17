@@ -16,7 +16,7 @@ bool GMod_ServerToClient::StartNetMessage(char const* NetMsgName, bool Reliable)
 	if (!netstringtbl)
 		return false;
 
-	unsigned short NetworkstringID = netstringtbl->FindStringIndex(NetMsgName);
+	short NetworkstringID = netstringtbl->FindStringIndex(NetMsgName);
 	if (NetworkstringID == INVALID_STRING_INDEX) {
 		printf("couldn't find netmsg: \"%s\"!\n", NetMsgName);
 		return false;

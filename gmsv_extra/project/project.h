@@ -20,7 +20,7 @@ void projectMain() {
 	// set it to false since setting "unreliable" to true creates a new packet, and the packet containing the
 	// SVC_UpdateStringTable netmessage will get processed and the dictionary will get updated in time before
 	// the SVC_GMod_ServerToClient netmessage gets processed.
-	net_Start(Test_send_ID, true);
+	net_Start(Test_send_ID, true);	// the ID and string are both accepted, the ID will run faster upon creation.
 	{
 		net_WriteString("Test Net Message");
 		net_WriteVector(Vector(1002, 2001, 3000));

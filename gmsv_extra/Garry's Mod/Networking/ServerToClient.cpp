@@ -5,9 +5,12 @@
 
 GMod_ServerToClient* g_pGMod_ServerToClient = nullptr;
 bool GMod_ServerToClient::StartNetMessage(char const* NetMsgName, bool Reliable) {
-	static INetworkStringTable* netstringtbl = g_pInterfaces->NetworkStringTableContainer()->GetTable(NetworkstringTableID);
-	if (!netstringtbl)
-		return false;
+	static INetworkStringTable* netstringtbl = nullptr;
+	if (!netstringtbl) {
+		netstringtbl = g_pInterfaces->NetworkStringTableContainer()->GetTable(NetworkstringTableID);
+		if (!netstringtbl)
+			return false;
+	}
 
 	RemoveCurrentMessage();
 
@@ -29,9 +32,12 @@ bool GMod_ServerToClient::StartNetMessage(char const* NetMsgName, bool Reliable)
 }
 
 bool GMod_ServerToClient::StartNetMessage(unsigned short NetworkstringID, bool Reliable) {
-	static INetworkStringTable* netstringtbl = g_pInterfaces->NetworkStringTableContainer()->GetTable(NetworkstringTableID);
-	if (!netstringtbl)
-		return false;
+	static INetworkStringTable* netstringtbl = nullptr;
+	if (!netstringtbl) {
+		netstringtbl = g_pInterfaces->NetworkStringTableContainer()->GetTable(NetworkstringTableID);
+		if (!netstringtbl)
+			return false;
+	}
 
 	RemoveCurrentMessage();
 

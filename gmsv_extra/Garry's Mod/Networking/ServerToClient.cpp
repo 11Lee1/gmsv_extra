@@ -26,6 +26,26 @@ bool GMod_ServerToClient::StartNetMessage(char const* NetMsgName, bool Reliable)
 	m_pCurrentOutGoing->m_DataOut.WriteWord(NetworkstringID);
 	return true;
 }
+
+bool GMod_ServerToClient::StartNetMessage(unsigned short NetworkstringID, bool Reliable) {
+	RemoveCurrentMessage();
+
+	m_pCurrentOutGoing = new SVC_GMod_ServerToClient();
+	if (!m_pCurrentOutGoing)
+		return false;
+
+	this->m_bReliable = Reliable;
+
+	if (NetworkstringID == INVALID_STRING_INDEX) {
+		printf("invalid networkstringID : \"%i\"!\n", NetworkstringID);
+		return false;
+	}
+	m_pCurrentOutGoing->m_DataOut.StartWriting(m_WriteBuffer, sizeof(m_WriteBuffer));
+	m_pCurrentOutGoing->m_DataOut.WriteByte(0);
+	m_pCurrentOutGoing->m_DataOut.WriteWord(NetworkstringID);
+	return true;
+}
+
 void GMod_ServerToClient::RemoveCurrentMessage() {
 	if (m_pCurrentOutGoing)
 		delete m_pCurrentOutGoing;

@@ -4,9 +4,10 @@
 
 int NetworkstringTableID = NULL;
 
-void GUTIL_AddNetworkString(char const* name) {
+unsigned short GUTIL_AddNetworkString(char const* name) {
 	INetworkStringTable* nwstringtbl = g_pInterfaces->NetworkStringTableContainer()->GetTable(NetworkstringTableID);
 	if (nwstringtbl) {
-		nwstringtbl->AddString(true,name);
+		return nwstringtbl->AddString(true,name);
 	}
+	return INVALID_STRING_INDEX;
 }

@@ -7,9 +7,8 @@ class CGMODVariant;
 class IGMODDataTable
 {
 public: // finish me
-	virtual ~IGMODDataTable() = 0;
 	virtual void GetKey(int) = 0;
-	virtual void GetValue(int) = 0;
+	virtual void GetValue(int key) = 0;
 	virtual void IncrementIterator(int&) = 0;
 	virtual void Get(int) = 0;
 	virtual void Set(int, CGMODVariant const &) = 0;

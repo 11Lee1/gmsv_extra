@@ -671,20 +671,16 @@ bool CLuaInterface::CallInternal(int iStackPos, int iNumReturnValues) {
 	this->m_ProtectedFunctionReturns[2] = nullptr;
 	this->m_ProtectedFunctionReturns[3] = nullptr;
 
-	if (iNumReturnValues > 0) {
-		for (int i = 0; i < iNumReturnValues; i++) {
-			GarrysMod::Lua::CLuaObject* tempobj = this->NewTemporaryObject();
-			this->m_ProtectedFunctionReturns[i] = tempobj;
-		}
+	for (int i = 0; i < iNumReturnValues; i++) {
+		GarrysMod::Lua::CLuaObject* tempobj = this->NewTemporaryObject();
+		this->m_ProtectedFunctionReturns[i] = tempobj;
 	}
 	if (this->CallFunctionProtected(iStackPos, iNumReturnValues, false)) {
-		if (iNumReturnValues > 0) {
-			for (int i = 0; i < iNumReturnValues;) {
-				if (!this->m_ProtectedFunctionReturns[i]) {
-					this->m_ProtectedFunctionReturns[i] = this->NewTemporaryObject();
-				}
-				this->m_ProtectedFunctionReturns[i]->SetFromStack(~i++);
+		for (int i = 0; i < iNumReturnValues;) {
+			if (!this->m_ProtectedFunctionReturns[i]) {
+				this->m_ProtectedFunctionReturns[i] = this->NewTemporaryObject();
 			}
+			this->m_ProtectedFunctionReturns[i]->SetFromStack(~i++);
 		}
 		return true;
 	}

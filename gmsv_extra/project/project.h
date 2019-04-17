@@ -10,7 +10,7 @@ void TestCallBack(edict_t* pPlayer) {
 }
 
 void projectMain() {
-	util_AddNetworkString("Test send");			
+	unsigned short Test_send_ID = util_AddNetworkString("Test send");			
 	util_AddNetworkString("Test Receive");		
 
 	net_Receive("Test Receive", TestCallBack);	
@@ -20,7 +20,7 @@ void projectMain() {
 	// set it to false since setting "unreliable" to true creates a new packet, and the packet containing the
 	// SVC_UpdateStringTable netmessage will get processed and the dictionary will get updated in time before
 	// the SVC_GMod_ServerToClient netmessage gets processed.
-	net_Start("Test send", true);
+	net_Start(Test_send_ID, true);
 	{
 		net_WriteString("Test Net Message");
 		net_WriteVector(Vector(1002, 2001, 3000));

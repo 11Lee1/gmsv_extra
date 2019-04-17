@@ -3,7 +3,7 @@
 
 extern int NetworkstringTableID;
 
-void GUTIL_AddNetworkString(char const* name);
+unsigned short GUTIL_AddNetworkString(char const* name);
 
 #define util_AddNetworkString(name)	\
 	GUTIL_AddNetworkString(name);	\

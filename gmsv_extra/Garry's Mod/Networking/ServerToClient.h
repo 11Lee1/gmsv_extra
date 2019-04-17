@@ -21,6 +21,7 @@ public:
 	GMod_ServerToClient() { m_pCurrentOutGoing = nullptr; }
 
 	bool	StartNetMessage(char const* NetMsgName, bool Reliable = true); // returns false on fail.
+	bool	StartNetMessage(unsigned short NetworkstringID, bool Reliable = true); // returns false on fail.
 	bool	SendNetMsg(CBasePlayer* player);
 	bool	SendNetMsg(CBaseClient* client);
 	bool	SendNetMsg(CRecipientFilter& filter);

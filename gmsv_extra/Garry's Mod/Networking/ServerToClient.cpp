@@ -5,6 +5,10 @@
 
 GMod_ServerToClient* g_pGMod_ServerToClient = nullptr;
 bool GMod_ServerToClient::StartNetMessage(char const* NetMsgName, bool Reliable) {
+	static INetworkStringTable* netstringtbl = g_pInterfaces->NetworkStringTableContainer()->GetTable(NetworkstringTableID);
+	if (!netstringtbl)
+		return false;
+
 	RemoveCurrentMessage();
 
 	m_pCurrentOutGoing = new SVC_GMod_ServerToClient();
@@ -12,9 +16,6 @@ bool GMod_ServerToClient::StartNetMessage(char const* NetMsgName, bool Reliable)
 		return false;
 
 	this->m_bReliable = Reliable;
-	INetworkStringTable* netstringtbl = g_pInterfaces->NetworkStringTableContainer()->GetTable(NetworkstringTableID);
-	if (!netstringtbl)
-		return false;
 
 	short NetworkstringID = netstringtbl->FindStringIndex(NetMsgName);
 	if (NetworkstringID == INVALID_STRING_INDEX) {
@@ -28,6 +29,10 @@ bool GMod_ServerToClient::StartNetMessage(char const* NetMsgName, bool Reliable)
 }
 
 bool GMod_ServerToClient::StartNetMessage(unsigned short NetworkstringID, bool Reliable) {
+	static INetworkStringTable* netstringtbl = g_pInterfaces->NetworkStringTableContainer()->GetTable(NetworkstringTableID);
+	if (!netstringtbl)
+		return false;
+
 	RemoveCurrentMessage();
 
 	m_pCurrentOutGoing = new SVC_GMod_ServerToClient();
@@ -36,7 +41,7 @@ bool GMod_ServerToClient::StartNetMessage(unsigned short NetworkstringID, bool R
 
 	this->m_bReliable = Reliable;
 
-	if (NetworkstringID == INVALID_STRING_INDEX) {
+	if (NetworkstringID == INVALID_STRING_INDEX || NetworkstringID > netstringtbl->GetNumStrings()) {
 		printf("invalid networkstringID : \"%i\"!\n", NetworkstringID);
 		return false;
 	}

@@ -31,6 +31,7 @@ public:
 	GMod_NetReceive();
 
 	void AddReceiver(char const* NetMsgName, GModNetMsgReceiveCallBackFn fn, bool CreateNewString = true /*create a new one if one isn't found*/);
+	void AddReceiver(unsigned short index, GModNetMsgReceiveCallBackFn fn, bool CreateNewString = true /*create a new one if one isn't found*/);
 	void ProcessNetMsg(int dunno, edict_t* pPlayer, bf_read* data, int length);
 
 	BYTE	ReadByte();
@@ -65,33 +66,33 @@ extern GMod_NetReceive* g_pGModNetMsgReceiver;
 	g_pGModNetMsgReceiver->AddReceiver(messageName,callbackfn);	\
 
 #define net_ReadByte()							\
-	g_pGModNetMsgReceiver->ReadByte();			\
+	g_pGModNetMsgReceiver->ReadByte()			\
 
 #define net_ReadString()						\
-	g_pGModNetMsgReceiver->ReadString();		\
+	g_pGModNetMsgReceiver->ReadString()			\
 
 #define net_ReadVector()						\
-	g_pGModNetMsgReceiver->ReadVector();		\
+	g_pGModNetMsgReceiver->ReadVector()			\
 
 #define net_ReadAngle()							\
-	g_pGModNetMsgReceiver->ReadAngle();			\
+	g_pGModNetMsgReceiver->ReadAngle()			\
 
 #define net_ReadBit()							\
-	g_pGModNetMsgReceiver->ReadBit();			\
+	g_pGModNetMsgReceiver->ReadBit()			\
 	
 #define net_ReadBool()							\
-	g_pGModNetMsgReceiver->ReadBit();			\
+	g_pGModNetMsgReceiver->ReadBit()			\
 
 #define net_ReadDouble()						\
-	g_pGModNetMsgReceiver->ReadDouble();		\
+	g_pGModNetMsgReceiver->ReadDouble()			\
 
 #define net_ReadColor()							\
-	g_pGModNetMsgReceiver->ReadColor();			\
+	g_pGModNetMsgReceiver->ReadColor()			\
 
 #define net_ReadInt(bits)						\
-	g_pGModNetMsgReceiver->ReadInt(bits);		\
+	g_pGModNetMsgReceiver->ReadInt(bits)		\
 
 #define net_ReadEntity()						\
-	g_pGModNetMsgReceiver->ReadEntity();		\
+	g_pGModNetMsgReceiver->ReadEntity()			\
 
 #endif

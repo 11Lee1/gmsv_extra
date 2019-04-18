@@ -41,7 +41,7 @@ public:
 	bool		SetNWVector(CBaseEntity* Ent, char const* Key, Vector val);
 	bool		SetNWAngle(CBaseEntity* Ent, char const* Key, QAngle val);
 protected:
-	int			FindNetWorkedVar(CBaseEntity* Ent, char const* Key, int TypeID, bool CreateNewIfNotFound = false);
+	int			FindNetWorkedVar(CBaseEntity* Ent, char const* Key, int TypeID, bool CreateNewIfNotFound = false, bool CareForType = true);
 	int			AddNetworkedVar(CBaseEntity* Ent, char const* Key);
 
 

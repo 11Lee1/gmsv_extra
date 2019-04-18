@@ -18,10 +18,13 @@ GMod_NetReceive::~GMod_NetReceive() {
 void GMod_NetReceive::AddReceiver(char const* NetMsgName, GModNetMsgReceiveCallBackFn fn, bool CreateNewString) {
 	if (!NetMsgName || !fn)
 		return;
-
-	INetworkStringTable* networkstringtbl = g_pInterfaces->NetworkStringTableContainer()->GetTable(NetworkstringTableID);
-	if (!networkstringtbl)
-		return;
+	
+	static INetworkStringTable* networkstringtbl = nullptr;
+	if (!networkstringtbl) {
+		networkstringtbl = g_pInterfaces->NetworkStringTableContainer()->GetTable(NetworkstringTableID);
+		if (!networkstringtbl)
+			return;
+	}
 
 	unsigned short index = networkstringtbl->FindStringIndex(NetMsgName);
 	if (index == INVALID_STRING_INDEX && CreateNewString) {
@@ -31,6 +34,23 @@ void GMod_NetReceive::AddReceiver(char const* NetMsgName, GModNetMsgReceiveCallB
 		return;
 
 	Receivers->AddToTail(GModNetMsgReceive_t{NetMsgName, index, fn});
+}
+
+void GMod_NetReceive::AddReceiver(unsigned short index, GModNetMsgReceiveCallBackFn fn, bool CreateNewString) {
+	if (!fn)
+		return;
+
+	static INetworkStringTable * networkstringtbl = nullptr;
+	if (!networkstringtbl) {
+		networkstringtbl = g_pInterfaces->NetworkStringTableContainer()->GetTable(NetworkstringTableID);
+		if (!networkstringtbl)
+			return;
+	}
+
+	if (index == INVALID_STRING_INDEX || index > networkstringtbl->GetNumStrings())
+		return;
+
+	Receivers->AddToTail(GModNetMsgReceive_t{ "Used network string ID, no message name initialized", index, fn });
 }
 
 void GMod_NetReceive::ProcessNetMsg(int dunno, edict_t* pPlayer, bf_read* data, int length) {

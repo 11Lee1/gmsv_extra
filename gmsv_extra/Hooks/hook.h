@@ -103,22 +103,14 @@ protected:	//hook
 	// IserverGameClients
 	void	HookClientConnect();
 	void	HookGMOD_ReceiveClientMessage();
-	
-	// CGMOD_Player
-	void	Hook_CGMOD_Player__FireBullets();
 protected:	//unhook
 	void	UnhookFunctions();
 
 	// IserverGameClients
 	void	UnhookClientConnect();
 	void	UnHookGMOD_ReceiveClientMessage();
-
-	// CGMOD_Player
-	void	Unhook_CGMOD_Player__FireBullets();
 protected:
 	VMTHook* h_IServerGameClients;
-	VMTHook* h_CGMOD_Player;
-	VMTHook* h_CNetChan;
 };
 extern Hooks* hooks;
 

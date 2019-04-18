@@ -40,13 +40,14 @@ void main() {
 #ifdef __ATTACH_CONSOLE
 	AttachConsole("Console");
 #endif
+	// don't touch this, it's all stuff essential to run the program.
 	exports::FillExports();
 	g_pInterfaces = new Interfaces();
 	NetworkstringTableID = g_pInterfaces->NetworkStringTableContainer()->FindTable("networkstring")->GetTableId();
 	g_pGModNetMsgReceiver = new GMod_NetReceive();
 	g_pGMod_ServerToClient = new GMod_ServerToClient();
 	hooks = new Hooks();
-	projectMain();
+	ProjectMain(); // <-- touch stuff in that.
 }
 
 void detatch(HANDLE thread) {

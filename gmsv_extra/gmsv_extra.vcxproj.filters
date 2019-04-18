@@ -67,9 +67,6 @@
     <Filter Include="Source Files\util\hooking">
       <UniqueIdentifier>{b2bb91c0-7320-4749-902c-342f374293db}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Hooks\CGMOD_Player">
-      <UniqueIdentifier>{5c8e7bb3-6da2-4e83-bb1e-afe7a28d8649}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Source SDK\vstdlib">
       <UniqueIdentifier>{bd82a09b-8514-4fcf-8119-81f2aad3a42e}</UniqueIdentifier>
     </Filter>
@@ -124,9 +121,6 @@
     <Filter Include="Header Files\Garry%27s Mod\Networking">
       <UniqueIdentifier>{3056939c-e8ad-45da-a41e-733b1feef39c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Hooks\CNetChan">
-      <UniqueIdentifier>{baea64ed-9fdf-4dab-8321-39ba14a20bf4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Source SDK\xbox">
       <UniqueIdentifier>{d7212f4e-7379-45e0-870f-003ecb8197a1}</UniqueIdentifier>
     </Filter>
@@ -162,6 +156,21 @@
     </Filter>
     <Filter Include="Source Files\Garry%27s Mod\Exports\win32\lua_shared">
       <UniqueIdentifier>{81005db1-ea59-4f0d-b5ea-8d701790dc60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\project">
+      <UniqueIdentifier>{b435bfdd-2776-48a2-93d8-4da35bcbc3ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\project\Hooks">
+      <UniqueIdentifier>{a9384471-0b23-4c18-a170-73eb582fd7a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\project\examples">
+      <UniqueIdentifier>{288f2e17-a0be-44dd-8f9f-e04aea126088}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\project\examples">
+      <UniqueIdentifier>{373e5a6c-523a-4948-ab74-3de77acee35d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\include">
+      <UniqueIdentifier>{85bedd51-3197-47dc-a053-8b07160623ab}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -216,9 +225,6 @@
     <ClCompile Include="util\vmthook.cpp">
       <Filter>Source Files\util\hooking</Filter>
     </ClCompile>
-    <ClCompile Include="Hooks\CGMOD_Player\FireBullets.cpp">
-      <Filter>Source Files\Hooks\CGMOD_Player</Filter>
-    </ClCompile>
     <ClCompile Include="Source SDK\interval.cpp">
       <Filter>Source Files\Source SDK</Filter>
     </ClCompile>
@@ -242,9 +248,6 @@
     </ClCompile>
     <ClCompile Include="Source SDK\tier1\NetAdr.cpp">
       <Filter>Source Files\Source SDK\tier1</Filter>
-    </ClCompile>
-    <ClCompile Include="Hooks\CNetChan\SendNetMsg.cpp">
-      <Filter>Source Files\Hooks\CNetChan</Filter>
     </ClCompile>
     <ClCompile Include="Garry%27s Mod\Networking\ClientToServer.cpp">
       <Filter>Source Files\Garry%27s Mod\Networking</Filter>
@@ -311,6 +314,12 @@
     </ClCompile>
     <ClCompile Include="Garry%27s Mod\Exports\exports.cpp">
       <Filter>Source Files\Garry%27s Mod\Exports</Filter>
+    </ClCompile>
+    <ClCompile Include="project\project.cpp">
+      <Filter>Source Files\project</Filter>
+    </ClCompile>
+    <ClCompile Include="project\examples\networking example.cpp">
+      <Filter>Source Files\project\examples</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -854,12 +863,6 @@
     <ClInclude Include="Source SDK\server\gmod\sentanim.h">
       <Filter>Header Files\Source SDK\server\gmod</Filter>
     </ClInclude>
-    <ClInclude Include="include\baseinclude.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source SDK\toolframework\itoolentity.h">
       <Filter>Header Files\Source SDK\toolframework</Filter>
     </ClInclude>
@@ -1219,6 +1222,18 @@
     </ClInclude>
     <ClInclude Include="Garry%27s Mod\Exports\win32\lua_shared\lua_shared exports.h">
       <Filter>Header Files\Garry%27s Mod\Exports\win32\lua_shared</Filter>
+    </ClInclude>
+    <ClInclude Include="project\examples\networking example.h">
+      <Filter>Header Files\project\examples</Filter>
+    </ClInclude>
+    <ClInclude Include="include\baseinclude.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\include.h">
+      <Filter>Header Files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="everything.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

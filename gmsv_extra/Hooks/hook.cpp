@@ -8,7 +8,6 @@
 
 Hooks::Hooks() {
 	h_IServerGameClients = nullptr;
-	h_CGMOD_Player = nullptr;
 	SetupHooks();
 	HookFunctions();
 }
@@ -18,29 +17,24 @@ Hooks::~Hooks() {
 	// incase you forget to unhook something your game wont break.
 	if (h_IServerGameClients)
 		h_IServerGameClients->~VMTHook();
-
-	if (h_CGMOD_Player)
-		h_CGMOD_Player->~VMTHook();
-
 }
 void Hooks::SetupHooks() {
 	h_IServerGameClients = new VMTHook(g_pInterfaces->ServerGameClients());
 	
-
-	while (!h_CGMOD_Player) {
-		for (int i = 1; i < g_pInterfaces->Globals()->maxClients; i++) { // only loops players.
-			edict_t* ent = g_pInterfaces->EngineServer()->PEntityOfEntIndex(i);
-			if (ent && ent->GetUnknown()) {
-				if (((CGMOD_Player*)ent->GetUnknown())->IsPlayer() && !h_CGMOD_Player) {
-					h_CGMOD_Player = new VMTHook(ent->GetUnknown());
-					break; 
+	/*
+		while (!h_CGMOD_Player) {
+			for (int i = 1; i < g_pInterfaces->Globals()->maxClients; i++) { // only loops players.
+				edict_t* ent = g_pInterfaces->EngineServer()->PEntityOfEntIndex(i);
+				if (ent && ent->GetUnknown()) {
+					if (((CGMOD_Player*)ent->GetUnknown())->IsPlayer() && !h_CGMOD_Player) {
+						h_CGMOD_Player = new VMTHook(ent->GetUnknown());
+						break; 
+					}
 				}
 			}
-		}
-	Sleep(1000);
-	} 
+			Sleep(1000);
+		} 
 
-	/*
 
 		kk so the first one is a little easier to understand, but the second one probably not.
 
@@ -144,15 +138,9 @@ void Hooks::HookFunctions() {
 	// IServerGameClients
 	HookClientConnect();
 	HookGMOD_ReceiveClientMessage();
-
-	// CGMOD_Player
-	Hook_CGMOD_Player__FireBullets();
 }
 void Hooks::UnhookFunctions() {
 	// IServerGameClients
 	UnhookClientConnect();
 	UnHookGMOD_ReceiveClientMessage();
-
-	// CGMOD_Player
-	Unhook_CGMOD_Player__FireBullets();
 }

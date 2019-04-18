@@ -2,7 +2,7 @@
 #include "LuaObject/CLuaGameObject.h"
 #include "../Networking/gmod_net_util.h"
 
-int CLuaNetworkedVars::FindNetWorkedVar(CBaseEntity* Ent, char const* Key, int TypeID, bool CreateNewIfNotFound) {
+int CLuaNetworkedVars::FindNetWorkedVar(CBaseEntity* Ent, char const* Key, int TypeID, bool CreateNewIfNotFound, bool CareForType) {
 	if (!Ent)
 		return -1;
 
@@ -10,7 +10,7 @@ int CLuaNetworkedVars::FindNetWorkedVar(CBaseEntity* Ent, char const* Key, int T
 
 
 	for (int i = 0; i < m_Ents[entindex].NetVars.Count(); i++) {
-		if (m_Ents[entindex].NetVars[i].elem.m_LuaGameObject.m_iLUA_TYPE != TypeID)
+		if (CareForType && m_Ents[entindex].NetVars[i].elem.m_LuaGameObject.m_iLUA_TYPE != TypeID)
 			continue;
 
 		if (V_stricmp(m_Ents[entindex].NetVars[i].key, Key))
@@ -133,7 +133,7 @@ bool CLuaNetworkedVars::SetNWBool(CBaseEntity* Ent, char const* Key, bool val) {
 		return false;
 
 	int EntIndex = Ent->GetRefEHandle().GetEntryIndex();
-	int index = FindNetWorkedVar(Ent, Key, GarrysMod::Lua::Type::BOOL, true);
+	int index = FindNetWorkedVar(Ent, Key, GarrysMod::Lua::Type::BOOL, true, false);
 	if (index != -1) {
 		m_Ents[EntIndex].NetVars[index].elem.m_LuaGameObject.SetBool(val);
 		m_Ents[EntIndex].NetVars[index].elem.m_flLastUpdate = 0.0f; // force the var to update on all clients.
@@ -151,7 +151,7 @@ bool CLuaNetworkedVars::SetNWFloat(CBaseEntity* Ent, char const* Key, float val)
 		return false;
 
 	int EntIndex = Ent->GetRefEHandle().GetEntryIndex();
-	int index = FindNetWorkedVar(Ent, Key, GarrysMod::Lua::Type::NUMBER, true);
+	int index = FindNetWorkedVar(Ent, Key, GarrysMod::Lua::Type::NUMBER, true, false);
 	if (index != -1) {
 		m_Ents[EntIndex].NetVars[index].elem.m_LuaGameObject.SetFloat(val);
 		m_Ents[EntIndex].NetVars[index].elem.m_flLastUpdate = 0.0f; // force the var to update on all clients.
@@ -165,7 +165,7 @@ bool CLuaNetworkedVars::SetNWString(CBaseEntity* Ent, char const* Key, char cons
 		return false;
 
 	int EntIndex = Ent->GetRefEHandle().GetEntryIndex();
-	int index = FindNetWorkedVar(Ent, Key, GarrysMod::Lua::Type::STRING, true);
+	int index = FindNetWorkedVar(Ent, Key, GarrysMod::Lua::Type::STRING, true, false);
 	if (index != -1) {
 		m_Ents[EntIndex].NetVars[index].elem.m_LuaGameObject.SetString(val);
 		m_Ents[EntIndex].NetVars[index].elem.m_flLastUpdate = 0.0f; // force the var to update on all clients.
@@ -179,7 +179,7 @@ bool CLuaNetworkedVars::SetNWEntity(CBaseEntity* Ent, char const* Key, CBaseEnti
 		return false;
 
 	int EntIndex = Ent->GetRefEHandle().GetEntryIndex();
-	int index = FindNetWorkedVar(Ent, Key, GarrysMod::Lua::Type::ENTITY, true);
+	int index = FindNetWorkedVar(Ent, Key, GarrysMod::Lua::Type::ENTITY, true, false);
 	if (index != -1) {
 		m_Ents[EntIndex].NetVars[index].elem.m_LuaGameObject.SetEntity(val);
 		m_Ents[EntIndex].NetVars[index].elem.m_flLastUpdate = 0.0f; // force the var to update on all clients.
@@ -193,7 +193,7 @@ bool CLuaNetworkedVars::SetNWVector(CBaseEntity* Ent, char const* Key, Vector va
 		return false;
 
 	int EntIndex = Ent->GetRefEHandle().GetEntryIndex();
-	int index = FindNetWorkedVar(Ent, Key, GarrysMod::Lua::Type::VECTOR, true);
+	int index = FindNetWorkedVar(Ent, Key, GarrysMod::Lua::Type::VECTOR, true, false);
 	if (index != -1) {
 		m_Ents[EntIndex].NetVars[index].elem.m_LuaGameObject.SetVector(val);
 		m_Ents[EntIndex].NetVars[index].elem.m_flLastUpdate = 0.0f; // force the var to update on all clients.
@@ -207,7 +207,7 @@ bool CLuaNetworkedVars::SetNWAngle(CBaseEntity* Ent, char const* Key, QAngle val
 		return false;
 
 	int EntIndex = Ent->GetRefEHandle().GetEntryIndex();
-	int index = FindNetWorkedVar(Ent, Key, GarrysMod::Lua::Type::ANGLE, true);
+	int index = FindNetWorkedVar(Ent, Key, GarrysMod::Lua::Type::ANGLE, true, false);
 	if (index != -1) {
 		m_Ents[EntIndex].NetVars[index].elem.m_LuaGameObject.SetAngle(val);
 		m_Ents[EntIndex].NetVars[index].elem.m_flLastUpdate = 0.0f; // force the var to update on all clients.

@@ -148,13 +148,13 @@
     <ClCompile Include="Garry%27s Mod\Networking\ClientToServer.cpp" />
     <ClCompile Include="Garry%27s Mod\Networking\gmod_net_util.cpp" />
     <ClCompile Include="Garry%27s Mod\Networking\ServerToClient.cpp" />
-    <ClCompile Include="Hooks\CGMOD_Player\FireBullets.cpp" />
-    <ClCompile Include="Hooks\CNetChan\SendNetMsg.cpp" />
     <ClCompile Include="Hooks\hook.cpp" />
     <ClCompile Include="Hooks\ServerGameClients\ClientConnect.cpp" />
     <ClCompile Include="Hooks\ServerGameClients\GMOD_ReceiveClientMessage.cpp" />
     <ClCompile Include="interfaces.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="project\examples\networking example.cpp" />
+    <ClCompile Include="project\project.cpp" />
     <ClCompile Include="Source SDK\collisionutils.cpp" />
     <ClCompile Include="Source SDK\entitylist_base.cpp" />
     <ClCompile Include="Source SDK\igamesystem.cpp" />
@@ -190,6 +190,7 @@
     <ClCompile Include="util\vmthook.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="everything.h" />
     <ClInclude Include="Garry%27s Mod\CGMODRules.h" />
     <ClInclude Include="Garry%27s Mod\Exports\exports.h" />
     <ClInclude Include="Garry%27s Mod\Exports\win32\lua_shared\lua_shared exports.h" />
@@ -209,7 +210,7 @@
     <ClInclude Include="Garry%27s Mod\Networking\gmod_net_util.h" />
     <ClInclude Include="Garry%27s Mod\Networking\ServerToClient.h" />
     <ClInclude Include="Hooks\hook.h" />
-    <ClInclude Include="include.h" />
+    <ClInclude Include="include\include.h" />
     <ClInclude Include="include\baseinclude.h" />
     <ClInclude Include="interfaces.h" />
     <ClInclude Include="Garry%27s Mod\LUA\ILuaShared.h" />
@@ -217,6 +218,7 @@
     <ClInclude Include="Garry%27s Mod\LUA\Interface.h" />
     <ClInclude Include="Garry%27s Mod\LUA\Types.h" />
     <ClInclude Include="Garry%27s Mod\LUA\UserData.h" />
+    <ClInclude Include="project\examples\networking example.h" />
     <ClInclude Include="project\project.h" />
     <ClInclude Include="Source SDK\activitylist.h" />
     <ClInclude Include="Source SDK\ai_activity.h" />

@@ -172,6 +172,9 @@
     <Filter Include="Header Files\include">
       <UniqueIdentifier>{85bedd51-3197-47dc-a053-8b07160623ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Source SDK\gmod">
+      <UniqueIdentifier>{c5d499e6-e22b-40b0-89bb-c9e3952db916}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -1234,6 +1237,9 @@
     </ClInclude>
     <ClInclude Include="everything.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source SDK\gmod\gmod_gamerules.h">
+      <Filter>Header Files\Source SDK\gmod</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

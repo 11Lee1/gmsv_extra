@@ -94,26 +94,26 @@ public:
 #endif
 
 	CHL2MPRules();
-	virtual ~CHL2MPRules();
+	/*13 - 52*/virtual ~CHL2MPRules();
 
-	virtual void Precache(void);
-	virtual bool ShouldCollide(int collisionGroup0, int collisionGroup1);
-	virtual bool ClientCommand(CBaseEntity *pEdict, const CCommand &args);
+	/*42 - 168*/virtual void Precache(void);
+	/*29 - 116*/virtual bool ShouldCollide(int collisionGroup0, int collisionGroup1);
+	/*76 - 304*/virtual bool ClientCommand(CBaseEntity *pEdict, const CCommand &args);
 
-	virtual float FlWeaponRespawnTime(CBaseCombatWeapon *pWeapon);
-	virtual float FlWeaponTryRespawn(CBaseCombatWeapon *pWeapon);
-	virtual Vector VecWeaponRespawnSpot(CBaseCombatWeapon *pWeapon);
-	virtual int WeaponShouldRespawn(CBaseCombatWeapon *pWeapon);
-	virtual void Think(void);
-	virtual void CreateStandardEntities(void);
-	virtual void ClientSettingsChanged(CBasePlayer *pPlayer);
-	virtual int PlayerRelationship(CBaseEntity *pPlayer, CBaseEntity *pTarget);
-	virtual void GoToIntermission(void);
-	virtual void DeathNotice(CBasePlayer *pVictim, const CTakeDamageInfo &info);
-	virtual const char *GetGameDescription(void);
+	/*86 - 344*/virtual float FlWeaponRespawnTime(CBaseCombatWeapon *pWeapon);
+	/*87 - 348*/virtual float FlWeaponTryRespawn(CBaseCombatWeapon *pWeapon);
+	/*88 - 352*/virtual Vector VecWeaponRespawnSpot(CBaseCombatWeapon *pWeapon);
+	/*85 - 340*/virtual int WeaponShouldRespawn(CBaseCombatWeapon *pWeapon);
+	/*44 - 176*/virtual void Think(void);
+	/*120 - 480*/virtual void CreateStandardEntities(void);
+	/*77 - 308*/virtual void ClientSettingsChanged(CBasePlayer *pPlayer);
+	/*106 - 424*/virtual int PlayerRelationship(CBaseEntity *pPlayer, CBaseEntity *pTarget);
+	/*146 - 584*/virtual void GoToIntermission(void);
+	/*80 - 320*/virtual void DeathNotice(CBasePlayer *pVictim, const CTakeDamageInfo &info);
+	/*56 - 224*/virtual const char *GetGameDescription(void);
 	// derive this function if you mod uses encrypted weapon info files
-	virtual const unsigned char *GetEncryptionKey(void) { return (unsigned char *)"x9Ke0BY7"; }
-	virtual const CViewVectors* GetViewVectors() const;
+	/*35 - 140*/virtual const unsigned char *GetEncryptionKey(void) { return (unsigned char *)"x9Ke0BY7"; }
+	/*31 - 124*/virtual const CViewVectors* GetViewVectors() const;
 	const HL2MPViewVectors* GetHL2MPViewVectors() const;
 
 	float GetMapRemainingTime();
@@ -122,11 +122,11 @@ public:
 	void RestartGame();
 
 #ifndef CLIENT_DLL
-	virtual Vector VecItemRespawnSpot(CItem *pItem);
-	virtual QAngle VecItemRespawnAngles(CItem *pItem);
-	virtual float	FlItemRespawnTime(CItem *pItem);
-	virtual bool	CanHavePlayerItem(CBasePlayer *pPlayer, CBaseCombatWeapon *pItem);
-	virtual bool FShouldSwitchWeapon(CBasePlayer *pPlayer, CBaseCombatWeapon *pWeapon);
+	/*93 - 372*/virtual Vector VecItemRespawnSpot(CItem *pItem);
+	/*94 - 376*/virtual QAngle VecItemRespawnAngles(CItem *pItem);
+	/*92 - 368*/virtual float	FlItemRespawnTime(CItem *pItem);
+	/*84 - 336*/virtual bool	CanHavePlayerItem(CBasePlayer *pPlayer, CBaseCombatWeapon *pItem);
+	/*52 - 208*/virtual bool FShouldSwitchWeapon(CBasePlayer *pPlayer, CBaseCombatWeapon *pWeapon);
 
 	void	AddLevelDesignerPlacedObject(CBaseEntity *pEntity);
 	void	RemoveLevelDesignerPlacedObject(CBaseEntity *pEntity);
@@ -135,7 +135,7 @@ public:
 	const char *GetChatFormat(bool bTeamOnly, CBasePlayer *pPlayer);
 
 #endif
-	virtual void ClientDisconnected(edict_t *pClient);
+	/*59 - 236*/virtual void ClientDisconnected(edict_t *pClient);
 
 	bool CheckGameOver(void);
 	bool IsIntermission(void);
@@ -146,8 +146,10 @@ public:
 	bool	IsTeamplay(void) { return m_bTeamPlayEnabled; }
 	void	CheckAllPlayersReady(void);
 
+	/*
+	doesn't exist on vmt
 	virtual bool IsConnectedUserInfoChangeAllowed(CBasePlayer *pPlayer);
-
+	*/
 private:
 
 	bool m_bTeamPlayEnabled;

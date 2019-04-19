@@ -814,7 +814,7 @@ public:
 
 class SVC_GMod_ServerToClient : public CNetMessage
 {
-public:													
+public:
 	bool			ReadFromBuffer(bf_read &buffer) { printf("ReadFromBuffer Called\n"); return true; }
 	bool			WriteToBuffer(bf_write &buffer) { 
 		m_nLength = m_DataOut.GetNumBitsWritten();

@@ -280,6 +280,7 @@
     <ClInclude Include="Source SDK\gametrace.h" />
     <ClInclude Include="Source SDK\gamevars_shared.h" />
     <ClInclude Include="Source SDK\globalvars_base.h" />
+    <ClInclude Include="Source SDK\gmod\gmod_gamerules.h" />
     <ClInclude Include="Source SDK\hintsystem.h" />
     <ClInclude Include="Source SDK\hl2mp\hl2mp_gamerules.h" />
     <ClInclude Include="Source SDK\hl2mp\hl2mp_player_shared.h" />

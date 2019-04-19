@@ -135,6 +135,7 @@ void Interfaces::FindOtherInterfaces() {
 	m_pSv = *(CGameServer**)((*(unsigned int**)this->EngineServer())[44]/*MessageEnd*/ + 0xE5 + 0x1);
 	PRINT_PTRCHECK("m_pSv(CGameServer) from CVEngineServer::MessageEnd function", m_pSv);
 
+	m_pGameRules = *(void**)((*(unsigned int**)m_pServerGameDLL)[6] + 0xB9 + 0x2);
 #endif
 	g_pMemAlloc = this->MemAlloc();
 }

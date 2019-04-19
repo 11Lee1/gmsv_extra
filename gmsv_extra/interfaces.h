@@ -29,6 +29,7 @@ class CGameServer;
 class CGlobalEntityList;
 class CLuaInterface;
 class Color;
+class CGMODRules;
 class Interfaces
 {
 public:
@@ -66,6 +67,7 @@ public:
 	IKeyValuesSystem* KeyValuesSystem() { return keyvaluessystem; }
 	CGameServer* GameServer() { return m_pSv; }
 	CGlobalEntityList* EntityList() { return *(CGlobalEntityList**)m_pEntityList; }
+	CGMODRules* GameRules() { return *(CGMODRules**)m_pGameRules; }
 private:
 	// Interface registries 
 	InterfaceReg* m_pServerDLLInterfaceReg;
@@ -94,6 +96,7 @@ private:
 
 	CGameServer* m_pSv;
 	void* m_pEntityList;
+	void* m_pGameRules;
 	// globals
 	void* gpGlobals;
 

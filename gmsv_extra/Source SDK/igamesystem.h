@@ -28,38 +28,38 @@ abstract_class IGameSystem
 {
 public:
 	// GameSystems are expected to implement these methods.
-	virtual char const *Name() = 0;
+	/*0 - 0*/virtual char const *Name() = 0;
 
 	// Init, shutdown
 	// return true on success. false to abort DLL init!
-	virtual bool Init() = 0;
-	virtual void PostInit() = 0;
-	virtual void Shutdown() = 0;
+	/*1 - 4*/virtual bool Init() = 0;
+	/*2 - 8*/virtual void PostInit() = 0;
+	/*3 - 12*/virtual void Shutdown() = 0;
 
 	// Level init, shutdown
-	virtual void LevelInitPreEntity() = 0;
+	/*4 - 16*/virtual void LevelInitPreEntity() = 0;
 	// entities are created / spawned / precached here
-	virtual void LevelInitPostEntity() = 0;
+	/*5 - 20*/virtual void LevelInitPostEntity() = 0;
 
-	virtual void LevelShutdownPreClearSteamAPIContext() {};
-	virtual void LevelShutdownPreEntity() = 0;
+	/*6 - 24*/virtual void LevelShutdownPreClearSteamAPIContext() {};
+	/*7 - 28*/virtual void LevelShutdownPreEntity() = 0;
 	// Entities are deleted / released here...
-	virtual void LevelShutdownPostEntity() = 0;
+	/*8 - 32*/virtual void LevelShutdownPostEntity() = 0;
 	// end of level shutdown
 
 	// Called during game save
-	virtual void OnSave() = 0;
+	/*9 - 36*/virtual void OnSave() = 0;
 
 	// Called during game restore, after the local player has connected and entities have been fully restored
-	virtual void OnRestore() = 0;
+	/*10 - 40*/virtual void OnRestore() = 0;
 
 	// Called every frame. It's safe to remove an igamesystem from within this callback.
-	virtual void SafeRemoveIfDesired() = 0;
+	/*11 - 44*/virtual void SafeRemoveIfDesired() = 0;
 
-	virtual bool	IsPerFrame() = 0;
+	/*12 - 48*/virtual bool	IsPerFrame() = 0;
 
 	// destructor, cleans up automagically....
-	virtual ~IGameSystem() {};
+	/*13 - 52*/virtual ~IGameSystem() {};
 
 	// Client systems can use this to get at the map name
 	static char const*	MapName();
@@ -178,26 +178,26 @@ private:
 class CBaseGameSystemPerFrame : public IGameSystemPerFrame
 {
 public:
-	virtual char const *Name() { return "unnamed"; }
+	/*0 - 0*/virtual char const *Name() { return "unnamed"; }
 
 	// Init, shutdown
 	// return true on success. false to abort DLL init!
-	virtual bool Init() { return true; }
-	virtual void PostInit() {}
-	virtual void Shutdown() {}
+	/*1 - 4*/virtual bool Init() { return true; }
+	/*2 - 8*/virtual void PostInit() {}
+	/*3 - 12*/virtual void Shutdown() {}
 
 	// Level init, shutdown
-	virtual void LevelInitPreEntity() {}
-	virtual void LevelInitPostEntity() {}
-	virtual void LevelShutdownPreClearSteamAPIContext() {}
-	virtual void LevelShutdownPreEntity() {}
-	virtual void LevelShutdownPostEntity() {}
+	/*4 - 16*/virtual void LevelInitPreEntity() {}
+	/*5 - 20*/virtual void LevelInitPostEntity() {}
+	/*6 - 24*/virtual void LevelShutdownPreClearSteamAPIContext() {}
+	/*7 - 28*/virtual void LevelShutdownPreEntity() {}
+	/*8 - 32*/virtual void LevelShutdownPostEntity() {}
 
-	virtual void OnSave() {}
-	virtual void OnRestore() {}
-	virtual void SafeRemoveIfDesired() {}
+	/*9 - 36*/virtual void OnSave() {}
+	/*10 - 40*/virtual void OnRestore() {}
+	/*11 - 44*/virtual void SafeRemoveIfDesired() {}
 
-	virtual bool	IsPerFrame() { return true; }
+	/*12 - 48*/virtual bool	IsPerFrame() { return true; }
 
 #ifdef CLIENT_DLL
 	// Called before rendering
@@ -210,10 +210,10 @@ public:
 	virtual void PostRender() { }
 #else
 	// Called each frame before entities think
-	virtual void FrameUpdatePreEntityThink() { }
+	/*14 - 56 deconstructor below.*/virtual void FrameUpdatePreEntityThink() { }
 	// called after entities think
-	virtual void FrameUpdatePostEntityThink() { }
-	virtual void PreClientUpdate() { }
+	/*15 - 60*/virtual void FrameUpdatePostEntityThink() { }
+	/*16 - 64*/virtual void PreClientUpdate() { }
 #endif
 };
 
@@ -238,12 +238,12 @@ class CAutoGameSystemPerFrame : public CBaseGameSystemPerFrame
 {
 public:
 	CAutoGameSystemPerFrame(char const *name = NULL) {}
-	CAutoGameSystemPerFrame *m_pNext;
+	/*0x4*/CAutoGameSystemPerFrame *m_pNext;
 
-	virtual char const *Name() { return m_pszName ? m_pszName : "unnamed"; }
+	/*0 - 0*/virtual char const *Name() { return m_pszName ? m_pszName : "unnamed"; }
 
 private:
-	char const *m_pszName;
+	/*0x8*/char const *m_pszName;
 };
 
 

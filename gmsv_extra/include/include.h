@@ -63,6 +63,7 @@
 #include "../Garry's Mod/Networking/ClientToServer.h"
 #include "../Garry's Mod/Networking/ServerToClient.h"
 #include "../Source SDK/server/entitylist.h"
+#include "../Source SDK/gmod/gmod_gamerules.h"
 
 #include "../util/Source UTIL.h"
 

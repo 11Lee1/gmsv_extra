@@ -8,8 +8,7 @@
 class CGMODDataTable : public IGMODDataTable
 {
 public:
-	BYTE pad_unk00[4];
-	BYTE pad_unk01[32][2];
+	// used in NW2Vars, NW2Vars is dogshit so I'm not going to finish this unless it's used somewhere important.
 };
 
 

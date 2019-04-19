@@ -10,9 +10,6 @@ void detatch(HANDLE thread);
 	see project/project.h for everything, not reccomended you touch anything in here.
 
 */
-
-#define __ATTACH_CONSOLE
-#define __INJECT
 #ifdef __INJECT
 BOOL __stdcall DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved) { 
 	if (ul_reason_for_call == DLL_PROCESS_ATTACH)

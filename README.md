@@ -1,6 +1,6 @@
 # gmsv_extra
 
-# wip
+## wip
 This is something I spend maybe one or less to like two hours a day unless I find something interesting and would want to look into more, this isn't something I'm dedicating my full time to so updates and shit might take time depending on the size idk.  This is NOT a meant to be used for cheating, but in all reality I don't give a shit what you do with it.  I tried to keep stuff in /Garry's Mod/ relatively accurate to what you would see in lua_shared.dll, engine.dll and server.dll disassembled.  If there's any issues or you want to correct some of my mistakes/autism make a pull request thnx. 
 
 Build on x86 debug/release as a dynamic library. 

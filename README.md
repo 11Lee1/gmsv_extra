@@ -12,3 +12,6 @@ TODO (for a much later version when I feel like I've accomplished a significant 
 Contact:
 - Steam http://steamcommunity.com/profiles/76561198046014135
 - Discord: Lee#1625
+
+
+unfinished, like %20 done
